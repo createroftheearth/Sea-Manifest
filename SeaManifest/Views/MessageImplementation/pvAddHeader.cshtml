@@ -1,0 +1,19 @@
+﻿@model BAL.Models.HeaderFieldModel
+@using (Html.BeginForm("AddUpdateHeader","MessageImplementation",FormMethod.Post,new { @id = "frmHeader" }))
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add/Update Header</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            @Html.Label("Sender Id")
+            @Html.TextBoxFor(z => z.sSenderID, new { @class="form-control"})
+            @Html.ValidationMessageFor(z=>z.sSenderID)
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+}
