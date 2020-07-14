@@ -27,9 +27,6 @@ function initHeader() {
                 "data": "sHeaderFieldVersionNo",
             },
             {
-                "data": "sHeaderFieldIndicator",
-            },
-            {
                 "data": "sHeaderFieldMessageId",
             },
             {
