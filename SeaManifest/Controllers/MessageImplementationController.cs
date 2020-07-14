@@ -29,19 +29,29 @@ namespace SeaManifest.Controllers
 
 
 
-        public PartialViewResult AddUpdateHeader(int? iHeaderId = null)
+        public PartialViewResult AddUpdateHeader(int? iMessageImplementationId = null)
         {
-            return PartialView("pvAddUpdateHeader");
+            if (iMessageImplementationId == null)
+            {
+                return PartialView("pvAddUpdateHeader");
+            }
+            else
+                return PartialView("pvAddUpdateHeader",MessageImplementationService.Instance.GetHeaderByMessageImpementationId(iMessageImplementationId));
         }
 
         [HttpPost]
         public JsonResult AddUpdateHeader(HeaderFieldModel model)
         {
             model.sIndicator = ConfigurationManager.AppSettings["HeaderIndicator"];
-
-
-
-            return Json(new { Status = true, Message = "Saved Successfully" });
+            model.sVersionNo = ConfigurationManager.AppSettings["HeaderVersion"];
+            if (ModelState.IsValid)
+            {
+                return Json(MessageImplementationService.Instance.SaveHeader(model, 1));
+            }
+            else
+            {
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+            }
         }
 
     }

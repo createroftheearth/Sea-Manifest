@@ -41,18 +41,21 @@ function initHeader() {
             {
                 "data": "sHeaderFieldReportingEvent"
             },
+            {
+                "data": "iMessageImplementationId", "mRender": function (data) {
+                    return "<button type=\"button\" onClick=\"AddUpdateHeader("+data+")\"><i class=\"fa fa-edit\"></i></button>";
+                }
+            },
         ]
     });
 }
 
 
-function AddUpdateHeader(iHeaderId) {
-    $('#addUpdateModallgContainer').load('/MessageImplementation/AddUpdateHeader', function () {
+function AddUpdateHeader(iMessageImplementationId) {
+    $('#addUpdateModallgContainer').load('/MessageImplementation/AddUpdateHeader?iMessageImplementationId=' + iMessageImplementationId, function () {
         $.validator.unobtrusive.parse('#frmHeader');
         $('#addUpdatelgModal').modal('show');
-
-
-    })
+    });
 }
 
 $(document).on('submit', '#frmHeader', function (e) {
