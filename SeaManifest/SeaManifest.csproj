@@ -1460,6 +1460,7 @@
     <Content Include="Scripts\PageScripts\ExtendedValidityBill.js" />
     <Content Include="Scripts\PageScripts\FreezedBill.js" />
     <Content Include="Scripts\PageScripts\GeneratedBill.js" />
+    <Content Include="Scripts\PageScripts\Header.js" />
     <Content Include="Scripts\PageScripts\Login.js" />
     <Content Include="Scripts\PageScripts\MultivehicledBill.js" />
     <Content Include="Scripts\PageScripts\ReceivedBill.js" />
@@ -1491,7 +1492,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\MessageImplementation\Index.cshtml" />
-    <Content Include="Views\MessageImplementation\pvAddHeader.cshtml" />
+    <Content Include="Views\MessageImplementation\pvAddUpdateHeader.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
