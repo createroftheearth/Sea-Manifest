@@ -1,0 +1,182 @@
+﻿body, html {
+    height: 100%;
+    margin: 0;
+    font: 400 15px/1.8 "Lato", sans-serif;
+    color: #777;
+}
+
+.bgimg-1, .bgimg-2, .bgimg-3 {
+    position: relative;
+    opacity: 0.65;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bgimg-1 {
+    background-image: url('/Images/government-unveils-national-air-cargo-policy.jpg');
+    min-height: 100%;
+}
+
+.bgimg-2 {
+    background-image: url('/Images/istock-968819844.jpg');
+    min-height: 400px;
+}
+
+.bgimg-3 {
+    background-image: url('/Images/new-truck-background-1.jpg');
+    min-height: 400px;
+}
+
+.bgimg-4 {
+    background-image: url('/Images/Login Image1.png');
+    min-height: 400px;
+}
+
+.caption {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    color: #000;
+}
+
+    .caption span.border {
+        background-color: #111;
+        color: #fff;
+        padding: 18px;
+        font-size: 25px;
+        letter-spacing: 10px;
+    }
+
+h3 {
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font: 20px "Lato", sans-serif;
+    color: #111;
+}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3 {
+        background-attachment: scroll;
+    }
+}
+
+.registrationOneClick {
+    position: relative;
+}
+
+    .registrationOneClick div {
+        color: #ddd;
+        background-color: #282E34;
+        text-align: center;
+        padding: 50px 80px;
+        text-align: justify;
+    }
+
+        .registrationOneClick div p {
+            text-align: center
+        }
+
+.LoginAndGenerate {
+    position: relative;
+}
+
+    .LoginAndGenerate div {
+        color: #ddd;
+        background-color: #282E34;
+        text-align: center;
+        padding: 50px 80px;
+        text-align: justify;
+    }
+
+        .LoginAndGenerate div p {
+            text-align: center
+        }
+
+.form-control {
+    background-color: transparent !important;
+    color: white !important;
+    border: 0 !important;
+    border-bottom: 1px solid white !important;
+}
+
+    .form-control:focus, .form-control:active {
+        background-color: transparent !important;
+        color: white !important;
+        border-bottom: 1px solid #1ab394 !important;
+        box-shadow: none !important;
+    }
+
+.btn-float {
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #282E34;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    z-index: 9999999999999;
+    box-shadow: 2px 2px 3px #999;
+}
+
+    .btn-float p {
+        position: absolute;
+        top: 20px;
+    }
+
+    .btn-float:hover {
+        color: orange;
+        background-color: #5a5d60;
+    }
+
+.btn-primary {
+    background-color: #1ab394 !important;
+    border-color: #1ab394 !important;
+    border: 0 !important;
+}
+
+    .btn-primary:focus {
+        box-shadow: 0 0 0 0.2rem #1ab394 !important;
+    }
+
+select option {
+    background: #5a5d60;
+}
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border-bottom: 1px solid red !important;
+}
+
+.img-circle {
+    position: relative;
+    z-index: 9999;
+    height: 128px;
+    width: 128px;
+    border-radius: 50%;
+}
+
+.selectPhoto {
+    cursor: pointer;
+    font-size: 30px !important;
+    position: absolute;
+    right: 46%;
+    z-index: 99999;
+    top: 40%;
+    color: white;
+    opacity: 0.9;
+}
+
+#profilePicture {
+    display: none;
+}
+

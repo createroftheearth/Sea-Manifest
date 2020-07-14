@@ -8,8 +8,48 @@
     <div class="modal-body">
         <div class="form-group">
             @Html.Label("Sender Id")
-            @Html.TextBoxFor(z => z.sSenderID, new { @class="form-control"})
-            @Html.ValidationMessageFor(z=>z.sSenderID)
+            @Html.TextBoxFor(z => z.sSenderID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sSenderID)
+        </div>
+        <div class="form-group">
+            @Html.Label("Receiver Id")
+            @Html.TextBoxFor(z => z.sReceiverID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sReceiverID)
+        </div>
+        <div class="form-group">
+            @Html.Label("Version No")
+            @Html.TextBoxFor(z => z.sVersionNo, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sVersionNo)
+        </div>
+        <div class="form-group">
+            @Html.Label("Indicator")
+            @Html.TextBoxFor(z => z.sIndicator, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sIndicator)
+        </div>
+        <div class="form-group">
+            @Html.Label("Message Id")
+            @Html.TextBoxFor(z => z.sMessageID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sMessageID)
+        </div>
+        <div class="form-group">
+            @Html.Label("Sequence Or Control Number")
+            @Html.TextBoxFor(z => z.iSequenceOrControlNumber, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.iSequenceOrControlNumber)
+        </div>
+        <div class="form-group">
+            @Html.Label("Date")
+            @Html.TextBoxFor(z => z.sDate, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sDate)
+        </div>
+        <div class="form-group">
+            @Html.Label("Time")
+            @Html.TextBoxFor(z => z.sTime, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sTime)
+        </div>
+        <div class="form-group">
+            @Html.Label("Reporting Event")
+            @Html.TextBoxFor(z => z.sReportingEvent, new { @class = "form-control" })
+            @Html.ValidationMessageFor(z => z.sReportingEvent)
         </div>
     </div>
     <div class="modal-footer">

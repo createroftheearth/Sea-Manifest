@@ -1,56 +1,143 @@
 ﻿<!DOCTYPE html>
-<html>
+<html style="height: auto;">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - Sea Manifest System</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <link href="~/Content/Libs/bootstrap-datetimepicker/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="~/Content/Libs/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    @Styles.Render("~/Content/csss")
+    @Styles.Render("~/dist/csss")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Libs/bootstrap-selectpicker/css/bootstrap-select.min.css" rel="stylesheet" />
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div id="Progress" class="overlay">
+        <div class="loader"></div>
+    </div>
+    <div id="wrapper" style="height:auto;">
+        @Html.Partial("_LeftMenu")
+        <div id="page-wrapper" class="gray-bg">
+            @Html.Partial("_Header")
+            <div class="wrapper wrapper-content animated fadeInRight">
+                @RenderBody()
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
-    <div id="addUpdateModal" class="modal fade" role="dialog">
+    <div class="modal modal-info fade" id="addUpdateModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" id="addUpdateModalContainer">
+
             </div>
         </div>
     </div>
-    <div id="addUpdateModalLg" class="modal modal-lg fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content" id="addUpdateModalLgContainer">
+    <div class="modal modal-info fade" id="addUpdatelgModal" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="mylgModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="addUpdateModallgContainer">
             </div>
         </div>
     </div>
-
-
-
+    @Html.Partial("_Footer")
+    <div class="control-sidebar-bg" style="position: fixed; height: auto;"></div>
     @Scripts.Render("~/bundles/jquery")
+    <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js"></script>
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datatables")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Content/Libs/bootstrap-selectpicker/js/bootstrap-select.min.js"></script>
+    <script src="~/Content/Libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Content/Libs/bootstrap-datetimepicker/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.fn.selectpicker.Constructor.BootstrapVersion = '4';
+            var hrefSeperated = location.href.split('/');
+            var absoluteHref = '';
+            if (hrefSeperated.length == 5) {
+                $('.treeview').removeClass('active');
+                absoluteHref = "/" + hrefSeperated[3] + "/" + hrefSeperated[4];
+                var absoluteAnchor = $('.sidebar-menu').find('a[href="' + absoluteHref + '"]');
+                absoluteAnchor.parent('li').addClass('active');
+                absoluteAnchor.parent('li').parent('.treeview-menu').addClass('active menu-open');
+                absoluteAnchor.parent('li').parent('.treeview-menu').parent('li.treeview').addClass('active');
+            }
+            // $("#DocDate").val(Date.now.defaultDate);
+        });
+        window.onload = function () {
+            $('#Progress').hide();
+            // Start Loader when ajax services are called.
+            $('#Progress').bind('ajaxStart', function () {
+                $('#Progress').show();
+            }).bind('ajaxStop', function () {
+                $('#Progress').hide();
+            });
+        };
+
+        $(document).ajaxStart(function () {
+            $('#Progress').show();
+        });
+
+        $(document).ajaxStop(function () {
+            $('#Progress').hide();
+        });
+        //amits for loader
+        $(document).ajaxError(function (event, jqXHR, settings, errorThrown) {
+            //Use Base handleError method
+            try {
+                var msg = "";
+                if (jqXHR.status === 0) {
+                    msg = 'Not connect. Verify Network.';
+                } else if (jqXHR.status == 404) {
+                    msg = 'Requested page not found. [404]';
+                } else if (jqXHR.status == 500) {
+                    msg = 'Internal Server Error [500].';
+                }
+                else if (jqXHR.status == 401) {
+                    location.href = "/";
+                    return;
+                }
+                else if (jqXHR.status == 301) {
+                    location.href = "/Account/Login";
+                    return;
+                }
+                else if (jqXHR.statusText === 'parsererror') {
+                    msg = 'Requested JSON parse failed.';
+                } else if (jqXHR.statusText === 'timeout') {
+                    msg = 'Time out error.';
+                } else if (jqXHR.statusText === 'abort') {
+                    msg = 'Ajax request aborted.';
+                } else {
+                    try {
+                        msg = JSON.parse(jqXHR.responseText);
+                    }
+                    catch (ers) {
+                        msg = jqXHR.responseText;
+                    }
+                }
+                alertify.error(msg);
+                $(".modal").modal('hide');
+            }
+            catch (err) {
+                alertify.error(msg);
+                $(".modal").modal('hide');
+            }
+        });
+
+        function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'pm' : 'am';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+                                                                    //End
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
