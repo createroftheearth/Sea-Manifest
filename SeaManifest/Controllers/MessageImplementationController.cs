@@ -54,5 +54,19 @@ namespace SeaManifest.Controllers
             }
         }
 
+
+        [HttpPost]
+        public JsonResult AddUpdateMaster(MessageImplementationModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                return Json(MessageImplementationService.Instance.SaveMasters(model, 1));
+            }
+            else
+            {
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+            }
+        }
     }
 }

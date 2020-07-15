@@ -36,7 +36,7 @@ namespace BAL.Services
             {
                 var query = from t in db.tblMessageImplementations
                             where t.sHeaderFieldIndicator.Contains(search) || t.sHeaderFieldMessageId.Contains(search)
-                            || t.sHeaderFieldSenderId.Contains(search) ||t.sHeaderFieldReceiverId.Contains(search) || t.sHeaderFieldReportingEvent.Contains(search)
+                            || t.sHeaderFieldSenderId.Contains(search) || t.sHeaderFieldReceiverId.Contains(search) || t.sHeaderFieldReportingEvent.Contains(search)
                             || t.sHeaderFieldVersionNo.Contains(search) || SqlFunctions.StringConvert(t.dHeaderFieldSequenceOrControlNumber).Contains(search)
                             select t;
                 recordsTotal = query.Count();
@@ -60,18 +60,18 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId).ToList().Select(z=>new HeaderFieldModel
+                return db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId).ToList().Select(z => new HeaderFieldModel
                 {
                     iMessageImplementationId = z.iMessageImplementationId,
-                    sDate= z.dtHeaderFieldDateTime?.ToString("dd/MM/yyyy",CultureInfo.InvariantCulture),
+                    sDate = z.dtHeaderFieldDateTime?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                     sTime = z.dtHeaderFieldDateTime?.ToString("hh:mm tt", CultureInfo.InvariantCulture),
                     sIndicator = z.sHeaderFieldIndicator,
                     sMessageID = z.sHeaderFieldMessageId,
                     sReceiverID = z.sHeaderFieldReceiverId,
-                    sReportingEvent=z.sHeaderFieldReportingEvent,
+                    sReportingEvent = z.sHeaderFieldReportingEvent,
                     sSenderID = z.sHeaderFieldSenderId,
                     sSequenceOrControlNumber = z.dHeaderFieldSequenceOrControlNumber?.ToString("#"),
-                    sVersionNo= z.sHeaderFieldVersionNo,
+                    sVersionNo = z.sHeaderFieldVersionNo,
                 }).SingleOrDefault();
             }
         }
@@ -127,6 +127,110 @@ namespace BAL.Services
                 return new { Status = false, Message = "Something went wrong" };
             }
         }
+
+        //authprsn
+        public object SaveMasters(MessageImplementationModel model, int iUserId)
+        {
+            try
+            {
+                using (var db = new SeaManifestEntities())
+                {
+                    var data = db.tblMessageImplementations.Where(z => z.iMessageImplementationId == model.iMessageImplementationId).SingleOrDefault();
+                    //decimal.TryParse(model.sSequenceOrControlNumber, out decimal SqOrCtrlNo);
+                    //DateTime dateTime = DateTime.ParseExact(model.sDate + " " + model.sTime, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                    if (data == null)
+                    {
+                        data = new tblMessageImplementation
+                        {
+                            sDecRefMsgType = model.sDecRefMsgType,
+                            sDecRefPortOfReporting = model.sDecRefPortOfReporting,
+                            dDecRefobNo = model.dDecRefjobNo,
+                            dtDecRefJobDt = Convert.ToDateTime(model.dtDecRefJobDt),
+                            sDecRefReportingEvent = model.sDecRefReportingEvent,
+                            dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo,
+                            dtDecRefManifestDateRotnDt = Convert.ToDateTime(model.dtDecRefManifestDateRotnDt),
+                            sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement,
+                            dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo,
+                            dtDecRefPreviousManifestDptrDate = Convert.ToDateTime(model.dtDecRefPreviousManifestDptrDate),
+                            sAuthPrsnSubmitType = model.sAuthPrsnSubmitType,
+                            sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode,
+                            sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN,
+                            sAuthPrsnShipLineCode = model.sAuthPrsnShipLineCode,
+                            sAuthPrsnAuthSeaCarrierCode = model.sAuthPrsnAuthSeaCarrierCode,
+                            sAuthPrsnMasterName = model.sAuthPrsnMasterName,
+                            sAuthPrsnShippingLineBondNo = model.sAuthPrsnShippingLineBondNo,
+                            sAuthPrsnTerminalCustodianCode = model.sAuthPrsnTerminalCustodianCode,
+                            sVesselDtlsModeOfTransport = model.sVesselDtlsModeOfTransport,
+                            sVesselDtlsTypeOfTransportMeans = model.sVesselDtlsTypeOfTransportMeans,
+                            sVesselDtlsTransportMeansId = model.sVesselDtlsTransportMeansId,
+                            sVesselDtlsShipType = model.sVesselDtlsShipType,
+                            sVesselDtlsPurposeOfCall = model.sVesselDtlsPurposeOfCall,
+                            sVoyageDtlsVoyageNo = model.sVoyageDtlsVoyageNo,
+                            sVoyageDtlsConveinceRefNo = model.sVoyageDtlsConveinceRefNo,
+                            sVoyageDtlsTotalNumberofTrnsptEqtMnfstd = model.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd,
+                            sVoyageDtlsCargoDesCdd = model.sVoyageDtlsCargoDesCdd,
+                            sVoyageDtlsBriefCargoDesc = model.sVoyageDtlsBriefCargoDesc,
+                            dVoyageDtlsTotalNumberOfLines = Convert.ToDecimal(model.dVoyageDtlsTotalNumberOfLines),
+                            sVoyageDtlsExpectedDtandTimeOfArrival = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfArrival),
+                            sVoyageDtlsExpectedDtandTimeOfDeparture = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfDeparture),
+                            iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested,
+                            iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested,
+                            iActionBy = iUserId,
+                            dtActionDate = DateTime.Now,
+                        };
+                        db.tblMessageImplementations.Add(data);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        data.sDecRefMsgType = model.sDecRefMsgType;
+                        data.sDecRefPortOfReporting = model.sDecRefPortOfReporting;
+                        data.dDecRefobNo = model.dDecRefjobNo;
+                        data.dtDecRefJobDt = Convert.ToDateTime(model.dtDecRefJobDt);
+                        data.sDecRefReportingEvent = model.sDecRefReportingEvent;
+                        data.dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo;
+                        data.dtDecRefManifestDateRotnDt = Convert.ToDateTime(model.dtDecRefManifestDateRotnDt);
+                        data.sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement;
+                        data.dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo;
+                        data.dtDecRefPreviousManifestDptrDate = Convert.ToDateTime(model.dtDecRefPreviousManifestDptrDate);
+                        data.sAuthPrsnSubmitType = model.sAuthPrsnSubmitType;
+                        data.sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode;
+                        data.sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN;
+                        data.sAuthPrsnShipLineCode = model.sAuthPrsnShipLineCode;
+                        data.sAuthPrsnAuthSeaCarrierCode = model.sAuthPrsnAuthSeaCarrierCode;
+                        data.sAuthPrsnMasterName = model.sAuthPrsnMasterName;
+                        data.sAuthPrsnShippingLineBondNo = model.sAuthPrsnShippingLineBondNo;
+                        data.sAuthPrsnTerminalCustodianCode = model.sAuthPrsnTerminalCustodianCode;
+                        data.sVesselDtlsModeOfTransport = model.sVesselDtlsModeOfTransport;
+                        data.sVesselDtlsTypeOfTransportMeans = model.sVesselDtlsTypeOfTransportMeans;
+                        data.sVesselDtlsTransportMeansId = model.sVesselDtlsTransportMeansId;
+                        data.sVesselDtlsShipType = model.sVesselDtlsShipType;
+                        data.sVesselDtlsPurposeOfCall = model.sVesselDtlsPurposeOfCall;
+                        data.sVoyageDtlsVoyageNo = model.sVoyageDtlsVoyageNo;
+                        data.sVoyageDtlsConveinceRefNo = model.sVoyageDtlsConveinceRefNo;
+                        data.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd = model.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd;
+                        data.sVoyageDtlsCargoDesCdd = model.sVoyageDtlsCargoDesCdd;
+                        data.sVoyageDtlsBriefCargoDesc = model.sVoyageDtlsBriefCargoDesc;
+                        data.dVoyageDtlsTotalNumberOfLines = Convert.ToDecimal(model.dVoyageDtlsTotalNumberOfLines);
+                        data.sVoyageDtlsExpectedDtandTimeOfArrival = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfArrival);
+                        data.sVoyageDtlsExpectedDtandTimeOfDeparture = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfDeparture);
+                        data.iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested;
+                        data.iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested;
+                        data.iActionBy = iUserId;
+                        data.dtActionDate = DateTime.Now;
+                        db.Entry(data).State = System.Data.Entity.EntityState.Modified;
+                        db.SaveChanges();
+                    }
+                    return new { Status = true, Message = "Master saved successfully!" };
+                }
+
+            }
+            catch (Exception)
+            {
+                return new { Status = false, Message = "Something went wrong" };
+            }
+        }
+
 
     }
 }
