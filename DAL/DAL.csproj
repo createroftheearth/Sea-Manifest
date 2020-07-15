@@ -81,6 +81,12 @@
     <Compile Include="tblAmendmentDetailsMessageImlementationMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblCodeM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCodeTypeM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblErrorCode.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>

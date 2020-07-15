@@ -1,8 +1,29 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿<div class="row">
+    <div class="col-md-12">
+        <button onClick="AddUpdateHeader(0)" type="button" class="btn btn-success">
+            <i class="fa fa-add"></i>
+            Add Header
+        </button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table style="width:100%!important;" id="tblHeader" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Sender ID</th>
+                <th>Receiver ID</th>
+                <th>Version No</th>
+                <th>Message ID</th>
+                <th>Sequence/Control No</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Reporting Event</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/Header.js"></script>
 }
-
-<h2>Index</h2>
-

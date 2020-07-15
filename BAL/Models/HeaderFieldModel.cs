@@ -15,7 +15,7 @@ namespace BAL.Models
         public string sVersionNo { get; set; }
         public string sIndicator { get; set; }
         public string sMessageID { get; set; }
-        public int? iSequenceOrControlNumber { get; set; }
+        public string sSequenceOrControlNumber { get; set; }
         public string sDate { get; set; }
         public string sTime { get; set; }
         public string sReportingEvent { get; set; }
