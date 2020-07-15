@@ -1449,22 +1449,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JQuery\bootstrap.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\PageScripts\CanceledBill.js" />
-    <Content Include="Scripts\PageScripts\ConsolidatedBill.js" />
-    <Content Include="Scripts\PageScripts\CreateBill.js" />
-    <Content Include="Scripts\PageScripts\CreateEbill.js" />
-    <Content Include="Scripts\PageScripts\Dashboard.js" />
-    <Content Include="Scripts\PageScripts\Ebill.js" />
-    <Content Include="Scripts\PageScripts\EbillReport.js" />
-    <Content Include="Scripts\PageScripts\EbillTextModifications.js" />
-    <Content Include="Scripts\PageScripts\ExtendedValidityBill.js" />
-    <Content Include="Scripts\PageScripts\FreezedBill.js" />
     <Content Include="Scripts\PageScripts\GeneratedBill.js" />
-    <Content Include="Scripts\PageScripts\Login.js" />
-    <Content Include="Scripts\PageScripts\MultivehicledBill.js" />
-    <Content Include="Scripts\PageScripts\ReceivedBill.js" />
-    <Content Include="Scripts\PageScripts\Registration.js" />
-    <Content Include="Scripts\PageScripts\RejectedBill.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
@@ -1741,7 +1726,7 @@
     </ItemGroup>
     <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
     <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
-</Target>
+  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
