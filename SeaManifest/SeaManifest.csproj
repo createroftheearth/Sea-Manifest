@@ -1482,6 +1482,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\MessageImplementation\pvAddUpdateMaster.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

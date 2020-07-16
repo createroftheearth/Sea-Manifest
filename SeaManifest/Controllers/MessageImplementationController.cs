@@ -54,6 +54,15 @@ namespace SeaManifest.Controllers
             }
         }
 
+        public PartialViewResult AddUpdateMaster(int? iMessageImplementationId = null)
+        {
+            if (iMessageImplementationId == null)
+            {
+                return PartialView("pvAddUpdateMaster");
+            }
+            else
+                return PartialView("pvAddUpdateMaster", MessageImplementationService.Instance.GetMasterByMessageImpementationId(iMessageImplementationId));
+        }
 
         [HttpPost]
         public JsonResult AddUpdateMaster(MessageImplementationModel model)

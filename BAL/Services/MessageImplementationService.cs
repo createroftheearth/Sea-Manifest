@@ -136,63 +136,23 @@ namespace BAL.Services
                 using (var db = new SeaManifestEntities())
                 {
                     var data = db.tblMessageImplementations.Where(z => z.iMessageImplementationId == model.iMessageImplementationId).SingleOrDefault();
-                    //decimal.TryParse(model.sSequenceOrControlNumber, out decimal SqOrCtrlNo);
-                    //DateTime dateTime = DateTime.ParseExact(model.sDate + " " + model.sTime, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                     if (data == null)
                     {
-                        data = new tblMessageImplementation
-                        {
-                            sDecRefMsgType = model.sDecRefMsgType,
-                            sDecRefPortOfReporting = model.sDecRefPortOfReporting,
-                            dDecRefobNo = model.dDecRefjobNo,
-                            dtDecRefJobDt = Convert.ToDateTime(model.dtDecRefJobDt),
-                            sDecRefReportingEvent = model.sDecRefReportingEvent,
-                            dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo,
-                            dtDecRefManifestDateRotnDt = Convert.ToDateTime(model.dtDecRefManifestDateRotnDt),
-                            sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement,
-                            dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo,
-                            dtDecRefPreviousManifestDptrDate = Convert.ToDateTime(model.dtDecRefPreviousManifestDptrDate),
-                            sAuthPrsnSubmitType = model.sAuthPrsnSubmitType,
-                            sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode,
-                            sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN,
-                            sAuthPrsnShipLineCode = model.sAuthPrsnShipLineCode,
-                            sAuthPrsnAuthSeaCarrierCode = model.sAuthPrsnAuthSeaCarrierCode,
-                            sAuthPrsnMasterName = model.sAuthPrsnMasterName,
-                            sAuthPrsnShippingLineBondNo = model.sAuthPrsnShippingLineBondNo,
-                            sAuthPrsnTerminalCustodianCode = model.sAuthPrsnTerminalCustodianCode,
-                            sVesselDtlsModeOfTransport = model.sVesselDtlsModeOfTransport,
-                            sVesselDtlsTypeOfTransportMeans = model.sVesselDtlsTypeOfTransportMeans,
-                            sVesselDtlsTransportMeansId = model.sVesselDtlsTransportMeansId,
-                            sVesselDtlsShipType = model.sVesselDtlsShipType,
-                            sVesselDtlsPurposeOfCall = model.sVesselDtlsPurposeOfCall,
-                            sVoyageDtlsVoyageNo = model.sVoyageDtlsVoyageNo,
-                            sVoyageDtlsConveinceRefNo = model.sVoyageDtlsConveinceRefNo,
-                            sVoyageDtlsTotalNumberofTrnsptEqtMnfstd = model.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd,
-                            sVoyageDtlsCargoDesCdd = model.sVoyageDtlsCargoDesCdd,
-                            sVoyageDtlsBriefCargoDesc = model.sVoyageDtlsBriefCargoDesc,
-                            dVoyageDtlsTotalNumberOfLines = Convert.ToDecimal(model.dVoyageDtlsTotalNumberOfLines),
-                            sVoyageDtlsExpectedDtandTimeOfArrival = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfArrival),
-                            sVoyageDtlsExpectedDtandTimeOfDeparture = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfDeparture),
-                            iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested,
-                            iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested,
-                            iActionBy = iUserId,
-                            dtActionDate = DateTime.Now,
-                        };
-                        db.tblMessageImplementations.Add(data);
-                        db.SaveChanges();
+                        return new { Status = false, Message = "Invalid Master" };
                     }
                     else
                     {
+                        data.iMessageImplementationId = model.iMessageImplementationId;
                         data.sDecRefMsgType = model.sDecRefMsgType;
                         data.sDecRefPortOfReporting = model.sDecRefPortOfReporting;
-                        data.dDecRefobNo = model.dDecRefjobNo;
-                        data.dtDecRefJobDt = Convert.ToDateTime(model.dtDecRefJobDt);
+                        data.dDecRefjobNo = model.dDecRefjobNo;
+                        data.dtDecRefJobDt = DateTime.ParseExact(model.sDecRefJobDt, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                         data.sDecRefReportingEvent = model.sDecRefReportingEvent;
                         data.dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo;
-                        data.dtDecRefManifestDateRotnDt = Convert.ToDateTime(model.dtDecRefManifestDateRotnDt);
+                        data.dtDecRefManifestDateRotnDt = DateTime.ParseExact(model.sDecRefManifestDateRotnDt, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                         data.sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement;
                         data.dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo;
-                        data.dtDecRefPreviousManifestDptrDate = Convert.ToDateTime(model.dtDecRefPreviousManifestDptrDate);
+                        data.dtDecRefPreviousManifestDptrDate = DateTime.ParseExact(model.sDecRefPreviousManifestDptrDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                         data.sAuthPrsnSubmitType = model.sAuthPrsnSubmitType;
                         data.sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode;
                         data.sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN;
@@ -211,9 +171,9 @@ namespace BAL.Services
                         data.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd = model.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd;
                         data.sVoyageDtlsCargoDesCdd = model.sVoyageDtlsCargoDesCdd;
                         data.sVoyageDtlsBriefCargoDesc = model.sVoyageDtlsBriefCargoDesc;
-                        data.dVoyageDtlsTotalNumberOfLines = Convert.ToDecimal(model.dVoyageDtlsTotalNumberOfLines);
-                        data.sVoyageDtlsExpectedDtandTimeOfArrival = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfArrival);
-                        data.sVoyageDtlsExpectedDtandTimeOfDeparture = Convert.ToDateTime(model.sVoyageDtlsExpectedDtandTimeOfDeparture);
+                        data.dVoyageDtlsTotalNumberOfLines = Convert.ToDecimal(model.sVoyageDtlsTotalNumberOfLines);
+                        data.dtVoyageDtlsExpectedDtandTimeOfArrival = DateTime.ParseExact(model.sVoyageDtlsExpectedDtandTimeOfArrival, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                        data.dtVoyageDtlsExpectedDtandTimeOfDeparture = DateTime.ParseExact(model.sVoyageDtlsExpectedDtandTimeOfDeparture, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                         data.iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested;
                         data.iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested;
                         data.iActionBy = iUserId;
@@ -231,7 +191,50 @@ namespace BAL.Services
             }
         }
 
+        public MessageImplementationModel GetMasterByMessageImpementationId(int? iMessageImplementationId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId).ToList().Select(model => new MessageImplementationModel
+                {
+                    iMessageImplementationId = model.iMessageImplementationId,
+                    sDecRefMsgType = model.sDecRefMsgType,
+                    sDecRefPortOfReporting = model.sDecRefPortOfReporting,
+                    dDecRefjobNo = model.dDecRefjobNo,
+                    sDecRefJobDt = model.dtDecRefJobDt?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    sDecRefReportingEvent = model.sDecRefReportingEvent,
+                    dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo,
+                    sDecRefManifestDateRotnDt = model.dtDecRefManifestDateRotnDt?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement,
+                    dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo,
+                    sDecRefPreviousManifestDptrDate = model.dtDecRefPreviousManifestDptrDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    sAuthPrsnSubmitType = model.sAuthPrsnSubmitType,
+                    sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode,
+                    sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN,
+                    sAuthPrsnShipLineCode = model.sAuthPrsnShipLineCode,
+                    sAuthPrsnAuthSeaCarrierCode = model.sAuthPrsnAuthSeaCarrierCode,
+                    sAuthPrsnMasterName = model.sAuthPrsnMasterName,
+                    sAuthPrsnShippingLineBondNo = model.sAuthPrsnShippingLineBondNo,
+                    sAuthPrsnTerminalCustodianCode = model.sAuthPrsnTerminalCustodianCode,
+                    sVesselDtlsModeOfTransport = model.sVesselDtlsModeOfTransport,
+                    sVesselDtlsTypeOfTransportMeans = model.sVesselDtlsTypeOfTransportMeans,
+                    sVesselDtlsTransportMeansId = model.sVesselDtlsTransportMeansId,
+                    sVesselDtlsShipType = model.sVesselDtlsShipType,
+                    sVesselDtlsPurposeOfCall = model.sVesselDtlsPurposeOfCall,
+                    sVoyageDtlsVoyageNo = model.sVoyageDtlsVoyageNo,
+                    sVoyageDtlsConveinceRefNo = model.sVoyageDtlsConveinceRefNo,
+                    sVoyageDtlsTotalNumberofTrnsptEqtMnfstd = model.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd,
+                    sVoyageDtlsCargoDesCdd = model.sVoyageDtlsCargoDesCdd,
+                    sVoyageDtlsBriefCargoDesc = model.sVoyageDtlsBriefCargoDesc,
+                    sVoyageDtlsTotalNumberOfLines = model.dVoyageDtlsTotalNumberOfLines?.ToString("#"),
+                    sVoyageDtlsExpectedDtandTimeOfArrival = model.dtVoyageDtlsExpectedDtandTimeOfArrival?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                    sVoyageDtlsExpectedDtandTimeOfDeparture = model.dtVoyageDtlsExpectedDtandTimeOfDeparture?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                    iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested ?? 0,
+                    iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested ?? 0,
 
+                }).SingleOrDefault();
+            }
+        }
     }
 }
 

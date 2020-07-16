@@ -1,0 +1,209 @@
+﻿@model BAL.Models.MessageImplementationModel
+@{
+    var reportingEvents = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.ReportingEvent>();
+}
+@using (Html.BeginForm("AddUpdateMaster", "MessageImplementation", FormMethod.Post, new { @id = "frmMaster" }))
+{
+    <div class="modal-header">
+        <h4 class="modal-title">Add/Update Master</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+        @Html.HiddenFor(z => z.iMessageImplementationId)
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Declaration Reference
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDecRefMsgType)
+                        @Html.TextBoxFor(z => z.sDecRefMsgType, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDecRefMsgType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDecRefPortOfReporting)
+                        @Html.TextBoxFor(z => z.sDecRefPortOfReporting, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDecRefPortOfReporting)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dDecRefjobNo)
+                        @Html.TextBoxFor(z => z.dDecRefjobNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dDecRefjobNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDecRefJobDt)
+                        @Html.TextBoxFor(z => z.sDecRefJobDt, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDecRefJobDt)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDecRefReportingEvent)
+                        @Html.TextBoxFor(z => z.sDecRefReportingEvent, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDecRefReportingEvent)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dDecRefManifestNoRotnNo)
+                        @Html.TextBoxFor(z => z.dDecRefManifestNoRotnNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dDecRefManifestNoRotnNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDecRefManifestDateRotnDt)
+                        @Html.TextBoxFor(z => z.sDecRefManifestDateRotnDt, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDecRefManifestDateRotnDt)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDecRefVesselTypeMovement)
+                        @Html.TextBoxFor(z => z.sDecRefVesselTypeMovement, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDecRefVesselTypeMovement)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dDecRefDptrPreviousManifestNo)
+                        @Html.TextBoxFor(z => z.dDecRefDptrPreviousManifestNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dDecRefDptrPreviousManifestNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDecRefPreviousManifestDptrDate)
+                        @Html.TextBoxFor(z => z.sDecRefPreviousManifestDptrDate, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDecRefPreviousManifestDptrDate)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Authorized Person
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnSubmitType)
+                        @Html.TextBoxFor(z => z.sAuthPrsnSubmitType, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnSubmitType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnSubmitCode)
+                        @Html.TextBoxFor(z => z.sAuthPrsnSubmitCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnSubmitCode)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnAuthRepresentativePAN)
+                        @Html.TextBoxFor(z => z.sAuthPrsnAuthRepresentativePAN, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnAuthRepresentativePAN)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnShipLineCode)
+                        @Html.TextBoxFor(z => z.sAuthPrsnShipLineCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnShipLineCode)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnAuthSeaCarrierCode)
+                        @Html.TextBoxFor(z => z.sAuthPrsnAuthSeaCarrierCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnAuthSeaCarrierCode)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnMasterName)
+                        @Html.TextBoxFor(z => z.sAuthPrsnMasterName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnMasterName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnShippingLineBondNo)
+                        @Html.TextBoxFor(z => z.sAuthPrsnShippingLineBondNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnShippingLineBondNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sAuthPrsnTerminalCustodianCode)
+                        @Html.TextBoxFor(z => z.sAuthPrsnTerminalCustodianCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sAuthPrsnTerminalCustodianCode)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Vessel Details
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVesselDtlsModeOfTransport)
+                        @Html.TextBoxFor(z => z.sVesselDtlsModeOfTransport, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVesselDtlsModeOfTransport)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVesselDtlsTypeOfTransportMeans)
+                        @Html.TextBoxFor(z => z.sVesselDtlsTypeOfTransportMeans, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVesselDtlsTypeOfTransportMeans)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVesselDtlsTransportMeansId)
+                        @Html.TextBoxFor(z => z.sVesselDtlsTransportMeansId, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVesselDtlsTransportMeansId)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVesselDtlsShipType)
+                        @Html.TextBoxFor(z => z.sVesselDtlsShipType, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVesselDtlsShipType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVesselDtlsPurposeOfCall)
+                        @Html.TextBoxFor(z => z.sVesselDtlsPurposeOfCall, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVesselDtlsPurposeOfCall)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Voyage Details
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsVoyageNo)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsVoyageNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsVoyageNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsConveinceRefNo)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsConveinceRefNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsConveinceRefNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsCargoDesCdd)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsCargoDesCdd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsCargoDesCdd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsBriefCargoDesc)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsBriefCargoDesc, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsBriefCargoDesc)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsTotalNumberOfLines)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsTotalNumberOfLines, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsTotalNumberOfLines)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsExpectedDtandTimeOfArrival)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsExpectedDtandTimeOfArrival, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsExpectedDtandTimeOfArrival)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVoyageDtlsExpectedDtandTimeOfDeparture)
+                        @Html.TextBoxFor(z => z.sVoyageDtlsExpectedDtandTimeOfDeparture, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVoyageDtlsExpectedDtandTimeOfDeparture)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+}

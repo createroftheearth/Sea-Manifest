@@ -43,7 +43,7 @@ namespace DAL
         public string sHeaderFieldReportingEvent { get; set; }
         public string sDecRefMsgType { get; set; }
         public string sDecRefPortOfReporting { get; set; }
-        public Nullable<decimal> dDecRefobNo { get; set; }
+        public Nullable<decimal> dDecRefjobNo { get; set; }
         public Nullable<System.DateTime> dtDecRefJobDt { get; set; }
         public string sDecRefReportingEvent { get; set; }
         public Nullable<decimal> dDecRefManifestNoRotnNo { get; set; }
@@ -70,8 +70,8 @@ namespace DAL
         public string sVoyageDtlsCargoDesCdd { get; set; }
         public string sVoyageDtlsBriefCargoDesc { get; set; }
         public Nullable<decimal> dVoyageDtlsTotalNumberOfLines { get; set; }
-        public Nullable<System.DateTime> sVoyageDtlsExpectedDtandTimeOfArrival { get; set; }
-        public Nullable<System.DateTime> sVoyageDtlsExpectedDtandTimeOfDeparture { get; set; }
+        public Nullable<System.DateTime> dtVoyageDtlsExpectedDtandTimeOfArrival { get; set; }
+        public Nullable<System.DateTime> dtVoyageDtlsExpectedDtandTimeOfDeparture { get; set; }
         public Nullable<int> iVoyageDtlsNumberOfPsngrManifested { get; set; }
         public Nullable<int> iVoyageDtlsNumberOfCrewManifested { get; set; }
         public Nullable<int> iArvlDtlsNumberOfPassengers { get; set; }
