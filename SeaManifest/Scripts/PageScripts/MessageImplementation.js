@@ -111,6 +111,7 @@ $(document).on('change', '#sReportingEvent', function () {
     changeReportingEvent();
 });
 
+//Hide Show Conditions (Hide in case of 'X' and show in case of 'O') 
 function changeReportingEvent() {
     var data = $('#sReportingEvent').val();
     if (data == "SDN") {
@@ -135,7 +136,7 @@ function changeReportingEvent() {
         $('#sAuthPrsnShipLineCode').parent('div').show();
     }
 }
-
+//Mandatory Conditions(Mandatory in case of 'M')
 function checkFormMessages() {
     var validator = $("#frmMessage").validate();
     var data = $('#sReportingEvent').val();
