@@ -1451,7 +1451,7 @@
     <Content Include="Scripts\JQuery\bootstrap.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\PageScripts\GeneratedBill.js" />
-    <Content Include="Scripts\PageScripts\Header.js" />
+    <Content Include="Scripts\PageScripts\MessageImplementation.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
@@ -1478,11 +1478,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\MessageImplementation\Index.cshtml" />
-    <Content Include="Views\MessageImplementation\pvAddUpdateHeader.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_LeftMenu.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\MessageImplementation\pvAddUpdateMaster.cshtml" />
+    <Content Include="Views\MessageImplementation\pvAddUpdateMessages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

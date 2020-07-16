@@ -30,7 +30,8 @@ namespace BAL.Services
             }
         }
 
-        public object GetHeaders(string search, int start, int length, out int recordsTotal)
+
+        public object GetMessages(string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
@@ -55,28 +56,8 @@ namespace BAL.Services
                 }).ToList();
             }
         }
-
-        public HeaderFieldModel GetHeaderByMessageImpementationId(int? iMessageImplementationId)
-        {
-            using (var db = new SeaManifestEntities())
-            {
-                return db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId).ToList().Select(z => new HeaderFieldModel
-                {
-                    iMessageImplementationId = z.iMessageImplementationId,
-                    sDate = z.dtHeaderFieldDateTime?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    sTime = z.dtHeaderFieldDateTime?.ToString("hh:mm tt", CultureInfo.InvariantCulture),
-                    sIndicator = z.sHeaderFieldIndicator,
-                    sMessageID = z.sHeaderFieldMessageId,
-                    sReceiverID = z.sHeaderFieldReceiverId,
-                    sReportingEvent = z.sHeaderFieldReportingEvent,
-                    sSenderID = z.sHeaderFieldSenderId,
-                    sSequenceOrControlNumber = z.dHeaderFieldSequenceOrControlNumber?.ToString("#"),
-                    sVersionNo = z.sHeaderFieldVersionNo,
-                }).SingleOrDefault();
-            }
-        }
-
-        public object SaveHeader(HeaderFieldModel model, int iUserId)
+        //authprsn
+        public object SaveMessage(MessageImplementationModel model, int iUserId)
         {
             try
             {
@@ -97,6 +78,39 @@ namespace BAL.Services
                             sHeaderFieldReportingEvent = model.sReportingEvent,
                             sHeaderFieldSenderId = model.sSenderID,
                             sHeaderFieldVersionNo = model.sVersionNo,
+                            sDecRefMsgType = model.sDecRefMsgType,
+                            sDecRefPortOfReporting = model.sDecRefPortOfReporting,
+                            dDecRefjobNo = model.dDecRefjobNo,
+                            dtDecRefJobDt = DateTime.ParseExact(model.sDecRefJobDt, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            sDecRefReportingEvent = model.sDecRefReportingEvent,
+                            dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo,
+                            dtDecRefManifestDateRotnDt = DateTime.ParseExact(model.sDecRefManifestDateRotnDt, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement,
+                            dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo,
+                            dtDecRefPreviousManifestDptrDate = DateTime.ParseExact(model.sDecRefPreviousManifestDptrDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            sAuthPrsnSubmitType = model.sAuthPrsnSubmitType,
+                            sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode,
+                            sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN,
+                            sAuthPrsnShipLineCode = model.sAuthPrsnShipLineCode,
+                            sAuthPrsnAuthSeaCarrierCode = model.sAuthPrsnAuthSeaCarrierCode,
+                            sAuthPrsnMasterName = model.sAuthPrsnMasterName,
+                            sAuthPrsnShippingLineBondNo = model.sAuthPrsnShippingLineBondNo,
+                            sAuthPrsnTerminalCustodianCode = model.sAuthPrsnTerminalCustodianCode,
+                            sVesselDtlsModeOfTransport = model.sVesselDtlsModeOfTransport,
+                            sVesselDtlsTypeOfTransportMeans = model.sVesselDtlsTypeOfTransportMeans,
+                            sVesselDtlsTransportMeansId = model.sVesselDtlsTransportMeansId,
+                            sVesselDtlsShipType = model.sVesselDtlsShipType,
+                            sVesselDtlsPurposeOfCall = model.sVesselDtlsPurposeOfCall,
+                            sVoyageDtlsVoyageNo = model.sVoyageDtlsVoyageNo,
+                            sVoyageDtlsConveinceRefNo = model.sVoyageDtlsConveinceRefNo,
+                            sVoyageDtlsTotalNumberofTrnsptEqtMnfstd = model.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd,
+                            sVoyageDtlsCargoDesCdd = model.sVoyageDtlsCargoDesCdd,
+                            sVoyageDtlsBriefCargoDesc = model.sVoyageDtlsBriefCargoDesc,
+                            dVoyageDtlsTotalNumberOfLines = Convert.ToDecimal(model.sVoyageDtlsTotalNumberOfLines),
+                            dtVoyageDtlsExpectedDtandTimeOfArrival = DateTime.ParseExact(model.sVoyageDtlsExpectedDtandTimeOfArrival, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            dtVoyageDtlsExpectedDtandTimeOfDeparture = DateTime.ParseExact(model.sVoyageDtlsExpectedDtandTimeOfDeparture, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested,
+                            iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested,
                             iActionBy = iUserId,
                             dtActionDate = DateTime.Now,
                         };
@@ -113,36 +127,6 @@ namespace BAL.Services
                         data.sHeaderFieldReportingEvent = model.sReportingEvent;
                         data.sHeaderFieldSenderId = model.sSenderID;
                         data.sHeaderFieldVersionNo = model.sVersionNo;
-                        data.iActionBy = iUserId;
-                        data.dtActionDate = DateTime.Now;
-                        db.Entry(data).State = System.Data.Entity.EntityState.Modified;
-                        db.SaveChanges();
-                    }
-                    return new { Status = true, Message = "Header saved successfully!" };
-                }
-
-            }
-            catch (Exception)
-            {
-                return new { Status = false, Message = "Something went wrong" };
-            }
-        }
-
-        //authprsn
-        public object SaveMasters(MessageImplementationModel model, int iUserId)
-        {
-            try
-            {
-                using (var db = new SeaManifestEntities())
-                {
-                    var data = db.tblMessageImplementations.Where(z => z.iMessageImplementationId == model.iMessageImplementationId).SingleOrDefault();
-                    if (data == null)
-                    {
-                        return new { Status = false, Message = "Invalid Master" };
-                    }
-                    else
-                    {
-                        data.iMessageImplementationId = model.iMessageImplementationId;
                         data.sDecRefMsgType = model.sDecRefMsgType;
                         data.sDecRefPortOfReporting = model.sDecRefPortOfReporting;
                         data.dDecRefjobNo = model.dDecRefjobNo;
@@ -191,13 +175,22 @@ namespace BAL.Services
             }
         }
 
-        public MessageImplementationModel GetMasterByMessageImpementationId(int? iMessageImplementationId)
+        public MessageImplementationModel GetMessageByMessageImpementationId(int? iMessageImplementationId)
         {
             using (var db = new SeaManifestEntities())
             {
                 return db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId).ToList().Select(model => new MessageImplementationModel
                 {
                     iMessageImplementationId = model.iMessageImplementationId,
+                    sDate = model.dtHeaderFieldDateTime?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    sTime = model.dtHeaderFieldDateTime?.ToString("hh:mm tt", CultureInfo.InvariantCulture),
+                    sIndicator = model.sHeaderFieldIndicator,
+                    sMessageID = model.sHeaderFieldMessageId,
+                    sReceiverID = model.sHeaderFieldReceiverId,
+                    sReportingEvent = model.sHeaderFieldReportingEvent,
+                    sSenderID = model.sHeaderFieldSenderId,
+                    sSequenceOrControlNumber = model.dHeaderFieldSequenceOrControlNumber?.ToString("#"),
+                    sVersionNo = model.sHeaderFieldVersionNo,
                     sDecRefMsgType = model.sDecRefMsgType,
                     sDecRefPortOfReporting = model.sDecRefPortOfReporting,
                     dDecRefjobNo = model.dDecRefjobNo,
@@ -231,7 +224,6 @@ namespace BAL.Services
                     sVoyageDtlsExpectedDtandTimeOfDeparture = model.dtVoyageDtlsExpectedDtandTimeOfDeparture?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
                     iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested ?? 0,
                     iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested ?? 0,
-
                 }).SingleOrDefault();
             }
         }

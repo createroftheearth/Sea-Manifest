@@ -16,61 +16,42 @@ namespace SeaManifest.Controllers
         {
             return View();
         }
+
         [HttpPost]
-        public JsonResult GetHeaders()
+        public JsonResult GetMessages()
         {
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var search = Request.Form.GetValues("search[value]").FirstOrDefault();
             var start = Convert.ToInt32(Request.Form.GetValues("start").FirstOrDefault());
             var length = Convert.ToInt32(Request.Form.GetValues("length").FirstOrDefault());
-            var data = MessageImplementationService.Instance.GetHeaders(search, start, length, out int recordsTotal);
+            var data = MessageImplementationService.Instance.GetMessages(search, start, length, out int recordsTotal);
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-
-
-        public PartialViewResult AddUpdateHeader(int? iMessageImplementationId = null)
+        public PartialViewResult AddUpdateMessage(int? iMessageImplementationId = null)
         {
             if (iMessageImplementationId == null)
             {
-                return PartialView("pvAddUpdateHeader");
+                return PartialView("pvAddUpdateMessages");
             }
             else
-                return PartialView("pvAddUpdateHeader",MessageImplementationService.Instance.GetHeaderByMessageImpementationId(iMessageImplementationId));
+                return PartialView("pvAddUpdateMessages", MessageImplementationService.Instance.GetMessageByMessageImpementationId(iMessageImplementationId));
         }
 
         [HttpPost]
-        public JsonResult AddUpdateHeader(HeaderFieldModel model)
+        public JsonResult AddUpdateMessage(MessageImplementationModel model)
         {
             model.sIndicator = ConfigurationManager.AppSettings["HeaderIndicator"];
             model.sVersionNo = ConfigurationManager.AppSettings["HeaderVersion"];
+            if (model.sReportingEvent == "SDN")
+            {
+                ModelState.Remove("sDate");
+                ModelState.Remove("sTime");
+                ModelState.Remove("sSequenceOrControlNumber");
+            }
             if (ModelState.IsValid)
             {
-                return Json(MessageImplementationService.Instance.SaveHeader(model, 1));
-            }
-            else
-            {
-                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
-            }
-        }
-
-        public PartialViewResult AddUpdateMaster(int? iMessageImplementationId = null)
-        {
-            if (iMessageImplementationId == null)
-            {
-                return PartialView("pvAddUpdateMaster");
-            }
-            else
-                return PartialView("pvAddUpdateMaster", MessageImplementationService.Instance.GetMasterByMessageImpementationId(iMessageImplementationId));
-        }
-
-        [HttpPost]
-        public JsonResult AddUpdateMaster(MessageImplementationModel model)
-        {
-            
-            if (ModelState.IsValid)
-            {
-                return Json(MessageImplementationService.Instance.SaveMasters(model, 1));
+                return Json(MessageImplementationService.Instance.SaveMessage(model, 1));
             }
             else
             {
