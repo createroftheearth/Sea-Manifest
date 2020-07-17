@@ -56,10 +56,8 @@ namespace BAL.Models
         [Required(ErrorMessage = "Port Of Reporting is a required field.")]
         public string sDecRefPortOfReporting { get; set; }
         [Display(Name = "Job No")]
-        [Required(ErrorMessage = "Job No is a required field.")]
         public decimal? dDecRefjobNo { get; set; }
         [Display(Name = "Job Date")]
-        [Required(ErrorMessage = "Job Date is a required field.")]
         public string sDecRefJobDt { get; set; }
         [Display(Name = "Reporting Event")]
         [MaxLength(4, ErrorMessage = "Reporting Event cannot exceed 4 character.")]
