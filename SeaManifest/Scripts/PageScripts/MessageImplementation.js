@@ -43,7 +43,8 @@ function initMessages() {
             },
             {
                 "data": "iMessageImplementationId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i></button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
+                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i></button> " ;
                 }
             },
         ]
@@ -66,7 +67,9 @@ function resetForm() {
     // clear errors from validation
     $validator.resetForm();
 }
-
+function DownloadJson(iMessageImplementationId) {
+    location.href = "/MessageImplementation/GetMessageJson?iMessageImplementationId=" + iMessageImplementationId;
+}
 
 function AddUpdateMessage(iMessageImplementationId) {
     $('#addUpdateModallgContainer').load('/MessageImplementation/AddUpdateMessage?iMessageImplementationId=' + iMessageImplementationId, function () {

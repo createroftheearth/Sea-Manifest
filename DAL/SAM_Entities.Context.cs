@@ -30,7 +30,6 @@ namespace DAL
         public virtual DbSet<tblAdditionalDetailsMasterConsignmentMap> tblAdditionalDetailsMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblAmendmentDetailsMessageImlementationMap> tblAmendmentDetailsMessageImlementationMaps { get; set; }
         public virtual DbSet<tblErrorCode> tblErrorCodes { get; set; }
-        public virtual DbSet<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblItemDetailsHouseCargoMap> tblItemDetailsHouseCargoMaps { get; set; }
         public virtual DbSet<tblItemDetailsMasterConsignmentMap> tblItemDetailsMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblItineraryHouseCargoMap> tblItineraryHouseCargoMaps { get; set; }
@@ -48,5 +47,6 @@ namespace DAL
         public virtual DbSet<tblCodeTypeM> tblCodeTypeMs { get; set; }
         public virtual DbSet<tblMasterConsignmentMessageImplementationMap> tblMasterConsignmentMessageImplementationMaps { get; set; }
         public virtual DbSet<tblMessageImplementation> tblMessageImplementations { get; set; }
+        public virtual DbSet<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
     }
 }
