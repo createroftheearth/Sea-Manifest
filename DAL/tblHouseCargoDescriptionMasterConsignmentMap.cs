@@ -41,7 +41,7 @@ namespace DAL
         public string sLocCstmCargoMovement { get; set; }
         public string sLocCstmNatureOfCargo { get; set; }
         public string sLocCstmSplitIndicator { get; set; }
-        public Nullable<decimal> dNoOfPackages { get; set; }
+        public Nullable<decimal> dLocCstmNoOfPackages { get; set; }
         public string sLocCstmTypeOfPakages { get; set; }
         public string sTrnshprTranshipperCd { get; set; }
         public string sTrnshprTranshipperBond { get; set; }
@@ -94,6 +94,8 @@ namespace DAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAdditionalDetailsHouseCargoMap> tblAdditionalDetailsHouseCargoMaps { get; set; }
+        public virtual tblMasterConsignmentMessageImplementationMap tblMasterConsignmentMessageImplementationMap { get; set; }
+        public virtual tblMessageImplementation tblMessageImplementation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblItemDetailsHouseCargoMap> tblItemDetailsHouseCargoMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -102,7 +104,5 @@ namespace DAL
         public virtual ICollection<tblSupportDocHouseCargoMap> tblSupportDocHouseCargoMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransportEquipmentHouseCargoMap> tblTransportEquipmentHouseCargoMaps { get; set; }
-        public virtual tblMasterConsignmentMessageImplementationMap tblMasterConsignmentMessageImplementationMap { get; set; }
-        public virtual tblMessageImplementation tblMessageImplementation { get; set; }
     }
 }

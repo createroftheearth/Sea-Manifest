@@ -1,6 +1,7 @@
 ﻿using BAL.Models;
 using BAL.Utilities;
 using DAL;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.SqlServer;
@@ -172,6 +173,338 @@ namespace BAL.Services
             catch (Exception)
             {
                 return new { Status = false, Message = "Something went wrong" };
+            }
+        }
+
+        public byte[] GetMessageJson(int iMessageImplementationId)
+        {
+            string Json = string.Empty;
+            using (var db = new SeaManifestEntities())
+            {
+                var query = db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId);
+                if (query.Any(z => z.sHeaderFieldReportingEvent == "SAM"))
+                {
+                    Json = JsonConvert.SerializeObject(query.ToList().Select(z => new SAM_JsonModel
+                    {
+                        HeaderField = new Headerfield
+                        {
+                            date = z.dtHeaderFieldDateTime?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
+                            time = "T" + z.dtHeaderFieldDateTime?.ToString("hh:mm", CultureInfo.InvariantCulture),
+                            reportingEvent = z.sHeaderFieldReportingEvent,
+                            indicator = z.sHeaderFieldIndicator,
+                            messageID = z.sHeaderFieldMessageId,
+                            receiverID = z.sHeaderFieldReceiverId,
+                            senderID = z.sHeaderFieldSenderId,
+                            sequenceOrControlNumber = Convert.ToInt32(z.dHeaderFieldSequenceOrControlNumber),
+                            versionNo = z.sHeaderFieldVersionNo,
+                        },
+                        master = new Master
+                        {
+                            authPrsn = new Authprsn
+                            {
+                                authReprsntvCd = z.sAuthPrsnAuthRepresentativePAN,
+                                authSeaCarrierCd = z.sAuthPrsnAuthSeaCarrierCode,
+                                masterName = z.sAuthPrsnMasterName,
+                                sbmtrCd = z.sAuthPrsnSubmitCode,
+                                sbmtrTyp = z.sAuthPrsnSubmitType,
+                                shpngLineBondNmbr = z.sAuthPrsnShippingLineBondNo,
+                                shpngLineCd = z.sAuthPrsnShipLineCode,
+                                trmnlOprtrCd = z.sAuthPrsnTerminalCustodianCode
+                            },
+                            decRef = new Decref
+                            {
+                                jobDt = z.dtDecRefJobDt?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
+                                jobNo = Convert.ToInt32(z.dDecRefjobNo),
+                                mnfstDtRotnDt = z.dtDecRefManifestDateRotnDt?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
+                                mnfstNoRotnNo = Convert.ToInt32(z.dDecRefManifestNoRotnNo),
+                                msgTyp = z.sDecRefMsgType,
+                                prtofRptng = z.sDecRefPortOfReporting,
+                                rptngEvent = z.sDecRefReportingEvent,
+                                vesselTypMvmt = z.sDecRefVesselTypeMovement,
+                            },
+                            vesselDtls = new Vesseldtls
+                            {
+                                modeOfTrnsprt = z.sVesselDtlsModeOfTransport,
+                                purposeOfCall = z.sVesselDtlsPurposeOfCall,
+                                shipTyp = z.sVesselDtlsShipType,
+                                trnsprtMeansId = z.sVesselDtlsTransportMeansId,
+                                typOfTrnsprtMeans = z.sVesselDtlsTypeOfTransportMeans
+                            },
+                            voyageDtls = new Voyagedtls
+                            {
+                                briefCrgoDesc = z.sVoyageDtlsBriefCargoDesc,
+                                cnvnceRefNmbr = z.sVoyageDtlsConveinceRefNo,
+                                crgoDescCdd = z.sVoyageDtlsCargoDesCdd,
+                                exptdDtAndTimeOfArvl = z.dtVoyageDtlsExpectedDtandTimeOfArrival?.ToString("yyyyMMddThh:mm", CultureInfo.InvariantCulture),
+                                exptdDtAndTimeOfDptr = z.dtVoyageDtlsExpectedDtandTimeOfDeparture?.ToString("yyyyMMddThh:mm", CultureInfo.InvariantCulture),
+                                nmbrOfCrewMnfsted = z.iVoyageDtlsNumberOfCrewManifested ?? 0,
+                                nmbrOfPsngrsMnfsted = z.iVoyageDtlsNumberOfPsngrManifested ?? 0,
+                                totalNmbrOfLines = Convert.ToInt32(z.dVoyageDtlsTotalNumberOfLines),
+                                totalNoOfTrnsprtEqmtMnfsted = z.sVoyageDtlsTotalNumberofTrnsptEqtMnfstd,
+                                voyageNo = z.sVoyageDtlsVoyageNo,
+                                shipItnry = new List<Shipitnry>()
+                            },
+                            mastrCnsgmtDec = z.tblMasterConsignmentMessageImplementationMaps.Select(m => new Mastrcnsgmtdec
+                            {
+                                locCstm = new Loccstm
+                                {
+                                    crgoMvmt = m.sLocCustomCargoMovement,
+                                    destPrt = m.sLocCustomDestPort,
+                                    firstPrtOfEntry = m.sLocCustomFirstPortOfEntry,
+                                    itemTyp = m.sLocCustomItemType,
+                                    natrOfCrgo = m.sLocCustomNatureOfCargo,
+                                    nmbrOfPkgs = Convert.ToInt32(m.dLocCustomNoOfPackages),
+                                    nxtPrtOfUnlading = m.sLocCustomNextPortOfUnlanding,
+                                    splitIndctr = m.sLocCustomSplitIndicator,
+                                    typOfCrgo = m.sLocCustomTypeOfCargo,
+                                    typOfPackage = m.sLocCustomTypeOfPackage
+                                },
+                                houseCargoDec = m.tblHouseCargoDescriptionMasterConsignmentMaps.Select(h => new Housecargodec
+                                {
+                                    HCRef = new Hcref
+                                    {
+                                        blDt = h.dtHCRefBillDate?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
+                                        blNo = h.sHCRefBillNo,
+                                        consolidatedIndctr = h.sHCRefConsolidatedIndicator,
+                                        consolidatorPan = h.sHCRefConsolidatorPan,
+                                        prevDec = h.sHCRefPreviousDescription,
+                                        subLineNo = Convert.ToInt32(h.dHCRefSubLineNo)
+                                    },
+                                    locCstm = new Loccstm1
+                                    {
+                                        crgoMvmt = h.sLocCstmCargoMovement,
+                                        destPrt = h.sLocCstmDestinationPort,
+                                        firstPrtOfEntry = h.sLocCstmFirstPartyOfEntry,
+                                        itemTyp = h.sLocCstmItemType,
+                                        natrOfCrgo = h.sLocCstmNatureOfCargo,
+                                        nmbrOfPkgs = Convert.ToInt32(h.dLocCstmNoOfPackages),
+                                        nxtPrtOfUnlading = h.sLocCstmNextPortOfUnlading,
+                                        splitIndctr = h.sLocCstmSplitIndicator,
+                                        typOfCrgo = h.sLocCstmTypeOfCargo,
+                                        typOfPackage = h.sLocCstmTypeOfPakages,
+                                    },
+                                    itemDtls = h.tblItemDetailsHouseCargoMaps.Select(i => new Itemdtl1
+                                    {
+                                        crgoItemSeqNmbr = Convert.ToInt32(i.dCargoItemSequenceNo),
+                                        hsCd = i.sHsCd,
+                                        imdgCd = i.sIMDGCd,
+                                        nmbrOfPkgs = Convert.ToInt32(i.dNoOfPakages),
+                                        typOfPkgs = i.sTypesOfPackages,
+                                        unoCd = i.sUnoCd,
+                                        crgoItemDesc = i.sCargoItemDesc,
+                                    }).ToList(),
+                                    itnry = h.tblItineraryHouseCargoMaps.Select(ii => new Itnry1
+                                    {
+                                        modeOfTrnsprt = ii.sModeOfTransport,
+                                        nxtPrtOfCallCdd = ii.sNextPortOfCallCdd,
+                                        nxtPrtOfCallName = ii.sNextPortOfCallCdd,
+                                        prtOfCallCdd = ii.sPortOfCallCd,
+                                        prtOfCallName = ii.sPortOfCallName,
+                                        prtOfCallSeqNmbr = Convert.ToInt32(ii.dPortOfCallSequenceNo)
+                                    }).ToList(),
+                                    trnsprtDoc = new Trnsprtdoc1
+                                    {
+                                        cnsgneCity = h.sTrnsprtrDocPartyConsigneeCity,
+                                        cnsgneCntryCd = h.sTrnsprtrDocPartyConsigneeCountryCd,
+                                        cnsgneCntrySubDiv = h.sTrnsprtrDocPartyConsigneeCountrySubDiv,
+                                        cnsgneCntrySubDivName = h.sTrnsprtrDocPartyConsigneeCountrySubDivName,
+                                        cnsgnePstcd = h.sTrnsprtrDocPartyConsigneePostCd,
+                                        cnsgnesCd = h.sTrnsprtrDocPartyConsigneeCd,
+                                        cnsgnesName = h.sTrnsprtrDocPartyConsigneeName,
+                                        cnsgneStreetAddress = h.sTrnsprtrDocPartyConsigneeStreetAddress,
+                                        cnsgnrCdTyp = h.sTrnsprtrDocPartyConsignorCdType,
+                                        cnsgnrCity = h.sTrnsprtrDocPartyConsignorCity,
+                                        cnsgnrCntryCd = h.sTrnsprtrDocPartyConsignorCountryCd,
+                                        cnsgnrCntrySubDivCd = h.sTrnsprtrDocPartyConsignorCountrySubDivCd,
+                                        cnsgnrCntrySubDivName = h.sTrnsprtrDocPartyConsignorCountrySubDivName,
+                                        cnsgnrPstcd = h.sTrnsprtrDocPartyConsignorPostCd,
+                                        cnsgnrsCd = h.sTrnsprtrDocPartyConsignorCd,
+                                        cnsgnrsName = h.sTrnsprtrDocPartyConsignorName,
+                                        cnsgnrStreetAddress = h.sTrnsprtrDocPartyConsignorStreetAddress,
+                                        goodsDescAsPerBl = h.sTrnsprtrDocPartyGoodsDescAsPerBill,
+                                        nameOfAnyOtherNotfdParty = h.sTrnsprtrDocPartyNameOfAnyOtherNotFdParty,
+                                        notfdPartyCity = h.sTrnsprtrDocPartyNotFdPartyCity,
+                                        notfdPartyCntryCd = h.sTrnsprtrDocPartyNotFdPartyCountryCd,
+                                        notfdPartyCntrySubDiv = h.sTrnsprtrDocPartyNotFdPartyCountrySubDiv,
+                                        notfdPartyCntrySubDivName = h.sTrnsprtrDocPartyNotFdPartyCountrySubDivName,
+                                        notfdPartyPstcd = h.sTrnsprtrDocPartyNotFdPartyPostCd,
+                                        notfdPartyStreetAddress = h.sTrnsprtrDocPartyNotFdPartyStreetAddress,
+                                        panOfNotfdParty = h.sTrnsprtrDocPartyPANOfNotFdParty,
+                                        prtOfAcptCdd = h.sTrnsprtrDocPartyPortOfAcceptedCCd,
+                                        prtOfAcptName = h.sTrnsprtrDocPartyPortOfAcceptedName,
+                                        prtOfReceiptCdd = h.sTrnsprtrDocPartyPortOfReceiptCcd,
+                                        prtOfReceiptName = h.sTrnsprtrDocPartyPortOfReceiptName,
+                                        typOfCd = h.sTrnsprtrDocPartyTypeOfCd,
+                                        typOfNotfdPartyCd = h.sTrnsprtrDocPartyTypeOfNotFdPartyCd,
+                                        ucrCd = h.sTrnsprtrDocPartyUCRCd,
+                                        ucrTyp = h.sTrnsprtrDocPartyUCRType
+                                    },
+                                    trnsprtDocMsr = new Trnsprtdocmsr1
+                                    {
+                                        crncyCd = h.sTrnsprtrDocMsrCurrencyCd,
+                                        grossWeight = Convert.ToInt32(h.dTrnsprtrDocMsrGrossWeight),
+                                        invoiceValueOfCnsgmt = Convert.ToInt32(h.dTrnsprtrDocMsrInvoiceValueOfConsigment),
+                                        marksNoOnPkgs = h.sTrnsprtrDocMsrMarksNoOnPackages,
+                                        netWeight = Convert.ToInt32(h.dTrnsprtrDocMsrNetWeight),
+                                        nmbrOfPkgs = Convert.ToInt32(h.dTrnsprtrDocMsrNoOfPackages),
+                                        typsOfPkgs = h.sTrnsprtrDocMsrTypesOfPackages,
+                                        unitOfWeight = h.sTrnsprtrDocMsrUnitOfWeight,
+                                    },
+                                    trnsprtEqmt = h.tblTransportEquipmentHouseCargoMaps.Select(e => new Trnsprteqmt1
+                                    {
+                                        adtnlEqmtHold = e.sAdditionalEquipmentHold,
+                                        cntrAgntCd = e.sContainerAgentCd,
+                                        cntrWeight = Convert.ToInt32(e.dContainerWeight),
+                                        eqmtId = e.sEquipmentId,
+                                        eqmtLoadStatus = e.sEquipmentLoadStatus,
+                                        eqmtSealNmbr = e.sEquipmentSealNo,
+                                        eqmtSealTyp = e.sEquipmentSealType,
+                                        eqmtSeqNo = e.iEquipmentSequenceNo ?? 0,
+                                        eqmtSize = e.sEquipmentSize,
+                                        eqmtTyp = e.sEquipmentType,
+                                        otherEqmtId = e.sOtherEquipmentId,
+                                        socFlag = e.sSOCFlag,
+                                        totalNmbrOfPkgs = Convert.ToInt32(e.dTotalNoOfPackages),
+                                    }).ToList(),
+                                }).ToList(),
+                                itemDtls = m.tblItemDetailsMasterConsignmentMaps.Select(i => new Itemdtl
+                                {
+                                    crgoItemSeqNmbr = Convert.ToInt32(i.dCargoItemSequenceNo),
+                                    hsCd = i.sHsCd,
+                                    imdgCd = i.sIMDGCd,
+                                    nmbrOfPkgs = Convert.ToInt32(i.dNoOfPakages),
+                                    typOfPkgs = i.sTypesOfPackages,
+                                    unoCd = i.sUnoCd,
+                                    crgoItemDesc = i.sCargoItemDesc,
+                                }).ToList(),
+                                itnry = m.tblItineraryMasterConsignmentMaps.Select(ii => new Itnry
+                                {
+                                    modeOfTrnsprt = ii.sModeOfTransport,
+                                    nxtPrtOfCallCdd = ii.sNextPortOfCallCdd,
+                                    nxtPrtOfCallName = ii.sNextPortOfCallCdd,
+                                    prtOfCallCdd = ii.sPortOfCallCd,
+                                    prtOfCallName = ii.sPortOfCallName,
+                                    prtOfCallSeqNmbr = Convert.ToInt32(ii.dPortOfCallSequenceNo)
+                                }).ToList(),
+                                MCRef = new Mcref
+                                {
+                                    consolidatedIndctr = m.sMCRefConsolidatedIndicator,
+                                    consolidatorPan = m.sMCRefConsolidatorPan,
+                                    lineNo = m.iMCRefLineNo ?? 0,
+                                    mstrBlDt = m.dtMCRefMasterBillDate?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
+                                    mstrBlNo = m.sMCRefMasterBillNo,
+                                    prevDec = m.sMCRefPreviousDeclaration
+                                },
+                                trnsprtDoc = new Trnsprtdoc
+                                {
+                                    cnsgneCity = m.sTrnsprtrDocConsigneeCity,
+                                    cnsgneCntryCd = m.sTrnsprtrDocConsigneeCountryCd,
+                                    cnsgneCntrySubDiv = m.sTrnsprtrDocConsigneeCountrySubDiv,
+                                    cnsgneCntrySubDivName = m.sTrnsprtrDocConsigneeCountrySubDivName,
+                                    cnsgnePstcd = m.sTrnsprtrDocConsigneePostCd,
+                                    cnsgnesName = m.sTrnsprtrDocConsigneeName,
+                                    cnsgneStreetAddress = m.sTrnsprtrDocConsigneeStreetAddress,
+                                    cnsgnrCntryCd = m.sTrnsprtrDocConsignorCountryCd,
+                                    cnsgnrCity = m.sTrnsprtrDocConsignorCity,
+                                    cnsgnrsName = m.sTrnsprtrDocConsignorName,
+                                    cnsgnrStreetAddress = m.sTrnsprtrDocConsignorStreetAddress,
+                                    goodsDescAsPerBl = m.sTrnsprtrDocGoodsDescAsPerBill,
+                                    prtOfAcptCdd = m.sTrnsprtrDocPortOfAcceptedCCd,
+                                    prtOfAcptName = m.sTrnsprtrDocPortOfAcceptedName,
+                                    prtOfReceiptCdd = m.sTrnsprtrDocPortOfReceiptCcd,
+                                    prtOfReceiptName = m.sTrnsprtrDocPortOfReceiptName,
+                                    ucrCd = m.sTrnsprtrDocUCRCd,
+                                    ucrTyp = m.sTrnsprtrDocUCRType,
+                                    typOfNotfdPartyCd = m.sTrnsprtrDocTypeOfNotFdPartyCd,
+                                    nameOfAnyOtherNotfdParty = m.sTrnsprtrDocNameOfAnyOtherNotFdParty,
+                                    notfdPartyCity = m.sTrnsprtrDocNotFdPartyCity,
+                                    notfdPartyCntryCd = m.sTrnsprtrDocNotFdPartyCountryCd,
+                                    notfdPartyCntrySubDiv = m.sTrnsprtrDocNotFdPartyCountrySubDiv,
+                                    notfdPartyCntrySubDivName = m.sTrnsprtrDocNotFdPartyCountrySubDivName,
+                                    notfdPartyPstcd = m.sTrnsprtrDocNotFdPartyPostCd,
+                                    notfdPartyStreetAddress = m.sTrnsprtrDocNotFdPartyStreetAddress,
+                                    panOfNotfdParty = m.sTrnsprtrDocPANOfNotFdParty,
+                                },
+                                trnsprtDocMsr = new Trnsprtdocmsr
+                                {
+                                    crncyCd = m.sTrnsprtrDocMsrCurrencyCd,
+                                    grossWeight = Convert.ToInt32(m.dTrnsprtrDocMsrGrossWeight),
+                                    invoiceValueOfCnsgmt = Convert.ToInt32(m.dTrnsprtrDocMsrInvoiceValueOfConsigment),
+                                    marksNoOnPkgs = m.sTrnsprtrDocMsrMarksNoOnPackages,
+                                    netWeight = Convert.ToInt32(m.dTrnsprtrDocMsrNetWeight),
+                                    nmbrOfPkgs = Convert.ToInt32(m.dTrnsprtrDocMsrNoOfPackages),
+                                    typsOfPkgs = m.sTrnsprtrDocMsrTypesOfPackages,
+                                    unitOfWeight = m.sTrnsprtrDocMsrUnitOfWeight,
+                                },
+                                trnsprtEqmt = m.tblTransportEquipmentMasterConsignmentMaps.Select(t => new Trnsprteqmt
+                                {
+                                    adtnlEqmtHold = t.sAdditionalEquipmentHold,
+                                    cntrAgntCd = t.sContainerAgentCd,
+                                    cntrWeight = Convert.ToInt32(t.dContainerWeight),
+                                    eqmtId = t.sEquipmentId,
+                                    eqmtLoadStatus = t.sEquipmentLoadStatus,
+                                    eqmtSealNmbr = t.sEquipmentSealNo,
+                                    eqmtSealTyp = t.sEquipmentSealType,
+                                    eqmtSeqNo = t.iEquipmentSequenceNo ?? 0,
+                                    eqmtSize = t.sEquipmentSize,
+                                    eqmtTyp = t.sEquipmentType,
+                                    otherEqmtId = t.sOtherEquipmentId,
+                                    socFlag = t.sSOCFlag,
+                                    totalNmbrOfPkgs = Convert.ToInt32(t.dTotalNoOfPackages),
+                                }).ToList(),
+                            }).ToList(),
+                            prsnOnBoard = z.tblPersonOnBoardMessageImlementationMaps.Select(p => new Prsnonboard
+                            {
+                                prsnDtls = new Prsndtls
+                                {
+                                    crewmemberRankOrRatingCdd = p.sPersonDetailsCrewMemberRankOrRatingCdd,
+                                    prsnCntryOfBirthCdd = p.sPersonDetailsPersonCountryOfBirthCdd,
+                                    prsnDtOfBirth = p.dtPersonDetailsPersonDateOfBirth?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
+                                    prsnGenderCdd = p.sPersonDetailsPersonGenderCdd,
+                                    prsnGivenName = p.sPersonDetailsPersonGivenName,
+                                    prsnNatnltyCdd = p.sPersonDetailsPersonNationalityCdd,
+                                    prsnPlaceOfBirthName = p.sPersonDetailsPersonPlaceOfBirthName,
+                                    prsnTypCdd = p.sPersonDetailsPersonTypeCdd,
+                                    psngrInTransitIndctr = Convert.ToInt32(p.dPersonDetailsPassengersInTransitIndicator),
+                                    prsnFamilyName = p.sPersonDetailsPersonFamilyName,
+                                    psngrPrtOfDsmbrktnCdd = p.sPersonDetailsPassangerPartOfDsmbarkTnCdd,
+                                    psngrPrtOfEmbrktnCdd = p.sPersonDetailsPassangerPartOfEmbarkTnCdd,
+                                },
+                                prsnId = new Prsnid
+                                {
+                                    prsnIdDocExpiryDt = p.dtPersonIdDocExpiryDate?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
+                                    prsnIdOrTravelDocIssuingNationCdd = p.sPersonDetailsPersonNationalityCdd,
+                                    prsnIdOrTravelDocNmbr = p.sPersonIdOrTravelDocNo,
+                                    prsnIdOrTravelDocTypCdd = p.sPersonIdOrTravelDocTypeCdd,
+                                },
+                                prsnOnBoardSeqNmbr = Convert.ToInt32(p.dPersonOnBaordSeqNo),
+                            }).ToList(),
+                            voyageTransportEquipment = z.tblVoyageTransporterEquipmentMessageImlementationMaps.Select(v => new Voyagetransportequipment
+                            {
+                                additionalEquipmentHold = v.sAdditionalEquipmentHold,
+                                containerAgentCode = v.sContainerAgentCode,
+                                containerWeight = Convert.ToInt32(v.dContainerWeight),
+                                equipmentId = v.sEquipmentId,
+                                equipmentLoadStatus = v.sEquipmentLoadStatus,
+                                equipmentSealNumber = v.sEquipmentSealNo,
+                                equipmentSealType = v.sEquipmentSealType,
+                                equipmentSequenceNo = v.iEquipmentSequenceNo ?? 0,
+                                equipmentSize = v.sEquipmentSize,
+                                equipmentType = v.sEquipmentType,
+                                otherEquipmentId = v.sOtherEquipmentId,
+                                socFlag = v.sSOCFlag,
+                                totalNumberOfPackages = Convert.ToInt32(v.dTotalNoOfPackages),
+                            }).ToList(),
+                        },
+                        digSign = new Digsign
+                        {
+                            signerVersion = z.sDigiSignSignerVersion,
+                            startCertificate = z.sDigiSignStartCertificate,
+                            startSignature = z.sDigiSignStartSignature
+                        },
+                    }).SingleOrDefault());
+                }
+                return Encoding.ASCII.GetBytes(Json);
             }
         }
 

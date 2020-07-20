@@ -58,5 +58,11 @@ namespace SeaManifest.Controllers
                 return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
             }
         }
+
+        public FileResult GetMessageJson(int iMessageImplementationId)
+        {
+            byte[] getJsonBytes = MessageImplementationService.Instance.GetMessageJson(iMessageImplementationId);
+            return File(getJsonBytes,"application/json");
+        }
     }
 }
