@@ -1485,6 +1485,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\MessageImplementation\pvAddUpdateMessages.cshtml" />
     <Content Include="Views\MasterConsignment\Index.cshtml" />
+    <Content Include="Views\MasterConsignment\pvAddUpdateMasterConsignment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
