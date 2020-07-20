@@ -22,7 +22,6 @@ namespace DAL
             this.tblAmendmentDetailsMessageImlementationMaps = new HashSet<tblAmendmentDetailsMessageImlementationMap>();
             this.tblItemDetailsMasterConsignmentMaps = new HashSet<tblItemDetailsMasterConsignmentMap>();
             this.tblItineraryMasterConsignmentMaps = new HashSet<tblItineraryMasterConsignmentMap>();
-            this.tblMasterConsignmentMessageImplementationMaps = new HashSet<tblMasterConsignmentMessageImplementationMap>();
             this.tblPersonOnBoardMessageImlementationMaps = new HashSet<tblPersonOnBoardMessageImlementationMap>();
             this.tblSupportDocMasterConsignmentMaps = new HashSet<tblSupportDocMasterConsignmentMap>();
             this.tblTmAdditionalDetailsMessageImplementationMaps = new HashSet<tblTmAdditionalDetailsMessageImplementationMap>();
@@ -30,6 +29,7 @@ namespace DAL
             this.tblTransportEquipmentMasterConsignmentMaps = new HashSet<tblTransportEquipmentMasterConsignmentMap>();
             this.tblVoyageTransporterEquipmentMessageImlementationMaps = new HashSet<tblVoyageTransporterEquipmentMessageImlementationMap>();
             this.tblHouseCargoDescriptionMasterConsignmentMaps = new HashSet<tblHouseCargoDescriptionMasterConsignmentMap>();
+            this.tblMasterConsignmentMessageImplementationMaps = new HashSet<tblMasterConsignmentMessageImplementationMap>();
         }
     
         public int iMessageImplementationId { get; set; }
@@ -98,8 +98,6 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblItineraryMasterConsignmentMap> tblItineraryMasterConsignmentMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblMasterConsignmentMessageImplementationMap> tblMasterConsignmentMessageImplementationMaps { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPersonOnBoardMessageImlementationMap> tblPersonOnBoardMessageImlementationMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSupportDocMasterConsignmentMap> tblSupportDocMasterConsignmentMaps { get; set; }
@@ -113,5 +111,7 @@ namespace DAL
         public virtual ICollection<tblVoyageTransporterEquipmentMessageImlementationMap> tblVoyageTransporterEquipmentMessageImlementationMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMasterConsignmentMessageImplementationMap> tblMasterConsignmentMessageImplementationMaps { get; set; }
     }
 }

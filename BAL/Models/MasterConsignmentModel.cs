@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace BAL.Models
 {
-   public class MasterConsigmentModel
+   public class MasterConsignmentModel
     {
         public int iMasterConsignmentId { get; set; }
-        public int iMessageImplementationId { get; set; }
+        public int? iMessageImplementationId { get; set; }
         [Display(Name = "Line no.")]
         [MaxLength(4, ErrorMessage = "Line no. cannot exceed 4 character.")]
         [Required(ErrorMessage = "Line no. is a required field.")]
-        public int iMCRefLineNo { get; set; }
+        public int? iMCRefLineNo { get; set; }
         [Display(Name = "Master Bill no.")]
         [MaxLength(20, ErrorMessage = "Master Bill no. cannot exceed 20 character.")]
         [Required(ErrorMessage = "Master Bill no. is a required field.")]
@@ -61,7 +61,7 @@ namespace BAL.Models
         [Display(Name = "CSN No.")]
         [MaxLength(4, ErrorMessage = "CSN No. cannot exceed 4 character.")]
         [Required(ErrorMessage = "CSN No. is a required field.")]
-        public int sPrevRefCSNNo { get; set; }
+        public int? iPrevRefCSNNo { get; set; }
         [Display(Name = "Previous Ref CSN Date")]
         [Required(ErrorMessage = "Previous Ref CSN Date is a required field.")]
         public string dtPrevRefCSNDate { get; set; }
@@ -71,7 +71,7 @@ namespace BAL.Models
         public string sPrevRefSplitIndicator { get; set; }
         [Display(Name = "No. Of Packages")]
         [Required(ErrorMessage = "No. Of Packages is a required field.")]
-        public decimal dPrevRefNoOfPackages { get; set; }
+        public decimal? dPrevRefNoOfPackages { get; set; }
         [Display(Name = "Type Of Packages")]
         [MaxLength(4, ErrorMessage = "Type Of Packages cannot exceed 4 character.")]
         [Required(ErrorMessage = "Type Of Packages is a required field.")]
@@ -110,7 +110,7 @@ namespace BAL.Models
         public string sLocCustomSplitIndicator { get; set; }
         [Display(Name = "No. Of Packages")]
         [Required(ErrorMessage = "No. Of Packages is a required field.")]
-        public decimal dLocCustomNoOfPackages { get; set; }
+        public decimal? dLocCustomNoOfPackages { get; set; }
         [Display(Name = "Types Of Packages")]
         [MaxLength(4, ErrorMessage = "Types Of Packages cannot exceed 4 character.")]
         [Required(ErrorMessage = "Types Of Packages is a required field.")]
@@ -272,24 +272,24 @@ namespace BAL.Models
         public string sTrnsprtrDocMsrMarksNoOnPackages { get; set; }
         [Display(Name = "Gross Weight")]
         [Required(ErrorMessage = "Gross Weight is a required field.")]
-        public decimal dTrnsprtrDocMsrGrossWeight { get; set; }
+        public decimal? dTrnsprtrDocMsrGrossWeight { get; set; }
         [Display(Name = "Gross Net Weight")]
         [Required(ErrorMessage = "Gross Net Weight is a required field.")]
-        public decimal dTrnsprtrDocMsrNetWeight { get; set; }
+        public decimal? dTrnsprtrDocMsrNetWeight { get; set; }
         [Display(Name = "Unit Of Weight")]
         [MaxLength(3, ErrorMessage = "Unit Of Weight cannot exceed 3 character.")]
         [Required(ErrorMessage = "Unit Of Weight is a required field.")]
         public string sTrnsprtrDocMsrUnitOfWeight { get; set; }
         [Display(Name = "Gross Volume")]
         [Required(ErrorMessage = "Gross Volume is a required field.")]
-        public decimal dTrnsprtrDocMsrGrossVolume { get; set; }
+        public decimal? dTrnsprtrDocMsrGrossVolume { get; set; }
         [Display(Name = "Unit Of Volume")]
         [MaxLength(3, ErrorMessage = "Unit Of Volume cannot exceed 3 character.")]
         [Required(ErrorMessage = "Unit Of Volume is a required field.")]
         public string sTrnsprtrDocMsrUnitOfVolume { get; set; }
         [Display(Name = "Invoice Value Of Consigment")]
         [Required(ErrorMessage = "Invoice Value Of Consigment is a required field.")]
-        public decimal dTrnsprtrDocMsrInvoiceValueOfConsigment { get; set; }
+        public decimal? dTrnsprtrDocMsrInvoiceValueOfConsigment { get; set; }
         [Display(Name = "Currency CD")]
         [MaxLength(3, ErrorMessage = "Currency CD cannot exceed 3 character.")]
         [Required(ErrorMessage = "Currency CD is a required field.")]

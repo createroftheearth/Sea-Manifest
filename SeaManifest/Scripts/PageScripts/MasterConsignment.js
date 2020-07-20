@@ -1,10 +1,10 @@
 ﻿$(function () {
-    initMessages();
+    initMasterConsignments();
 });
 
-var MessageTable;
-function initMessages() {
-    MessageTable = $('#tblMessage').DataTable({
+var MasterConsignmentTable;
+function initMasterConsignments() {
+    MasterConsignmentTable = $('#tblMasterConsignment').DataTable({
         "searching": true,
         "ordering": false,
         "processing": true,
@@ -13,38 +13,23 @@ function initMessages() {
         "bLengthChange": false,
         "filter": true,
         "ajax": {
-            "url": "/MessageImplementation/GetMessages",
+            "url": "/MasterConsignment/GetMasterConsignments",
             "type": "POST",
         },
         "columns": [
             {
-                "data": "sHeaderFieldSenderId",
+                "data": "iMCRefLineNo",
             },
             {
-                "data": "sHeaderFieldReceiverId"
+                "data": "sMCRefMasterBillNo"
             },
             {
-                "data": "sHeaderFieldVersionNo",
+                "data": "masterBillDate",
             },
             {
-                "data": "sHeaderFieldMessageId",
-            },
-            {
-                "data": "FieldSequenceOrControlNumber"
-            },
-            {
-                "data": "Date"
-            },
-            {
-                "data": "Time"
-            },
-            {
-                "data": "sHeaderFieldReportingEvent"
-            },
-            {
-                "data": "iMessageImplementationId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId="+data+"'\"><i class=\"fa fa-plus\"></i></button> " +
+                "data": "iMasterConsignmentId", "mRender": function (data) {
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMasterConsignmentId="+data+"'\"><i class=\"fa fa-plus\"></i></button> " +
                         "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i></button> " ;
                 }
             },
@@ -62,43 +47,43 @@ function resetForm() {
     var $errors = $form.find(".field-validation-error span");
 
     // trick unobtrusive to think the elements were succesfully validated
-    // this removes the validation messages
+    // this removes the validation MasterConsignments
     //$errors.each(function () { $validator.settings.success($(this)); })
 
     // clear errors from validation
     $validator.resetForm();
 }
-function DownloadJson(iMessageImplementationId) {
-    location.href = "/MessageImplementation/GetMessageJson?iMessageImplementationId=" + iMessageImplementationId;
+function DownloadJson(iMasterConsignmentId) {
+    location.href = "/MasterConsignment/GetMasterConsignmentJson?iMasterConsignmentId=" + iMasterConsignmentId;
 }
 
-function AddUpdateMessage(iMessageImplementationId) {
-    $('#addUpdateModallgContainer').load('/MessageImplementation/AddUpdateMessage?iMessageImplementationId=' + iMessageImplementationId, function () {
-        initAddUpdateMessage();
+function AddUpdateMasterConsignment(iMasterConsignmentId) {
+    $('#addUpdateModallgContainer').load('/MasterConsignment/AddUpdateMasterConsignment?iMasterConsignmentId=' + iMasterConsignmentId, function () {
+        initAddUpdateMasterConsignment();
     });
 }
 
-function initAddUpdateMessage() {
-    $.validator.unobtrusive.parse('#frmMessage');
+function initAddUpdateMasterConsignment() {
+    $.validator.unobtrusive.parse('#frmMasterConsignment');
     $('#sReportingEvent').selectpicker();
     $('#addUpdatelgModal').modal('show');
     changeReportingEvent();
 }
 
-$(document).on('submit', '#frmMessage', function (e) {
+$(document).on('submit', '#frmMasterConsignment', function (e) {
     e.preventDefault();
-    if ($(this).valid() && checkFormMessages())
+    if ($(this).valid() && checkFormMasterConsignments())
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
             data: $(this).serialize(),
             success: function (response) {
                 if (response.Status) {
-                    alertify.success(response.Message);
-                    MessagesTable.ajax.reload();
+                    alertify.success(response.MasterConsignment);
+                    MasterConsignmentsTable.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
-                    alertify.error(response.Message);
+                    alertify.error(response.MasterConsignment);
                 }
             },
             failure: function (response) {
@@ -206,8 +191,8 @@ function changeReportingEvent() {
 
 }
 //Mandatory Conditions(Mandatory in case of 'M')
-function checkFormMessages() {
-    var validator = $("#frmMessage").validate();
+function checkFormMasterConsignments() {
+    var validator = $("#frmMasterConsignment").validate();
     var data = $('#sReportingEvent').val();
     if (data == "SAM" && $('#sAuthPrsnShipLineCode').val() == "") {
         validator.showErrors({

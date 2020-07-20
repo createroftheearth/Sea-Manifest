@@ -26,7 +26,7 @@ namespace DAL
         public Nullable<System.DateTime> dtActionDate { get; set; }
         public Nullable<int> iActionBy { get; set; }
     
-        public virtual tblMasterConsignmentMessageImplementationMap tblMasterConsignmentMessageImplementationMap { get; set; }
         public virtual tblHouseCargoDescriptionMasterConsignmentMap tblHouseCargoDescriptionMasterConsignmentMap { get; set; }
+        public virtual tblMasterConsignmentMessageImplementationMap tblMasterConsignmentMessageImplementationMap { get; set; }
     }
 }

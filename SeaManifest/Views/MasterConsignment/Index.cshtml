@@ -1,0 +1,24 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <button onClick="AddUpdateMasterConsignment(0)" type="button" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Add Master Consignment
+        </button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table style="width:100%!important;" id="tblMasterConsignment" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Line No</th>
+                <th>Master Bill No</th>
+                <th>Master Bill Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/MasterConsignment.js"></script>
+}
