@@ -58,10 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\HouseCargoModel.cs" />
     <Compile Include="Models\MasterConsignmentModel.cs" />
     <Compile Include="Models\MessageImplementationModel.cs" />
     <Compile Include="Models\SAM_JsonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HouseCargoService.cs" />
     <Compile Include="Services\MasterConsignmentService.cs" />
     <Compile Include="Services\MessageImplementationService.cs" />
     <Compile Include="Utilities\EnumConstant.cs" />
