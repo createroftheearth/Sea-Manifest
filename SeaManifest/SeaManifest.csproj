@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HouseCargoController.cs" />
     <Compile Include="Controllers\MasterConsignmentController.cs" />
     <Compile Include="Controllers\MessageImplementationController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1452,6 +1453,7 @@
     <Content Include="Scripts\JQuery\bootstrap.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\PageScripts\GeneratedBill.js" />
+    <Content Include="Scripts\PageScripts\HouseCargo.js" />
     <Content Include="Scripts\PageScripts\MasterConsignment.js" />
     <Content Include="Scripts\PageScripts\MessageImplementation.js" />
     <Content Include="Scripts\popper.min.js" />
@@ -1486,6 +1488,8 @@
     <Content Include="Views\MessageImplementation\pvAddUpdateMessages.cshtml" />
     <Content Include="Views\MasterConsignment\Index.cshtml" />
     <Content Include="Views\MasterConsignment\pvAddUpdateMasterConsignment.cshtml" />
+    <Content Include="Views\HouseCargo\Index.cshtml" />
+    <Content Include="Views\HouseCargo\pvAddUpdateHouseCargo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
