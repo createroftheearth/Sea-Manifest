@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace BAL.Services
 {
@@ -24,6 +25,19 @@ namespace BAL.Services
                 if (_instance == null)
                     _instance = new MasterConsignmentService();
                 return _instance;
+            }
+        }
+
+
+        public List<SelectListItem> GetCodesByType(string Type)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblCodeMs.Where(z => z.tblCodeTypeM.sCodeType == Type).ToList().Select(z => new SelectListItem
+                {
+                    Value = z.sCode.ToString(),
+                    Text = z.sCodeName
+                }).ToList();
             }
         }
 
@@ -239,7 +253,7 @@ namespace BAL.Services
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblMasterConsignmentMessageImplementationMaps
-                            where t.sMCRefMasterBillNo.Contains(search) 
+                            where t.sMCRefMasterBillNo.Contains(search)
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.iMCRefLineNo).Take(length).Skip(start).ToList().Select(t => new
@@ -248,7 +262,7 @@ namespace BAL.Services
                     t.iMasterConsignmentId,
                     t.iMCRefLineNo,
                     t.sMCRefMasterBillNo,
-                    masterBillDate = t.dtMCRefMasterBillDate?.ToString("dd/MM/yyyy",CultureInfo.InvariantCulture),
+                    masterBillDate = t.dtMCRefMasterBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                 }).ToList();
             }
         }

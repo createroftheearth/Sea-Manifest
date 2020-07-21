@@ -36,12 +36,9 @@ namespace BAL.Models
         [MaxLength(18, ErrorMessage = "SequenceOrControlNumber cannot exceed 18 character.")]
         [Required(ErrorMessage = "SequenceOrControlNumber is a required field.")]
         public string sSequenceOrControlNumber { get; set; }
-        [Display(Name = "Date")]
-        [Required(ErrorMessage = "Date is a required field.")]
-        public string sDate { get; set; }
-        [Display(Name = "Time")]
-        [Required(ErrorMessage = "Time is a required field.")]
-        public string sTime { get; set; }
+        [Display(Name = "Date Time")]
+        [Required(ErrorMessage = "Date Time is a required field.")]
+        public string sDateTime { get; set; }
         [Display(Name = "Reporting Event")]
         [MaxLength(4, ErrorMessage = "Reporting Event cannot exceed 4 character.")]
         [Required(ErrorMessage = "Reporting Event is a required field.")]
@@ -89,6 +86,7 @@ namespace BAL.Models
         [Display(Name = "Auth Representative PAN")]
         [MaxLength(10, ErrorMessage = "Auth Representative PAN cannot exceed 10 character.")]
         [Required(ErrorMessage = "Auth Representative PAN is a required field.")]
+        [RegularExpression(@"[A-Z]{5}\d{4}[A-Z]{1}", ErrorMessage = "Please Enter valid PAN Card")]
         public string sAuthPrsnAuthRepresentativePAN { get; set; }
         [Display(Name = "Shipping Line Code")]
         [MaxLength(10, ErrorMessage = "Shipping Line Code cannot exceed 10 character.")]

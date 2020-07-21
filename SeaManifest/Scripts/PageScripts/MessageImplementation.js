@@ -3,6 +3,7 @@
 });
 
 var MessageTable;
+
 function initMessages() {
     MessageTable = $('#tblMessage').DataTable({
         "searching": true,
@@ -44,8 +45,8 @@ function initMessages() {
             {
                 "data": "iMessageImplementationId", "mRender": function (data) {
                     return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId="+data+"'\"><i class=\"fa fa-plus\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i></button> " ;
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> " +
+                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i></button> ";
                 }
             },
         ]
@@ -68,6 +69,7 @@ function resetForm() {
     // clear errors from validation
     $validator.resetForm();
 }
+
 function DownloadJson(iMessageImplementationId) {
     location.href = "/MessageImplementation/GetMessageJson?iMessageImplementationId=" + iMessageImplementationId;
 }
@@ -80,7 +82,19 @@ function AddUpdateMessage(iMessageImplementationId) {
 
 function initAddUpdateMessage() {
     $.validator.unobtrusive.parse('#frmMessage');
-    $('#sReportingEvent').selectpicker();
+    $('#frmMessage select').selectpicker();
+    $('#headerFieldDatePicker').datetimepicker();
+    $('#psDecRefManifestDateRotnDt').datetimepicker({
+        format: 'L'
+    });
+    $('#psDecRefJobDt').datetimepicker({
+        format: 'L'
+    });
+    $('#psDecRefPreviousManifestDptrDate').datetimepicker({
+        format: 'L'
+    });
+    $('#psVoyageDtlsExpectedDtandTimeOfArrival').datetimepicker();
+    $('#psVoyageDtlsExpectedDtandTimeOfDeparture').datetimepicker();
     $('#addUpdatelgModal').modal('show');
     changeReportingEvent();
 }
@@ -118,6 +132,27 @@ $(document).on('change', '#sReportingEvent', function () {
 //Hide Show Conditions (Hide in case of 'X' and show in case of 'O') 
 function changeReportingEvent() {
     var data = $('#sReportingEvent').val();
+    if (data == "SAA" || data == "SDA") {
+        $('#sDecRefMsgType option').each(function (i, ele) {
+            if ($(ele).val() == "F")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sDecRefMsgType').selectpicker('refresh');
+    }
+    else {
+        $('#sDecRefMsgType option').each(function (i, ele) {
+            if ($(ele).val() != "F")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sDecRefMsgType').selectpicker('refresh');
+    }
+
     if (data == "SDN") {
         $('#sDate').val('');
         $('#sDate').parent('div').hide();
@@ -175,19 +210,19 @@ function changeReportingEvent() {
     else {
         $('#sVoyageDtlsBriefCargoDesc').parent('div').show();
     }
-    if (data == "SDM" ||data == "SEI" || data == "SDN") {
+    if (data == "SDM" || data == "SEI" || data == "SDN") {
         $('#sVoyageDtlsExpectedDtandTimeOfArrival').val('');
-        $('#sVoyageDtlsExpectedDtandTimeOfArrival').parent('div').hide();
+        $('#sVoyageDtlsExpectedDtandTimeOfArrival').parent('div').parent('div').hide();
     }
     else {
-        $('#sVoyageDtlsExpectedDtandTimeOfArrival').parent('div').show();
+        $('#sVoyageDtlsExpectedDtandTimeOfArrival').parent('div').parent('div').show();
     }
     if (data == "SDM" || data == "SAM") {
         $('#sVoyageDtlsExpectedDtandTimeOfDeparture').val('');
-        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').hide();
+        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').parent('div').hide();
     }
     else {
-        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').show();
+        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').parent('div').show();
     }
     if (data == "SEI" || data == "SDN") {
         $('#iVoyageDtlsNumberOfPsngrManifested').val('');
@@ -208,115 +243,153 @@ function changeReportingEvent() {
 //Mandatory Conditions(Mandatory in case of 'M')
 function checkFormMessages() {
     var validator = $("#frmMessage").validate();
+    var vesselType = $('#sDecRefVesselTypeMovement').val();
     var data = $('#sReportingEvent').val();
     if (data == "SAM" && $('#sAuthPrsnShipLineCode').val() == "") {
         validator.showErrors({
             "sAuthPrsnShipLineCode": "Shipping Line Code is a required field."
         });
+        $('#sAuthPrsnShipLineCode').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sAuthPrsnAuthSeaCarrierCode').val() == "") {
         validator.showErrors({
             "sAuthPrsnAuthSeaCarrierCode": "Authorised Sea Carrier Code is a required field."
         });
+        $('#sAuthPrsnAuthSeaCarrierCode').focus();
         return false;
     }
-
     if ((data == "SAM" || data == "SDM") && $('#sAuthPrsnMasterName').val() == "") {
         validator.showErrors({
             "sAuthPrsnMasterName": "Master Name is a required field."
         });
+        $('#sAuthPrsnMasterName').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sAuthPrsnTerminalCustodianCode').val() == "") {
         validator.showErrors({
             "sAuthPrsnTerminalCustodianCode": "Terminal Operator Code is a required field."
         });
+        $('#sAuthPrsnTerminalCustodianCode').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVesselDtlsModeOfTransport').val() == "") {
         validator.showErrors({
             "sVesselDtlsModeOfTransport": "Mode Of Transport is a required field."
         });
+        $('#sVesselDtlsModeOfTransport').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVesselDtlsTypeOfTransportMeans').val() == "") {
         validator.showErrors({
             "sVesselDtlsTypeOfTransportMeans": "Type Of Transport Means is a required field."
         });
+        $('#sVesselDtlsTypeOfTransportMeans').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVesselDtlsTransportMeansId').val() == "") {
         validator.showErrors({
             "sVesselDtlsTransportMeansId": "Transport Means Identity is a required field."
         });
+        $('#sVesselDtlsTransportMeansId').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM") && $('#sVesselDtlsPurposeOfCall').val() == "") {
         validator.showErrors({
             "sVesselDtlsPurposeOfCall": "Purpose Of Call is a required field."
         });
+        $('#sVesselDtlsPurposeOfCall').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM") && $('#sVoyageDtlsVoyageNo').val() == "") {
         validator.showErrors({
             "sVoyageDtlsVoyageNo": "Voyage No is a required field."
         });
+        $('#sVoyageDtlsVoyageNo').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVoyageDtlsConveinceRefNo').val() == "") {
         validator.showErrors({
             "sVoyageDtlsConveinceRefNo": "Conveyance Reference Number is a required field."
         });
+        $('#sVoyageDtlsConveinceRefNo').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVoyageDtlsTotalNumberofTrnsptEqtMnfstd').val() == "") {
         validator.showErrors({
             "sVoyageDtlsTotalNumberofTrnsptEqtMnfstd": "Total No. Of Transport Equipment Manifested is a required field."
         });
+        $('#sVoyageDtlsTotalNumberofTrnsptEqtMnfstd').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM") && $('#sVoyageDtlsCargoDesCdd').val() == "") {
         validator.showErrors({
             "sVoyageDtlsCargoDesCdd": "Cargo Description is a required field."
         });
+        $('#sVoyageDtlsCargoDesCdd').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM") && $('#sVoyageDtlsBriefCargoDesc').val() == "") {
         validator.showErrors({
             "sVoyageDtlsBriefCargoDesc": "Brief Cargo Description is a required field."
         });
+        $('#sVoyageDtlsBriefCargoDesc').focus();
         return false;
     }
     if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVoyageDtlsTotalNumberOfLines').val() == "") {
         validator.showErrors({
             "sVoyageDtlsTotalNumberOfLines": "Total No. Of Transport Contracts Manifested is a required field."
         });
+        $('#sVoyageDtlsTotalNumberOfLines').focus();
         return false;
     }
     if ((data == "SAM") && $('#sVoyageDtlsExpectedDtandTimeOfArrival').val() == "") {
         validator.showErrors({
             "sVoyageDtlsExpectedDtandTimeOfArrival": "Expected Date & Time of Arrival is a required field."
         });
+        $('#sVoyageDtlsExpectedDtandTimeOfArrival').focus();
         return false;
     }
     if ((data == "SDM") && $('#sVoyageDtlsExpectedDtandTimeOfDeparture').val() == "") {
         validator.showErrors({
             "sVoyageDtlsExpectedDtandTimeOfDeparture": "Expected Date & Time of Departure is a required field."
         });
+        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').val();
         return false;
     }
     if ((data == "SDM" || data == "SDM") && $('#iVoyageDtlsNumberOfPsngrManifested').val() == "") {
         validator.showErrors({
             "iVoyageDtlsNumberOfPsngrManifested": "Number Of Passenger Manifested is a required field."
         });
+        $('#iVoyageDtlsNumberOfPsngrManifested').focus();
         return false;
     }
     if ((data == "SDM" || data == "SDM") && $('#iVoyageDtlsNumberOfCrewManifested').val() == "") {
         validator.showErrors({
             "iVoyageDtlsNumberOfCrewManifested": "Number Of Crew Manifested  is a required field."
         });
+        $('#iVoyageDtlsNumberOfCrewManifested').focus();
         return false;
+    }
+    if (vesselType == "II") {
+        if ($('#dDecRefDptrPreviousManifestNo').val() == "") {
+            $('#dDecRefDptrPreviousManifestNo').focus();
+            validator.showErrors({ "dDecRefDptrPreviousManifestNo": "Departure Previous Manifest is a required field." });
+            return false;
+        }
+        if ($('#sDecRefPreviousManifestDptrDate').val() == "") {
+            $('#sDecRefPreviousManifestDptrDate').focus();
+            validator.showErrors({ "sDecRefPreviousManifestDptrDate": "Departure Previous Manifest is a required field." });
+            return false;
+        }
+        return false;
+    }
+    if (vesselType == "RI") {
+        if ($('#sAuthPrsnShippingLineBondNo').val() == "") {
+            $('#sAuthPrsnShippingLineBondNo').focus();
+            validator.showErrors({ "sAuthPrsnShippingLineBondNo": "Shipping Line Bond Number is a required field." });
+            return false;
+        }
     }
     return true;
 }

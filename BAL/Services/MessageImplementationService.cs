@@ -66,7 +66,7 @@ namespace BAL.Services
                 {
                     var data = db.tblMessageImplementations.Where(z => z.iMessageImplementationId == model.iMessageImplementationId).SingleOrDefault();
                     decimal.TryParse(model.sSequenceOrControlNumber, out decimal SqOrCtrlNo);
-                    DateTime dateTime = DateTime.ParseExact(model.sDate + " " + model.sTime, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                    DateTime dateTime = DateTime.ParseExact(model.sDateTime, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                     if (data == null)
                     {
                         data = new tblMessageImplementation
@@ -515,8 +515,7 @@ namespace BAL.Services
                 return db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId).ToList().Select(model => new MessageImplementationModel
                 {
                     iMessageImplementationId = model.iMessageImplementationId,
-                    sDate = model.dtHeaderFieldDateTime?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
-                    sTime = model.dtHeaderFieldDateTime?.ToString("hh:mm tt", CultureInfo.InvariantCulture),
+                    sDateTime = model.dtHeaderFieldDateTime?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
                     sIndicator = model.sHeaderFieldIndicator,
                     sMessageID = model.sHeaderFieldMessageId,
                     sReceiverID = model.sHeaderFieldReceiverId,
