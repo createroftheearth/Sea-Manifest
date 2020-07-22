@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Web;
 using System.Web.Mvc;
 
@@ -32,11 +33,16 @@ namespace SeaManifest.Controllers
         }
 
 
-        public PartialViewResult AddUpdateMasterConsignment(int? iMasterConsignmentId = null)
+        public PartialViewResult AddUpdateMasterConsignment(int? iMessageImplementationId = null,int ? iMasterConsignmentId = null)
         {
             if (iMasterConsignmentId == null)
             {
-                return PartialView("pvAddUpdateMasterConsignment");
+            
+                return PartialView("pvAddUpdateMasterConsignment",new MasterConsignmentModel
+                {
+                    iMessageImplementationId=iMessageImplementationId,
+                    sReportingEvent= MessageImplementationService.Instance.GetMessageTypeByImplementationId(iMessageImplementationId)
+                });
             }
             else
                 return PartialView("pvAddUpdateMasterConsignment", MasterConsignmentService.Instance.GetMasterConsigmentMessageImpementationId(iMasterConsignmentId));

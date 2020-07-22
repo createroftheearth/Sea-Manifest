@@ -47,8 +47,8 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.Label("Sequence Or Control Number")
-                        @Html.TextBoxFor(z => z.sSequenceOrControlNumber, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sSequenceOrControlNumber)
+                        @Html.TextBoxFor(z => z.dSequenceOrControlNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dSequenceOrControlNumber)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sDateTime)
@@ -194,7 +194,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-primary">
+        <div class="panel panel-primary vesselDetails">
             <div class="panel-heading">
                 Vessel Details
             </div>
@@ -216,6 +216,11 @@
                         @Html.ValidationMessageFor(z => z.sVesselDtlsTransportMeansId)
                     </div>
                     <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sVesselDtlsVesselCode)
+                        @Html.TextBoxFor(z => z.sVesselDtlsVesselCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sVesselDtlsVesselCode)
+                    </div>
+                    <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sVesselDtlsShipType)
                         @Html.DropDownListFor(z => z.sVesselDtlsShipType, shipTypes, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sVesselDtlsShipType)
@@ -228,7 +233,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-primary">
+        <div class="panel panel-primary voyageDetails">
             <div class="panel-heading">
                 Voyage Details
             </div>
@@ -260,9 +265,9 @@
                         @Html.ValidationMessageFor(z => z.sVoyageDtlsBriefCargoDesc)
                     </div>
                     <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sVoyageDtlsTotalNumberOfLines)
-                        @Html.TextBoxFor(z => z.sVoyageDtlsTotalNumberOfLines, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sVoyageDtlsTotalNumberOfLines)
+                        @Html.LabelFor(z => z.dVoyageDtlsTotalNumberOfLines)
+                        @Html.TextBoxFor(z => z.dVoyageDtlsTotalNumberOfLines, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dVoyageDtlsTotalNumberOfLines)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sVoyageDtlsExpectedDtandTimeOfArrival)
@@ -287,6 +292,79 @@
                             </div>
                         </div>
                         @Html.ValidationMessageFor(z => z.sVoyageDtlsExpectedDtandTimeOfDeparture)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary ArrDptrDetails">
+            <div class="panel-heading">
+                Arrival/Departure Details
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsNumberOfPassengers)
+                        @Html.TextBoxFor(z => z.iArvlDtlsNumberOfPassengers, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsNumberOfPassengers)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsNumberOfCrew)
+                        @Html.TextBoxFor(z => z.iArvlDtlsNumberOfCrew, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsNumberOfCrew)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsLightHouseDues)
+                        @Html.TextBoxFor(z => z.iArvlDtlsLightHouseDues, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsLightHouseDues)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsTotalNoOfCntrsLanded)
+                        @Html.TextBoxFor(z => z.iArvlDtlsTotalNoOfCntrsLanded, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsTotalNoOfCntrsLanded)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsTotalOfCntrsLoaded)
+                        @Html.TextBoxFor(z => z.iArvlDtlsTotalOfCntrsLoaded, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsTotalOfCntrsLoaded)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsTotalNoOfPersonOnBoard)
+                        @Html.TextBoxFor(z => z.iArvlDtlsTotalNoOfPersonOnBoard, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsTotalNoOfPersonOnBoard)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr)
+                        @Html.TextBoxFor(z => z.iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr)
+                        @Html.TextBoxFor(z => z.iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Digi Sign
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDigiSignStartSignature)
+                        @Html.TextBoxFor(z => z.sDigiSignStartSignature, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDigiSignStartSignature)
+                    </div>  
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDigiSignStartCertificate)
+                        @Html.TextBoxFor(z => z.sDigiSignStartCertificate, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDigiSignStartCertificate)
+                    </div>   
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sDigiSignSignerVersion)
+                        @Html.TextBoxFor(z => z.sDigiSignSignerVersion, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sDigiSignSignerVersion)
                     </div>
                 </div>
             </div>

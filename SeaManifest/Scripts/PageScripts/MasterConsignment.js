@@ -3,6 +3,7 @@
 });
 
 var MasterConsignmentTable;
+
 function initMasterConsignments() {
     MasterConsignmentTable = $('#tblMasterConsignment').DataTable({
         "searching": true,
@@ -53,21 +54,22 @@ function resetForm() {
     // clear errors from validation
     $validator.resetForm();
 }
+
 function DownloadJson(iMasterConsignmentId) {
     location.href = "/MasterConsignment/GetMasterConsignmentJson?iMasterConsignmentId=" + iMasterConsignmentId;
 }
 
-function AddUpdateMasterConsignment(iMasterConsignmentId) {
-    $('#addUpdateModallgContainer').load('/MasterConsignment/AddUpdateMasterConsignment?iMasterConsignmentId=' + iMasterConsignmentId, function () {
+function AddUpdateMasterConsignment(iMasterConsignmentId, iMessageImplementationId) {
+    $('#addUpdateModallgContainer').load('/MasterConsignment/AddUpdateMasterConsignment?iMessageImplementationId=' + iMessageImplementationId + '&iMasterConsignmentId=' + iMasterConsignmentId , function () {
         initAddUpdateMasterConsignment();
     });
 }
 
 function initAddUpdateMasterConsignment() {
     $.validator.unobtrusive.parse('#frmMasterConsignment');
-    $('#sReportingEvent').selectpicker();
+    $('#frmMasterConsignment select').selectpicker();
     $('#addUpdatelgModal').modal('show');
-    changeReportingEvent();
+    showHideViaMessageType();
 }
 
 $(document).on('submit', '#frmMasterConsignment', function (e) {
@@ -96,12 +98,8 @@ $(document).on('submit', '#frmMasterConsignment', function (e) {
 });
 
 
-$(document).on('change', '#sReportingEvent', function () {
-    changeReportingEvent();
-});
-
 //Hide Show Conditions (Hide in case of 'X' and show in case of 'O') 
-function changeReportingEvent() {
+function showHideViaMessageType() {
     var data = $('#sReportingEvent').val();
     if (data == "SDN") {
         $('#sDate').val('');
