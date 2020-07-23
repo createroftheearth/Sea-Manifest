@@ -66,6 +66,7 @@
     <Compile Include="Services\HouseCargoService.cs" />
     <Compile Include="Services\MasterConsignmentService.cs" />
     <Compile Include="Services\MessageImplementationService.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
     <Compile Include="Utilities\EnumConstant.cs" />
   </ItemGroup>
   <ItemGroup>

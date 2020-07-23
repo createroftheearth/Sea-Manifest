@@ -109,7 +109,7 @@ $(document).on('submit', '#frmMessage', function (e) {
             success: function (response) {
                 if (response.Status) {
                     alertify.success(response.Message);
-                    MessagesTable.ajax.reload();
+                    MessageTable.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
                     alertify.error(response.Message);

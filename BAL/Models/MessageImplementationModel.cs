@@ -159,7 +159,6 @@ namespace BAL.Models
         [Required(ErrorMessage = "Brief Cargo Description is a required field.")]
         public string sVoyageDtlsBriefCargoDesc { get; set; }
         [Display(Name = "Total number of Transport Contracts Manifested")]
-        [MaxLength(18, ErrorMessage = "Total number of Transport Contracts Manifested cannot exceed 18 character.")]
         [Range(0,99999,ErrorMessage ="Total number of Transport Contaracts Manifisted should be in between 0 to 99999")]
         public decimal? dVoyageDtlsTotalNumberOfLines { get; set; }
         [Display(Name = "Expected date and time of arrival")]
