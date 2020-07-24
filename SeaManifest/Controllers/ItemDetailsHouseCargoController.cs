@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class ItemDetailsHouseCargoController : Controller
+    public class ItemDetailsHouseCargoController : BaseController
     {
         // GET: HouseCargo
         public ActionResult Index(int? iMasterConsignmentId)
@@ -37,7 +37,7 @@ namespace SeaManifest.Controllers
                 return PartialView("pvAddUpdateItemDetailsHouseCargo");
             }
             else
-                return PartialView("pvAddUpdateItemDetailsHouseCargo", ItemDetailsHouseCargoService.Instance.GetItemDetailsHouseCargoByItemDetailsId(iHouseCargoDescId, iMasterConsignmentId));
+                return PartialView("pvAddUpdateItemDetailsHouseCargo", ItemDetailsHouseCargoService.Instance.GetItemDetailsHouseCargoByItemDetailsId(iItemDetailsId);
         }
 
         [HttpPost]

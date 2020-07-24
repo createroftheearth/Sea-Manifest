@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ItineraryHouseCargoController.cs" />
     <Compile Include="Controllers\ItemDetailsHouseCargoController.cs" />
     <Compile Include="Controllers\HouseCargoController.cs" />
@@ -1591,6 +1592,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\file\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\DataTables\css\common.scss" />

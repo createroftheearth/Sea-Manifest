@@ -2,13 +2,14 @@
 @*@{
         var reportingEvents = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.ReportingEvent>();
     }*@
-@using (Html.BeginForm("AddUpdateMasterConsignment", "MasterConsignment", FormMethod.Post, new { @id = "frmMasterConsigment" }))
+@using (Html.BeginForm("AddUpdateMasterConsignment", "MasterConsignment", FormMethod.Post, new { @id = "frmMasterConsignment" }))
 {
     <div class="modal-header">
         <h4 class="modal-title">Add/Update Master Consignment</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
+        @Html.HiddenFor(z=>z.iMasterConsignmentId)
         @Html.HiddenFor(z => z.iMessageImplementationId)
         @Html.HiddenFor(z=>z.sReportingEvent)
         <div class="panel panel-primary mcRef">
@@ -28,9 +29,16 @@
                         @Html.ValidationMessageFor(z => z.sMCRefMasterBillNo)
                     </div>
                     <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.dtMCRefMasterBillDate)
-                        @Html.TextBoxFor(z => z.dtMCRefMasterBillDate, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.dtMCRefMasterBillDate)
+                        @Html.LabelFor(z => z.sMCRefMasterBillDate)
+                        <div class="input-group" id="psMCRefMasterBillDate" data-target-input="nearest">
+                            @Html.TextBoxFor(z => z.sMCRefMasterBillDate, new { @class = "form-control datetimepicker-input", @data_target = "#psMCRefMasterBillDate" })
+                            <div class="input-group-append" data-target="#psMCRefMasterBillDate" data-toggle="datetimepicker">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(z => z.sMCRefMasterBillDate)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sMCRefConsolidatedIndicator)
@@ -92,9 +100,16 @@
                         @Html.ValidationMessageFor(z => z.iPrevRefCSNNo)
                     </div>
                     <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.dtPrevRefCSNDate)
-                        @Html.TextBoxFor(z => z.dtPrevRefCSNDate, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.dtPrevRefCSNDate)
+                        @Html.LabelFor(z => z.sPrevRefCSNDate)
+                        <div class="input-group" id="psPrevRefCSNDate" data-target-input="nearest">
+                            @Html.TextBoxFor(z => z.sPrevRefCSNDate, new { @class = "form-control datetimepicker-input", @data_target = "#psPrevRefCSNDate" })
+                            <div class="input-group-append" data-target="#psPrevRefCSNDate" data-toggle="datetimepicker">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(z => z.sPrevRefCSNDate)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sPrevRefSplitIndicator)
@@ -110,6 +125,11 @@
                         @Html.LabelFor(z => z.sPrevRefTypeOfPackage)
                         @Html.TextBoxFor(z => z.sPrevRefTypeOfPackage, new { @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sPrevRefTypeOfPackage)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sLocCustomFirstPortOfEntry)
+                        @Html.TextBoxFor(z => z.sLocCustomFirstPortOfEntry, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sLocCustomFirstPortOfEntry)
                     </div>
                 </div>
             </div>
@@ -174,6 +194,11 @@
             </div>
             <div class="panel-body">
                 <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnshprCd)
+                        @Html.TextBoxFor(z => z.sTrnshprCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnshprCd)
+                    </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnshprBond)
                         @Html.TextBoxFor(z => z.sTrnshprBond, new { @class = "form-control" })
@@ -446,9 +471,16 @@
                         @Html.ValidationMessageFor(z => z.dSuplmntryDecCSNNo)
                     </div>
                     <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.dtSuplmntryDecCSNDate)
-                        @Html.TextBoxFor(z => z.dtSuplmntryDecCSNDate, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.dtSuplmntryDecCSNDate)
+                        @Html.LabelFor(z => z.sSuplmntryDecCSNDate)
+                        <div class="input-group" id="psSuplmntryDecCSNDate" data-target-input="nearest">
+                            @Html.TextBoxFor(z => z.sSuplmntryDecCSNDate, new { @class = "form-control datetimepicker-input", @data_target = "#psSuplmntryDecCSNDate" })
+                            <div class="input-group-append" data-target="#psSuplmntryDecCSNDate" data-toggle="datetimepicker">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
+                        </div>
+                        @Html.ValidationMessageFor(z => z.sSuplmntryDecCSNDate)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sSuplmntryDecPrevMCIN)

@@ -85,16 +85,20 @@ function initAddUpdateMessage() {
     $('#frmMessage select').selectpicker();
     $('#headerFieldDatePicker').datetimepicker();
     $('#psDecRefManifestDateRotnDt').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#psDecRefJobDt').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
     $('#psDecRefPreviousManifestDptrDate').datetimepicker({
-        format: 'L'
+        format: 'DD/MM/YYYY'
     });
-    $('#psVoyageDtlsExpectedDtandTimeOfArrival').datetimepicker();
-    $('#psVoyageDtlsExpectedDtandTimeOfDeparture').datetimepicker();
+    $('#psVoyageDtlsExpectedDtandTimeOfArrival').datetimepicker({
+        format: 'DD/MM/YYYY hh:mm A'
+    });
+    $('#psVoyageDtlsExpectedDtandTimeOfDeparture').datetimepicker({
+        format: 'DD/MM/YYYY hh:mm A'
+    });
     $('#addUpdatelgModal').modal('show');
     changeReportingEvent();
 }

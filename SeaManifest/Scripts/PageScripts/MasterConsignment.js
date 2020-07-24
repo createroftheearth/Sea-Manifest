@@ -30,8 +30,7 @@ function initMasterConsignments() {
             {
                 "data": "iMasterConsignmentId", "mRender": function (data) {
                     return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMasterConsignmentId="+data+"'\"><i class=\"fa fa-plus\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i></button> " ;
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> ";
                 }
             },
         ]
@@ -59,8 +58,8 @@ function DownloadJson(iMasterConsignmentId) {
     location.href = "/MasterConsignment/GetMasterConsignmentJson?iMasterConsignmentId=" + iMasterConsignmentId;
 }
 
-function AddUpdateMasterConsignment(iMasterConsignmentId, iMessageImplementationId) {
-    $('#addUpdateModallgContainer').load('/MasterConsignment/AddUpdateMasterConsignment?iMessageImplementationId=' + iMessageImplementationId + '&iMasterConsignmentId=' + iMasterConsignmentId , function () {
+function AddUpdateMasterConsignment(iMasterConsignmentId) {
+    $('#addUpdateModallgContainer').load('/MasterConsignment/AddUpdateMasterConsignment?iMasterConsignmentId=' + iMasterConsignmentId, function () {
         initAddUpdateMasterConsignment();
     });
 }
@@ -68,6 +67,15 @@ function AddUpdateMasterConsignment(iMasterConsignmentId, iMessageImplementation
 function initAddUpdateMasterConsignment() {
     $.validator.unobtrusive.parse('#frmMasterConsignment');
     $('#frmMasterConsignment select').selectpicker();
+    $('#psMCRefMasterBillDate').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#psPrevRefCSNDate').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#psSuplmntryDecCSNDate').datetimepicker({
+        format: 'DD/MM/YYYY hh:mm A'
+    });
     $('#addUpdatelgModal').modal('show');
     showHideViaMessageType();
 }
@@ -81,11 +89,11 @@ $(document).on('submit', '#frmMasterConsignment', function (e) {
             data: $(this).serialize(),
             success: function (response) {
                 if (response.Status) {
-                    alertify.success(response.MasterConsignment);
-                    MasterConsignmentsTable.ajax.reload();
+                    alertify.success(response.Message);
+                    MasterConsignmentTable.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
-                    alertify.error(response.MasterConsignment);
+                    alertify.error(response.Message);
                 }
             },
             failure: function (response) {
@@ -158,7 +166,7 @@ function showHideViaMessageType() {
     else {
         $('#sVoyageDtlsBriefCargoDesc').parent('div').show();
     }
-    if (data == "SDM" ||data == "SEI" || data == "SDN") {
+    if (data == "SDM" || data == "SEI" || data == "SDN") {
         $('#sVoyageDtlsExpectedDtandTimeOfArrival').val('');
         $('#sVoyageDtlsExpectedDtandTimeOfArrival').parent('div').hide();
     }

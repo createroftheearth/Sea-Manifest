@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class MessageImplementationController : Controller
+    public class MessageImplementationController : BaseController
     {
         // GET: MessageImplementation
         public ActionResult Index()

@@ -10,12 +10,13 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class MasterConsignmentController : Controller
+    public class MasterConsignmentController : BaseController
     {
         // GET: MessageImplementation
         public ActionResult Index(int? iMessageImplementationId)
         {
             Session["MessageImplementationId"] = iMessageImplementationId;
+            MessageImplementationService.Instance.Validate(iMessageImplementationId);
             return View();
         }
 
@@ -28,24 +29,24 @@ namespace SeaManifest.Controllers
             var search = Request.Form.GetValues("search[value]").FirstOrDefault();
             var start = Convert.ToInt32(Request.Form.GetValues("start").FirstOrDefault());
             var length = Convert.ToInt32(Request.Form.GetValues("length").FirstOrDefault());
-            var data = MasterConsignmentService.Instance.GetConsignments(iMessageImplementationId,search, start, length, out int recordsTotal);
+            var data = MasterConsignmentService.Instance.GetConsignments(iMessageImplementationId, search, start, length, out int recordsTotal);
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
 
-        public PartialViewResult AddUpdateMasterConsignment(int? iMessageImplementationId = null,int ? iMasterConsignmentId = null)
+        public PartialViewResult AddUpdateMasterConsignment(int? iMasterConsignmentId = null)
         {
             if (iMasterConsignmentId == null)
             {
-            
-                return PartialView("pvAddUpdateMasterConsignment",new MasterConsignmentModel
+                int iMessageImplementationId = Convert.ToInt32(Session["MessageImplementationId"]);
+                return PartialView("pvAddUpdateMasterConsignment", new MasterConsignmentModel
                 {
-                    iMessageImplementationId=iMessageImplementationId,
-                    sReportingEvent= MessageImplementationService.Instance.GetMessageTypeByImplementationId(iMessageImplementationId)
+                    iMessageImplementationId = iMessageImplementationId,
+                    sReportingEvent = MessageImplementationService.Instance.GetMessageTypeByImplementationId(iMessageImplementationId)
                 });
             }
             else
-                return PartialView("pvAddUpdateMasterConsignment", MasterConsignmentService.Instance.GetMasterConsigmentMessageImpementationId(iMasterConsignmentId));
+                return PartialView("pvAddUpdateMasterConsignment", MasterConsignmentService.Instance.GetMasterConsigmentByMasterConsignmentId(iMasterConsignmentId));
         }
 
         [HttpPost]

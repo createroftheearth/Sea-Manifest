@@ -31,6 +31,14 @@ namespace BAL.Services
             }
         }
 
+        public void Validate(int? iMessageImplementationId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                if (!db.tblMessageImplementations.Any(z => z.iMessageImplementationId == iMessageImplementationId))
+                    throw new Exception("Invalid Message Implementation Id");
+            }
+        }
 
         public object GetMessages(string search, int start, int length, out int recordsTotal)
         {
@@ -51,7 +59,7 @@ namespace BAL.Services
                     t.sHeaderFieldReportingEvent,
                     t.sHeaderFieldVersionNo,
                     FieldSequenceOrControlNumber = t.dHeaderFieldSequenceOrControlNumber?.ToString("#"),
-                    Date = t.dtHeaderFieldDateTime?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    Date = t.dtHeaderFieldDateTime.ToDateString(),
                     Time = t.dtHeaderFieldDateTime?.ToString("hh:mm tt", CultureInfo.InvariantCulture),
                     t.iMessageImplementationId
                 }).ToList();
@@ -70,7 +78,7 @@ namespace BAL.Services
                         data = new tblMessageImplementation
                         {
                             dHeaderFieldSequenceOrControlNumber = model.dSequenceOrControlNumber,
-                            dtHeaderFieldDateTime = !DateTime.TryParseExact(model.sDateTime, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDateTime) ? (DateTime?)null : dtDateTime,
+                            dtHeaderFieldDateTime = model.sDateTime.ToDateTime(),
                             sHeaderFieldIndicator = model.sIndicator,
                             sHeaderFieldMessageId = model.sMessageID,
                             sHeaderFieldReceiverId = model.sReceiverID,
@@ -80,13 +88,13 @@ namespace BAL.Services
                             sDecRefMsgType = model.sDecRefMsgType,
                             sDecRefPortOfReporting = model.sDecRefPortOfReporting,
                             dDecRefjobNo = model.dDecRefjobNo,
-                            dtDecRefJobDt = !DateTime.TryParseExact(model.sDecRefJobDt, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDecRefJobDt) ? (DateTime?)null : dtDecRefJobDt,
+                            dtDecRefJobDt = model.sDecRefJobDt.ToDate(),
                             sDecRefReportingEvent = model.sDecRefReportingEvent,
                             dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo,
-                            dtDecRefManifestDateRotnDt = !DateTime.TryParseExact(model.sDecRefManifestDateRotnDt, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDecRefManifestDateRotnDt) ? (DateTime?)null : dtDecRefManifestDateRotnDt,
+                            dtDecRefManifestDateRotnDt = model.sDecRefManifestDateRotnDt.ToDate(),
                             sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement,
                             dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo,
-                            dtDecRefPreviousManifestDptrDate = !DateTime.TryParseExact(model.sDecRefPreviousManifestDptrDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDecRefPreviousManifestDptrDate) ? (DateTime?)null : dtDecRefPreviousManifestDptrDate,
+                            dtDecRefPreviousManifestDptrDate = model.sDecRefPreviousManifestDptrDate.ToDate(),
                             sAuthPrsnSubmitType = model.sAuthPrsnSubmitType,
                             sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode,
                             sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN,
@@ -104,7 +112,7 @@ namespace BAL.Services
                             sVesselDtlsPortOfRegistry = model.sVesselDtlsPortOfRegistry,
                             sVesselDtlsVesselCode = model.sVesselDtlsVesselCode,
                             sVesselDtlsRegistryNo = model.sVesselDtlsRegistryNo,
-                            dtVesselDtlsRegistryDate = !DateTime.TryParseExact(model.sVesselDtlsRegistryDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtVesselDtlsRegistryDate) ? (DateTime?)null : dtVesselDtlsRegistryDate,
+                            dtVesselDtlsRegistryDate = model.sVesselDtlsRegistryDate.ToDate(),
                             sVesselDtlsShipType = model.sVesselDtlsShipType,
                             sVesselDtlsPurposeOfCall = model.sVesselDtlsPurposeOfCall,
                             sVoyageDtlsVoyageNo = model.sVoyageDtlsVoyageNo,
@@ -136,7 +144,7 @@ namespace BAL.Services
                     else
                     {
                         data.dHeaderFieldSequenceOrControlNumber = model.dSequenceOrControlNumber;
-                        data.dtHeaderFieldDateTime = !DateTime.TryParseExact(model.sDateTime, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDateTime) ? (DateTime?)null : dtDateTime;
+                        data.dtHeaderFieldDateTime = model.sDateTime.ToDateTime();
                         data.sHeaderFieldIndicator = model.sIndicator;
                         data.sHeaderFieldMessageId = model.sMessageID;
                         data.sHeaderFieldReceiverId = model.sReceiverID;
@@ -146,13 +154,13 @@ namespace BAL.Services
                         data.sDecRefMsgType = model.sDecRefMsgType;
                         data.sDecRefPortOfReporting = model.sDecRefPortOfReporting;
                         data.dDecRefjobNo = model.dDecRefjobNo;
-                        data.dtDecRefJobDt = !DateTime.TryParseExact(model.sDecRefJobDt, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDecRefJobDt) ? (DateTime?)null : dtDecRefJobDt;
+                        data.dtDecRefJobDt = model.sDecRefJobDt.ToDate();
                         data.sDecRefReportingEvent = model.sDecRefReportingEvent;
                         data.dDecRefManifestNoRotnNo = model.dDecRefManifestNoRotnNo;
-                        data.dtDecRefManifestDateRotnDt = !DateTime.TryParseExact(model.sDecRefManifestDateRotnDt, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDecRefManifestDateRotnDt) ? (DateTime?)null : dtDecRefManifestDateRotnDt;
+                        data.dtDecRefManifestDateRotnDt = model.sDecRefManifestDateRotnDt.ToDate();
                         data.sDecRefVesselTypeMovement = model.sDecRefVesselTypeMovement;
                         data.dDecRefDptrPreviousManifestNo = model.dDecRefDptrPreviousManifestNo;
-                        data.dtDecRefPreviousManifestDptrDate = !DateTime.TryParseExact(model.sDecRefPreviousManifestDptrDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtDecRefPreviousManifestDptrDate) ? (DateTime?)null : dtDecRefPreviousManifestDptrDate;
+                        data.dtDecRefPreviousManifestDptrDate = model.sDecRefPreviousManifestDptrDate.ToDate();
                         data.sAuthPrsnSubmitType = model.sAuthPrsnSubmitType;
                         data.sAuthPrsnSubmitCode = model.sAuthPrsnSubmitCode;
                         data.sAuthPrsnAuthRepresentativePAN = model.sAuthPrsnAuthRepresentativePAN;
@@ -170,7 +178,7 @@ namespace BAL.Services
                         data.sVesselDtlsPortOfRegistry = model.sVesselDtlsPortOfRegistry;
                         data.sVesselDtlsVesselCode = model.sVesselDtlsVesselCode;
                         data.sVesselDtlsRegistryNo = model.sVesselDtlsRegistryNo;
-                        data.dtVesselDtlsRegistryDate = !DateTime.TryParseExact(model.sVesselDtlsRegistryDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtVesselDtlsRegistryDate) ? (DateTime?)null : dtVesselDtlsRegistryDate;
+                        data.dtVesselDtlsRegistryDate = model.sVesselDtlsRegistryDate.ToDate();
                         data.sVesselDtlsShipType = model.sVesselDtlsShipType;
                         data.sVesselDtlsPurposeOfCall = model.sVesselDtlsPurposeOfCall;
                         data.sVoyageDtlsVoyageNo = model.sVoyageDtlsVoyageNo;
@@ -179,8 +187,8 @@ namespace BAL.Services
                         data.sVoyageDtlsCargoDesCdd = model.sVoyageDtlsCargoDesCdd;
                         data.sVoyageDtlsBriefCargoDesc = model.sVoyageDtlsBriefCargoDesc;
                         data.dVoyageDtlsTotalNumberOfLines = model.dVoyageDtlsTotalNumberOfLines;
-                        data.dtVoyageDtlsExpectedDtandTimeOfArrival = !DateTime.TryParseExact(model.sVoyageDtlsExpectedDtandTimeOfArrival, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtVoyageDtlsExpectedDtandTimeOfArrival) ? (DateTime?)null : dtVoyageDtlsExpectedDtandTimeOfArrival;
-                        data.dtVoyageDtlsExpectedDtandTimeOfDeparture = !DateTime.TryParseExact(model.sVoyageDtlsExpectedDtandTimeOfDeparture, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime dtVoyageDtlsExpectedDtandTimeOfDeparture) ? (DateTime?)null : dtVoyageDtlsExpectedDtandTimeOfDeparture;
+                        data.dtVoyageDtlsExpectedDtandTimeOfArrival = model.sVoyageDtlsExpectedDtandTimeOfArrival.ToDateTime();
+                        data.dtVoyageDtlsExpectedDtandTimeOfDeparture = model.sVoyageDtlsExpectedDtandTimeOfDeparture.ToDateTime();
                         data.iVoyageDtlsNumberOfPsngrManifested = model.iVoyageDtlsNumberOfPsngrManifested;
                         data.iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested;
                         data.iArvlDtlsNumberOfPassengers = model.iArvlDtlsNumberOfPassengers;
@@ -594,7 +602,7 @@ namespace BAL.Services
                     dVoyageDtlsTotalNumberOfLines = model.dVoyageDtlsTotalNumberOfLines,
                     sVoyageDtlsExpectedDtandTimeOfArrival = model.dtVoyageDtlsExpectedDtandTimeOfArrival.ToDateTimeString(),
                     sVoyageDtlsExpectedDtandTimeOfDeparture = model.dtVoyageDtlsExpectedDtandTimeOfDeparture.ToDateTimeString(),
-                    iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested??0,
+                    iVoyageDtlsNumberOfCrewManifested = model.iVoyageDtlsNumberOfCrewManifested ?? 0,
                     iArvlDtlsNumberOfPassengers = model.iArvlDtlsNumberOfPassengers,
                     iArvlDtlsNumberOfCrew = model.iArvlDtlsNumberOfCrew,
                     iArvlDtlsTotalNoOfCntrsLanded = model.iArvlDtlsTotalNoOfCntrsLanded,

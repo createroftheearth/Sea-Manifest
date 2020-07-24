@@ -1,4 +1,5 @@
 ﻿using BAL.Models;
+using BAL.Utilities;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -48,13 +49,13 @@ namespace BAL.Services
             {
                 using (var db = new SeaManifestEntities())
                 {
-                    var data = db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMessageImplementationId == model.iMessageImplementationId).SingleOrDefault();
+                    var data = db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMasterConsignmentId == model.iMasterConsignmentId).SingleOrDefault();
                     if (data != null)
                     {
                         data.iMessageImplementationId = model.iMessageImplementationId;
                         data.iMCRefLineNo = model.iMCRefLineNo;
                         data.sMCRefMasterBillNo = model.sMCRefMasterBillNo;
-                        data.dtMCRefMasterBillDate = DateTime.ParseExact(model.dtMCRefMasterBillDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                        data.dtMCRefMasterBillDate = model.sMCRefMasterBillDate.ToDate();
                         data.sMCRefConsolidatedIndicator = model.sMCRefConsolidatedIndicator;
                         data.sMCRefPreviousDeclaration = model.sMCRefPreviousDeclaration;
                         data.sMCRefConsolidatorPan = model.sMCRefConsolidatorPan;
@@ -65,7 +66,7 @@ namespace BAL.Services
                         data.sPrevRefCSNReportingType = model.sPrevRefCSNReportingType;
                         data.sPrevRefCSNSiteId = model.sPrevRefCSNSiteId;
                         data.iPrevRefCSNNo = model.iPrevRefCSNNo;
-                        data.dtPrevRefCSNDate = DateTime.ParseExact(model.dtPrevRefCSNDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                        data.dtPrevRefCSNDate = model.sPrevRefCSNDate.ToDate();
                         data.sPrevRefSplitIndicator = model.sPrevRefSplitIndicator;
                         data.dPrevRefNoOfPackages = model.dPrevRefNoOfPackages;
                         data.sPrevRefTypeOfPackage = model.sPrevRefTypeOfPackage;
@@ -132,7 +133,7 @@ namespace BAL.Services
                         data.sSuplmntryDecCSNReportingType = model.sSuplmntryDecCSNReportingType;
                         data.sSuplmntryDecCSNSiteId = model.sSuplmntryDecCSNSiteId;
                         data.dSuplmntryDecCSNNo = model.dSuplmntryDecCSNNo;
-                        data.dtSuplmntryDecCSNDate = DateTime.ParseExact(model.dtSuplmntryDecCSNDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                        data.dtSuplmntryDecCSNDate = model.sSuplmntryDecCSNDate.ToDateTime();
                         data.sSuplmntryDecPrevMCIN = model.sSuplmntryDecPrevMCIN;
                         data.sSuplmntryDecSplitIndicator = model.sSuplmntryDecSplitIndicator;
                         data.dSuplmntryDecNoOfPackages = model.dSuplmntryDecNoOfPackages;
@@ -149,7 +150,7 @@ namespace BAL.Services
                             iMessageImplementationId = model.iMessageImplementationId,
                             iMCRefLineNo = model.iMCRefLineNo,
                             sMCRefMasterBillNo = model.sMCRefMasterBillNo,
-                            dtMCRefMasterBillDate = DateTime.ParseExact(model.dtMCRefMasterBillDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            dtMCRefMasterBillDate = model.sMCRefMasterBillDate.ToDate(),
                             sMCRefConsolidatedIndicator = model.sMCRefConsolidatedIndicator,
                             sMCRefPreviousDeclaration = model.sMCRefPreviousDeclaration,
                             sMCRefConsolidatorPan = model.sMCRefConsolidatorPan,
@@ -160,7 +161,7 @@ namespace BAL.Services
                             sPrevRefCSNReportingType = model.sPrevRefCSNReportingType,
                             sPrevRefCSNSiteId = model.sPrevRefCSNSiteId,
                             iPrevRefCSNNo = model.iPrevRefCSNNo,
-                            dtPrevRefCSNDate = DateTime.ParseExact(model.dtPrevRefCSNDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            dtPrevRefCSNDate = model.sPrevRefCSNDate.ToDate(),
                             sPrevRefSplitIndicator = model.sPrevRefSplitIndicator,
                             dPrevRefNoOfPackages = model.dPrevRefNoOfPackages,
                             sPrevRefTypeOfPackage = model.sPrevRefTypeOfPackage,
@@ -227,7 +228,7 @@ namespace BAL.Services
                             sSuplmntryDecCSNReportingType = model.sSuplmntryDecCSNReportingType,
                             sSuplmntryDecCSNSiteId = model.sSuplmntryDecCSNSiteId,
                             dSuplmntryDecCSNNo = model.dSuplmntryDecCSNNo,
-                            dtSuplmntryDecCSNDate = DateTime.ParseExact(model.dtSuplmntryDecCSNDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            dtSuplmntryDecCSNDate = model.sSuplmntryDecCSNDate.ToDateTime(),
                             sSuplmntryDecPrevMCIN = model.sSuplmntryDecPrevMCIN,
                             sSuplmntryDecSplitIndicator = model.sSuplmntryDecSplitIndicator,
                             dSuplmntryDecNoOfPackages = model.dSuplmntryDecNoOfPackages,
@@ -253,7 +254,7 @@ namespace BAL.Services
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblMasterConsignmentMessageImplementationMaps
-                            where t.sMCRefMasterBillNo.Contains(search)
+                            where t.sMCRefMasterBillNo.Contains(search) && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.iMCRefLineNo).Take(length).Skip(start).ToList().Select(t => new
@@ -262,22 +263,22 @@ namespace BAL.Services
                     t.iMasterConsignmentId,
                     t.iMCRefLineNo,
                     t.sMCRefMasterBillNo,
-                    masterBillDate = t.dtMCRefMasterBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    masterBillDate = t.dtMCRefMasterBillDate.ToDateString(),
                 }).ToList();
             }
         }
 
-        public MasterConsignmentModel GetMasterConsigmentMessageImpementationId(int? iMessageImplementationId)
+        public MasterConsignmentModel GetMasterConsigmentByMasterConsignmentId(int? iMasterConsignmentId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMessageImplementationId == iMessageImplementationId).ToList().Select(model => new MasterConsignmentModel
+                return db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMasterConsignmentId == iMasterConsignmentId).ToList().Select(model => new MasterConsignmentModel
                 {
                     iMasterConsignmentId = model.iMasterConsignmentId,
                     iMessageImplementationId = model.iMessageImplementationId,
                     iMCRefLineNo = model.iMCRefLineNo,
                     sMCRefMasterBillNo = model.sMCRefMasterBillNo,
-                    dtMCRefMasterBillDate = model.dtMCRefMasterBillDate?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                    sMCRefMasterBillDate = model.dtMCRefMasterBillDate.ToDateString(),
                     sMCRefConsolidatedIndicator = model.sMCRefConsolidatedIndicator,
                     sMCRefPreviousDeclaration = model.sMCRefPreviousDeclaration,
                     sMCRefConsolidatorPan = model.sMCRefConsolidatorPan,
@@ -288,7 +289,7 @@ namespace BAL.Services
                     sPrevRefCSNReportingType = model.sPrevRefCSNReportingType,
                     sPrevRefCSNSiteId = model.sPrevRefCSNSiteId,
                     iPrevRefCSNNo = model.iPrevRefCSNNo,
-                    dtPrevRefCSNDate = model.dtPrevRefCSNDate?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                    sPrevRefCSNDate = model.dtPrevRefCSNDate.ToDateString(),
                     sPrevRefSplitIndicator = model.sPrevRefSplitIndicator,
                     dPrevRefNoOfPackages = model.dPrevRefNoOfPackages,
                     sPrevRefTypeOfPackage = model.sPrevRefTypeOfPackage,
@@ -355,7 +356,7 @@ namespace BAL.Services
                     sSuplmntryDecCSNReportingType = model.sSuplmntryDecCSNReportingType,
                     sSuplmntryDecCSNSiteId = model.sSuplmntryDecCSNSiteId,
                     dSuplmntryDecCSNNo = model.dSuplmntryDecCSNNo ?? 0,
-                    dtSuplmntryDecCSNDate = model.dtSuplmntryDecCSNDate?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                    sSuplmntryDecCSNDate = model.dtSuplmntryDecCSNDate.ToDateTimeString(),
                     sSuplmntryDecPrevMCIN = model.sSuplmntryDecPrevMCIN,
                     sSuplmntryDecSplitIndicator = model.sSuplmntryDecSplitIndicator,
                     dSuplmntryDecNoOfPackages = model.dSuplmntryDecNoOfPackages ?? 0,

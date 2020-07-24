@@ -13,7 +13,7 @@ namespace BAL.Models
         public int iMasterConsignmentId { get; set; }
         public int? iMessageImplementationId { get; set; }
         [Display(Name = "Line no.")]
-        [MaxLength(4, ErrorMessage = "Line no. cannot exceed 4 character.")]
+        [Range(0,9999,ErrorMessage ="Line no should come between 0 to 9999.")]
         [Required(ErrorMessage = "Line no. is a required field.")]
         public int? iMCRefLineNo { get; set; }
         [Display(Name = "Master Bill no.")]
@@ -22,7 +22,7 @@ namespace BAL.Models
         public string sMCRefMasterBillNo { get; set; }
         [Display(Name = "Master Bill Date")]
         [Required(ErrorMessage = "Master Bill Date is a required field.")]
-        public string dtMCRefMasterBillDate { get; set; }
+        public string sMCRefMasterBillDate { get; set; }
         [Display(Name = "Consolidated Indicator")]
         [MaxLength(4, ErrorMessage = "Consolidated Indicator cannot exceed 4 character.")]
         [Required(ErrorMessage = "Consolidated Indicator is a required field.")]
@@ -60,12 +60,12 @@ namespace BAL.Models
         [Required(ErrorMessage = "CSN Site Id is a required field.")]
         public string sPrevRefCSNSiteId { get; set; }
         [Display(Name = "CSN No.")]
-        [MaxLength(4, ErrorMessage = "CSN No. cannot exceed 4 character.")]
+        [Range(0,9999,ErrorMessage = "CSN no should come between 0 to 9999.")]
         [Required(ErrorMessage = "CSN No. is a required field.")]
         public int? iPrevRefCSNNo { get; set; }
         [Display(Name = "Previous Ref CSN Date")]
         [Required(ErrorMessage = "Previous Ref CSN Date is a required field.")]
-        public string dtPrevRefCSNDate { get; set; }
+        public string sPrevRefCSNDate { get; set; }
         [Display(Name = "Previous Ref Split Indicator")]
         [MaxLength(2, ErrorMessage = "Previous Ref Split Indicator cannot exceed 2 character.")]
         [Required(ErrorMessage = "Previous Ref Split Indicator is a required field.")]
@@ -324,7 +324,7 @@ namespace BAL.Models
         public decimal dSuplmntryDecCSNNo { get; set; }
         [Display(Name = "CSN Date")]
         [Required(ErrorMessage = "CSN Date is a required field.")]
-        public string dtSuplmntryDecCSNDate { get; set; }
+        public string sSuplmntryDecCSNDate { get; set; }
         [Display(Name = "Previous MCIN")]
         [MaxLength(20, ErrorMessage = "Previous MCIN cannot exceed 20 character.")]
         [Required(ErrorMessage = "Previous MCIN is a required field.")]
