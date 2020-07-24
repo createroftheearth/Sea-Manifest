@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace BAL.Models
 {
-   public class MasterConsignmentModel
+    public class MasterConsignmentModel
     {
+        public string sReportingEvent { get; set; }
         public int iMasterConsignmentId { get; set; }
         public int? iMessageImplementationId { get; set; }
         [Display(Name = "Line no.")]

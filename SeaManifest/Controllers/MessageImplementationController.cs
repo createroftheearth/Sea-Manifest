@@ -45,9 +45,10 @@ namespace SeaManifest.Controllers
             model.sVersionNo = ConfigurationManager.AppSettings["HeaderVersion"];
             if (model.sReportingEvent == "SDN")
             {
-                ModelState.Remove("sDate");
-                ModelState.Remove("sTime");
-                ModelState.Remove("sSequenceOrControlNumber");
+                ModelState.Remove("sDateTime");
+                ModelState.Remove("dSequenceOrControlNumber");
+                ModelState.Remove("dDecRefjobNo");
+                ModelState.Remove("sDecRefJobDt");
             }
             if (ModelState.IsValid)
             {

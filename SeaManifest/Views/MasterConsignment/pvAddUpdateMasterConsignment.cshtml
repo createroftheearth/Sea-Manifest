@@ -10,7 +10,8 @@
     </div>
     <div class="modal-body">
         @Html.HiddenFor(z => z.iMessageImplementationId)
-        <div class="panel panel-primary">
+        @Html.HiddenFor(z=>z.sReportingEvent)
+        <div class="panel panel-primary mcRef">
             <div class="panel-heading">
                 MC Ref
             </div>
@@ -49,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-primary">
+        <div class="panel panel-primary prevMcRef">
             <div class="panel-heading">
                 Prev Ref
             </div>

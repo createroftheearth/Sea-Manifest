@@ -20,16 +20,16 @@ namespace DAL
             this.tblAdditionalDetailsMasterConsignmentMaps = new HashSet<tblAdditionalDetailsMasterConsignmentMap>();
             this.tblAdditionalDetailsMasterConsignmentMaps1 = new HashSet<tblAdditionalDetailsMasterConsignmentMap>();
             this.tblAmendmentDetailsMessageImlementationMaps = new HashSet<tblAmendmentDetailsMessageImlementationMap>();
+            this.tblHouseCargoDescriptionMasterConsignmentMaps = new HashSet<tblHouseCargoDescriptionMasterConsignmentMap>();
             this.tblItemDetailsMasterConsignmentMaps = new HashSet<tblItemDetailsMasterConsignmentMap>();
             this.tblItineraryMasterConsignmentMaps = new HashSet<tblItineraryMasterConsignmentMap>();
+            this.tblMasterConsignmentMessageImplementationMaps = new HashSet<tblMasterConsignmentMessageImplementationMap>();
             this.tblPersonOnBoardMessageImlementationMaps = new HashSet<tblPersonOnBoardMessageImlementationMap>();
             this.tblSupportDocMasterConsignmentMaps = new HashSet<tblSupportDocMasterConsignmentMap>();
             this.tblTmAdditionalDetailsMessageImplementationMaps = new HashSet<tblTmAdditionalDetailsMessageImplementationMap>();
             this.tblTmSupportDocMessageImplementationMaps = new HashSet<tblTmSupportDocMessageImplementationMap>();
             this.tblTransportEquipmentMasterConsignmentMaps = new HashSet<tblTransportEquipmentMasterConsignmentMap>();
             this.tblVoyageTransporterEquipmentMessageImlementationMaps = new HashSet<tblVoyageTransporterEquipmentMessageImlementationMap>();
-            this.tblHouseCargoDescriptionMasterConsignmentMaps = new HashSet<tblHouseCargoDescriptionMasterConsignmentMap>();
-            this.tblMasterConsignmentMessageImplementationMaps = new HashSet<tblMasterConsignmentMessageImplementationMap>();
         }
     
         public int iMessageImplementationId { get; set; }
@@ -62,6 +62,13 @@ namespace DAL
         public string sVesselDtlsModeOfTransport { get; set; }
         public string sVesselDtlsTypeOfTransportMeans { get; set; }
         public string sVesselDtlsTransportMeansId { get; set; }
+        public string sVesselDtlsVesselCode { get; set; }
+        public string sVesselDtlsPortOfRegistry { get; set; }
+        public string sVesselDtlsRegistryNo { get; set; }
+        public Nullable<decimal> dVesselDtlsNetTonnage { get; set; }
+        public Nullable<decimal> dVesselDtlsGrossTonnage { get; set; }
+        public Nullable<System.DateTime> dtVesselDtlsRegistryDate { get; set; }
+        public string sVesselDtlsNationalityOfShip { get; set; }
         public string sVesselDtlsShipType { get; set; }
         public string sVesselDtlsPurposeOfCall { get; set; }
         public string sVoyageDtlsVoyageNo { get; set; }
@@ -80,7 +87,8 @@ namespace DAL
         public Nullable<int> iArvlDtlsTotalOfCntrsLoaded { get; set; }
         public Nullable<int> iArvlDtlsTotalNoOfPersonOnBoard { get; set; }
         public Nullable<int> iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr { get; set; }
-        public Nullable<int> iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr { get; set; }
+        public Nullable<int> iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr1 { get; set; }
+        public Nullable<decimal> iArvlDtlsLightHouseDues { get; set; }
         public string sDigiSignStartSignature { get; set; }
         public string sDigiSignStartCertificate { get; set; }
         public string sDigiSignSignerVersion { get; set; }
@@ -94,9 +102,13 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAmendmentDetailsMessageImlementationMap> tblAmendmentDetailsMessageImlementationMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblItemDetailsMasterConsignmentMap> tblItemDetailsMasterConsignmentMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblItineraryMasterConsignmentMap> tblItineraryMasterConsignmentMaps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblMasterConsignmentMessageImplementationMap> tblMasterConsignmentMessageImplementationMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPersonOnBoardMessageImlementationMap> tblPersonOnBoardMessageImlementationMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -109,9 +121,5 @@ namespace DAL
         public virtual ICollection<tblTransportEquipmentMasterConsignmentMap> tblTransportEquipmentMasterConsignmentMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblVoyageTransporterEquipmentMessageImlementationMap> tblVoyageTransporterEquipmentMessageImlementationMaps { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblMasterConsignmentMessageImplementationMap> tblMasterConsignmentMessageImplementationMaps { get; set; }
     }
 }
