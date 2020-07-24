@@ -34,7 +34,7 @@ namespace BAL.Services
             {
                 using (var db = new SeaManifestEntities())
                 {
-                    var data = db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iMessageImplementationId == model.iMessageImplementationId && z.iMasterConsignmentId == model.iMasterConsignmentId).SingleOrDefault();
+                    var data = db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == model.iHouseCargoDescId).SingleOrDefault();
                     if (data != null)
                     {
                         data.iMessageImplementationId = model.iMessageImplementationId;
@@ -209,11 +209,11 @@ namespace BAL.Services
             }
         }
 
-        public HouseCargoModel GetHouseCargoImpementationId(int? iMessageImplementationId, int? iMasterConsignmentId)
+        public HouseCargoModel GetHouseCargoHouseCargoDescId(int? iHouseCargoDescId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iMessageImplementationId == iMessageImplementationId && z.iMasterConsignmentId == iMasterConsignmentId).ToList().Select(model => new HouseCargoModel
+                return db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == iHouseCargoDescId).ToList().Select(model => new HouseCargoModel
                 {
                     iHouseCargoDescId = model.iHouseCargoDescId,
                     iMessageImplementationId = model.iMessageImplementationId,

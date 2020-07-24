@@ -1,0 +1,54 @@
+﻿@model BAL.Models.ItineraryHouseCargoModel
+@using (Html.BeginForm("AddUpdateItineraryHouseCargo", "ItineraryHouseCargo", FormMethod.Post, new { @id = "frmItineraryHouseCargo" }))
+{
+    <div class="modal-header">
+        <h4 class="modal-title">Add/Update Itinerary House Cargo</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+        @Html.HiddenFor(z => z.iHouseCargoDescId)
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Itinerary House Cargo
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dPortOfCallSequenceNo)
+                        @Html.TextBoxFor(z => z.dPortOfCallSequenceNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dPortOfCallSequenceNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sPortOfCallCd)
+                        @Html.TextBoxFor(z => z.sPortOfCallCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sPortOfCallCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sPortOfCallName)
+                        @Html.TextBoxFor(z => z.sPortOfCallName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sPortOfCallName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sNextPortOfCallCdd)
+                        @Html.TextBoxFor(z => z.sNextPortOfCallCdd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sNextPortOfCallCdd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sNextPortOfCallName)
+                        @Html.TextBoxFor(z => z.sNextPortOfCallName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sNextPortOfCallName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sModeOfTransport)
+                        @Html.TextBoxFor(z => z.sModeOfTransport, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sModeOfTransport)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+}

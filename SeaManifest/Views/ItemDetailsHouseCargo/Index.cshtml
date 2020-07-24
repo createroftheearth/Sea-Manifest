@@ -1,0 +1,26 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <button onClick="AddUpdateItemDetailsHouseCargo(0)" type="button" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Add Item Details House Cargo
+        </button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table style="width:100%!important;" id="tblMasterConsignment" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Cargo Item Sequence No</th>
+                <th>Hs Cd</th>
+                <th>sCargoItemDesc</th>
+                <th>No Of Pakages</th>
+                <th>Types Of Packages</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/ItemDetailsHouseCargo.js"></script>
+}
