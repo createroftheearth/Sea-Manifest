@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BAL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,14 +9,15 @@ namespace SeaManifest.Controllers
 {
     public class BaseController : Controller
     {
+
         // GET: Base
         protected override void OnException(ExceptionContext filterContext)
         {
-            ViewBag.ExceptionMessage = filterContext.Exception.Message;
             filterContext.ExceptionHandled = true;
             filterContext.Result = new ViewResult
             {
-                ViewName = "~/Views/Shared/Error.cshtml"
+                ViewName = "~/Views/Shared/Error.cshtml",
+                ViewBag = { ExceptionMessage= filterContext.Exception.Message }
             };
         }
     }

@@ -3,6 +3,7 @@ using BAL.Utilities;
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Metadata.Edm;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -247,6 +248,29 @@ namespace BAL.Services
             {
                 return new { Status = false, Message = "Something went wrong" };
             }
+        }
+
+        public bool ValidateLineMasterConsignment(MasterConsignmentModel model, out string Messages)
+        {
+            Messages = string.Empty;
+            bool valid = true;
+            using (var db = new SeaManifestEntities())
+            {
+                var billDate = model.sMCRefMasterBillDate.ToDate();
+                if (db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMessageImplementationId == model.iMessageImplementationId && z.iMCRefLineNo == model.iMCRefLineNo && z.iMasterConsignmentId != model.iMasterConsignmentId))
+                {
+                    valid = false; Messages = "Line No already exists";
+                }
+                if (db.tblMasterConsignmentMessageImplementationMaps.Any(z => (model.sReportingEvent == "SAA" || model.sReportingEvent == "SDA") && z.iMessageImplementationId == model.iMessageImplementationId && z.sMCRefMasterBillNo == model.sMCRefMasterBillNo && z.iMasterConsignmentId != model.iMasterConsignmentId))
+                {
+                    valid = false; Messages+= ", Master Bill No already exists";
+                }
+                if (db.tblMasterConsignmentMessageImplementationMaps.Any(z => (model.sReportingEvent == "SAA" || model.sReportingEvent == "SDA") && z.iMessageImplementationId == model.iMessageImplementationId && z.dtMCRefMasterBillDate == billDate && z.iMasterConsignmentId != model.iMasterConsignmentId))
+                {
+                    valid = false; Messages += ",Master Bill Date already exists";
+                }
+            }
+            return valid;
         }
 
         public object GetConsignments(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
