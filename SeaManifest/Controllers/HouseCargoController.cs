@@ -30,14 +30,14 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateHouseCargo(int? iMasterConsignmentId = null, int? iMessageImplementationId = null)
+        public PartialViewResult AddUpdateHouseCargo(int? iHouseCargoDescId)
         {
-            if (iMasterConsignmentId == null && iMessageImplementationId == null)
+            if (iHouseCargoDescId == null)
             {
                 return PartialView("pvAddUpdateHouseCargo");
             }
             else
-                return PartialView("pvAddUpdateHouseCargo", HouseCargoService.Instance.GetHouseCargoHouseCargoDescId(iMasterConsignmentId, iMessageImplementationId));
+                return PartialView("pvAddUpdateHouseCargo", HouseCargoService.Instance.GetHouseCargoHouseCargoDescId(iHouseCargoDescId));
         }
 
         [HttpPost]
