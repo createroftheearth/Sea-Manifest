@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Himanshu\source\repos\Sea-Manifest\DAL\SAM_Entities.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\Balaji Mariline Sea Manifest\SeaManifest\DAL\SAM_Entities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

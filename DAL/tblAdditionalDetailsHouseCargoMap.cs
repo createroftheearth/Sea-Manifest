@@ -16,7 +16,7 @@ namespace DAL
     {
         public int iAdditionalDetailsId { get; set; }
         public Nullable<int> iMasterConsignmentId { get; set; }
-        public Nullable<int> iHouseCargoId { get; set; }
+        public Nullable<int> iHouseCargoDescId { get; set; }
         public string sTagRef { get; set; }
         public string sRefSerialNo { get; set; }
         public string sInfoType { get; set; }

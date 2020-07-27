@@ -5,59 +5,60 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e658876cc15a47988e2d75cbc45b1921" Name="Diagram1">
-        <EntityTypeShape EntityType="SeaManifestModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblAdditionalDetailsHouseCargoMap" Width="1.5" PointX="10.5" PointY="64.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblAdditionalDetailsMasterConsignmentMap" Width="1.5" PointX="3" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblAmendmentDetailsMessageImlementationMap" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblErrorCode" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblItemDetailsHouseCargoMap" Width="1.5" PointX="13.5" PointY="64.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblItemDetailsMasterConsignmentMap" Width="1.5" PointX="5.25" PointY="58" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblItineraryHouseCargoMap" Width="1.5" PointX="10.5" PointY="69.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblItineraryMasterConsignmentMap" Width="1.5" PointX="5.25" PointY="53.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblMessageTypeM" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblPersonOnBoardMessageImlementationMap" Width="1.5" PointX="3" PointY="53.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblSupportDocHouseCargoMap" Width="1.5" PointX="13.5" PointY="59.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblSupportDocMasterConsignmentMap" Width="1.5" PointX="5.25" PointY="63" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblTmAdditionalDetailsMessageImplementationMap" Width="1.5" PointX="3" PointY="81.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblTmSupportDocMessageImplementationMap" Width="1.5" PointX="3" PointY="86.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblTransportEquipmentHouseCargoMap" Width="1.5" PointX="16.5" PointY="63.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblTransportEquipmentMasterConsignmentMap" Width="1.5" PointX="11.25" PointY="56.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblVoyageTransporterEquipmentMessageImlementationMap" Width="1.5" PointX="3" PointY="90.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblCodeM" Width="1.5" PointX="8.625" PointY="3.875" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblCodeTypeM" Width="1.5" PointX="6.375" PointY="4.25" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblCodeM_tblCodeTypeM" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Width="1.5" PointX="8.25" PointY="53" />
+        <EntityTypeShape EntityType="SeaManifestModel.sysdiagram" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblAdditionalDetailsHouseCargoMap" Width="1.5" PointX="13.5" PointY="33.25" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblAdditionalDetailsMasterConsignmentMap" Width="1.5" PointX="3" PointY="21.125" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblAmendmentDetailsMessageImlementationMap" Width="1.5" PointX="3" PointY="81.125" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblCodeM" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblCodeTypeM" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblErrorCode" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Width="1.5" PointX="11.25" PointY="34.125" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblItemDetailsHouseCargoMap" Width="1.5" PointX="16.5" PointY="38.375" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblItemDetailsMasterConsignmentMap" Width="1.5" PointX="5.25" PointY="44.875" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblItineraryHouseCargoMap" Width="1.5" PointX="13.5" PointY="38.5" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblItineraryMasterConsignmentMap" Width="1.5" PointX="5.25" PointY="40" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Width="1.5" PointX="3" PointY="30.125" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblMessageImplementation" Width="1.5" PointX="0.75" PointY="37.875" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblMessageTypeM" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblPersonOnBoardMessageImlementationMap" Width="1.5" PointX="3" PointY="88.625" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblPortM" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblSupportDocHouseCargoMap" Width="1.5" PointX="13.5" PointY="43.25" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblSupportDocMasterConsignmentMap" Width="1.5" PointX="8.25" PointY="40.75" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblTmAdditionalDetailsMessageImplementationMap" Width="1.5" PointX="3" PointY="84.375" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblTmSupportDocMessageImplementationMap" Width="1.5" PointX="3" PointY="71.625" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblTransportEquipmentHouseCargoMap" Width="1.5" PointX="16.5" PointY="43.75" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblTransportEquipmentMasterConsignmentMap" Width="1.5" PointX="8.25" PointY="34.25" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblVoyageTransporterEquipmentMessageImlementationMap" Width="1.5" PointX="3" PointY="75.875" />
         <AssociationConnector Association="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblAmendmentDetailsM_tblMessageImplementationM" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblCodeM_tblCodeTypeM" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Width="1.5" PointX="3" PointY="32.875" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMessageImplementation" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblMasterConsignmentMessageImplementationMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblSupportDocMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" />
         <AssociationConnector Association="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" />
-        <EntityTypeShape EntityType="SeaManifestModel.tblMessageImplementation" Width="1.5" PointX="0.75" PointY="50.25" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblAmendmentDetailsM_tblMessageImplementationM" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMessageImplementation" />
-        <AssociationConnector Association="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblPersonOnBoardMessageImlementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblSupportDocMasterConsignmentMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblTmSupportDocMessageImplementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

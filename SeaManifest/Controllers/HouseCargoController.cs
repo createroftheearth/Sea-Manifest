@@ -16,7 +16,6 @@ namespace SeaManifest.Controllers
         {
             Session["iMasterConsignmentId"] = iMasterConsignmentId;
             MasterConsignmentService.Instance.Validate(iMasterConsignmentId);
-
             return View();
         }
 

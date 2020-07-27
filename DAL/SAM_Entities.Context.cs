@@ -29,13 +29,19 @@ namespace DAL
         public virtual DbSet<tblAdditionalDetailsHouseCargoMap> tblAdditionalDetailsHouseCargoMaps { get; set; }
         public virtual DbSet<tblAdditionalDetailsMasterConsignmentMap> tblAdditionalDetailsMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblAmendmentDetailsMessageImlementationMap> tblAmendmentDetailsMessageImlementationMaps { get; set; }
+        public virtual DbSet<tblCodeM> tblCodeMs { get; set; }
+        public virtual DbSet<tblCodeTypeM> tblCodeTypeMs { get; set; }
         public virtual DbSet<tblErrorCode> tblErrorCodes { get; set; }
+        public virtual DbSet<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblItemDetailsHouseCargoMap> tblItemDetailsHouseCargoMaps { get; set; }
         public virtual DbSet<tblItemDetailsMasterConsignmentMap> tblItemDetailsMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblItineraryHouseCargoMap> tblItineraryHouseCargoMaps { get; set; }
         public virtual DbSet<tblItineraryMasterConsignmentMap> tblItineraryMasterConsignmentMaps { get; set; }
+        public virtual DbSet<tblMasterConsignmentMessageImplementationMap> tblMasterConsignmentMessageImplementationMaps { get; set; }
+        public virtual DbSet<tblMessageImplementation> tblMessageImplementations { get; set; }
         public virtual DbSet<tblMessageTypeM> tblMessageTypeMs { get; set; }
         public virtual DbSet<tblPersonOnBoardMessageImlementationMap> tblPersonOnBoardMessageImlementationMaps { get; set; }
+        public virtual DbSet<tblPortM> tblPortMs { get; set; }
         public virtual DbSet<tblSupportDocHouseCargoMap> tblSupportDocHouseCargoMaps { get; set; }
         public virtual DbSet<tblSupportDocMasterConsignmentMap> tblSupportDocMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblTmAdditionalDetailsMessageImplementationMap> tblTmAdditionalDetailsMessageImplementationMaps { get; set; }
@@ -43,10 +49,5 @@ namespace DAL
         public virtual DbSet<tblTransportEquipmentHouseCargoMap> tblTransportEquipmentHouseCargoMaps { get; set; }
         public virtual DbSet<tblTransportEquipmentMasterConsignmentMap> tblTransportEquipmentMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblVoyageTransporterEquipmentMessageImlementationMap> tblVoyageTransporterEquipmentMessageImlementationMaps { get; set; }
-        public virtual DbSet<tblCodeM> tblCodeMs { get; set; }
-        public virtual DbSet<tblCodeTypeM> tblCodeTypeMs { get; set; }
-        public virtual DbSet<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
-        public virtual DbSet<tblMasterConsignmentMessageImplementationMap> tblMasterConsignmentMessageImplementationMaps { get; set; }
-        public virtual DbSet<tblMessageImplementation> tblMessageImplementations { get; set; }
     }
 }

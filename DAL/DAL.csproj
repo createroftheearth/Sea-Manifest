@@ -117,6 +117,9 @@
     <Compile Include="tblPersonOnBoardMessageImlementationMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblPortM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblSupportDocHouseCargoMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
