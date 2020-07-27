@@ -29,6 +29,14 @@ namespace BAL.Services
             }
         }
 
+        public void Validate(int? iMasterConsignmentId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                if (!db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId))
+                    throw new Exception("Invalid Master Consignment Id");
+            }
+        }
 
         public List<SelectListItem> GetCodesByType(string Type)
         {
@@ -362,6 +370,14 @@ namespace BAL.Services
                     dSuplmntryDecNoOfPackages = model.dSuplmntryDecNoOfPackages ?? 0,
                     sSuplmntryDecTypeOfPackages = model.sSuplmntryDecTypeOfPackages,
                 }).SingleOrDefault();
+            }
+        }
+
+        public string GetMessageTypeByMasterConsignmentId(int? iMasterConsignmentId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMasterConsignmentId == iMasterConsignmentId).Select(z =>z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
             }
         }
     }

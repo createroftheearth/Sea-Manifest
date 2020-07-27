@@ -12,9 +12,11 @@ namespace SeaManifest.Controllers
     public class ItemDetailsHouseCargoController : BaseController
     {
         // GET: HouseCargo
-        public ActionResult Index(int? iMasterConsignmentId)
+        public ActionResult Index(int? iHouseCargoDescId)
         {
-            Session["iMasterConsignmentId"] = iMasterConsignmentId;
+            Session["iHouseCargoDescId"] = iHouseCargoDescId;
+            HouseCargoService.Instance.Validate(iHouseCargoDescId);
+
             return View();
         }
 
@@ -34,7 +36,12 @@ namespace SeaManifest.Controllers
         {
             if (iItemDetailsId == null)
             {
-                var iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
+                int iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+                return PartialView("pvAddUpdateItemDetailsHouseCargo", new ItemDetailsHouseCargoModel
+                {
+                    iHouseCargoDescId = iHouseCargoDescId,
+                    sReportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId)
+                });
                 return PartialView("pvAddUpdateItemDetailsHouseCargo");
             }
             else

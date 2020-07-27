@@ -26,7 +26,14 @@ namespace BAL.Services
                 return _instance;
             }
         }
-
+        public void Validate(int? iHouseCargoDescId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                if (!db.tblHouseCargoDescriptionMasterConsignmentMaps.Any(z => z.iHouseCargoDescId == iHouseCargoDescId))
+                    throw new Exception("Invalid House Cargo Desc Id");
+            }
+        }
         //save HouseCargo 
         public object SaveHouseCargo(HouseCargoModel model, int iUserId)
         {
@@ -200,6 +207,7 @@ namespace BAL.Services
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.dHCRefSubLineNo).Take(length).Skip(start).ToList().Select(t => new
                 {
+                    t.iHouseCargoDescId,
                     t.iMessageImplementationId,
                     t.iMasterConsignmentId,
                     t.dHCRefSubLineNo,
@@ -218,6 +226,7 @@ namespace BAL.Services
                     iHouseCargoDescId = model.iHouseCargoDescId,
                     iMessageImplementationId = model.iMessageImplementationId,
                     iMasterConsignmentId = model.iMasterConsignmentId,
+                    sReportingEvent = model.tblMessageImplementation.sDecRefReportingEvent,
                     dHCRefSubLineNo = model.dHCRefSubLineNo,
                     sHCRefBillNo = model.sHCRefBillNo,
                     sHCRefBillDate = model.dtHCRefBillDate?.ToString("dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
@@ -281,6 +290,13 @@ namespace BAL.Services
                     dTrnsprtrDocMsrInvoiceValueOfConsigment = model.dTrnsprtrDocMsrInvoiceValueOfConsigment,
                     sTrnsprtrDocMsrCurrencyCd = model.sTrnsprtrDocMsrCurrencyCd,
                 }).SingleOrDefault();
+            }
+        }
+        public string GetMessageTypeByHouseCargoDescId(int? HouseCargoDescId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == HouseCargoDescId).Select(z => z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
             }
         }
     }

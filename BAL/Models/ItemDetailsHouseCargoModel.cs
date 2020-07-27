@@ -9,6 +9,7 @@ namespace BAL.Models
 {
     public class ItemDetailsHouseCargoModel
     {
+        public string sReportingEvent { get; set; }
 
         public int iItemsDetailsId { get; set; }
         public int? iMasterConsignmentId { get; set; }
