@@ -30,7 +30,7 @@ namespace SeaManifest.Controllers
 
         public PartialViewResult AddUpdateMessage(int? iMessageImplementationId = null)
         {
-            if (iMessageImplementationId == null)
+            if ((iMessageImplementationId??0) == 0)
             {
                 return PartialView("pvAddUpdateMessages");
             }

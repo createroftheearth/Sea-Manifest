@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Linq;
 using System.Runtime.Remoting.Messaging;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
@@ -36,7 +37,7 @@ namespace SeaManifest.Controllers
 
         public PartialViewResult AddUpdateMasterConsignment(int? iMasterConsignmentId = null)
         {
-            if (iMasterConsignmentId == null)
+            if ((iMasterConsignmentId ?? 0) == 0)
             {
                 int iMessageImplementationId = Convert.ToInt32(Session["MessageImplementationId"]);
                 return PartialView("pvAddUpdateMasterConsignment", new MasterConsignmentModel
@@ -52,14 +53,38 @@ namespace SeaManifest.Controllers
         [HttpPost]
         public JsonResult AddUpdateMasterConsignment(MasterConsignmentModel model)
         {
-            if (ModelState.IsValid)
+            string Messages = string.Empty;
+            if(model.sReportingEvent=="SEI" || model.sReportingEvent=="SDN")
+            {
+                ModelState.Remove("sTrnsprtrDocMsrMarksNoOnPackages");
+                ModelState.Remove("sTrnsprtrDocGoodsDescAsPerBill");
+                ModelState.Remove("sTrnsprtrDocNotFdPartyCity");
+                ModelState.Remove("sTrnsprtrDocNotFdPartyStreetAddress");
+                ModelState.Remove("sTrnsprtrDocNameOfAnyOtherNotFdParty");
+                ModelState.Remove("sTrnsprtrDocConsigneeCountryCd");
+                ModelState.Remove("sTrnsprtrDocConsigneeCity");
+                ModelState.Remove("sTrnsprtrDocConsigneeStreetAddress");
+                ModelState.Remove("sTrnsprtrDocConsigneeName");
+                ModelState.Remove("sTrnsprtrDocConsignorCountryCd");
+                ModelState.Remove("sTrnsprtrDocConsignorCity");
+                ModelState.Remove("sTrnsprtrDocConsignorStreetAddress");
+                ModelState.Remove("sTrnshprBond");
+                ModelState.Remove("sTrnshprCd");
+                ModelState.Remove("sLocCustomNatureOfCargo");
+                ModelState.Remove("sLocCustomCargoMovement");
+                ModelState.Remove("sLocCustomItemType");
+                ModelState.Remove("sLocCustomTypeOfCargo");
+            }
+            if (ModelState.IsValid && MasterConsignmentService.Instance.ValidateLineMasterConsignment(model, out Messages))
             {
                 return Json(MasterConsignmentService.Instance.SaveMasterConsigment(model, 1));
             }
             else
             {
-                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) + Messages });
             }
         }
+
+
     }
 }
