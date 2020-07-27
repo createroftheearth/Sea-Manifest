@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace BAL.Models
 {
-    public class ItemDetailsHouseCargoModel
+    public class ItemDetailsMasterConsignmentModel
     {
         public string sReportingEvent { get; set; }
 
         public int iItemsDetailsId { get; set; }
         public int? iMasterConsignmentId { get; set; }
-        public int? iHouseCargoDescId { get; set; }
+        public int? iMessageImplementationId { get; set; }
         [Display(Name = "Cargo Item Sequence No.")]
         [Required(ErrorMessage = "Cargo Item Sequence No. is a required field.")]
         public decimal dCargoItemSequenceNo { get; set; }
@@ -30,14 +30,14 @@ namespace BAL.Models
         [Required(ErrorMessage = "Uno Code is a required field.")]
         public string sUnoCd { get; set; }
         [Display(Name = "IMDG CD")]
-        [MaxLength(5, ErrorMessage = "IMDG CD cannot exceed 5 character.")]
+        [MaxLength(3, ErrorMessage = "IMDG CD cannot exceed 3 character.")]
         [Required(ErrorMessage = "IMDG CD is a required field.")]
         public string sIMDGCd { get; set; }
         [Display(Name = "No Of Pakages")]
         [Required(ErrorMessage = "No Of Pakages is a required field.")]
         public decimal dNoOfPakages { get; set; }
         [Display(Name = "Types Of Packages")]
-        [MaxLength(5, ErrorMessage = "Types Of Packages cannot exceed 5 character.")]
+        [MaxLength(3, ErrorMessage = "Types Of Packages cannot exceed 3 character.")]
         [Required(ErrorMessage = "Types Of Packages is a required field.")]
         public string sTypesOfPackages { get; set; }
     }

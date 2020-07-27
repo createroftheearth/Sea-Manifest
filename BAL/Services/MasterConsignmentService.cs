@@ -41,6 +41,14 @@ namespace BAL.Services
                 }).ToList();
             }
         }
+        public void Validate(int? iMasterConsignmentId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                if (!db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId))
+                    throw new Exception("Invalid Master Consignment Id");
+            }
+        }
 
         public List<SelectListItem> GetCodesByType(string Type)
         {
@@ -421,6 +429,14 @@ namespace BAL.Services
                     Text = z.sCurrencyName,
                     Value = z.sCurrencyCode
                 }).ToList();
+            }
+        }
+
+        public string GetMessageTypeByMasterConsignmentId(int? iMasterConsignmentId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMasterConsignmentId == iMasterConsignmentId).Select(z =>z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
             }
         }
     }

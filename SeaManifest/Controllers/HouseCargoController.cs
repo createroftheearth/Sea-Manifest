@@ -15,6 +15,7 @@ namespace SeaManifest.Controllers
         public ActionResult Index(int? iMasterConsignmentId)
         {
             Session["iMasterConsignmentId"] = iMasterConsignmentId;
+            MasterConsignmentService.Instance.Validate(iMasterConsignmentId);
             return View();
         }
 
@@ -30,11 +31,16 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateHouseCargo(int? iHouseCargoDescId)
+        public PartialViewResult AddUpdateHouseCargo(int? iHouseCargoDescId=null)
         {
             if (iHouseCargoDescId == null)
             {
-                return PartialView("pvAddUpdateHouseCargo");
+                int iMasterConsignmentId = Convert.ToInt32(Session["MasterConsignmentId"]);
+                return PartialView("pvAddUpdateHouseCargo", new HouseCargoModel
+                {
+                    iMasterConsignmentId = iMasterConsignmentId,
+                    sReportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId)
+                });
             }
             else
                 return PartialView("pvAddUpdateHouseCargo", HouseCargoService.Instance.GetHouseCargoHouseCargoDescId(iHouseCargoDescId));
