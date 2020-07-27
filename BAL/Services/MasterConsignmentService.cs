@@ -30,6 +30,17 @@ namespace BAL.Services
             }
         }
 
+        public List<SelectListItem> GetPorts()
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblPortMs.ToList().Select(z => new SelectListItem
+                {
+                    Value = z.sPortCode.ToString(),
+                    Text = z.sPortDescription
+                }).ToList();
+            }
+        }
 
         public List<SelectListItem> GetCodesByType(string Type)
         {
@@ -386,6 +397,30 @@ namespace BAL.Services
                     dSuplmntryDecNoOfPackages = model.dSuplmntryDecNoOfPackages ?? 0,
                     sSuplmntryDecTypeOfPackages = model.sSuplmntryDecTypeOfPackages,
                 }).SingleOrDefault();
+            }
+        }
+
+        public List<SelectListItem> GetCountryCodes()
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblCountryMs.Select(z => new SelectListItem
+                {
+                    Text= z.sCountryName,
+                    Value=z.sCountryCode
+                }).ToList();
+            }
+        }
+
+        public List<SelectListItem> GetCurrencyCodes()
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                return db.tblCurrencyCodesMs.Select(z => new SelectListItem
+                {
+                    Text = z.sCurrencyName,
+                    Value = z.sCurrencyCode
+                }).ToList();
             }
         }
     }

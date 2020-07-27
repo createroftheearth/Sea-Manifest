@@ -69,9 +69,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SAM_Entities.edmx</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>SAM_Entities.tt</DependentUpon>
-    </Compile>
     <Compile Include="tblAdditionalDetailsHouseCargoMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
@@ -85,6 +82,12 @@
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblCodeTypeM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCountryM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblCurrencyCodesM.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblErrorCode.cs">
@@ -115,6 +118,9 @@
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPersonOnBoardMessageImlementationMap.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblPortM.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSupportDocHouseCargoMap.cs">

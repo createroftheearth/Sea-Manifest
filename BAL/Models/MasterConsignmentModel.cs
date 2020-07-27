@@ -108,6 +108,7 @@ namespace BAL.Models
         [Display(Name = "Transhipper Code")]
         [MaxLength(10, ErrorMessage = "Transhipper Code cannot exceed 10 character.")]
         [Required(ErrorMessage = "Transhipper Code is a required field.")]
+        [RegularExpression(@"[A-Z]{5}\d{4}[A-Z]{1}", ErrorMessage = "Please Enter valid PAN Card")]
         public string sTrnshprCd { get; set; }
         [Display(Name = "Transhipper Bond")]
         [MaxLength(10, ErrorMessage = "Transhipper Bond cannot exceed 10 character.")]
@@ -226,8 +227,9 @@ namespace BAL.Models
         [Display(Name = "UCR Code")]
         [MaxLength(35, ErrorMessage = "UCR Code cannot exceed 35 character.")]
         public string sTrnsprtrDocUCRCd { get; set; }
-        [Display(Name = "No. Of Packages")]
-        [Range(0, 99999999, ErrorMessage = "Gross Weight should be in range between 0 to 99999999")]
+        [Display(Name = "No. of packages")]
+        [Range(0, 99999999, ErrorMessage = "No. of packages should be in range between 0 to 99999999")]
+        [Required(ErrorMessage ="No of packages is a required field.")]
         public decimal dTrnsprtrDocMsrNoOfPackages { get; set; }
         [Display(Name = "Types Of Packages")]
         [MaxLength(3, ErrorMessage = "Types Of Packages cannot exceed 3 character.")]

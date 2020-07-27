@@ -78,6 +78,9 @@ function initAddUpdateMasterConsignment() {
     });
     $('#addUpdatelgModal').modal('show');
     showHideViaMessageType();
+    changePortOfAccepted();
+    changePortOfReceipt();
+    changeTypeOfCargo();
 }
 
 $(document).on('submit', '#frmMasterConsignment', function (e) {
@@ -163,6 +166,279 @@ function checkFormMasterConsignments() {
             returnValue = false;
         }
     }
+
+    var typeOfCargo = $('#sLocCustomTypeOfCargo').val();
+
+    //*********Consginor********//
+    if (typeOfCargo == "EX" || typeOfCargo == "CG") {
+        if ($('#sTrnsprtrDocConsignorCd').val() == "" && $('#sMCRefConsolidatedIndicator').val() != "C") {
+            validator.showErrors({
+                "sTrnsprtrDocConsignorCd": "Consignor Code is a required field."
+            });
+            $("#sTrnsprtrDocConsignorCd").focus();
+            returnValue = false;
+        }
+    }
+
+
+    if (($('#sTrnsprtrDocConsignorCdType').val() == "GSN" || $('#sTrnsprtrDocConsignorCdType').val() == "GSD" || $('#sTrnsprtrDocConsignorCdType').val() == "GSG") && !$('#sTrnsprtrDocConsignorCd').isValidGSTIN()) {
+        validator.showErrors({
+            "sTrnsprtrDocConsignorCd": "Please Enter valid GSTIN No"
+        });
+        $('#sTrnsprtrDocConsignorCd').focus();
+        returnValue = false;
+    }
+    else if (($('#sTrnsprtrDocConsignorCdType').val() == "PAN") && !$('#sTrnsprtrDocConsignorCd').isValidPAN()) {
+        validator.showErrors({
+            "sTrnsprtrDocConsignorCd": "Please Enter valid PAN"
+        });
+        $('#sTrnsprtrDocConsignorCd').focus();
+        returnValue = false;
+    }
+   
+    if ($('#sTrnsprtrDocConsignorCountryCd').val() == "IN") {
+        if ($('#ddlConsignorSubDivCode').val() == "") {
+            validator.showErrors({
+                "ddlConsignorSubDivCode": "Consignor Sub Division Code is a required field."
+            });
+            $('#ddlConsignorSubDivCode').focus();
+            returnValue = false;
+        } if ($('#sTrnsprtrDocConsignorPostCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsignorPostCd": "Consignor Post Code is a required field."
+            });
+            $('#sTrnsprtrDocConsignorPostCd').focus();
+            returnValue = false;
+        }
+    }
+    if ($('#sTrnsprtrDocConsignorCountryCd').val() != "IN") {
+        if ($('#sTrnsprtrDocConsigneeCountrySubDivName').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneeCountrySubDivName": "Consignor Sub Division Name is a required field."
+            });
+            $('#sTrnsprtrDocConsigneeCountrySubDivName').focus();
+            returnValue = false;
+        }
+    }
+    //*********Consginee********//
+
+    if (typeOfCargo == "IM" || typeOfCargo == "CG") {
+        if ($('#sTrnsprtrDocConsigneeCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneeCd": "Consignee Code is a required field."
+            });
+            $("#sTrnsprtrDocConsigneeCd").focus();
+            returnValue = false;
+        }
+    }
+    if (($('#sTrnsprtrDocTypeOfCd').val() == "GSN" || $('#sTrnsprtrDocTypeOfCd').val() == "GSD" || $('#sTrnsprtrDocTypeOfCd').val() == "GSG") && !$('#sTrnsprtrDocConsigneeCd').isValidGSTIN()) {
+        validator.showErrors({
+            "sTrnsprtrDocConsignorCd": "Please Enter valid GSTIN No"
+        });
+        $('#sTrnsprtrDocConsigneeCd').focus();
+        returnValue = false;
+    }
+    else if (($('#sTrnsprtrDocTypeOfCd').val() == "PAN") && !$('#sTrnsprtrDocConsigneeCd').isValidPAN()) {
+        validator.showErrors({
+            "sTrnsprtrDocConsignorCd": "Please Enter valid PAN"
+        });
+        $('#sTrnsprtrDocConsigneeCd').focus();
+        returnValue = false;
+    }
+    if ($('#sTrnsprtrDocConsigneeCountryCd').val() == "IN") {
+        if ($('#ddlConsigneeSubDivCode').val() == "") {
+            validator.showErrors({
+                "ddlConsigneeSubDivCode": "Consignee Sub Division Code is a required field."
+            });
+            $('#ddlConsigneeSubDivCode').focus();
+            returnValue = false;
+        }
+        if ($('#sTrnsprtrDocConsigneePostCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneePostCd": "Consignee Post Code is a required field."
+            });
+            $('#sTrnsprtrDocConsigneePostCd').focus();
+            returnValue = false;
+        }
+    }
+    if ($('#sTrnsprtrDocConsigneeCountryCd').val() != "IN") {
+        if ($('#sTrnsprtrDocConsigneeCountrySubDivName').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneeCountrySubDivName": "Consignee Sub Division Name is a required field."
+            });
+            $('#sTrnsprtrDocConsigneeCountrySubDivName').focus();
+            returnValue = false;
+        }
+    }
+
+    //****Notified Party********//
+    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() == "IN") {
+        if ($('#ddlNotFdPartySubDivCode').val() == "") {
+            validator.showErrors({
+                "ddlNotFdPartySubDivCode": "Notified Party Sub Division Code is a required field."
+            });
+            $('#ddlNotFdPartySubDivCode').focus();
+            returnValue = false;
+        }
+        if ($('#sTrnsprtrDocNotFdPartyPostCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocNotFdPartyPostCd": "Notified Party Post Code is a required field."
+            });
+            $('#sTrnsprtrDocNotFdPartyPostCd').focus();
+            returnValue = false;
+        }
+    }
+    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() != "IN") {
+        if ($('#sTrnsprtrDocNotFdPartyCountrySubDivName').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocNotFdPartyCountrySubDivName": "Notified Sub Division Name is a required field."
+            });
+            $('#sTrnsprtrDocNotFdPartyCountrySubDivName').focus();
+            returnValue = false;
+        }
+    }
+    var natureOfCargo = $('#sLocCustomNatureOfCargo').val();
+    if (natureOfCargo == "LB" && $('#dTrnsprtrDocMsrGrossVolume').val() == "") {
+        validator.showErrors({
+            "dTrnsprtrDocMsrGrossVolume": "Gross Volume is a required field."
+        });
+        $('#dTrnsprtrDocMsrGrossVolume').focus();
+        returnValue = false;
+    }
     return returnValue;
 }
 
+
+$(document).on('change', '#sLocCustomTypeOfCargo', function () {
+    changeTypeOfCargo();
+});
+
+function changeTypeOfCargo() {
+    var typeOfCargo = $('#sLocCustomTypeOfCargo').val();
+    if (typeOfCargo == "EX") {
+        $('#sTrnsprtrDocConsignorCdType option').each(function (i, ele) {
+            if ($(ele).val() == "GSN" || $(ele).val() == "GSD" || $(ele).val() == "GSG" || $(ele).val() == "PAN")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocConsignorCdType').selectpicker('refresh');
+        $('#sTrnsprtrDocTypeOfCd option').each(function (i, ele) {
+            if ($(ele).val() == "GSN" || $(ele).val() == "GSD" || $(ele).val() == "GSG")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocTypeOfCd').selectpicker('refresh');
+    }
+    if (typeOfCargo == "CG") {
+        $('#sTrnsprtrDocConsignorCdType option').each(function (i, ele) {
+            if ($(ele).val() == "IEC")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocConsignorCdType').selectpicker('refresh');
+        $('#sTrnsprtrDocTypeOfCd option').each(function (i, ele) {
+            if ($(ele).val() == "IEC")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocTypeOfCd').selectpicker('refresh');
+    }
+
+   
+}
+
+
+$(document).on('change', '#sTrnsprtrDocPortOfAcceptedCCd', function () {
+    chagePortOfAccepted();
+});
+
+function changePortOfAccepted() {
+    if ($('#sTrnsprtrDocPortOfAcceptedCCd').val() != "") {
+        $('#sTrnsprtrDocPortOfAcceptedName').val($('#sTrnsprtrDocPortOfAcceptedCCd option:selected').text());
+    }
+}
+
+$(document).on('change', '#sTrnsprtrDocPortOfReceiptCcd', function () {
+    chagePortOfReceipt();
+});
+
+function changePortOfReceipt() {
+    if ($('#sTrnsprtrDocPortOfReceiptCcd').val() != "") {
+        $('#sTrnsprtrDocPortOfReceiptName').val($('#sTrnsprtrDocPortOfReceiptCcd option:selected').text());
+    }
+}
+
+$(document).on('blur', '#sTrnsprtrDocConsignorCountryCd', function () {
+    blurConsignorCountryCode();
+});
+
+
+function blurConsignorCountryCode() {
+    if ($('#sTrnsprtrDocConsignorCountryCd').val() == "IN") {
+        $('#sTrnsprtrDocConsignorCountrySubDivCd').hide();
+        $('#ddlConsignorSubDivCode').selectpicker('refresh');
+        $('#ddlConsignorSubDivCode').show();
+    }
+    else {
+        $('#sTrnsprtrDocConsignorCountrySubDivCd').show();
+        $('#ddlConsignorSubDivCode').hide();
+    }
+}
+
+$(document).on('change', '#ddlConsignorSubDivCode', function () {
+    if ($('#ddlConsignorSubDivCode').val() != "") {
+        $('#sTrnsprtrDocConsignorCountrySubDivCd').val($(this).val());
+    }
+});
+
+$(document).on('blur', '#sTrnsprtrDocConsigneeCountryCd', function () {
+    blurConsigneeCountryCode();
+});
+
+function blurConsigneeCountryCode() {
+    if ($('#sTrnsprtrDocConsigneeCountryCd').val() == "IN") {
+        $('#sTrnsprtrDocConsigneeCountrySubDiv').hide();
+        $('#ddlConsigneeSubDivCode').selectpicker('refresh');
+        $('#ddlConsigneeSubDivCode').show();
+    }
+    else {
+        $('#sTrnsprtrDocConsigneeCountrySubDiv').show();
+        $('#ddlConsigneeSubDivCode').hide();
+    }
+}
+
+$(document).on('change', '#ddlConsigneeSubDivCode', function () {
+    if ($('#ddlConsigneeSubDivCode').val() != "") {
+        $('#sTrnsprtrDocConsigneeCountrySubDiv').val($(this).val());
+    }
+});
+
+$(document).on('blur', '#sTrnsprtrDocNotFdPartyCountryCd', function () {
+    blurConsigneeCountryCode();
+});
+
+function blurConsigneeCountryCode() {
+    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() == "IN") {
+        $('#sTrnsprtrDocNotFdPartyCountrySubDiv').hide();
+        $('#ddlNotFdPartySubDivCode').selectpicker('refresh');
+        $('#ddlNotFdPartySubDivCode').show();
+    }
+    else {
+        $('#sTrnsprtrDocNotFdPartyCountrySubDiv').show();
+        $('#ddlNotFdPartySubDivCode').hide();
+    }
+}
+
+$(document).on('change', '#ddlNotFdPartySubDivCode', function () {
+    if ($('#ddlNotFdPartySubDivCode').val() != "") {
+        $('#sTrnsprtrDocNotFdPartyCountrySubDiv').val($(this).val());
+    }
+});
