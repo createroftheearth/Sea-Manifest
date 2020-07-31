@@ -42,7 +42,6 @@ namespace SeaManifest.Controllers
                     iHouseCargoDescId = iHouseCargoDescId,
                     sReportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId)
                 });
-                return PartialView("pvAddUpdateItemDetailsHouseCargo");
             }
             else
                 return PartialView("pvAddUpdateItemDetailsHouseCargo", ItemDetailsHouseCargoService.Instance.GetItemDetailsHouseCargoByItemDetailsId(iItemDetailsId));

@@ -315,7 +315,7 @@ namespace BAL.Services
                                     {
                                         crgoMvmt = h.sLocCstmCargoMovement,
                                         destPrt = h.sLocCstmDestinationPort,
-                                        firstPrtOfEntry = h.sLocCstmFirstPartyOfEntry,
+                                        firstPrtOfEntry = h.sLocCstmFirstPortOfEntry,
                                         itemTyp = h.sLocCstmItemType,
                                         natrOfCrgo = h.sLocCstmNatureOfCargo,
                                         nmbrOfPkgs = Convert.ToInt32(h.dLocCstmNoOfPackages),

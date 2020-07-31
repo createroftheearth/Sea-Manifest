@@ -81,6 +81,9 @@ function initAddUpdateMasterConsignment() {
     changePortOfAccepted();
     changePortOfReceipt();
     changeTypeOfCargo();
+    changeConsigneeCountryCode();
+    changeConsignorCountryCode();
+    changeNotFdCountryCode();
 }
 
 $(document).on('submit', '#frmMasterConsignment', function (e) {
@@ -114,9 +117,14 @@ function showHideViaMessageType() {
     var data = $('#sReportingEvent').val();
     if (data == "SEI") {
         $('.hideSEI').hide();
+        $('.hideSEI').find('input,select').val('');
+        $('.hideSEI').find('select').selectpicker('refresh');
+
     }
     if (data == "SDN") {
         $('.hideSDN').hide();
+        $('.hideSDN').find('input,select').val('');
+        $('.hideSDN').find('select').selectpicker('refresh');
     }
 
 }
@@ -357,7 +365,7 @@ function changeTypeOfCargo() {
 
 
 $(document).on('change', '#sTrnsprtrDocPortOfAcceptedCCd', function () {
-    chagePortOfAccepted();
+    changePortOfAccepted();
 });
 
 function changePortOfAccepted() {
@@ -367,7 +375,7 @@ function changePortOfAccepted() {
 }
 
 $(document).on('change', '#sTrnsprtrDocPortOfReceiptCcd', function () {
-    chagePortOfReceipt();
+    changePortOfReceipt();
 });
 
 function changePortOfReceipt() {
@@ -376,20 +384,20 @@ function changePortOfReceipt() {
     }
 }
 
-$(document).on('blur', '#sTrnsprtrDocConsignorCountryCd', function () {
-    blurConsignorCountryCode();
+$(document).on('change', '#sTrnsprtrDocConsignorCountryCd', function () {
+    changeConsignorCountryCode();
 });
 
 
-function blurConsignorCountryCode() {
+function changeConsignorCountryCode() {
     if ($('#sTrnsprtrDocConsignorCountryCd').val() == "IN") {
         $('#sTrnsprtrDocConsignorCountrySubDivCd').hide();
         $('#ddlConsignorSubDivCode').selectpicker('refresh');
-        $('#ddlConsignorSubDivCode').show();
+        $('#ddlConsignorSubDivCode').parent('div').show();
     }
     else {
         $('#sTrnsprtrDocConsignorCountrySubDivCd').show();
-        $('#ddlConsignorSubDivCode').hide();
+        $('#ddlConsignorSubDivCode').parent('div').hide();
     }
 }
 
@@ -399,19 +407,19 @@ $(document).on('change', '#ddlConsignorSubDivCode', function () {
     }
 });
 
-$(document).on('blur', '#sTrnsprtrDocConsigneeCountryCd', function () {
-    blurConsigneeCountryCode();
+$(document).on('change', '#sTrnsprtrDocConsigneeCountryCd', function () {
+    changeConsigneeCountryCode();
 });
 
-function blurConsigneeCountryCode() {
+function changeConsigneeCountryCode() {
     if ($('#sTrnsprtrDocConsigneeCountryCd').val() == "IN") {
         $('#sTrnsprtrDocConsigneeCountrySubDiv').hide();
         $('#ddlConsigneeSubDivCode').selectpicker('refresh');
-        $('#ddlConsigneeSubDivCode').show();
+        $('#ddlConsigneeSubDivCode').parent('div').show();
     }
     else {
         $('#sTrnsprtrDocConsigneeCountrySubDiv').show();
-        $('#ddlConsigneeSubDivCode').hide();
+        $('#ddlConsigneeSubDivCode').parent('div').hide();
     }
 }
 
@@ -421,19 +429,19 @@ $(document).on('change', '#ddlConsigneeSubDivCode', function () {
     }
 });
 
-$(document).on('blur', '#sTrnsprtrDocNotFdPartyCountryCd', function () {
-    blurConsigneeCountryCode();
+$(document).on('change', '#sTrnsprtrDocNotFdPartyCountryCd', function () {
+    changeNotFdCountryCode();
 });
 
-function blurConsigneeCountryCode() {
+function changeNotFdCountryCode() {
     if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() == "IN") {
         $('#sTrnsprtrDocNotFdPartyCountrySubDiv').hide();
         $('#ddlNotFdPartySubDivCode').selectpicker('refresh');
-        $('#ddlNotFdPartySubDivCode').show();
+        $('#ddlNotFdPartySubDivCode').parent('div').show();
     }
     else {
         $('#sTrnsprtrDocNotFdPartyCountrySubDiv').show();
-        $('#ddlNotFdPartySubDivCode').hide();
+        $('#ddlNotFdPartySubDivCode').parent('div').hide();
     }
 }
 

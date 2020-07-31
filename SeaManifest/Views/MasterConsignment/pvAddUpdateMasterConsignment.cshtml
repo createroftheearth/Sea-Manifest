@@ -127,7 +127,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sPrevRefSplitIndicator)
-                        @Html.DropDownListFor(z => z.sPrevRefSplitIndicator, PreviousMCRefCINType, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.DropDownListFor(z => z.sPrevRefSplitIndicator, splitIndicator, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sPrevRefSplitIndicator)
                     </div>
                     <div class="form-group col-md-4">
@@ -522,7 +522,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sSuplmntryDecSplitIndicator)
-                        @Html.TextBoxFor(z => z.sSuplmntryDecSplitIndicator, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sSuplmntryDecSplitIndicator, splitIndicator,"Select", new { @class = "form-control",@data_live_search="true" })
                         @Html.ValidationMessageFor(z => z.sSuplmntryDecSplitIndicator)
                     </div>
                     <div class="form-group col-md-4">

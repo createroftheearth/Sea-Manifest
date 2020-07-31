@@ -115,7 +115,7 @@ namespace BAL.Services
             }
         }
 
-        public TransportEquipmentHouseCargoModel GetTransportEquipmentHouseCargoByTransporterEquipmentId(int? iTransporterEquipmentId)
+        public TransportEquipmentHouseCargoModel GetTransportEquipmentHouseCargoByTransporterEquipmentId(int? iHouseCargoDescId, int? iTransporterEquipmentId)
         {
             using (var db = new SeaManifestEntities())
             {

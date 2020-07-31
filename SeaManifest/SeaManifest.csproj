@@ -127,7 +127,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ItemDetailsMasterConsignmentController.cs" />
+    <Compile Include="Controllers\ItineraryMasterConsignmentController.cs" />
+    <Compile Include="Controllers\TransportEquipmentHouseCargoController.cs" />
+    <Compile Include="Controllers\SupportDocHouseCargoController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\AdditionalDetailsHouseCargoController.cs" />
     <Compile Include="Controllers\ItineraryHouseCargoController.cs" />
     <Compile Include="Controllers\ItemDetailsHouseCargoController.cs" />
     <Compile Include="Controllers\HouseCargoController.cs" />
@@ -1587,6 +1592,16 @@
     <Content Include="Views\ItemDetailsHouseCargo\pvAddUpdateItemDetailsHouseCargo.cshtml" />
     <Content Include="Views\ItineraryHouseCargo\Index.cshtml" />
     <Content Include="Views\ItineraryHouseCargo\pvAddUpdateItineraryHouseCargo.cshtml" />
+    <Content Include="Views\TransportEquipmentHouseCargo\Index.cshtml" />
+    <Content Include="Views\TransportEquipmentHouseCargo\pvAddUpdateTransportEquipmentHouseCargo.cshtml" />
+    <Content Include="Views\SupportDocHouseCargo\Index.cshtml" />
+    <Content Include="Views\SupportDocHouseCargo\pvAddUpdateSupportDocHouseCargo.cshtml" />
+    <Content Include="Views\AdditionalDetailsHouseCargo\Index.cshtml" />
+    <Content Include="Views\AdditionalDetailsHouseCargo\pvAddUpdateAdditionalDetailsHouseCargo.cshtml" />
+    <Content Include="Views\ItemDetailsMasterConsignment\Index.cshtml" />
+    <Content Include="Views\ItemDetailsMasterConsignment\pvAddUpdateItemDetailsMasterConsignment.cshtml" />
+    <Content Include="Views\ItineraryMasterConsignment\Index.cshtml" />
+    <Content Include="Views\ItineraryMasterConsignment\pvAddUpdateItineraryMasterConsignment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

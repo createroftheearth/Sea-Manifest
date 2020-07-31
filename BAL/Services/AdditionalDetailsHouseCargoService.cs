@@ -103,7 +103,7 @@ namespace BAL.Services
             }
         }
 
-        public AdditionalDetailsHouseCargoModel GetAdditionalDetailsHouseCargoByAddDetailsId(int? iAdditionalDetailsId)
+        public AdditionalDetailsHouseCargoModel GetAdditionalDetailsHouseCargoByAddDetailsId(int? iHouseCargoDescId, int? iAdditionalDetailsId)
         {
             using (var db = new SeaManifestEntities())
             {

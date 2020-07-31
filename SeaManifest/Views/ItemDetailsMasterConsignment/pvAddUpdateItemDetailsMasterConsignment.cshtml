@@ -1,0 +1,59 @@
+﻿@model BAL.Models.ItemDetailsMasterConsignmentModel
+@using (Html.BeginForm("AddUpdateItemDetailsMasterConsignment", "ItemDetailsMasterConsignment", FormMethod.Post, new { @id = "frmItemDetailsMasterConsignment" }))
+{
+    <div class="modal-header">
+        <h4 class="modal-title">Add/Update Item Details Master Consignment</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+        @Html.HiddenFor(z => z.iMasterConsignmentId)
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Item Details Master Consignment
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dCargoItemSequenceNo)
+                        @Html.TextBoxFor(z => z.dCargoItemSequenceNo, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dCargoItemSequenceNo)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sHsCd)
+                        @Html.TextBoxFor(z => z.sHsCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sHsCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sCargoItemDesc)
+                        @Html.TextBoxFor(z => z.sCargoItemDesc, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sCargoItemDesc)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sUnoCd)
+                        @Html.TextBoxFor(z => z.sUnoCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sUnoCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sIMDGCd)
+                        @Html.TextBoxFor(z => z.sIMDGCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sIMDGCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dNoOfPakages)
+                        @Html.TextBoxFor(z => z.dNoOfPakages, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dNoOfPakages)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTypesOfPackages)
+                        @Html.TextBoxFor(z => z.sTypesOfPackages, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTypesOfPackages)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+}

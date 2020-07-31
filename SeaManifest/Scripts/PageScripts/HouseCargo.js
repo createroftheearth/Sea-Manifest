@@ -1,10 +1,11 @@
 ﻿$(function () {
-    initHouseCargo();
+    initHouseCargos();
 });
 
-var MasterConsignmentTable;
-function initHouseCargo() {
-    MasterConsignmentTable = $('#tblMasterConsignment').DataTable({
+var HouseCargoTable;
+
+function initHouseCargos() {
+    HouseCargoTable = $('#tblHouseCargo').DataTable({
         "searching": true,
         "ordering": false,
         "processing": true,
@@ -13,24 +14,23 @@ function initHouseCargo() {
         "bLengthChange": false,
         "filter": true,
         "ajax": {
-            "url": "/MasterConsignment/GetHouseCargo",
+            "url": "/HouseCargo/GetHouseCargos",
             "type": "POST",
         },
         "columns": [
             {
-                "data": "iMCRefLineNo",
+                "data": "dHCRefSubLineNo",
             },
             {
-                "data": "sMCRefMasterBillNo"
+                "data": "sHCRefBillNo"
             },
             {
-                "data": "masterBillDate",
+                "data": "sHCRefBillDate",
             },
             {
-                "data": "iMasterConsignmentId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMasterConsignmentId="+data+"'\"><i class=\"fa fa-plus\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i></button> " ;
+                "data": "iHouseCargoDescId", "mRender": function (data) {
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> ";
                 }
             },
         ]
@@ -47,43 +47,55 @@ function resetForm() {
     var $errors = $form.find(".field-validation-error span");
 
     // trick unobtrusive to think the elements were succesfully validated
-    // this removes the validation HouseCargo
+    // this removes the validation HouseCargos
     //$errors.each(function () { $validator.settings.success($(this)); })
 
     // clear errors from validation
     $validator.resetForm();
 }
-function DownloadJson(iMasterConsignmentId) {
-    location.href = "/MasterConsignment/GetMasterConsignmentJson?iMasterConsignmentId=" + iMasterConsignmentId;
-}
 
-function AddUpdateMasterConsignment(iMasterConsignmentId) {
-    $('#addUpdateModallgContainer').load('/MasterConsignment/AddUpdateMasterConsignment?iMasterConsignmentId=' + iMasterConsignmentId, function () {
-        initAddUpdateMasterConsignment();
+function AddUpdateHouseCargo(iHouseCargoDescId) {
+    $('#addUpdateModallgContainer').load('/HouseCargo/AddUpdateHouseCargo?iHouseCargoDescId=' + iHouseCargoDescId, function () {
+        initAddUpdateHouseCargo();
     });
 }
 
-function initAddUpdateMasterConsignment() {
-    $.validator.unobtrusive.parse('#frmMasterConsignment');
-    $('#sReportingEvent').selectpicker();
+function initAddUpdateHouseCargo() {
+    $.validator.unobtrusive.parse('#frmHouseCargo');
+    $('#frmHouseCargo select').selectpicker();
+    $('#psHCRefHouseBillDate').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#psPrevRefCSNDate').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#psSuplmntryDecCSNDate').datetimepicker({
+        format: 'DD/MM/YYYY hh:mm A'
+    });
     $('#addUpdatelgModal').modal('show');
-    changeReportingEvent();
+    showHideViaMessageType();
+    changePortOfAccepted();
+    changePortOfReceipt();
+    changeTypeOfCargo();
+    changeConsigneeCountryCode();
+    changeConsignorCountryCode();
+    changeNotFdCountryCode();
 }
 
-$(document).on('submit', '#frmMasterConsignment', function (e) {
+$(document).on('submit', '#frmHouseCargo', function (e) {
     e.preventDefault();
-    if ($(this).valid() && checkFormHouseCargo())
+    if ($(this).valid() && checkFormHouseCargos())
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
             data: $(this).serialize(),
             success: function (response) {
                 if (response.Status) {
-                    alertify.success(response.MasterConsignment);
+                    alertify.success(response.Message);
                     HouseCargoTable.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
-                    alertify.error(response.MasterConsignment);
+                    alertify.error(response.Message);
                 }
             },
             failure: function (response) {
@@ -96,213 +108,340 @@ $(document).on('submit', '#frmMasterConsignment', function (e) {
 });
 
 
-$(document).on('change', '#sReportingEvent', function () {
-    changeReportingEvent();
-});
-
 //Hide Show Conditions (Hide in case of 'X' and show in case of 'O') 
-function changeReportingEvent() {
+function showHideViaMessageType() {
     var data = $('#sReportingEvent').val();
-    if (data == "SDN") {
-        $('#sDate').val('');
-        $('#sDate').parent('div').hide();
-        $('#sSequenceOrControlNumber').val('');
-        $('#sSequenceOrControlNumber').parent('div').hide();
-        $('#sTime').val('');
-        $('#sTime').parent('div').hide();
-    }
-    else {
-        $('#sSequenceOrControlNumber').parent('div').show();
-        $('#sDate').parent('div').show();
-        $('#sTime').parent('div').show();
-    }
+    if (data == "SEI") {
+        $('.hideSEI').hide();
+        $('.hideSEI').find('input,select').val('');
+        $('.hideSEI').find('select').selectpicker('refresh');
 
-    if (data == "SDM" || data == "SEI" || data == "SDN") {
-        $('#sAuthPrsnShipLineCode').val('');
-        $('#sAuthPrsnShipLineCode').parent('div').hide();
-    }
-    else {
-        $('#sAuthPrsnShipLineCode').parent('div').show();
     }
     if (data == "SDN") {
-        $('#sAuthPrsnMasterName').val('');
-        $('#sAuthPrsnMasterName').parent('div').hide();
+        $('.hideSDN').hide();
+        $('.hideSDN').find('input,select').val('');
+        $('.hideSDN').find('select').selectpicker('refresh');
     }
-    else {
-        $('#sAuthPrsnMasterName').parent('div').show();
-    }
-    if (data == "SAM" || data == "SEI" || data == "SDN") {
-        $('#sAuthPrsnShippingLineBondNo').val('');
-        $('#sAuthPrsnShippingLineBondNo').parent('div').hide();
-    }
-    else {
-        $('#sAuthPrsnShippingLineBondNo').parent('div').show();
-    }
-
-    if (data == "SEI" || data == "SDN") {
-        $('#sVesselDtlsPurposeOfCall').val('');
-        $('#sVesselDtlsPurposeOfCall').parent('div').hide();
-    }
-    else {
-        $('#sVesselDtlsPurposeOfCall').parent('div').show();
-    }
-    if (data == "SEI" || data == "SDN") {
-        $('#sVoyageDtlsCargoDesCdd').val('');
-        $('#sVoyageDtlsCargoDesCdd').parent('div').hide();
-    }
-    else {
-        $('#sVoyageDtlsCargoDesCdd').parent('div').show();
-    }
-    if (data == "SEI" || data == "SDN") {
-        $('#sVoyageDtlsBriefCargoDesc').val('');
-        $('#sVoyageDtlsBriefCargoDesc').parent('div').hide();
-    }
-    else {
-        $('#sVoyageDtlsBriefCargoDesc').parent('div').show();
-    }
-    if (data == "SDM" ||data == "SEI" || data == "SDN") {
-        $('#sVoyageDtlsExpectedDtandTimeOfArrival').val('');
-        $('#sVoyageDtlsExpectedDtandTimeOfArrival').parent('div').hide();
-    }
-    else {
-        $('#sVoyageDtlsExpectedDtandTimeOfArrival').parent('div').show();
-    }
-    if (data == "SDM" || data == "SAM") {
-        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').val('');
-        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').hide();
-    }
-    else {
-        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').show();
-    }
-    if (data == "SEI" || data == "SDN") {
-        $('#iVoyageDtlsNumberOfPsngrManifested').val('');
-        $('#iVoyageDtlsNumberOfPsngrManifested').parent('div').hide();
-    }
-    else {
-        $('#iVoyageDtlsNumberOfPsngrManifested').parent('div').show();
-    }
-    if (data == "SEI" || data == "SDN") {
-        $('#iVoyageDtlsNumberOfCrewManifested').val('');
-        $('#iVoyageDtlsNumberOfCrewManifested').parent('div').hide();
-    }
-    else {
-        $('#iVoyageDtlsNumberOfCrewManifested').parent('div').show();
-    }
-
 }
 //Mandatory Conditions(Mandatory in case of 'M')
-function checkFormHouseCargo() {
-    var validator = $("#frmMasterConsignment").validate();
+function checkFormHouseCargos() {
+    var validator = $("#frmHouseCargo").validate();
     var data = $('#sReportingEvent').val();
-    if (data == "SAM" && $('#sAuthPrsnShipLineCode').val() == "") {
-        validator.showErrors({
-            "sAuthPrsnShipLineCode": "Shipping Line Code is a required field."
-        });
-        return false;
+    var returnValue = true;
+    if ((data == "SAM" || data == "SDM")) {
+        if ($('#sLocCustomFirstPortOfEntry').val() == "") {
+            validator.showErrors({
+                "sLocCustomFirstPortOfEntry": "First port of entry is a required field."
+            });
+            $('#sLocCustomFirstPortOfEntry').focus();
+            returnValue = false;
+        }
+        if ($('#sLocCustomDestPort').val() == "") {
+            validator.showErrors({
+                "sLocCustomDestPort": "Destination port is a required field."
+            });
+            $('#sLocCustomDestPort').focus();
+            returnValue = false;
+        }
+        if ($('#sLocCustomNextPortOfUnlanding').val() == "") {
+            validator.showErrors({
+                "sLocCustomNextPortOfUnlanding": "Next port of unlanding is a required field."
+            });
+            $('#sLocCustomNextPortOfUnlanding').focus();
+            returnValue = false;
+        }
     }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sAuthPrsnAuthSeaCarrierCode').val() == "") {
-        validator.showErrors({
-            "sAuthPrsnAuthSeaCarrierCode": "Authorised Sea Carrier Code is a required field."
-        });
-        return false;
+    if ((data == "SAM" || data == "SDM" || data == "SAA")) {
+        if ($('#sTrnsprtrDocPortOfAcceptedCCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocPortOfAcceptedCCd": "Port of accepted code is a required field."
+            });
+            $('#sTrnsprtrDocPortOfAcceptedCCd').focus();
+            returnValue = false;
+        }
+    }
+    if ((data == "SAM" || data == "SDM" || data == "SDA")) {
+        if ($('#sTrnsprtrDocPortOfReceiptName').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocPortOfReceiptName": "Port of reciept name is a required field."
+            });
+            $('#sTrnsprtrDocPortOfReceiptName').focus();
+            returnValue = false;
+        }
     }
 
-    if ((data == "SAM" || data == "SDM") && $('#sAuthPrsnMasterName').val() == "") {
-        validator.showErrors({
-            "sAuthPrsnMasterName": "Master Name is a required field."
-        });
-        return false;
+    var typeOfCargo = $('#sLocCustomTypeOfCargo').val();
+
+    //*********Consginor********//
+    if (typeOfCargo == "EX" || typeOfCargo == "CG") {
+        if ($('#sTrnsprtrDocConsignorCd').val() == "" && $('#sMCRefConsolidatedIndicator').val() != "C") {
+            validator.showErrors({
+                "sTrnsprtrDocConsignorCd": "Consignor Code is a required field."
+            });
+            $("#sTrnsprtrDocConsignorCd").focus();
+            returnValue = false;
+        }
     }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sAuthPrsnTerminalCustodianCode').val() == "") {
+
+
+    if (($('#sTrnsprtrDocConsignorCdType').val() == "GSN" || $('#sTrnsprtrDocConsignorCdType').val() == "GSD" || $('#sTrnsprtrDocConsignorCdType').val() == "GSG") && !$('#sTrnsprtrDocConsignorCd').isValidGSTIN()) {
         validator.showErrors({
-            "sAuthPrsnTerminalCustodianCode": "Terminal Operator Code is a required field."
+            "sTrnsprtrDocConsignorCd": "Please Enter valid GSTIN No"
         });
-        return false;
+        $('#sTrnsprtrDocConsignorCd').focus();
+        returnValue = false;
     }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVesselDtlsModeOfTransport').val() == "") {
+    else if (($('#sTrnsprtrDocConsignorCdType').val() == "PAN") && !$('#sTrnsprtrDocConsignorCd').isValidPAN()) {
         validator.showErrors({
-            "sVesselDtlsModeOfTransport": "Mode Of Transport is a required field."
+            "sTrnsprtrDocConsignorCd": "Please Enter valid PAN"
         });
-        return false;
+        $('#sTrnsprtrDocConsignorCd').focus();
+        returnValue = false;
     }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVesselDtlsTypeOfTransportMeans').val() == "") {
+
+    if ($('#sTrnsprtrDocConsignorCountryCd').val() == "IN") {
+        if ($('#ddlConsignorSubDivCode').val() == "") {
+            validator.showErrors({
+                "ddlConsignorSubDivCode": "Consignor Sub Division Code is a required field."
+            });
+            $('#ddlConsignorSubDivCode').focus();
+            returnValue = false;
+        } if ($('#sTrnsprtrDocConsignorPostCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsignorPostCd": "Consignor Post Code is a required field."
+            });
+            $('#sTrnsprtrDocConsignorPostCd').focus();
+            returnValue = false;
+        }
+    }
+    if ($('#sTrnsprtrDocConsignorCountryCd').val() != "IN") {
+        if ($('#sTrnsprtrDocConsigneeCountrySubDivName').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneeCountrySubDivName": "Consignor Sub Division Name is a required field."
+            });
+            $('#sTrnsprtrDocConsigneeCountrySubDivName').focus();
+            returnValue = false;
+        }
+    }
+    //*********Consginee********//
+
+    if (typeOfCargo == "IM" || typeOfCargo == "CG") {
+        if ($('#sTrnsprtrDocConsigneeCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneeCd": "Consignee Code is a required field."
+            });
+            $("#sTrnsprtrDocConsigneeCd").focus();
+            returnValue = false;
+        }
+    }
+    if (($('#sTrnsprtrDocTypeOfCd').val() == "GSN" || $('#sTrnsprtrDocTypeOfCd').val() == "GSD" || $('#sTrnsprtrDocTypeOfCd').val() == "GSG") && !$('#sTrnsprtrDocConsigneeCd').isValidGSTIN()) {
         validator.showErrors({
-            "sVesselDtlsTypeOfTransportMeans": "Type Of Transport Means is a required field."
+            "sTrnsprtrDocConsignorCd": "Please Enter valid GSTIN No"
         });
-        return false;
+        $('#sTrnsprtrDocConsigneeCd').focus();
+        returnValue = false;
     }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVesselDtlsTransportMeansId').val() == "") {
+    else if (($('#sTrnsprtrDocTypeOfCd').val() == "PAN") && !$('#sTrnsprtrDocConsigneeCd').isValidPAN()) {
         validator.showErrors({
-            "sVesselDtlsTransportMeansId": "Transport Means Identity is a required field."
+            "sTrnsprtrDocConsignorCd": "Please Enter valid PAN"
         });
-        return false;
+        $('#sTrnsprtrDocConsigneeCd').focus();
+        returnValue = false;
     }
-    if ((data == "SAM" || data == "SDM") && $('#sVesselDtlsPurposeOfCall').val() == "") {
+    if ($('#sTrnsprtrDocConsigneeCountryCd').val() == "IN") {
+        if ($('#ddlConsigneeSubDivCode').val() == "") {
+            validator.showErrors({
+                "ddlConsigneeSubDivCode": "Consignee Sub Division Code is a required field."
+            });
+            $('#ddlConsigneeSubDivCode').focus();
+            returnValue = false;
+        }
+        if ($('#sTrnsprtrDocConsigneePostCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneePostCd": "Consignee Post Code is a required field."
+            });
+            $('#sTrnsprtrDocConsigneePostCd').focus();
+            returnValue = false;
+        }
+    }
+    if ($('#sTrnsprtrDocConsigneeCountryCd').val() != "IN") {
+        if ($('#sTrnsprtrDocConsigneeCountrySubDivName').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocConsigneeCountrySubDivName": "Consignee Sub Division Name is a required field."
+            });
+            $('#sTrnsprtrDocConsigneeCountrySubDivName').focus();
+            returnValue = false;
+        }
+    }
+
+    //****Notified Party********//
+    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() == "IN") {
+        if ($('#ddlNotFdPartySubDivCode').val() == "") {
+            validator.showErrors({
+                "ddlNotFdPartySubDivCode": "Notified Party Sub Division Code is a required field."
+            });
+            $('#ddlNotFdPartySubDivCode').focus();
+            returnValue = false;
+        }
+        if ($('#sTrnsprtrDocNotFdPartyPostCd').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocNotFdPartyPostCd": "Notified Party Post Code is a required field."
+            });
+            $('#sTrnsprtrDocNotFdPartyPostCd').focus();
+            returnValue = false;
+        }
+    }
+    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() != "IN") {
+        if ($('#sTrnsprtrDocNotFdPartyCountrySubDivName').val() == "") {
+            validator.showErrors({
+                "sTrnsprtrDocNotFdPartyCountrySubDivName": "Notified Sub Division Name is a required field."
+            });
+            $('#sTrnsprtrDocNotFdPartyCountrySubDivName').focus();
+            returnValue = false;
+        }
+    }
+    var natureOfCargo = $('#sLocCustomNatureOfCargo').val();
+    if (natureOfCargo == "LB" && $('#dTrnsprtrDocMsrGrossVolume').val() == "") {
         validator.showErrors({
-            "sVesselDtlsPurposeOfCall": "Purpose Of Call is a required field."
+            "dTrnsprtrDocMsrGrossVolume": "Gross Volume is a required field."
         });
-        return false;
+        $('#dTrnsprtrDocMsrGrossVolume').focus();
+        returnValue = false;
     }
-    if ((data == "SAM" || data == "SDM") && $('#sVoyageDtlsVoyageNo').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsVoyageNo": "Voyage No is a required field."
-        });
-        return false;
-    }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVoyageDtlsConveinceRefNo').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsConveinceRefNo": "Conveyance Reference Number is a required field."
-        });
-        return false;
-    }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVoyageDtlsTotalNumberofTrnsptEqtMnfstd').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsTotalNumberofTrnsptEqtMnfstd": "Total No. Of Transport Equipment Manifested is a required field."
-        });
-        return false;
-    }
-    if ((data == "SAM" || data == "SDM") && $('#sVoyageDtlsCargoDesCdd').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsCargoDesCdd": "Cargo Description is a required field."
-        });
-        return false;
-    }
-    if ((data == "SAM" || data == "SDM") && $('#sVoyageDtlsBriefCargoDesc').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsBriefCargoDesc": "Brief Cargo Description is a required field."
-        });
-        return false;
-    }
-    if ((data == "SAM" || data == "SDM" || data == "SEI" || data == "SDN") && $('#sVoyageDtlsTotalNumberOfLines').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsTotalNumberOfLines": "Total No. Of Transport Contracts Manifested is a required field."
-        });
-        return false;
-    }
-    if ((data == "SAM") && $('#sVoyageDtlsExpectedDtandTimeOfArrival').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsExpectedDtandTimeOfArrival": "Expected Date & Time of Arrival is a required field."
-        });
-        return false;
-    }
-    if ((data == "SDM") && $('#sVoyageDtlsExpectedDtandTimeOfDeparture').val() == "") {
-        validator.showErrors({
-            "sVoyageDtlsExpectedDtandTimeOfDeparture": "Expected Date & Time of Departure is a required field."
-        });
-        return false;
-    }
-    if ((data == "SDM" || data == "SDM") && $('#iVoyageDtlsNumberOfPsngrManifested').val() == "") {
-        validator.showErrors({
-            "iVoyageDtlsNumberOfPsngrManifested": "Number Of Passenger Manifested is a required field."
-        });
-        return false;
-    }
-    if ((data == "SDM" || data == "SDM") && $('#iVoyageDtlsNumberOfCrewManifested').val() == "") {
-        validator.showErrors({
-            "iVoyageDtlsNumberOfCrewManifested": "Number Of Crew Manifested  is a required field."
-        });
-        return false;
-    }
-    return true;
+    return returnValue;
 }
 
+
+$(document).on('change', '#sLocCustomTypeOfCargo', function () {
+    changeTypeOfCargo();
+});
+
+function changeTypeOfCargo() {
+    var typeOfCargo = $('#sLocCustomTypeOfCargo').val();
+    if (typeOfCargo == "EX") {
+        $('#sTrnsprtrDocConsignorCdType option').each(function (i, ele) {
+            if ($(ele).val() == "GSN" || $(ele).val() == "GSD" || $(ele).val() == "GSG" || $(ele).val() == "PAN")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocConsignorCdType').selectpicker('refresh');
+        $('#sTrnsprtrDocTypeOfCd option').each(function (i, ele) {
+            if ($(ele).val() == "GSN" || $(ele).val() == "GSD" || $(ele).val() == "GSG")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocTypeOfCd').selectpicker('refresh');
+    }
+    if (typeOfCargo == "CG") {
+        $('#sTrnsprtrDocConsignorCdType option').each(function (i, ele) {
+            if ($(ele).val() == "IEC")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocConsignorCdType').selectpicker('refresh');
+        $('#sTrnsprtrDocTypeOfCd option').each(function (i, ele) {
+            if ($(ele).val() == "IEC")
+                $(ele).attr('disabled', 'disabled');
+            else
+                $(ele).removeAttr('disabled');
+            $(ele).removeAttr('selected');
+        });
+        $('#sTrnsprtrDocTypeOfCd').selectpicker('refresh');
+    }
+
+
+}
+
+
+$(document).on('change', '#sTrnsprtrDocPortOfAcceptedCCd', function () {
+    changePortOfAccepted();
+});
+
+function changePortOfAccepted() {
+    if ($('#sTrnsprtrDocPortOfAcceptedCCd').val() != "") {
+        $('#sTrnsprtrDocPortOfAcceptedName').val($('#sTrnsprtrDocPortOfAcceptedCCd option:selected').text());
+    }
+}
+
+$(document).on('change', '#sTrnsprtrDocPortOfReceiptCcd', function () {
+    changePortOfReceipt();
+});
+
+function changePortOfReceipt() {
+    if ($('#sTrnsprtrDocPortOfReceiptCcd').val() != "") {
+        $('#sTrnsprtrDocPortOfReceiptName').val($('#sTrnsprtrDocPortOfReceiptCcd option:selected').text());
+    }
+}
+
+$(document).on('change', '#sTrnsprtrDocConsignorCountryCd', function () {
+    changeConsignorCountryCode();
+});
+
+
+function changeConsignorCountryCode() {
+    if ($('#sTrnsprtrDocConsignorCountryCd').val() == "IN") {
+        $('#sTrnsprtrDocConsignorCountrySubDivCd').hide();
+        $('#ddlConsignorSubDivCode').selectpicker('refresh');
+        $('#ddlConsignorSubDivCode').parent('div').show();
+    }
+    else {
+        $('#sTrnsprtrDocConsignorCountrySubDivCd').show();
+        $('#ddlConsignorSubDivCode').parent('div').hide();
+    }
+}
+
+$(document).on('change', '#ddlConsignorSubDivCode', function () {
+    if ($('#ddlConsignorSubDivCode').val() != "") {
+        $('#sTrnsprtrDocConsignorCountrySubDivCd').val($(this).val());
+    }
+});
+
+$(document).on('change', '#sTrnsprtrDocConsigneeCountryCd', function () {
+    changeConsigneeCountryCode();
+});
+
+function changeConsigneeCountryCode() {
+    if ($('#sTrnsprtrDocConsigneeCountryCd').val() == "IN") {
+        $('#sTrnsprtrDocConsigneeCountrySubDiv').hide();
+        $('#ddlConsigneeSubDivCode').selectpicker('refresh');
+        $('#ddlConsigneeSubDivCode').parent('div').show();
+    }
+    else {
+        $('#sTrnsprtrDocConsigneeCountrySubDiv').show();
+        $('#ddlConsigneeSubDivCode').parent('div').hide();
+    }
+}
+
+$(document).on('change', '#ddlConsigneeSubDivCode', function () {
+    if ($('#ddlConsigneeSubDivCode').val() != "") {
+        $('#sTrnsprtrDocConsigneeCountrySubDiv').val($(this).val());
+    }
+});
+
+$(document).on('change', '#sTrnsprtrDocNotFdPartyCountryCd', function () {
+    changeNotFdCountryCode();
+});
+
+function changeNotFdCountryCode() {
+    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() == "IN") {
+        $('#sTrnsprtrDocNotFdPartyCountrySubDiv').hide();
+        $('#ddlNotFdPartySubDivCode').selectpicker('refresh');
+        $('#ddlNotFdPartySubDivCode').parent('div').show();
+    }
+    else {
+        $('#sTrnsprtrDocNotFdPartyCountrySubDiv').show();
+        $('#ddlNotFdPartySubDivCode').parent('div').hide();
+    }
+}
+
+$(document).on('change', '#ddlNotFdPartySubDivCode', function () {
+    if ($('#ddlNotFdPartySubDivCode').val() != "") {
+        $('#sTrnsprtrDocNotFdPartyCountrySubDiv').val($(this).val());
+    }
+});

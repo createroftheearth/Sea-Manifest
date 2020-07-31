@@ -32,7 +32,6 @@ namespace BAL.Models
         [Required(ErrorMessage = "Previous Declaration is a required field.")]
         public string sMCRefPreviousDeclaration { get; set; }
         [Display(Name = "Consolidator PAN")]
-        [RegularExpression(@"[A-Z]{5}\d{4}[A-Z]{1}", ErrorMessage = "Please Enter valid PAN Card")]
         [MaxLength(35, ErrorMessage = "Consolidator PAN cannot exceed 35 character.")]
         [Required(ErrorMessage = "Consolidator PAN is a required field.")]
         public string sMCRefConsolidatorPan { get; set; }
@@ -47,8 +46,8 @@ namespace BAL.Models
         [Display(Name = "CIN Type")]
         [MaxLength(4, ErrorMessage = "CIN Type cannot exceed 4 character.")]
         public string sPrevRefCinType { get; set; }
-        [Display(Name = "MCIN PCIN")]
-        [MaxLength(20, ErrorMessage = "MCIN PCIN cannot exceed 20 character.")]
+        [Display(Name = "MCIN/PCIN")]
+        [MaxLength(20, ErrorMessage = "MCIN/PCIN cannot exceed 20 character.")]
         public string sPrevRefMcinPcin { get; set; }
         [Display(Name = "CSN Submited Type")]
         [MaxLength(4, ErrorMessage = "CSN Submited Type cannot exceed 4 character.")]
@@ -262,8 +261,8 @@ namespace BAL.Models
         [MaxLength(4, ErrorMessage = "CIN Type cannot exceed 4 character.")]
         [Required(ErrorMessage = "CIN Type is a required field.")]
         public string sSuplmntryDecCinType { get; set; }
-        [Display(Name = "MCIN PCIN")]
-        [MaxLength(20, ErrorMessage = "MCIN PCIN cannot exceed 20 character.")]
+        [Display(Name = "MCIN/PCIN")]
+        [MaxLength(20, ErrorMessage = "MCIN/PCIN cannot exceed 20 character.")]
         public string sSuplmntryDecMCinPCin { get; set; }
         [Display(Name = "CSN Submited Type")]
         [MaxLength(4, ErrorMessage = "CSN Submited Type cannot exceed 4 character.")]

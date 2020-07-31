@@ -1,4 +1,5 @@
 ﻿using BAL.Models;
+using BAL.Utilities;
 using DAL;
 using System;
 using System.Collections.Generic;
@@ -45,14 +46,14 @@ namespace BAL.Services
                     if (data != null)
                     {
                         data.iMessageImplementationId = model.iMessageImplementationId;
-                        data.iMasterConsignmentId = model.iMasterConsignmentId??0;
+                        data.iMasterConsignmentId = model.iMasterConsignmentId ?? 0;
                         data.dHCRefSubLineNo = model.dHCRefSubLineNo;
                         data.sHCRefBillNo = model.sHCRefBillNo;
                         data.dtHCRefBillDate = DateTime.ParseExact(model.sHCRefBillDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
                         data.sHCRefConsolidatedIndicator = model.sHCRefConsolidatedIndicator;
                         data.sHCRefConsolidatorPan = model.sHCRefConsolidatorPan;
                         data.sHCRefPreviousDescription = model.sHCRefPreviousDescription;
-                        data.sLocCstmFirstPartyOfEntry = model.sLocCstmFirstPartyOfEntry;
+                        data.sLocCstmFirstPortOfEntry = model.sLocCstmFirstPortOfEntry;
                         data.sLocCstmDestinationPort = model.sLocCstmDestinationPort;
                         data.sLocCstmNextPortOfUnlading = model.sLocCstmNextPortOfUnlading;
                         data.sLocCstmTypeOfCargo = model.sLocCstmTypeOfCargo;
@@ -118,14 +119,14 @@ namespace BAL.Services
                         data = new tblHouseCargoDescriptionMasterConsignmentMap
                         {
                             iMessageImplementationId = model.iMessageImplementationId,
-                            iMasterConsignmentId = model.iMasterConsignmentId??0,
+                            iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                             dHCRefSubLineNo = model.dHCRefSubLineNo,
                             sHCRefBillNo = model.sHCRefBillNo,
                             dtHCRefBillDate = DateTime.ParseExact(model.sHCRefBillDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
                             sHCRefConsolidatedIndicator = model.sHCRefConsolidatedIndicator,
                             sHCRefConsolidatorPan = model.sHCRefConsolidatorPan,
                             sHCRefPreviousDescription = model.sHCRefPreviousDescription,
-                            sLocCstmFirstPartyOfEntry = model.sLocCstmFirstPartyOfEntry,
+                            sLocCstmFirstPortOfEntry = model.sLocCstmFirstPortOfEntry,
                             sLocCstmDestinationPort = model.sLocCstmDestinationPort,
                             sLocCstmNextPortOfUnlading = model.sLocCstmNextPortOfUnlading,
                             sLocCstmTypeOfCargo = model.sLocCstmTypeOfCargo,
@@ -212,6 +213,7 @@ namespace BAL.Services
                     t.iMasterConsignmentId,
                     t.dHCRefSubLineNo,
                     t.sHCRefBillNo,
+                    sHCRefBillDate = t.dtHCRefBillDate.ToDateString(),
                     masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                 }).ToList();
             }
@@ -233,7 +235,7 @@ namespace BAL.Services
                     sHCRefConsolidatedIndicator = model.sHCRefConsolidatedIndicator,
                     sHCRefConsolidatorPan = model.sHCRefConsolidatorPan,
                     sHCRefPreviousDescription = model.sHCRefPreviousDescription,
-                    sLocCstmFirstPartyOfEntry = model.sLocCstmFirstPartyOfEntry,
+                    sLocCstmFirstPortOfEntry = model.sLocCstmFirstPortOfEntry,
                     sLocCstmDestinationPort = model.sLocCstmDestinationPort,
                     sLocCstmNextPortOfUnlading = model.sLocCstmNextPortOfUnlading,
                     sLocCstmTypeOfCargo = model.sLocCstmTypeOfCargo,

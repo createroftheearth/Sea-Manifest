@@ -27,7 +27,7 @@ namespace BAL.Services
             }
         }
 
-        //save ItemDeatilsHouseCargo 
+        //save ItemDeatilsMasterConsignment 
         public object SaveItineraryMasterConsignment(ItineraryMasterConsignmentModel model, int iUserId)
         {
             try
@@ -99,14 +99,14 @@ namespace BAL.Services
             }
         }
 
-        public ItineraryHouseCargoModel GetItineraryMasterConsignmentByItenaryId(int? iHouseCargoDescId, int? iIternaryId)
+        public ItineraryMasterConsignmentModel GetItineraryMasterConsignmentByItenaryId(int? iMasterConsignmentId, int? iIternaryId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblItineraryHouseCargoMaps.Where(z => z.iItineraryId == iIternaryId).ToList().Select(model => new ItineraryHouseCargoModel
+                return db.tblItineraryMasterConsignmentMaps.Where(z => z.iItineraryId == iIternaryId).ToList().Select(model => new ItineraryMasterConsignmentModel
                 {
                     iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
-                    iHouseCargoDescId = model.iHouseCargoDescId,
+                    iMessageImplementationId = model.iMessageImplementationId,
                     dPortOfCallSequenceNo = model.dPortOfCallSequenceNo??0,
                     sPortOfCallCd = model.sPortOfCallCd,
                     sPortOfCallName = model.sPortOfCallName,

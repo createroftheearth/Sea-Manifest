@@ -33,7 +33,7 @@ namespace DAL
         public string sHCRefConsolidatedIndicator { get; set; }
         public string sHCRefConsolidatorPan { get; set; }
         public string sHCRefPreviousDescription { get; set; }
-        public string sLocCstmFirstPartyOfEntry { get; set; }
+        public string sLocCstmFirstPortOfEntry { get; set; }
         public string sLocCstmDestinationPort { get; set; }
         public string sLocCstmNextPortOfUnlading { get; set; }
         public string sLocCstmTypeOfCargo { get; set; }

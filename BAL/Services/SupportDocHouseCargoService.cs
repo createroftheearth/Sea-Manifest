@@ -103,7 +103,7 @@ namespace BAL.Services
             }
         }
 
-        public SupportDocHouseCargoModel GetSupportDocHouseCargoBySupportDocsId(int? iSupportDocsId)
+        public SupportDocHouseCargoModel GetSupportDocHouseCargoBySupportDocsId(int? iHouseCargoDescId, int? iSupportDocsId)
         {
             using (var db = new SeaManifestEntities())
             {

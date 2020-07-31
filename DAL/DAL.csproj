@@ -69,6 +69,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SAM_Entities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblAdditionalDetailsHouseCargoMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
