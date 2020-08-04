@@ -197,11 +197,11 @@
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorStreetAddress)
                     </div>
                     <div class="form-group col-md-4">
-                    <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountryCd)
                         @Html.DropDownListFor(z => z.sTrnsprtrDocPartyConsignorCountryCd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountryCd)
                     </div>
+                    <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd)
                         @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd, new { @class = "form-control" })
                         @Html.DropDownList("ddlConsignorSubDivCode", states, "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
