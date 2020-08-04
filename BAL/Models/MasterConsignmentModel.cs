@@ -191,7 +191,6 @@ namespace BAL.Models
         public string sTrnsprtrDocNameOfAnyOtherNotFdParty { get; set; }
         [Display(Name = "PAN Of Notified Party")]
         [MaxLength(17, ErrorMessage = "PAN Of Notified Party cannot exceed 17 character.")]
-        [RegularExpression(@"[A-Z]{5}\d{4}[A-Z]{1}", ErrorMessage = "Please Enter valid PAN Card")]
         public string sTrnsprtrDocPANOfNotFdParty { get; set; }
         [Display(Name = "Type Of Notified Party Code")]
         [MaxLength(3, ErrorMessage = "Type Of Notified Party Code cannot exceed 3 character.")]

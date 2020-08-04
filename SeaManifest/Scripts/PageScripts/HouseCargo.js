@@ -12,6 +12,7 @@ function initHouseCargos() {
         "serverSide": true,
         "destroy": true,
         "bLengthChange": false,
+        "bLengthChange": false,
         "filter": true,
         "ajax": {
             "url": "/HouseCargo/GetHouseCargos",
@@ -131,25 +132,25 @@ function checkFormHouseCargos() {
     var data = $('#sReportingEvent').val();
     var returnValue = true;
     if ((data == "SAM" || data == "SDM")) {
-        if ($('#sLocCustomFirstPortOfEntry').val() == "") {
+        if ($('#sLocCstmFirstPortOfEntry').val() == "") {
             validator.showErrors({
-                "sLocCustomFirstPortOfEntry": "First port of entry is a required field."
+                "sLocCstmFirstPortOfEntry": "First port of entry is a required field."
             });
-            $('#sLocCustomFirstPortOfEntry').focus();
+            $('#sLocCstmFirstPortOfEntry').focus();
             returnValue = false;
         }
-        if ($('#sLocCustomDestPort').val() == "") {
+        if ($('#sLocCstmDestPort').val() == "") {
             validator.showErrors({
-                "sLocCustomDestPort": "Destination port is a required field."
+                "sLocCstmDestPort": "Destination port is a required field."
             });
-            $('#sLocCustomDestPort').focus();
+            $('#sLocCstmDestPort').focus();
             returnValue = false;
         }
-        if ($('#sLocCustomNextPortOfUnlanding').val() == "") {
+        if ($('#sLocCstmNextPortOfUnlanding').val() == "") {
             validator.showErrors({
-                "sLocCustomNextPortOfUnlanding": "Next port of unlanding is a required field."
+                "sLocCstmNextPortOfUnlanding": "Next port of unlanding is a required field."
             });
-            $('#sLocCustomNextPortOfUnlanding').focus();
+            $('#sLocCstmNextPortOfUnlanding').focus();
             returnValue = false;
         }
     }
@@ -172,7 +173,7 @@ function checkFormHouseCargos() {
         }
     }
 
-    var typeOfCargo = $('#sLocCustomTypeOfCargo').val();
+    var typeOfCargo = $('#sLocCstmTypeOfCargo').val();
 
     //*********Consginor********//
     if (typeOfCargo == "EX" || typeOfCargo == "CG") {
@@ -306,12 +307,12 @@ function checkFormHouseCargos() {
 }
 
 
-$(document).on('change', '#sLocCustomTypeOfCargo', function () {
+$(document).on('change', '#sLocCstmTypeOfCargo', function () {
     changeTypeOfCargo();
 });
 
 function changeTypeOfCargo() {
-    var typeOfCargo = $('#sLocCustomTypeOfCargo').val();
+    var typeOfCargo = $('#sLocCstmTypeOfCargo').val();
     if (typeOfCargo == "EX") {
         $('#sTrnsprtrDocPartyConsignorCdType option').each(function (i, ele) {
             if ($(ele).val() == "GSN" || $(ele).val() == "GSD" || $(ele).val() == "GSG" || $(ele).val() == "PAN")

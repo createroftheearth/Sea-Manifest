@@ -72,6 +72,7 @@ namespace BAL.Models
         public string sLocCstmTypeOfPakages { get; set; }
         [Display(Name = "Transhipper Code")]
         [MaxLength(10, ErrorMessage = "Transhipper Code cannot exceed 10 character.")]
+        [RegularExpression(@"[A-Z]{5}\d{4}[A-Z]{1}", ErrorMessage = "Please Enter valid PAN Card")]
         [Required(ErrorMessage = "Transhipper Code is a required field.")]
         public string sTrnshprTranshipperCd { get; set; }
         [Display(Name = "Transhipper Bond")]

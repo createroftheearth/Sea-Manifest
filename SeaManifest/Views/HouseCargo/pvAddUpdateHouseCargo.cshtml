@@ -280,7 +280,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd)
-                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd, "PAN", new { @readonly = "readonly", @class = "form-control" })
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd, new { @readonly = "readonly", @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd)
                     </div>
                     <div class="form-group col-md-4">
@@ -329,6 +329,15 @@
                         @Html.TextBoxFor(z => z.sTrnsprtrDocPartyUCRCd, new { @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyUCRCd)
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-primary hideSDN hideSEI">
+            <div class="panel-heading">
+                Transporter Document Msr
+            </div>
+            <div class="panel-body">
+                <div class="row">
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.dTrnsprtrDocMsrNoOfPackages)
                         @Html.TextBoxFor(z => z.dTrnsprtrDocMsrNoOfPackages, new { @class = "form-control" })

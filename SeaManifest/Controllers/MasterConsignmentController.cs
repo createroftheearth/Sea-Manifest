@@ -43,6 +43,7 @@ namespace SeaManifest.Controllers
                 return PartialView("pvAddUpdateMasterConsignment", new MasterConsignmentModel
                 {
                     iMessageImplementationId = iMessageImplementationId,
+                    sTrnsprtrDocTypeOfNotFdPartyCd = "PAN",
                     sReportingEvent = MessageImplementationService.Instance.GetMessageTypeByImplementationId(iMessageImplementationId)
                 });
             }
