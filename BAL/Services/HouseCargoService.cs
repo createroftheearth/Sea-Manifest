@@ -301,5 +301,20 @@ namespace BAL.Services
                 return db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == HouseCargoDescId).Select(z => z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
             }
         }
+
+        public bool ValidateHouseCargo(HouseCargoModel model, out string Messages)
+        {
+            Messages = string.Empty;
+            bool valid = true;
+            using (var db = new SeaManifestEntities())
+            {
+                if (db.tblHouseCargoDescriptionMasterConsignmentMaps.Any(z => (model.sReportingEvent != "SEI" && model.sReportingEvent != "SDN") && z.iMessageImplementationId == model.iMessageImplementationId && z.dHCRefSubLineNo == model.dHCRefSubLineNo && z.iMasterConsignmentId == model.iMasterConsignmentId))
+                {
+                    valid = false; Messages = "Sub Line No already exists";
+                }
+            }
+            return valid;
+        }
+
     }
 }

@@ -31,7 +31,7 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateHouseCargo(int? iHouseCargoDescId=null)
+        public PartialViewResult AddUpdateHouseCargo(int? iHouseCargoDescId = null)
         {
             if (iHouseCargoDescId == null)
             {
@@ -49,13 +49,14 @@ namespace SeaManifest.Controllers
         [HttpPost]
         public JsonResult AddUpdateHouseCargo(HouseCargoModel model)
         {
-            if (ModelState.IsValid)
+            string Messages = string.Empty;
+            if (ModelState.IsValid && HouseCargoService.Instance.ValidateHouseCargo(model, out Messages))
             {
                 return Json(HouseCargoService.Instance.SaveHouseCargo(model, 1));
             }
             else
             {
-                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) + ", " + Messages });
             }
         }
     }

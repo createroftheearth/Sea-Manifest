@@ -2,6 +2,18 @@
 @{
     var previousDeclaration = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.PreviousDeclaration>();
     var consolidatedIndicator = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.ConsolidatedIndicator>().Where(z => z.Value == "S" || z.Value == "C");
+    var splitIndicator = SeaManifest.EnumHelper.SelectListForByte<BAL.Utilities.EnumConstant.SplitIndicator>();
+    var typeOfCargo = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.TypeOfCargo>();
+    var natureOfcargo = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("Nat_cargo");
+    var ports = BAL.Services.MasterConsignmentService.Instance.GetPorts();
+    var CodeType = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.CodeType>();
+    var states = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("State_Code");
+    var typesOfPackges = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("PKG_CODE");
+    var unitOfWeight = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.UnitOfWeight>();
+    var unitOfVolume = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.UnitOfVolume>();
+    var currencyCode = BAL.Services.MasterConsignmentService.Instance.GetCurrencyCodes();
+    var CountryCode = BAL.Services.MasterConsignmentService.Instance.GetCountryCodes();
+
 }
 @using (Html.BeginForm("AddUpdateHouseCargo", "HouseCargo", FormMethod.Post, new { @id = "frmHouseCargo" }))
 {
@@ -68,22 +80,22 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCstmFirstPortOfEntry)
-                        @Html.TextBoxFor(z => z.sLocCstmFirstPortOfEntry, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCstmFirstPortOfEntry, ports, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCstmFirstPortOfEntry)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCstmDestinationPort)
-                        @Html.TextBoxFor(z => z.sLocCstmDestinationPort, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCstmDestinationPort, ports, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCstmDestinationPort)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCstmNextPortOfUnlading)
-                        @Html.TextBoxFor(z => z.sLocCstmNextPortOfUnlading, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCstmNextPortOfUnlading, ports, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCstmNextPortOfUnlading)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCstmTypeOfCargo)
-                        @Html.TextBoxFor(z => z.sLocCstmTypeOfCargo, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCstmTypeOfCargo, typeOfCargo, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCstmTypeOfCargo)
                     </div>
                     <div class="form-group col-md-4">
@@ -98,12 +110,12 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCstmNatureOfCargo)
-                        @Html.TextBoxFor(z => z.sLocCstmNatureOfCargo, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCstmNatureOfCargo, natureOfcargo, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCstmNatureOfCargo)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCstmSplitIndicator)
-                        @Html.TextBoxFor(z => z.sLocCstmSplitIndicator, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCstmSplitIndicator, splitIndicator, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCstmSplitIndicator)
                     </div>
                     <div class="form-group col-md-4">
@@ -143,227 +155,230 @@
                 Transporter Document Party
             </div>
             <div class="panel-body">
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfAcceptedCCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPortOfAcceptedCCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfAcceptedCCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfAcceptedName)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPortOfAcceptedName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfAcceptedName)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfReceiptCcd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPortOfReceiptCcd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfReceiptCcd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfReceiptName)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPortOfReceiptName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfReceiptName)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorName)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorName)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCdType)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCdType, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCdType)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorStreetAddress)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorStreetAddress, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorStreetAddress)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCity)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCity, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCity)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivName)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivName)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountryCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCountryCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountryCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorPostCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorPostCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorPostCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeName)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeName)
-                </div>
-
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCd)
-                </div>
-
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyTypeOfCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyTypeOfCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyTypeOfCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeStreetAddress)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeStreetAddress, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeStreetAddress)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCity)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCity, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCity)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDivName)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDivName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDivName)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCountryCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCountryCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCountryCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneePostCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneePostCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneePostCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyNameOfAnyOtherNotFdParty)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNameOfAnyOtherNotFdParty, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNameOfAnyOtherNotFdParty)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyPANOfNotFdParty)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPANOfNotFdParty, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPANOfNotFdParty)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyStreetAddress)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyStreetAddress, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyStreetAddress)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCity)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCity, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCity)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDivName)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDivName, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDivName)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCountryCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCountryCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCountryCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyPostCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyPostCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyPostCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyGoodsDescAsPerBill)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyGoodsDescAsPerBill, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyGoodsDescAsPerBill)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyUCRType)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyUCRType, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyUCRType)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocPartyUCRCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocPartyUCRCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyUCRCd)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.dTrnsprtrDocMsrNoOfPackages)
-                    @Html.TextBoxFor(z => z.dTrnsprtrDocMsrNoOfPackages, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrNoOfPackages)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocMsrTypesOfPackages)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocMsrTypesOfPackages, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrTypesOfPackages)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocMsrMarksNoOnPackages)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocMsrMarksNoOnPackages, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrMarksNoOnPackages)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.dTrnsprtrDocMsrGrossWeight)
-                    @Html.TextBoxFor(z => z.dTrnsprtrDocMsrGrossWeight, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrGrossWeight)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.dTrnsprtrDocMsrNetWeight)
-                    @Html.TextBoxFor(z => z.dTrnsprtrDocMsrNetWeight, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrNetWeight)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocMsrUnitOfWeight)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocMsrUnitOfWeight, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrUnitOfWeight)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.dTrnsprtrDocMsrGrossVolume)
-                    @Html.TextBoxFor(z => z.dTrnsprtrDocMsrGrossVolume, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrGrossVolume)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocMsrUnitOfVolume)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocMsrUnitOfVolume, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrUnitOfVolume)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.dTrnsprtrDocMsrInvoiceValueOfConsigment)
-                    @Html.TextBoxFor(z => z.dTrnsprtrDocMsrInvoiceValueOfConsigment, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrInvoiceValueOfConsigment)
-                </div>
-                <div class="form-group col-md-4">
-                    @Html.LabelFor(z => z.sTrnsprtrDocMsrCurrencyCd)
-                    @Html.TextBoxFor(z => z.sTrnsprtrDocMsrCurrencyCd, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrCurrencyCd)
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfAcceptedCCd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocPartyPortOfAcceptedCCd, ports, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfAcceptedCCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfAcceptedName)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPortOfAcceptedName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfAcceptedName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfReceiptCcd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocPartyPortOfReceiptCcd, ports, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfReceiptCcd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyPortOfReceiptName)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPortOfReceiptName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPortOfReceiptName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorName)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCdType)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocPartyConsignorCdType, CodeType, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCdType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorStreetAddress)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorStreetAddress, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorStreetAddress)
+                    </div>
+                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountryCd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocPartyConsignorCountryCd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountryCd)
+                    </div>
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd, new { @class = "form-control" })
+                        @Html.DropDownList("ddlConsignorSubDivCode", states, "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivName)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCity)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCity, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCity)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorPostCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorPostCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorPostCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyTypeOfCd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocPartyTypeOfCd, CodeType, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyTypeOfCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeName)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeStreetAddress)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeStreetAddress, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeStreetAddress)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCountryCd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocPartyConsigneeCountryCd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCountryCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv)
+                        @Html.DropDownList("ddlConsigneeSubDivCode", states, "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDivName)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDivName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDivName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCity)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCity, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCity)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneePostCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneePostCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneePostCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyNameOfAnyOtherNotFdParty)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNameOfAnyOtherNotFdParty, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNameOfAnyOtherNotFdParty)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyPANOfNotFdParty)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyPANOfNotFdParty, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyPANOfNotFdParty)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd, "PAN", new { @readonly = "readonly", @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyTypeOfNotFdPartyCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCountryCd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocPartyNotFdPartyCountryCd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCountryCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv, new { @class = "form-control" })
+                        @Html.DropDownList("ddlNotFdPartySubDivCode", states, "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDivName)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDivName, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDivName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCity)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCity, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCity)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyPostCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyPostCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyPostCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyStreetAddress)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyStreetAddress, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyStreetAddress)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyGoodsDescAsPerBill)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyGoodsDescAsPerBill, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyGoodsDescAsPerBill)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyUCRType)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyUCRType, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyUCRType)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocPartyUCRCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocPartyUCRCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyUCRCd)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dTrnsprtrDocMsrNoOfPackages)
+                        @Html.TextBoxFor(z => z.dTrnsprtrDocMsrNoOfPackages, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrNoOfPackages)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocMsrTypesOfPackages)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrTypesOfPackages, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrTypesOfPackages)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocMsrMarksNoOnPackages)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrMarksNoOnPackages, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrMarksNoOnPackages)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dTrnsprtrDocMsrGrossWeight)
+                        @Html.TextBoxFor(z => z.dTrnsprtrDocMsrGrossWeight, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrGrossWeight)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dTrnsprtrDocMsrNetWeight)
+                        @Html.TextBoxFor(z => z.dTrnsprtrDocMsrNetWeight, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrNetWeight)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocMsrUnitOfWeight)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrUnitOfWeight, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrUnitOfWeight)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dTrnsprtrDocMsrGrossVolume)
+                        @Html.TextBoxFor(z => z.dTrnsprtrDocMsrGrossVolume, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrGrossVolume)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocMsrUnitOfVolume)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrUnitOfVolume, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrUnitOfVolume)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.dTrnsprtrDocMsrInvoiceValueOfConsigment)
+                        @Html.TextBoxFor(z => z.dTrnsprtrDocMsrInvoiceValueOfConsigment, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.dTrnsprtrDocMsrInvoiceValueOfConsigment)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocMsrCurrencyCd)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrCurrencyCd, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrCurrencyCd)
+                    </div>
                 </div>
             </div>
         </div>

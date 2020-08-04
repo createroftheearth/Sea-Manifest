@@ -263,14 +263,14 @@
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsignorCd)
                     </div>
                     <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sTrnsprtrDocConsignorCountryCd)
-                        @Html.DropDownListFor(z => z.sTrnsprtrDocConsignorCountryCd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
-                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsignorCountryCd)
-                    </div>
-                    <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocConsignorStreetAddress)
                         @Html.TextBoxFor(z => z.sTrnsprtrDocConsignorStreetAddress, new { @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsignorStreetAddress)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocConsignorCountryCd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocConsignorCountryCd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsignorCountryCd)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocConsignorCountrySubDivCd)
@@ -309,6 +309,11 @@
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsigneeCd)
                     </div>
                     <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocConsigneeStreetAddress)
+                        @Html.TextBoxFor(z => z.sTrnsprtrDocConsigneeStreetAddress, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsigneeStreetAddress)
+                    </div>
+                    <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocConsigneeCountryCd)
                         @Html.DropDownListFor(z => z.sTrnsprtrDocConsigneeCountryCd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsigneeCountryCd)
@@ -333,11 +338,6 @@
                         @Html.LabelFor(z => z.sTrnsprtrDocConsigneePostCd)
                         @Html.TextBoxFor(z => z.sTrnsprtrDocConsigneePostCd, new { @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsigneePostCd)
-                    </div>
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sTrnsprtrDocConsigneeStreetAddress)
-                        @Html.TextBoxFor(z => z.sTrnsprtrDocConsigneeStreetAddress, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsigneeStreetAddress)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocNameOfAnyOtherNotFdParty)
