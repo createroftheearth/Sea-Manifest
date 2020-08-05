@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdditionalDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItemDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItineraryMasterConsignmentController.cs" />
     <Compile Include="Controllers\TransportEquipmentHouseCargoController.cs" />

@@ -19,9 +19,8 @@ namespace BAL.Models
         [Required(ErrorMessage = "Tag Ref is a required field.")]
         public string sTagRef { get; set; }
         [Display(Name = "Ref Serial No.")]
-        [MaxLength(2, ErrorMessage = "Ref Serial No. cannot exceed 2 character.")]
         [Required(ErrorMessage = "Ref Serial No. is a required field.")]
-        public string sRefSerialNo { get; set; }
+        public decimal dRefSerialNo { get; set; }
         [Display(Name = "Info Type")]
         [MaxLength(2, ErrorMessage = "Info Type cannot exceed 2 character.")]
         [Required(ErrorMessage = "Info Type is a required field.")]
