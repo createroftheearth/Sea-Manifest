@@ -17,7 +17,7 @@ namespace DAL
         public int iTmAdditionalDetailsId { get; set; }
         public Nullable<int> iMessageImplementationId { get; set; }
         public string sTagRef { get; set; }
-        public string sRefSerialNo { get; set; }
+        public Nullable<decimal> dRefSerialNo { get; set; }
         public string sInfoType { get; set; }
         public string sInfoQualifier { get; set; }
         public string sInfoCd { get; set; }

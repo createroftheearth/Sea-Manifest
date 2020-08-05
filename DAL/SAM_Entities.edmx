@@ -23,7 +23,7 @@
           <Property Name="iMasterConsignmentId" Type="int" />
           <Property Name="iHouseCargoDescId" Type="int" />
           <Property Name="sTagRef" Type="varchar" MaxLength="5" />
-          <Property Name="sRefSerialNo" Type="varchar" MaxLength="2" />
+          <Property Name="dRefSerialNo" Type="decimal" Precision="5" Scale="0" />
           <Property Name="sInfoType" Type="varchar" MaxLength="2" />
           <Property Name="sInfoQualifier" Type="varchar" MaxLength="2" />
           <Property Name="sInfoCd" Type="varchar" MaxLength="2" />
@@ -41,7 +41,7 @@
           <Property Name="iMasterConsignmentId" Type="int" />
           <Property Name="iMessageImplementationId" Type="int" />
           <Property Name="sTagRef" Type="varchar" MaxLength="5" />
-          <Property Name="sRefSerialNo" Type="varchar" MaxLength="2" />
+          <Property Name="dRefSerialNo" Type="decimal" Precision="5" Scale="0" />
           <Property Name="sInfoType" Type="varchar" MaxLength="2" />
           <Property Name="sInfoQualifier" Type="varchar" MaxLength="2" />
           <Property Name="sInfoCd" Type="varchar" MaxLength="2" />
@@ -109,7 +109,7 @@
             <PropertyRef Name="iHouseCargoDescId" />
           </Key>
           <Property Name="iHouseCargoDescId" Type="int" Nullable="false" />
-          <Property Name="iMasterConsignmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iMasterConsignmentId" Type="int" Nullable="false" />
           <Property Name="iMessageImplementationId" Type="int" />
           <Property Name="dHCRefSubLineNo" Type="decimal" Precision="18" Scale="0" />
           <Property Name="sHCRefBillNo" Type="varchar" MaxLength="3" />
@@ -495,7 +495,7 @@
           <Property Name="iTmAdditionalDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="iMessageImplementationId" Type="int" />
           <Property Name="sTagRef" Type="varchar" MaxLength="5" />
-          <Property Name="sRefSerialNo" Type="varchar" MaxLength="2" />
+          <Property Name="dRefSerialNo" Type="decimal" Precision="5" Scale="0" />
           <Property Name="sInfoType" Type="varchar" MaxLength="2" />
           <Property Name="sInfoQualifier" Type="varchar" MaxLength="2" />
           <Property Name="sInfoCd" Type="varchar" MaxLength="2" />
@@ -1250,7 +1250,7 @@
           <Property Name="iMasterConsignmentId" Type="Int32" />
           <Property Name="iHouseCargoDescId" Type="Int32" />
           <Property Name="sTagRef" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="sRefSerialNo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="dRefSerialNo" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="sInfoType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="sInfoQualifier" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="sInfoCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -1270,7 +1270,7 @@
           <Property Name="iMasterConsignmentId" Type="Int32" />
           <Property Name="iMessageImplementationId" Type="Int32" />
           <Property Name="sTagRef" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="sRefSerialNo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="dRefSerialNo" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="sInfoType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="sInfoQualifier" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="sInfoCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -1343,7 +1343,7 @@
             <PropertyRef Name="iHouseCargoDescId" />
           </Key>
           <Property Name="iHouseCargoDescId" Type="Int32" Nullable="false" />
-          <Property Name="iMasterConsignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iMasterConsignmentId" Type="Int32" Nullable="false" />
           <Property Name="iMessageImplementationId" Type="Int32" />
           <Property Name="dHCRefSubLineNo" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="sHCRefBillNo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
@@ -1773,7 +1773,7 @@
           <Property Name="iTmAdditionalDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="iMessageImplementationId" Type="Int32" />
           <Property Name="sTagRef" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="sRefSerialNo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="dRefSerialNo" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="sInfoType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="sInfoQualifier" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="sInfoCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
@@ -2253,7 +2253,7 @@
                 <ScalarProperty Name="sInfoCd" ColumnName="sInfoCd" />
                 <ScalarProperty Name="sInfoQualifier" ColumnName="sInfoQualifier" />
                 <ScalarProperty Name="sInfoType" ColumnName="sInfoType" />
-                <ScalarProperty Name="sRefSerialNo" ColumnName="sRefSerialNo" />
+                <ScalarProperty Name="dRefSerialNo" ColumnName="dRefSerialNo" />
                 <ScalarProperty Name="sTagRef" ColumnName="sTagRef" />
                 <ScalarProperty Name="iHouseCargoDescId" ColumnName="iHouseCargoDescId" />
                 <ScalarProperty Name="iMasterConsignmentId" ColumnName="iMasterConsignmentId" />
@@ -2272,7 +2272,7 @@
                 <ScalarProperty Name="sInfoCd" ColumnName="sInfoCd" />
                 <ScalarProperty Name="sInfoQualifier" ColumnName="sInfoQualifier" />
                 <ScalarProperty Name="sInfoType" ColumnName="sInfoType" />
-                <ScalarProperty Name="sRefSerialNo" ColumnName="sRefSerialNo" />
+                <ScalarProperty Name="dRefSerialNo" ColumnName="dRefSerialNo" />
                 <ScalarProperty Name="sTagRef" ColumnName="sTagRef" />
                 <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
                 <ScalarProperty Name="iMasterConsignmentId" ColumnName="iMasterConsignmentId" />
@@ -2746,7 +2746,7 @@
                 <ScalarProperty Name="sInfoCd" ColumnName="sInfoCd" />
                 <ScalarProperty Name="sInfoQualifier" ColumnName="sInfoQualifier" />
                 <ScalarProperty Name="sInfoType" ColumnName="sInfoType" />
-                <ScalarProperty Name="sRefSerialNo" ColumnName="sRefSerialNo" />
+                <ScalarProperty Name="dRefSerialNo" ColumnName="dRefSerialNo" />
                 <ScalarProperty Name="sTagRef" ColumnName="sTagRef" />
                 <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
                 <ScalarProperty Name="iTmAdditionalDetailsId" ColumnName="iTmAdditionalDetailsId" />

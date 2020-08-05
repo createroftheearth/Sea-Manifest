@@ -41,7 +41,7 @@ namespace BAL.Services
                         data.iMasterConsignmentId = model.iMasterConsignmentId ?? 0;
                         data.iMessageImplementationId = model.iMessageImplementationId;
                         data.sTagRef = model.sTagRef;
-                        data.sRefSerialNo = model.sRefSerialNo;
+                        data.dRefSerialNo = model.dRefSerialNo;
                         data.sInfoType = model.sInfoType;
                         data.sInfoQualifier = model.sInfoQualifier;
                         data.sInfoCd = model.sInfoCd;
@@ -60,7 +60,7 @@ namespace BAL.Services
                             iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                             iMessageImplementationId = model.iMessageImplementationId,
                             sTagRef = model.sTagRef,
-                            sRefSerialNo = model.sRefSerialNo,
+                            dRefSerialNo = model.dRefSerialNo,
                             sInfoType = model.sInfoType,
                             sInfoQualifier = model.sInfoQualifier,
                             sInfoCd = model.sInfoCd,
@@ -112,7 +112,7 @@ namespace BAL.Services
                     iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                     iMessageImplementationId = model.iMessageImplementationId,
                     sTagRef = model.sTagRef,
-                    sRefSerialNo = model.sRefSerialNo,
+                    dRefSerialNo = model.dRefSerialNo??0,
                     sInfoType = model.sInfoType,
                     sInfoQualifier = model.sInfoQualifier,
                     sInfoCd = model.sInfoCd,
