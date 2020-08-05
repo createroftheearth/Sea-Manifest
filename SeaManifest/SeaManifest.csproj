@@ -127,6 +127,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdditionalDetailsMessageImplementationController.cs" />
     <Compile Include="Controllers\AdditionalDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItemDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItineraryMasterConsignmentController.cs" />
@@ -1550,7 +1551,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\JQuery\bootstrap.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\PageScripts\GeneratedBill.js" />
+    <Content Include="Scripts\PageScripts\AdditionalDetailsHouseCargo.js" />
+    <Content Include="Scripts\PageScripts\AdditionalDetailsMasterConsignment.js" />
+    <Content Include="Scripts\PageScripts\AdditionalDetailsMessageImplementation.js" />
     <Content Include="Scripts\PageScripts\ItemDetailsHouseCargo.js" />
     <Content Include="Scripts\PageScripts\ItineraryHouseCargo.js" />
     <Content Include="Scripts\PageScripts\HouseCargo.js" />
@@ -1605,6 +1608,10 @@
     <Content Include="Views\ItemDetailsMasterConsignment\pvAddUpdateItemDetailsMasterConsignment.cshtml" />
     <Content Include="Views\ItineraryMasterConsignment\Index.cshtml" />
     <Content Include="Views\ItineraryMasterConsignment\pvAddUpdateItineraryMasterConsignment.cshtml" />
+    <Content Include="Views\AdditionalDetailsMasterConsignment\Index.cshtml" />
+    <Content Include="Views\AdditionalDetailsMasterConsignment\pvAddUpdateAdditionalDetailsMasterConsignment.cshtml" />
+    <Content Include="Views\AdditionalDetailsMessageImplementation\Index.cshtml" />
+    <None Include="Views\AdditionalDetailsMessageImplementation\pvAddUpdateAdditionalDetailsMessageImplementation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

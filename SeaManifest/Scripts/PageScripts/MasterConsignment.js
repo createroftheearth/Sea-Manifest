@@ -33,6 +33,8 @@ function initMasterConsignments() {
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add House Cargo</button> ";
                     if ((full.sReportingEvent != "SEI" && full.sReportingEvent!="SDN"))
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItemDetailsMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
+                    if (full.sReportingEvent !== "SEI")
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AdditionalDetailsMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
                     return html;
                 }
             },

@@ -1,4 +1,5 @@
-﻿using BAL.Models;
+﻿
+using BAL.Models;
 using BAL.Services;
 using System;
 using System.Collections.Generic;
@@ -31,11 +32,17 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateAdditionalDetailsMasterConsignment(int? iMasterConsignmentId = null,int? iAdditionalDetailsId = null )
+        public PartialViewResult AddUpdateAdditionalDetailsMasterConsignment(int? iAdditionalDetailsId = null)
         {
-            if (iAdditionalDetailsId == null && iMasterConsignmentId == null)
+            if ((iAdditionalDetailsId ?? 0) == 0)
             {
-                return PartialView("pvAddUpdateAdditionalDetailsMasterConsignment");
+                var iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
+                var reportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId, out int iMessageImplementationId);
+                return PartialView("pvAddUpdateAdditionalDetailsMasterConsignment", new AdditionalDetailsMasterConsignmentModel
+                {
+                    iMasterConsignmentId = iMasterConsignmentId,
+                    iMessageImplementationId = iMessageImplementationId
+                });
             }
             else
                 return PartialView("pvAddUpdateAdditionalDetailsMasterConsignment", AdditionalDetailsMasterConsignmentService.Instance.GetAdditionalDetailsMasterConsignmentByAddDetailsId(iAdditionalDetailsId));

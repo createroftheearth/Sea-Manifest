@@ -61,7 +61,8 @@ namespace BAL.Services
                     FieldSequenceOrControlNumber = t.dHeaderFieldSequenceOrControlNumber?.ToString("#"),
                     Date = t.dtHeaderFieldDateTime.ToDateString(),
                     Time = t.dtHeaderFieldDateTime?.ToString("hh:mm tt", CultureInfo.InvariantCulture),
-                    t.iMessageImplementationId
+                    t.iMessageImplementationId,
+                    t.sDecRefReportingEvent
                 }).ToList();
             }
         }

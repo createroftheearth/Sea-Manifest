@@ -3,6 +3,7 @@ using BAL.Utilities;
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,6 @@ namespace BAL.Services
                     var data = db.tblAdditionalDetailsHouseCargoMaps.Where(z => z.iAdditionalDetailsId == model.iAdditionalDetailsId).SingleOrDefault();
                     if (data != null)
                     {
-                        data.iMasterConsignmentId = model.iMasterConsignmentId ?? 0;
                         data.iHouseCargoDescId = model.iHouseCargoDescId;
                         data.sTagRef = model.sTagRef;
                         data.dRefSerialNo = model.dRefSerialNo;
@@ -57,7 +57,6 @@ namespace BAL.Services
                     {
                         data = new tblAdditionalDetailsHouseCargoMap
                         {
-                            iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                             iHouseCargoDescId = model.iHouseCargoDescId,
                             sTagRef = model.sTagRef,
                             dRefSerialNo = model.dRefSerialNo,
@@ -73,7 +72,7 @@ namespace BAL.Services
                         db.tblAdditionalDetailsHouseCargoMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "AdditionalDetailsHouseCargo saved successfully!" };
+                    return new { Status = true, Message = "Additional Details saved successfully!" };
                 }
 
             }
@@ -88,31 +87,40 @@ namespace BAL.Services
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblAdditionalDetailsHouseCargoMaps
-                            where t.sInfoMsr.Contains(search) && t.iHouseCargoDescId == iHouseCargoDescId
+                            where (
+                                t.sInfoMsr.Contains(search) || SqlFunctions.StringConvert(t.dRefSerialNo).Contains(search)
+                                || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search)
+                                || t.sInfoCd.Contains(search) || t.sInfoText.Contains(search) || t.sInfoMsr.Contains(search)
+                            )
+                            && t.iHouseCargoDescId == iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.sInfoCd).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.sInfoCd).Take(length).Skip(start).ToList().Select(z => new
                 {
-                    t.iHouseCargoDescId,
-                    t.iMasterConsignmentId,
-                    t.sInfoQualifier,
-                    t.sInfoMsr,
-                   // t.iItemsDetailsId
-                    //masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    z.iAdditionalDetailsId,
+                    z.iHouseCargoDescId,
+                    z.iMasterConsignmentId,
+                    z.sInfoCd,
+                    z.sInfoMsr,
+                    z.sInfoQualifier,
+                    z.sInfoText,
+                    z.sInfoType,
+                    z.sTagRef,
+                    z.dRefSerialNo,
+                    sInfoDate = z.dtInfoDate.ToDateString()
                 }).ToList();
             }
         }
 
-        public AdditionalDetailsHouseCargoModel GetAdditionalDetailsHouseCargoByAddDetailsId(int? iHouseCargoDescId, int? iAdditionalDetailsId)
+        public AdditionalDetailsHouseCargoModel GetAdditionalDetailsHouseCargoByAddDetailsId(int? iAdditionalDetailsId)
         {
             using (var db = new SeaManifestEntities())
             {
                 return db.tblAdditionalDetailsHouseCargoMaps.Where(z => z.iAdditionalDetailsId == iAdditionalDetailsId).ToList().Select(model => new AdditionalDetailsHouseCargoModel
                 {
-                    iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                     iHouseCargoDescId = model.iHouseCargoDescId,
                     sTagRef = model.sTagRef,
-                    dRefSerialNo = model.dRefSerialNo??0,
+                    dRefSerialNo = model.dRefSerialNo ?? 0,
                     sInfoType = model.sInfoType,
                     sInfoQualifier = model.sInfoQualifier,
                     sInfoCd = model.sInfoCd,

@@ -294,11 +294,13 @@ namespace BAL.Services
                 }).SingleOrDefault();
             }
         }
-        public string GetMessageTypeByHouseCargoDescId(int? HouseCargoDescId)
+        public string GetMessageTypeByHouseCargoDescId(int? HouseCargoDescId,out int iMasterConsignmentId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == HouseCargoDescId).Select(z => z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
+                var query = db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == HouseCargoDescId);
+                iMasterConsignmentId = query.Select(z => z.iMasterConsignmentId).SingleOrDefault();
+                return query.Select(z => z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
             }
         }
 
