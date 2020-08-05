@@ -1,13 +1,13 @@
-﻿@model BAL.Models.TransportEquipmentHouseCargoModel
-@using (Html.BeginForm("AddUpdateTransportEquipmentHouseCargo", "TransportEquipmentHouseCargo", FormMethod.Post, new { @id = "frmTransportEquipmentHouseCargo" }))
+﻿@model BAL.Models.TransportEquipmentMasterConsignmentModel
+@using (Html.BeginForm("AddUpdateTransportEquipmentMasterConsignment", "TransportEquipmentMasterConsignment", FormMethod.Post, new { @id = "frmTransportEquipmentMasterConsignment" }))
 {
     <div class="modal-header">
         <h4 class="modal-title">Add/Update Transport Equipment</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
+        @Html.HiddenFor(z => z.iMessageImplementationId)
         @Html.HiddenFor(z => z.iMasterConsignmentId)
-        @Html.HiddenFor(z => z.iHouseCargoDescId)
         @Html.HiddenFor(z => z.iTransporterEquipmentId)
         @Html.HiddenFor(z => z.sReportingEvent)
         <div class="row">

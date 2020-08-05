@@ -30,9 +30,13 @@ function initHouseCargos() {
             },
             {
                 "data": "iHouseCargoDescId", "mRender": function (data, abc, full) {
-                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
+                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/TransportEquipmentHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> ";
                     if ((full.sReportingEvent != "SEI" && full.sReportingEvent != "SDN"))
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItemDetailsHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
+                    if (full.sReportingEvent !== "SEI")
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AdditionalDetailsHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
                     return html;
                 }
             },

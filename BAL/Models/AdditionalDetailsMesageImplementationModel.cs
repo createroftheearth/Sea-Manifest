@@ -7,20 +7,19 @@ using System.Threading.Tasks;
 
 namespace BAL.Models
 {
-    public class AdditionalDetailsHouseCargoModel
+    public class AdditionalDetailsMessageImplementationModel
     {
         public string sReportingEvent { get; set; }
 
         public int? iAdditionalDetailsId { get; set; }
-        public int? iMasterConsignmentId { get; set; }
-        public int? iHouseCargoDescId { get; set; }
+        public int? iMessageImplementationId { get; set; }
         [Display(Name = "Tag Ref")]
-        [MaxLength(2, ErrorMessage = "Tag Ref cannot exceed 2 character.")]
+        [MaxLength(5, ErrorMessage = "Tag Ref cannot exceed 5 character.")]
         [Required(ErrorMessage = "Tag Ref is a required field.")]
         public string sTagRef { get; set; }
         [Display(Name = "Ref Serial No.")]
-        [MaxLength(2, ErrorMessage = "Ref Serial No. cannot exceed 2 character.")]
         [Required(ErrorMessage = "Ref Serial No. is a required field.")]
+        [Range(0,99999,ErrorMessage ="Ref Serial No should be in range between 0 to 99999")]
         public decimal dRefSerialNo { get; set; }
         [Display(Name = "Info Type")]
         [MaxLength(10, ErrorMessage = "Info Type cannot exceed 10 character.")]

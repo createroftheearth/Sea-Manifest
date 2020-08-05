@@ -290,15 +290,15 @@ namespace BAL.Services
                     dTrnsprtrDocMsrGrossVolume = model.dTrnsprtrDocMsrGrossVolume,
                     sTrnsprtrDocMsrUnitOfVolume = model.sTrnsprtrDocMsrUnitOfVolume,
                     dTrnsprtrDocMsrInvoiceValueOfConsigment = model.dTrnsprtrDocMsrInvoiceValueOfConsigment,
-                    sTrnsprtrDocMsrCurrencyCd = model.sTrnsprtrDocMsrCurrencyCd,
+                    sTrnsprtrDocMsrCurrencyCd = model.sTrnsprtrDocMsrCurrencyCd
                 }).SingleOrDefault();
             }
         }
-        public string GetMessageTypeByHouseCargoDescId(int iHouseCargoDescId, out int iMasterConsignmentId)
+        public string GetMessageTypeByHouseCargoDescId(int? HouseCargoDescId,out int iMasterConsignmentId)
         {
             using (var db = new SeaManifestEntities())
             {
-                var query = db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == iHouseCargoDescId);
+                var query = db.tblHouseCargoDescriptionMasterConsignmentMaps.Where(z => z.iHouseCargoDescId == HouseCargoDescId);
                 iMasterConsignmentId = query.Select(z => z.iMasterConsignmentId).SingleOrDefault();
                 return query.Select(z => z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
             }

@@ -58,10 +58,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\AdditionalDetailsMesageImplementationModel.cs" />
     <Compile Include="Models\AdditionalDetailsMasterConsignmentModel.cs" />
     <Compile Include="Models\ItemDetailsMasterConsignmentModel.cs" />
     <Compile Include="Models\ItineraryMasterConsignmentModel.cs" />
     <Compile Include="Models\SupportDocMasterConsignmentModel.cs" />
+    <Compile Include="Models\TransportEquipmentMesssageImplementationModel.cs" />
     <Compile Include="Models\TransportEquipmentMasterConsignmentModel.cs" />
     <Compile Include="Models\TransportEquipmentHouseCargoModel.cs" />
     <Compile Include="Models\SupportDocHouseCargoModel.cs" />
@@ -73,10 +75,12 @@
     <Compile Include="Models\MessageImplementationModel.cs" />
     <Compile Include="Models\SAM_JsonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AdditionalDetailsMessageImplementationService.cs" />
     <Compile Include="Services\AdditionalDetailsMasterConsignmentService.cs" />
     <Compile Include="Services\ItemDetailsMasterConsignmentService.cs" />
     <Compile Include="Services\ItineraryMasterConsignmentService.cs" />
     <Compile Include="Services\SupportDocMasterConsignmentService.cs" />
+    <Compile Include="Services\TransportEquipmentMessageImplementationService.cs" />
     <Compile Include="Services\TransportEquipmentMasterConsignmentService.cs" />
     <Compile Include="Services\TransportEquipmentHouseCargoService.cs" />
     <Compile Include="Services\SupportDocHouseCargoService.cs" />

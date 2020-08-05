@@ -11,35 +11,35 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class AdditionalDetailsMasterConsignmentService
+    public class AdditionalDetailsMessageImplementationService
     {
-        private AdditionalDetailsMasterConsignmentService()
+        private AdditionalDetailsMessageImplementationService()
         {
         }
 
-        private static AdditionalDetailsMasterConsignmentService _instance;
+        private static AdditionalDetailsMessageImplementationService _instance;
 
-        public static AdditionalDetailsMasterConsignmentService Instance
+        public static AdditionalDetailsMessageImplementationService Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new AdditionalDetailsMasterConsignmentService();
+                    _instance = new AdditionalDetailsMessageImplementationService();
                 return _instance;
             }
         }
 
-        //save AdditionalDetailsMasterConsignment 
-        public object SaveAdditionalDetailsMasterConsignment(AdditionalDetailsMasterConsignmentModel model, int iUserId)
+        //save AdditionalDetailsMessageImplementation 
+        public object SaveAdditionalDetailsMessageImplementation(AdditionalDetailsMessageImplementationModel model, int iUserId)
         {
             try
             {
                 using (var db = new SeaManifestEntities())
                 {
-                    var data = db.tblAdditionalDetailsMasterConsignmentMaps.Where(z => z.iAdditionalDetailsId == model.iAdditionalDetailsId).SingleOrDefault();
+                    var data = db.tblTmAdditionalDetailsMessageImplementationMaps.Where(z => z.iTmAdditionalDetailsId == model.iAdditionalDetailsId).SingleOrDefault();
                     if (data != null)
                     {
-                        data.iMasterConsignmentId = model.iMasterConsignmentId;
+                        data.iMessageImplementationId = model.iMessageImplementationId;
                         data.sTagRef = model.sTagRef;
                         data.dRefSerialNo = model.dRefSerialNo;
                         data.sInfoType = model.sInfoType;
@@ -55,9 +55,9 @@ namespace BAL.Services
                     }
                     else
                     {
-                        data = new tblAdditionalDetailsMasterConsignmentMap
+                        data = new tblTmAdditionalDetailsMessageImplementationMap
                         {
-                            iMasterConsignmentId = model.iMasterConsignmentId,
+                            iMessageImplementationId = model.iMessageImplementationId,
                             sTagRef = model.sTagRef,
                             dRefSerialNo = model.dRefSerialNo,
                             sInfoType = model.sInfoType,
@@ -69,7 +69,7 @@ namespace BAL.Services
                             iActionBy = iUserId,
                             dtActionDate = DateTime.Now,
                         };
-                        db.tblAdditionalDetailsMasterConsignmentMaps.Add(data);
+                        db.tblTmAdditionalDetailsMessageImplementationMaps.Add(data);
                         db.SaveChanges();
                     }
                     return new { Status = true, Message = "Additional Details saved successfully!" };
@@ -82,23 +82,22 @@ namespace BAL.Services
             }
         }
 
-        public object GetAdditionalDetailsMasterConsignment(int iMasterConsignmentId, string search, int start, int length, out int recordsTotal)
+        public object GetAdditionalDetailsMessageImplementation(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
-                var query = from t in db.tblAdditionalDetailsMasterConsignmentMaps
+                var query = from t in db.tblTmAdditionalDetailsMessageImplementationMaps
                             where (
                                 t.sInfoMsr.Contains(search) || SqlFunctions.StringConvert(t.dRefSerialNo).Contains(search)
-                                || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search)
-                                || t.sInfoCd.Contains(search) || t.sInfoText.Contains(search) || t.sInfoMsr.Contains(search)
+                                || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search) 
+                                || t.sInfoCd.Contains(search) || t.sInfoText.Contains(search) || t.sInfoMsr.Contains(search) 
                             )
-                            && t.iMasterConsignmentId == iMasterConsignmentId
+                            && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sInfoCd).Take(length).Skip(start).ToList().Select(z => new
                 {
-                    z.iAdditionalDetailsId,
-                    z.iMasterConsignmentId,
+                    z.iTmAdditionalDetailsId,
                     z.iMessageImplementationId,
                     z.sInfoCd,
                     z.sInfoMsr,
@@ -112,16 +111,15 @@ namespace BAL.Services
             }
         }
 
-        public AdditionalDetailsMasterConsignmentModel GetAdditionalDetailsMasterConsignmentByAddDetailsId(int? iAdditionalDetailsId)
+        public AdditionalDetailsMessageImplementationModel GetAdditionalDetailsMessageImplementationByAddDetailsId(int? iAdditionalDetailsId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblAdditionalDetailsMasterConsignmentMaps.Where(z => z.iAdditionalDetailsId == iAdditionalDetailsId).ToList().Select(model => new AdditionalDetailsMasterConsignmentModel
+                return db.tblTmAdditionalDetailsMessageImplementationMaps.Where(z => z.iTmAdditionalDetailsId == iAdditionalDetailsId).ToList().Select(model => new AdditionalDetailsMessageImplementationModel
                 {
-                    iMasterConsignmentId = model.iMasterConsignmentId,
-                    iMessageImplementationId= model.iMessageImplementationId,
+                    iMessageImplementationId = model.iMessageImplementationId,
                     sTagRef = model.sTagRef,
-                    dRefSerialNo = model.dRefSerialNo ?? 0,
+                    dRefSerialNo = model.dRefSerialNo??0,
                     sInfoType = model.sInfoType,
                     sInfoQualifier = model.sInfoQualifier,
                     sInfoCd = model.sInfoCd,

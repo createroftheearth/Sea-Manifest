@@ -535,7 +535,6 @@
           <Property Name="sEquipmentSize" Type="varchar" MaxLength="4" />
           <Property Name="sEquipmentLoadStatus" Type="varchar" MaxLength="3" />
           <Property Name="sAdditionalEquipmentHold" Type="varchar" MaxLength="256" />
-          <Property Name="dtEventDate" Type="datetime" />
           <Property Name="sEquipmentSealType" Type="varchar" MaxLength="5" />
           <Property Name="sEquipmentSealNo" Type="varchar" MaxLength="15" />
           <Property Name="sOtherEquipmentId" Type="varchar" MaxLength="256" />
@@ -559,7 +558,6 @@
           <Property Name="sEquipmentSize" Type="varchar" MaxLength="4" />
           <Property Name="sEquipmentLoadStatus" Type="varchar" MaxLength="3" />
           <Property Name="sAdditionalEquipmentHold" Type="varchar" MaxLength="256" />
-          <Property Name="dtEventDate" Type="datetime" />
           <Property Name="sEquipmentSealType" Type="varchar" MaxLength="5" />
           <Property Name="sEquipmentSealNo" Type="varchar" MaxLength="15" />
           <Property Name="sOtherEquipmentId" Type="varchar" MaxLength="256" />
@@ -582,13 +580,17 @@
           <Property Name="sEquipmentSize" Type="varchar" MaxLength="4" />
           <Property Name="sEquipmentLoadStatus" Type="varchar" MaxLength="3" />
           <Property Name="sAdditionalEquipmentHold" Type="varchar" MaxLength="256" />
+          <Property Name="sFinalLocation" Type="varchar" MaxLength="10" />
+          <Property Name="dtEventDate" Type="datetime" />
           <Property Name="sEquipmentSealType" Type="varchar" MaxLength="5" />
           <Property Name="sEquipmentSealNo" Type="varchar" MaxLength="15" />
           <Property Name="sOtherEquipmentId" Type="varchar" MaxLength="256" />
+          <Property Name="sEquipmentStatus" Type="varchar" MaxLength="3" />
           <Property Name="sSOCFlag" Type="varchar" MaxLength="1" />
           <Property Name="sContainerAgentCode" Type="varchar" MaxLength="17" />
           <Property Name="dContainerWeight" Type="decimal" Precision="18" Scale="0" />
           <Property Name="dTotalNoOfPackages" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="sStoragePositionCoded" Type="varchar" MaxLength="17" />
           <Property Name="dtActionDate" Type="datetime" />
           <Property Name="iActionBy" Type="int" />
         </EntityType>
@@ -1815,7 +1817,6 @@
           <Property Name="sEquipmentSize" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="sEquipmentLoadStatus" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="sAdditionalEquipmentHold" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="dtEventDate" Type="DateTime" Precision="3" />
           <Property Name="sEquipmentSealType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="sEquipmentSealNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="sOtherEquipmentId" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
@@ -1841,7 +1842,6 @@
           <Property Name="sEquipmentSize" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="sEquipmentLoadStatus" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="sAdditionalEquipmentHold" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="dtEventDate" Type="DateTime" Precision="3" />
           <Property Name="sEquipmentSealType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="sEquipmentSealNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="sOtherEquipmentId" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
@@ -1866,13 +1866,17 @@
           <Property Name="sEquipmentSize" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Name="sEquipmentLoadStatus" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="sAdditionalEquipmentHold" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="sFinalLocation" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="dtEventDate" Type="DateTime" Precision="3" />
           <Property Name="sEquipmentSealType" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="sEquipmentSealNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="sOtherEquipmentId" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="sEquipmentStatus" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="sSOCFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="sContainerAgentCode" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
           <Property Name="dContainerWeight" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="dTotalNoOfPackages" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sStoragePositionCoded" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
           <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblVoyageTransporterEquipmentMessageImlementationMap" ToRole="tblMessageImplementation" />
@@ -2783,7 +2787,6 @@
                 <ScalarProperty Name="sOtherEquipmentId" ColumnName="sOtherEquipmentId" />
                 <ScalarProperty Name="sEquipmentSealNo" ColumnName="sEquipmentSealNo" />
                 <ScalarProperty Name="sEquipmentSealType" ColumnName="sEquipmentSealType" />
-                <ScalarProperty Name="dtEventDate" ColumnName="dtEventDate" />
                 <ScalarProperty Name="sAdditionalEquipmentHold" ColumnName="sAdditionalEquipmentHold" />
                 <ScalarProperty Name="sEquipmentLoadStatus" ColumnName="sEquipmentLoadStatus" />
                 <ScalarProperty Name="sEquipmentSize" ColumnName="sEquipmentSize" />
@@ -2808,7 +2811,6 @@
                 <ScalarProperty Name="sOtherEquipmentId" ColumnName="sOtherEquipmentId" />
                 <ScalarProperty Name="sEquipmentSealNo" ColumnName="sEquipmentSealNo" />
                 <ScalarProperty Name="sEquipmentSealType" ColumnName="sEquipmentSealType" />
-                <ScalarProperty Name="dtEventDate" ColumnName="dtEventDate" />
                 <ScalarProperty Name="sAdditionalEquipmentHold" ColumnName="sAdditionalEquipmentHold" />
                 <ScalarProperty Name="sEquipmentLoadStatus" ColumnName="sEquipmentLoadStatus" />
                 <ScalarProperty Name="sEquipmentSize" ColumnName="sEquipmentSize" />
@@ -2826,13 +2828,17 @@
               <MappingFragment StoreEntitySet="tblVoyageTransporterEquipmentMessageImlementationMap">
                 <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
                 <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+                <ScalarProperty Name="sStoragePositionCoded" ColumnName="sStoragePositionCoded" />
                 <ScalarProperty Name="dTotalNoOfPackages" ColumnName="dTotalNoOfPackages" />
                 <ScalarProperty Name="dContainerWeight" ColumnName="dContainerWeight" />
                 <ScalarProperty Name="sContainerAgentCode" ColumnName="sContainerAgentCode" />
                 <ScalarProperty Name="sSOCFlag" ColumnName="sSOCFlag" />
+                <ScalarProperty Name="sEquipmentStatus" ColumnName="sEquipmentStatus" />
                 <ScalarProperty Name="sOtherEquipmentId" ColumnName="sOtherEquipmentId" />
                 <ScalarProperty Name="sEquipmentSealNo" ColumnName="sEquipmentSealNo" />
                 <ScalarProperty Name="sEquipmentSealType" ColumnName="sEquipmentSealType" />
+                <ScalarProperty Name="dtEventDate" ColumnName="dtEventDate" />
+                <ScalarProperty Name="sFinalLocation" ColumnName="sFinalLocation" />
                 <ScalarProperty Name="sAdditionalEquipmentHold" ColumnName="sAdditionalEquipmentHold" />
                 <ScalarProperty Name="sEquipmentLoadStatus" ColumnName="sEquipmentLoadStatus" />
                 <ScalarProperty Name="sEquipmentSize" ColumnName="sEquipmentSize" />

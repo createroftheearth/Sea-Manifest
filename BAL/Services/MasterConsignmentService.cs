@@ -405,6 +405,7 @@ namespace BAL.Services
                     sSuplmntryDecSplitIndicator = model.sSuplmntryDecSplitIndicator,
                     dSuplmntryDecNoOfPackages = model.dSuplmntryDecNoOfPackages ?? 0,
                     sSuplmntryDecTypeOfPackages = model.sSuplmntryDecTypeOfPackages,
+                    sReportingEvent = model.tblMessageImplementation.sDecRefReportingEvent
                 }).SingleOrDefault();
             }
         }

@@ -12,21 +12,21 @@ namespace SeaManifest.Controllers
     public class ItemDetailsHouseCargoController : BaseController
     {
         // GET: HouseCargo
-        public ActionResult Index(int? iHouseCargoDescId)
+        public ActionResult Index(int? iHouseCargoId)
         {
-            Session["iHouseCargoDescId"] = iHouseCargoDescId;
-            ItemDetailsHouseCargoService.Instance.Validate(iHouseCargoDescId);
+            Session["iHouseCargoId"] = iHouseCargoId;
+            ItemDetailsHouseCargoService.Instance.Validate(iHouseCargoId);
             return View();
         }
 
         [HttpPost]
         public JsonResult GetItemDetailsHouseCargo()
         {
-            var iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+            var iHouseCargoId = Convert.ToInt32(Session["iHouseCargoId"]);
             var search = Request.Form.GetValues("search[value]").FirstOrDefault();
             var start = Convert.ToInt32(Request.Form.GetValues("start").FirstOrDefault());
             var length = Convert.ToInt32(Request.Form.GetValues("length").FirstOrDefault());
-            var data = ItemDetailsHouseCargoService.Instance.GetItemDetailsHouseCargo(iHouseCargoDescId, search, start, length, out int recordsTotal);
+            var data = ItemDetailsHouseCargoService.Instance.GetItemDetailsHouseCargo(iHouseCargoId, search, start, length, out int recordsTotal);
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
@@ -34,11 +34,11 @@ namespace SeaManifest.Controllers
         {
             if (iItemDetailsId == null)
             {
-                int iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+                int iHouseCargoId = Convert.ToInt32(Session["iHouseCargoId"]);
                 return PartialView("pvAddUpdateItemDetailsHouseCargo", new ItemDetailsHouseCargoModel
                 {
-                    iHouseCargoDescId = iHouseCargoDescId,
-                    sReportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId,out int iMasterConsignmentId),
+                    iHouseCargoDescId = iHouseCargoId,
+                    sReportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoId,out int iMasterConsignmentId),
                     iMasterConsignmentId = iMasterConsignmentId
                 });
             }
