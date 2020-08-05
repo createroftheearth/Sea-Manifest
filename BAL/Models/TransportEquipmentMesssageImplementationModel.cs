@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace BAL.Models
 {
-    public class TransportEquipmentHouseCargoModel
+    public class TransportEquipmentMessageImplementationModel
     {
         public string sReportingEvent { get; set; }
 
         public int iTransporterEquipmentId { get; set; }
-        public int? iHouseCargoDescId { get; set; }
-        public int? iMasterConsignmentId { get; set; }
+        public int? iMessageImplementationId { get; set; }
         [Display(Name = "Equipment Sequence No.")]
         [Required(ErrorMessage = "Equipment Sequence No. is a required field.")]
         public int iEquipmentSequenceNo { get; set; }
@@ -32,6 +31,8 @@ namespace BAL.Models
         [Display(Name = "Additional Equipment Hold")]
         [MaxLength(256, ErrorMessage = "Additional Equipment Hold cannot exceed 256 character.")]
         public string sAdditionalEquipmentHold { get; set; }
+        [Display(Name = "Event Date")]
+        public string sEventDate { get; set; }
         [Display(Name = "Equipment Seal Type")]
         [MaxLength(5, ErrorMessage = "Equipment Seal Type cannot exceed 5 character.")]
         public string sEquipmentSealType { get; set; }
@@ -51,5 +52,14 @@ namespace BAL.Models
         public decimal dContainerWeight { get; set; }
         [Display(Name = "Total No Of Packages")]
         public decimal dTotalNoOfPackages { get; set; }
+        [MaxLength(3,ErrorMessage ="Equipment Status cannot exceed 3 characters")]
+        [Display(Name = "Equipment Status")]
+        public string sEquipmentStatus { get; set; }
+        [MaxLength(10, ErrorMessage = "Final Destination Location cannot exceed 10 characters")]
+        [Display(Name = "Final Destination Location")]
+        public string sFinalLocation { get; set; }
+        [MaxLength(17, ErrorMessage = "Storage Position Coded cannot exceed 17 characters")]
+        [Display(Name = "Storage Position Coded")]
+        public string sStoragePositionCoded { get; set; }
     }
 }

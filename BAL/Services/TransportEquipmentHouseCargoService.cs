@@ -3,6 +3,7 @@ using BAL.Utilities;
 using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -38,7 +39,6 @@ namespace BAL.Services
                     var data = db.tblTransportEquipmentHouseCargoMaps.Where(z => z.iTransporterEquipmentId == model.iTransporterEquipmentId).SingleOrDefault();
                     if (data != null)
                     {
-                        data.iMasterConsignmentId = model.iMasterConsignmentId ?? 0;
                         data.iHouseCargoDescId = model.iHouseCargoDescId;
                         data.iEquipmentSequenceNo = model.iEquipmentSequenceNo;
                         data.sEquipmentId = model.sEquipmentId;
@@ -46,14 +46,16 @@ namespace BAL.Services
                         data.sEquipmentSize = model.sEquipmentSize;
                         data.sEquipmentLoadStatus = model.sEquipmentLoadStatus;
                         data.sAdditionalEquipmentHold = model.sAdditionalEquipmentHold;
-                        data.dtEventDate = model.sEventDate.ToDate();
                         data.sEquipmentSealType = model.sEquipmentSealType;
                         data.sEquipmentSealNo = model.sEquipmentSealNo;
                         data.sOtherEquipmentId = model.sOtherEquipmentId;
                         data.sSOCFlag = model.sSOCFlag;
                         data.sContainerAgentCd = model.sContainerAgentCd;
+                        data.iMasterConsignmentId = model.iMasterConsignmentId;
                         data.dContainerWeight = model.dContainerWeight;
                         data.dTotalNoOfPackages = model.dTotalNoOfPackages;
+                        data.iActionBy = iUserId;
+                        data.dtActionDate = DateTime.Now;
                         data.iActionBy = iUserId;
                         data.dtActionDate = DateTime.Now;
                         db.Entry(data).State = System.Data.Entity.EntityState.Modified;
@@ -63,7 +65,6 @@ namespace BAL.Services
                     {
                         data = new tblTransportEquipmentHouseCargoMap
                         {
-                            iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                             iHouseCargoDescId = model.iHouseCargoDescId,
                             iEquipmentSequenceNo = model.iEquipmentSequenceNo,
                             sEquipmentId = model.sEquipmentId,
@@ -71,12 +72,12 @@ namespace BAL.Services
                             sEquipmentSize = model.sEquipmentSize,
                             sEquipmentLoadStatus = model.sEquipmentLoadStatus,
                             sAdditionalEquipmentHold = model.sAdditionalEquipmentHold,
-                            dtEventDate = model.sEventDate.ToDate(),
                             sEquipmentSealType = model.sEquipmentSealType,
                             sEquipmentSealNo = model.sEquipmentSealNo,
                             sOtherEquipmentId = model.sOtherEquipmentId,
                             sSOCFlag = model.sSOCFlag,
                             sContainerAgentCd = model.sContainerAgentCd,
+                            iMasterConsignmentId = model.iMasterConsignmentId,
                             dContainerWeight = model.dContainerWeight,
                             dTotalNoOfPackages = model.dTotalNoOfPackages,
                             iActionBy = iUserId,
@@ -100,44 +101,67 @@ namespace BAL.Services
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblTransportEquipmentHouseCargoMaps
-                            where t.sEquipmentId.Contains(search) && t.iHouseCargoDescId == iHouseCargoDescId
+                            where
+                            (t.sEquipmentId.Contains(search)
+                            || t.sEquipmentType.Contains(search)
+                            || t.sEquipmentSize.Contains(search)
+                            || t.sEquipmentLoadStatus.Contains(search)
+                            || t.sAdditionalEquipmentHold.Contains(search)
+                            || t.sEquipmentSealType.Contains(search)
+                            || t.sEquipmentSealNo.Contains(search)
+                            || t.sOtherEquipmentId.Contains(search)
+                            || t.sSOCFlag.Contains(search)
+                            || t.sContainerAgentCd.Contains(search)
+                            || SqlFunctions.StringConvert(t.dContainerWeight).Contains(search)
+                            || SqlFunctions.StringConvert(t.dTotalNoOfPackages).Contains(search)
+                            )
+                            && t.iHouseCargoDescId == iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sEquipmentType).Take(length).Skip(start).ToList().Select(t => new
                 {
+                    t.iTransporterEquipmentId,
                     t.iHouseCargoDescId,
-                    t.iMasterConsignmentId,
+                    t.iEquipmentSequenceNo,
                     t.sEquipmentId,
                     t.sEquipmentType,
-                    // t.iItemsDetailsId
-                    //masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    t.sEquipmentSize,
+                    t.sEquipmentLoadStatus,
+                    t.sAdditionalEquipmentHold,
+                    t.sEquipmentSealType,
+                    t.sEquipmentSealNo,
+                    t.sOtherEquipmentId,
+                    t.sSOCFlag,
+                    t.sContainerAgentCd,
+                    t.dContainerWeight,
+                    t.dTotalNoOfPackages,
                 }).ToList();
             }
         }
 
-        public TransportEquipmentHouseCargoModel GetTransportEquipmentHouseCargoByTransporterEquipmentId(int? iHouseCargoDescId, int? iTransporterEquipmentId)
+        public TransportEquipmentHouseCargoModel GetTransportEquipmentHouseCargoByTransporterEquipmentId(int? iTransporterEquipmentId)
         {
             using (var db = new SeaManifestEntities())
             {
                 return db.tblTransportEquipmentHouseCargoMaps.Where(z => z.iTransporterEquipmentId == iTransporterEquipmentId).ToList().Select(model => new TransportEquipmentHouseCargoModel
                 {
-                    iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
+                    iMasterConsignmentId = model.iMasterConsignmentId,
                     iHouseCargoDescId = model.iHouseCargoDescId,
-                    iEquipmentSequenceNo = model.iEquipmentSequenceNo??0,
+                    iEquipmentSequenceNo = model.iEquipmentSequenceNo ?? 0,
                     sEquipmentId = model.sEquipmentId,
                     sEquipmentType = model.sEquipmentType,
                     sEquipmentSize = model.sEquipmentSize,
                     sEquipmentLoadStatus = model.sEquipmentLoadStatus,
                     sAdditionalEquipmentHold = model.sAdditionalEquipmentHold,
-                    sEventDate = model.dtEventDate.ToDateString(),
                     sEquipmentSealType = model.sEquipmentSealType,
                     sEquipmentSealNo = model.sEquipmentSealNo,
                     sOtherEquipmentId = model.sOtherEquipmentId,
                     sSOCFlag = model.sSOCFlag,
                     sContainerAgentCd = model.sContainerAgentCd,
-                    dContainerWeight = model.dContainerWeight??0,
-                    dTotalNoOfPackages = model.dTotalNoOfPackages??0,
-
+                    dContainerWeight = model.dContainerWeight ?? 0,
+                    dTotalNoOfPackages = model.dTotalNoOfPackages ?? 0,
+                    iTransporterEquipmentId = model.iTransporterEquipmentId,
+                    sReportingEvent = model.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent,
                 }).SingleOrDefault();
             }
         }

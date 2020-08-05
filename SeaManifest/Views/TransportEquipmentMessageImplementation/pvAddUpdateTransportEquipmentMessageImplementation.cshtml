@@ -1,13 +1,12 @@
-﻿@model BAL.Models.TransportEquipmentHouseCargoModel
-@using (Html.BeginForm("AddUpdateTransportEquipmentHouseCargo", "TransportEquipmentHouseCargo", FormMethod.Post, new { @id = "frmTransportEquipmentHouseCargo" }))
+﻿@model BAL.Models.TransportEquipmentMessageImplementationModel
+@using (Html.BeginForm("AddUpdateTransportEquipmentMessageImplementation", "TransportEquipmentMessageImplementation", FormMethod.Post, new { @id = "frmTransportEquipmentMessageImplementation" }))
 {
     <div class="modal-header">
         <h4 class="modal-title">Add/Update Transport Equipment</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
-        @Html.HiddenFor(z => z.iMasterConsignmentId)
-        @Html.HiddenFor(z => z.iHouseCargoDescId)
+        @Html.HiddenFor(z => z.iMessageImplementationId)
         @Html.HiddenFor(z => z.iTransporterEquipmentId)
         @Html.HiddenFor(z => z.sReportingEvent)
         <div class="row">
@@ -40,6 +39,23 @@
                 @Html.LabelFor(z => z.sAdditionalEquipmentHold)
                 @Html.TextBoxFor(z => z.sAdditionalEquipmentHold, new { @class = "form-control" })
                 @Html.ValidationMessageFor(z => z.sAdditionalEquipmentHold)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sFinalLocation)
+                @Html.TextBoxFor(z => z.sFinalLocation, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sFinalLocation)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sEventDate)
+                <div class="input-group" id="psEventDate" data-target-input="nearest">
+                    @Html.TextBoxFor(z => z.sEventDate, new { @class = "form-control datetimepicker-input", @data_target = "#psEventDate" })
+                    <div class="input-group-append" data-target="#psEventDate" data-toggle="datetimepicker">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                </div>
+                @Html.ValidationMessageFor(z => z.sEventDate)
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sEquipmentSealType)

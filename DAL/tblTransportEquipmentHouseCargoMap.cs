@@ -23,7 +23,6 @@ namespace DAL
         public string sEquipmentSize { get; set; }
         public string sEquipmentLoadStatus { get; set; }
         public string sAdditionalEquipmentHold { get; set; }
-        public Nullable<System.DateTime> dtEventDate { get; set; }
         public string sEquipmentSealType { get; set; }
         public string sEquipmentSealNo { get; set; }
         public string sOtherEquipmentId { get; set; }

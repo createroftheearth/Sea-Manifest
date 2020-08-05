@@ -22,13 +22,17 @@ namespace DAL
         public string sEquipmentSize { get; set; }
         public string sEquipmentLoadStatus { get; set; }
         public string sAdditionalEquipmentHold { get; set; }
+        public string sFinalLocation { get; set; }
+        public Nullable<System.DateTime> dtEventDate { get; set; }
         public string sEquipmentSealType { get; set; }
         public string sEquipmentSealNo { get; set; }
         public string sOtherEquipmentId { get; set; }
+        public string sEquipmentStatus { get; set; }
         public string sSOCFlag { get; set; }
         public string sContainerAgentCode { get; set; }
         public Nullable<decimal> dContainerWeight { get; set; }
         public Nullable<decimal> dTotalNoOfPackages { get; set; }
+        public string sStoragePositionCoded { get; set; }
         public Nullable<System.DateTime> dtActionDate { get; set; }
         public Nullable<int> iActionBy { get; set; }
     

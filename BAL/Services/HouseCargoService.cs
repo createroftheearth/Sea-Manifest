@@ -290,7 +290,7 @@ namespace BAL.Services
                     dTrnsprtrDocMsrGrossVolume = model.dTrnsprtrDocMsrGrossVolume,
                     sTrnsprtrDocMsrUnitOfVolume = model.sTrnsprtrDocMsrUnitOfVolume,
                     dTrnsprtrDocMsrInvoiceValueOfConsigment = model.dTrnsprtrDocMsrInvoiceValueOfConsigment,
-                    sTrnsprtrDocMsrCurrencyCd = model.sTrnsprtrDocMsrCurrencyCd,
+                    sTrnsprtrDocMsrCurrencyCd = model.sTrnsprtrDocMsrCurrencyCd
                 }).SingleOrDefault();
             }
         }

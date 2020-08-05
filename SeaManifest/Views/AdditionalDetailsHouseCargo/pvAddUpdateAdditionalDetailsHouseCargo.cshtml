@@ -2,13 +2,13 @@
 @using (Html.BeginForm("AddUpdateAdditionalDetailsHouseCargo", "AdditionalDetailsHouseCargo", FormMethod.Post, new { @id = "frmAdditionalDetailsHouseCargo" }))
 {
     <div class="modal-header">
-        <h4 class="modal-title">Add/Update Additional Details</h4>
+        <h4 class="modal-title">Add/Update Additional Details House Cargo</h4>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
     </div>
     <div class="modal-body">
         @Html.HiddenFor(z => z.iHouseCargoDescId)
-        @Html.HiddenFor(z => z.iAdditionalDetailsId)
         @Html.HiddenFor(z => z.iMasterConsignmentId)
+        @Html.HiddenFor(z => z.iAdditionalDetailsId)
         <div class="row">
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sTagRef)

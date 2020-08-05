@@ -11,51 +11,52 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class TransportEquipmentMasterConsignmentService
+    public class TransportEquipmentMessageImplementationService
     {
-        private TransportEquipmentMasterConsignmentService()
+        private TransportEquipmentMessageImplementationService()
         {
         }
 
-        private static TransportEquipmentMasterConsignmentService _instance;
+        private static TransportEquipmentMessageImplementationService _instance;
 
-        public static TransportEquipmentMasterConsignmentService Instance
+        public static TransportEquipmentMessageImplementationService Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new TransportEquipmentMasterConsignmentService();
+                    _instance = new TransportEquipmentMessageImplementationService();
                 return _instance;
             }
         }
 
-        //save TransportEquipmentMasterConsignment 
-        public object SaveTransportEquipmentMasterConsignment(TransportEquipmentMasterConsignmentModel model, int iUserId)
+        //save TransportEquipmentMessageImplementation 
+        public object SaveTransportEquipmentMessageImplementation(TransportEquipmentMessageImplementationModel model, int iUserId)
         {
             try
             {
                 using (var db = new SeaManifestEntities())
                 {
-                    var data = db.tblTransportEquipmentMasterConsignmentMaps.Where(z => z.iTransporterEquipmentId == model.iTransporterEquipmentId).SingleOrDefault();
+                    var data = db.tblVoyageTransporterEquipmentMessageImlementationMaps.Where(z => z.iVoyageTransportId == model.iTransporterEquipmentId).SingleOrDefault();
                     if (data != null)
                     {
-                        data.iMasterConsignmentId = model.iMasterConsignmentId;
+                        data.iMessageImplementationId = model.iMessageImplementationId;
                         data.iEquipmentSequenceNo = model.iEquipmentSequenceNo;
                         data.sEquipmentId = model.sEquipmentId;
-                            data.sEquipmentType = model.sEquipmentType;
-                            data.sEquipmentSize = model.sEquipmentSize;
-                            data.sEquipmentLoadStatus = model.sEquipmentLoadStatus;
-                            data.sAdditionalEquipmentHold = model.sAdditionalEquipmentHold;
-                            data.sEquipmentSealType = model.sEquipmentSealType;
-                            data.sEquipmentSealNo = model.sEquipmentSealNo;
-                            data.sOtherEquipmentId = model.sOtherEquipmentId;
-                            data.sSOCFlag = model.sSOCFlag;
-                            data.sContainerAgentCd = model.sContainerAgentCd;
-                            data.iMessageImplementationId = model.iMessageImplementationId;
-                            data.dContainerWeight = model.dContainerWeight;
-                            data.dTotalNoOfPackages = model.dTotalNoOfPackages;
-                            data.iActionBy = iUserId;
-                            data.dtActionDate = DateTime.Now;
+                        data.sEquipmentType = model.sEquipmentType;
+                        data.sEquipmentSize = model.sEquipmentSize;
+                        data.sEquipmentLoadStatus = model.sEquipmentLoadStatus;
+                        data.sAdditionalEquipmentHold = model.sAdditionalEquipmentHold;
+                        data.dtEventDate = model.sEventDate.ToDate();
+                        data.sEquipmentSealType = model.sEquipmentSealType;
+                        data.sEquipmentSealNo = model.sEquipmentSealNo;
+                        data.sOtherEquipmentId = model.sOtherEquipmentId;
+                        data.sSOCFlag = model.sSOCFlag;
+                        data.sContainerAgentCode = model.sContainerAgentCd;
+                        data.dContainerWeight = model.dContainerWeight;
+                        data.dTotalNoOfPackages = model.dTotalNoOfPackages;
+                        data.sEquipmentStatus = model.sEquipmentStatus;
+                        data.sFinalLocation = model.sFinalLocation;
+                        data.sStoragePositionCoded = model.sStoragePositionCoded;
                         data.iActionBy = iUserId;
                         data.dtActionDate = DateTime.Now;
                         db.Entry(data).State = System.Data.Entity.EntityState.Modified;
@@ -63,27 +64,30 @@ namespace BAL.Services
                     }
                     else
                     {
-                        data = new tblTransportEquipmentMasterConsignmentMap
+                        data = new tblVoyageTransporterEquipmentMessageImlementationMap
                         {
-                            iMasterConsignmentId = model.iMasterConsignmentId,
+                            iMessageImplementationId = model.iMessageImplementationId,
                             iEquipmentSequenceNo = model.iEquipmentSequenceNo,
                             sEquipmentId = model.sEquipmentId,
                             sEquipmentType = model.sEquipmentType,
                             sEquipmentSize = model.sEquipmentSize,
                             sEquipmentLoadStatus = model.sEquipmentLoadStatus,
                             sAdditionalEquipmentHold = model.sAdditionalEquipmentHold,
+                            dtEventDate = model.sEventDate.ToDate(),
                             sEquipmentSealType = model.sEquipmentSealType,
                             sEquipmentSealNo = model.sEquipmentSealNo,
                             sOtherEquipmentId = model.sOtherEquipmentId,
                             sSOCFlag = model.sSOCFlag,
-                            sContainerAgentCd = model.sContainerAgentCd,
-                            iMessageImplementationId = model.iMessageImplementationId,
+                            sContainerAgentCode = model.sContainerAgentCd,
                             dContainerWeight = model.dContainerWeight,
                             dTotalNoOfPackages = model.dTotalNoOfPackages,
+                            sEquipmentStatus = model.sEquipmentStatus,
+                            sFinalLocation = model.sFinalLocation,
+                            sStoragePositionCoded = model.sStoragePositionCoded,
                             iActionBy = iUserId,
                             dtActionDate = DateTime.Now,
                         };
-                        db.tblTransportEquipmentMasterConsignmentMaps.Add(data);
+                        db.tblVoyageTransporterEquipmentMessageImlementationMaps.Add(data);
                         db.SaveChanges();
                     }
                     return new { Status = true, Message = "Transport Equipment House Cargo saved successfully!" };
@@ -96,13 +100,13 @@ namespace BAL.Services
             }
         }
 
-        public object GetTransportEquipmentMasterConsignment(int iMasterConsignmentId, string search, int start, int length, out int recordsTotal)
+        public object GetTransportEquipmentMessageImplementation(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
-                var query = from t in db.tblTransportEquipmentMasterConsignmentMaps
+                var query = from t in db.tblVoyageTransporterEquipmentMessageImlementationMaps
                             where
-                            (t.sEquipmentId.Contains(search)
+                            ( t.sEquipmentId.Contains(search)
                             || t.sEquipmentType.Contains(search)
                             || t.sEquipmentSize.Contains(search)
                             || t.sEquipmentLoadStatus.Contains(search)
@@ -111,56 +115,63 @@ namespace BAL.Services
                             || t.sEquipmentSealNo.Contains(search)
                             || t.sOtherEquipmentId.Contains(search)
                             || t.sSOCFlag.Contains(search)
-                            || t.sContainerAgentCd.Contains(search)
+                            || t.sContainerAgentCode.Contains(search)
                             || SqlFunctions.StringConvert(t.dContainerWeight).Contains(search)
                             || SqlFunctions.StringConvert(t.dTotalNoOfPackages).Contains(search)
                             )
-                            && t.iMasterConsignmentId == iMasterConsignmentId
+                            && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sEquipmentType).Take(length).Skip(start).ToList().Select(t => new
                 {
-                    t.iTransporterEquipmentId,
-                    t.iMasterConsignmentId,
-                    t.iEquipmentSequenceNo,
-                    t.sEquipmentId,
+                    t.iVoyageTransportId,
+                    t.iMessageImplementationId,
+                    t.iEquipmentSequenceNo ,
+                    t.sEquipmentId ,
                     t.sEquipmentType,
                     t.sEquipmentSize,
-                    t.sEquipmentLoadStatus,
-                    t.sAdditionalEquipmentHold,
+                    t.sEquipmentLoadStatus ,
+                    t.sAdditionalEquipmentHold ,
+                    sEventDate = t.dtEventDate.ToDateString(),
                     t.sEquipmentSealType,
-                    t.sEquipmentSealNo,
+                    t.sEquipmentSealNo ,
                     t.sOtherEquipmentId,
-                    t.sSOCFlag,
-                    t.sContainerAgentCd,
+                    t.sSOCFlag ,
+                    t.sContainerAgentCode,
                     t.dContainerWeight,
                     t.dTotalNoOfPackages,
+                    t.sEquipmentStatus,
+                    t.sFinalLocation,
+                    t.sStoragePositionCoded,
                 }).ToList();
             }
         }
 
-        public TransportEquipmentMasterConsignmentModel GetTransportEquipmentMasterConsignmentByTransporterEquipmentId(int? iTransporterEquipmentId)
+        public TransportEquipmentMessageImplementationModel GetTransportEquipmentMessageImplementationByTransporterEquipmentId(int? iTransporterEquipmentId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblTransportEquipmentMasterConsignmentMaps.Where(z => z.iTransporterEquipmentId == iTransporterEquipmentId).ToList().Select(model => new TransportEquipmentMasterConsignmentModel
+                return db.tblVoyageTransporterEquipmentMessageImlementationMaps.Where(z => z.iVoyageTransportId == iTransporterEquipmentId).ToList().Select(model => new TransportEquipmentMessageImplementationModel
                 {
                     iMessageImplementationId = model.iMessageImplementationId,
-                    iMasterConsignmentId = model.iMasterConsignmentId,
                     iEquipmentSequenceNo = model.iEquipmentSequenceNo ?? 0,
                     sEquipmentId = model.sEquipmentId,
                     sEquipmentType = model.sEquipmentType,
                     sEquipmentSize = model.sEquipmentSize,
                     sEquipmentLoadStatus = model.sEquipmentLoadStatus,
                     sAdditionalEquipmentHold = model.sAdditionalEquipmentHold,
+                    sEventDate = model.dtEventDate.ToDateString(),
                     sEquipmentSealType = model.sEquipmentSealType,
                     sEquipmentSealNo = model.sEquipmentSealNo,
                     sOtherEquipmentId = model.sOtherEquipmentId,
                     sSOCFlag = model.sSOCFlag,
-                    sContainerAgentCd = model.sContainerAgentCd,
+                    sContainerAgentCd = model.sContainerAgentCode,
                     dContainerWeight = model.dContainerWeight ?? 0,
                     dTotalNoOfPackages = model.dTotalNoOfPackages ?? 0,
-                    iTransporterEquipmentId = model.iTransporterEquipmentId,
+                    sEquipmentStatus = model.sEquipmentStatus,
+                    sFinalLocation = model.sFinalLocation,
+                    sStoragePositionCoded = model.sStoragePositionCoded,
+                    iTransporterEquipmentId = model.iVoyageTransportId,
                     sReportingEvent = model.tblMessageImplementation.sDecRefReportingEvent,
                 }).SingleOrDefault();
             }

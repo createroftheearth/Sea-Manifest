@@ -15,6 +15,7 @@ namespace SeaManifest.Controllers
         public ActionResult Index(int? iHouseCargoDescId)
         {
             Session["iHouseCargoDescId"] = iHouseCargoDescId;
+            HouseCargoService.Instance.Validate(iHouseCargoDescId);
             return View();
         }
 
@@ -30,14 +31,20 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateTransportEquipmentHouseCargo(int? iHouseCargoDescId = null,int? iTransporterEquipmentId = null )
+        public PartialViewResult AddUpdateTransportEquipmentHouseCargo(int? iTransporterEquipmentId = null )
         {
-            if (iTransporterEquipmentId == null && iHouseCargoDescId == null)
+            if ((iTransporterEquipmentId ?? 0) == 0)
             {
-                return PartialView("pvAddUpdateTransportEquipmentHouseCargo");
+                var iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+                return PartialView("pvAddUpdateTransportEquipmentHouseCargo", new TransportEquipmentHouseCargoModel
+                {
+                    iHouseCargoDescId = iHouseCargoDescId,
+                    sReportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId,out int iMasterConsignmentId),
+                    iMasterConsignmentId = iMasterConsignmentId
+                });
             }
             else
-                return PartialView("pvAddUpdateTransportEquipmentHouseCargo", TransportEquipmentHouseCargoService.Instance.GetTransportEquipmentHouseCargoByTransporterEquipmentId(iHouseCargoDescId, iTransporterEquipmentId));
+                return PartialView("pvAddUpdateTransportEquipmentHouseCargo", TransportEquipmentHouseCargoService.Instance.GetTransportEquipmentHouseCargoByTransporterEquipmentId(iTransporterEquipmentId));
         }
 
         [HttpPost]
