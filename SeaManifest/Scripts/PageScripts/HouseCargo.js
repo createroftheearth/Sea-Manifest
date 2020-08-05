@@ -30,10 +30,9 @@ function initHouseCargos() {
             },
             {
                 "data": "iHouseCargoDescId", "mRender": function (data, abc, full) {
-                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> ";
+                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                     if ((full.sReportingEvent != "SEI" && full.sReportingEvent != "SDN"))
-                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItemDetailsMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItemDetailsHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
                     return html;
                 }
             },

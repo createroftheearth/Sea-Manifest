@@ -204,7 +204,7 @@
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd)
                         @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd, new { @class = "form-control" })
-                        @Html.DropDownList("ddlConsignorSubDivCode", states, "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
+                        @Html.DropDownList("ddlConsignorSubDivCode", new SelectList(states,"Value","Text", Model.sTrnsprtrDocPartyConsignorCountrySubDivCd), "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsignorCountrySubDivCd)
                     </div>
                     <div class="form-group col-md-4">
@@ -249,7 +249,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv)
-                        @Html.DropDownList("ddlConsigneeSubDivCode", states, "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
+                        @Html.DropDownList("ddlConsigneeSubDivCode",  new SelectList(states, "Value", "Text", Model.sTrnsprtrDocPartyConsigneeCountrySubDiv), "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
                         @Html.TextBoxFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv, new { @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyConsigneeCountrySubDiv)
                     </div>
@@ -291,7 +291,7 @@
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv)
                         @Html.TextBoxFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv, new { @class = "form-control" })
-                        @Html.DropDownList("ddlNotFdPartySubDivCode", states, "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
+                        @Html.DropDownList("ddlNotFdPartySubDivCode", new SelectList(states, "Value", "Text", Model.sTrnsprtrDocPartyNotFdPartyCountrySubDiv), "Select", new { @class = "form-control", @data_live_search = "true", @style = "display:none" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocPartyNotFdPartyCountrySubDiv)
                     </div>
                     <div class="form-group col-md-4">

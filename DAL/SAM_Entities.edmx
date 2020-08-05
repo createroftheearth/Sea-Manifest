@@ -24,11 +24,11 @@
           <Property Name="iHouseCargoDescId" Type="int" />
           <Property Name="sTagRef" Type="varchar" MaxLength="5" />
           <Property Name="dRefSerialNo" Type="decimal" Precision="5" Scale="0" />
-          <Property Name="sInfoType" Type="varchar" MaxLength="2" />
-          <Property Name="sInfoQualifier" Type="varchar" MaxLength="2" />
-          <Property Name="sInfoCd" Type="varchar" MaxLength="2" />
+          <Property Name="sInfoType" Type="varchar" MaxLength="10" />
+          <Property Name="sInfoQualifier" Type="varchar" MaxLength="10" />
+          <Property Name="sInfoCd" Type="varchar" MaxLength="35" />
           <Property Name="sInfoText" Type="varchar" MaxLength="100" />
-          <Property Name="sInfoMsr" Type="varchar" MaxLength="2" />
+          <Property Name="sInfoMsr" Type="varchar" MaxLength="5" />
           <Property Name="dtInfoDate" Type="date" />
           <Property Name="dtActionDate" Type="datetime" />
           <Property Name="iActionBy" Type="int" />
@@ -42,11 +42,11 @@
           <Property Name="iMessageImplementationId" Type="int" />
           <Property Name="sTagRef" Type="varchar" MaxLength="5" />
           <Property Name="dRefSerialNo" Type="decimal" Precision="5" Scale="0" />
-          <Property Name="sInfoType" Type="varchar" MaxLength="2" />
-          <Property Name="sInfoQualifier" Type="varchar" MaxLength="2" />
-          <Property Name="sInfoCd" Type="varchar" MaxLength="2" />
+          <Property Name="sInfoType" Type="varchar" MaxLength="10" />
+          <Property Name="sInfoQualifier" Type="varchar" MaxLength="10" />
+          <Property Name="sInfoCd" Type="varchar" MaxLength="35" />
           <Property Name="sInfoText" Type="varchar" MaxLength="100" />
-          <Property Name="sInfoMsr" Type="varchar" MaxLength="2" />
+          <Property Name="sInfoMsr" Type="varchar" MaxLength="5" />
           <Property Name="dtInfoDate" Type="date" />
           <Property Name="dtActionDate" Type="datetime" />
           <Property Name="iActionBy" Type="int" />
@@ -108,7 +108,7 @@
           <Key>
             <PropertyRef Name="iHouseCargoDescId" />
           </Key>
-          <Property Name="iHouseCargoDescId" Type="int" Nullable="false" />
+          <Property Name="iHouseCargoDescId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="iMasterConsignmentId" Type="int" Nullable="false" />
           <Property Name="iMessageImplementationId" Type="int" />
           <Property Name="dHCRefSubLineNo" Type="decimal" Precision="18" Scale="0" />
@@ -496,11 +496,11 @@
           <Property Name="iMessageImplementationId" Type="int" />
           <Property Name="sTagRef" Type="varchar" MaxLength="5" />
           <Property Name="dRefSerialNo" Type="decimal" Precision="5" Scale="0" />
-          <Property Name="sInfoType" Type="varchar" MaxLength="2" />
-          <Property Name="sInfoQualifier" Type="varchar" MaxLength="2" />
-          <Property Name="sInfoCd" Type="varchar" MaxLength="2" />
+          <Property Name="sInfoType" Type="varchar" MaxLength="10" />
+          <Property Name="sInfoQualifier" Type="varchar" MaxLength="10" />
+          <Property Name="sInfoCd" Type="varchar" MaxLength="35" />
           <Property Name="sInfoText" Type="varchar" MaxLength="100" />
-          <Property Name="sInfoMsr" Type="varchar" MaxLength="2" />
+          <Property Name="sInfoMsr" Type="varchar" MaxLength="5" />
           <Property Name="dtInfoDate" Type="date" />
           <Property Name="dtActionDate" Type="datetime" />
           <Property Name="iActionBy" Type="int" />
@@ -1251,11 +1251,11 @@
           <Property Name="iHouseCargoDescId" Type="Int32" />
           <Property Name="sTagRef" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="dRefSerialNo" Type="Decimal" Precision="5" Scale="0" />
-          <Property Name="sInfoType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoQualifier" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoQualifier" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoCd" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="sInfoText" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoMsr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoMsr" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="dtInfoDate" Type="DateTime" Precision="0" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
@@ -1271,11 +1271,11 @@
           <Property Name="iMessageImplementationId" Type="Int32" />
           <Property Name="sTagRef" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="dRefSerialNo" Type="Decimal" Precision="5" Scale="0" />
-          <Property Name="sInfoType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoQualifier" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoQualifier" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoCd" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="sInfoText" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoMsr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoMsr" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="dtInfoDate" Type="DateTime" Precision="0" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
@@ -1342,7 +1342,7 @@
           <Key>
             <PropertyRef Name="iHouseCargoDescId" />
           </Key>
-          <Property Name="iHouseCargoDescId" Type="Int32" Nullable="false" />
+          <Property Name="iHouseCargoDescId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="iMasterConsignmentId" Type="Int32" Nullable="false" />
           <Property Name="iMessageImplementationId" Type="Int32" />
           <Property Name="dHCRefSubLineNo" Type="Decimal" Precision="18" Scale="0" />
@@ -1774,11 +1774,11 @@
           <Property Name="iMessageImplementationId" Type="Int32" />
           <Property Name="sTagRef" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="dRefSerialNo" Type="Decimal" Precision="5" Scale="0" />
-          <Property Name="sInfoType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoQualifier" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoQualifier" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoCd" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="sInfoText" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="sInfoMsr" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sInfoMsr" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="dtInfoDate" Type="DateTime" Precision="0" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />

@@ -31,9 +31,9 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
-                if (!db.tblItemDetailsHouseCargoMaps.Any(z => z.iHouseCargoDescId == iHouseCargoDescId))
-                    throw new Exception("Invalid Master Consignment Id");
-                if (db.tblItemDetailsHouseCargoMaps.Any(z => z.iHouseCargoDescId == iHouseCargoDescId && (z.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent == "SEI" || z.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent == "SDN")))
+                if (!db.tblHouseCargoDescriptionMasterConsignmentMaps.Any(z => z.iHouseCargoDescId == iHouseCargoDescId))
+                    throw new Exception("Invalid House Cargo Id");
+                if (db.tblHouseCargoDescriptionMasterConsignmentMaps.Any(z => z.iHouseCargoDescId == iHouseCargoDescId && (z.tblMessageImplementation.sDecRefReportingEvent == "SEI" || z.tblMessageImplementation.sDecRefReportingEvent == "SDN")))
                     throw new Exception("Item Details cannot be filled with SEI or SDN reporting type");
             }
         }
