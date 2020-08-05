@@ -99,7 +99,7 @@ namespace BAL.Services
             }
         }
 
-        public ItineraryMasterConsignmentModel GetItineraryMasterConsignmentByItenaryId(int? iMasterConsignmentId, int? iIternaryId)
+        public ItineraryMasterConsignmentModel GetItineraryMasterConsignmentByItenaryId(int? iIternaryId)
         {
             using (var db = new SeaManifestEntities())
             {

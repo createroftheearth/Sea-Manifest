@@ -15,6 +15,7 @@ namespace SeaManifest.Controllers
         public ActionResult Index(int? iMasterConsignmentId)
         {
             Session["iMasterConsignmentId"] = iMasterConsignmentId;
+            MasterConsignmentService.Instance.Validate(iMasterConsignmentId);
             return View();
         }
 
@@ -30,14 +31,20 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateItineraryMasterConsignment(int? iMasterConsignmentId = null,int? iIternaryMasterConsignmentId = null )
+        public PartialViewResult AddUpdateItineraryMasterConsignment(int? iIternaryMasterConsignmentId = null )
         {
-            if (iIternaryMasterConsignmentId == null && iMasterConsignmentId == null)
+            if ((iIternaryMasterConsignmentId ?? 0) == 0)
             {
-                return PartialView("pvAddUpdateItineraryMasterConsignment");
+                int iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
+                return PartialView("pvAddUpdateItineraryMasterConsignment", new ItineraryMasterConsignmentModel
+                {
+                    iMasterConsignmentId = iMasterConsignmentId,
+                    sReportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId, out int iMessageImplementationId),
+                    iMessageImplementationId = iMessageImplementationId
+                });
             }
             else
-                return PartialView("pvAddUpdateItineraryMasterConsignment", ItineraryMasterConsignmentService.Instance.GetItineraryMasterConsignmentByItenaryId(iMasterConsignmentId, iIternaryMasterConsignmentId));
+                return PartialView("pvAddUpdateItineraryMasterConsignment", ItineraryMasterConsignmentService.Instance.GetItineraryMasterConsignmentByItenaryId(iIternaryMasterConsignmentId));
         }
 
         [HttpPost]

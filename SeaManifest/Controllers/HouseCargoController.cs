@@ -35,12 +35,13 @@ namespace SeaManifest.Controllers
         {
             if ((iHouseCargoDescId??0) == 0)
             {
-                int iMasterConsignmentId = Convert.ToInt32(Session["MasterConsignmentId"]);
+                int iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
                 return PartialView("pvAddUpdateHouseCargo", new HouseCargoModel
                 {
                     iMasterConsignmentId = iMasterConsignmentId,
-                    sReportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId),
-                    sTrnsprtrDocPartyTypeOfNotFdPartyCd = "PAN"
+                    sReportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId,out int iMessageImplementationId),
+                    sTrnsprtrDocPartyTypeOfNotFdPartyCd = "PAN",
+                    iMessageImplementationId= iMessageImplementationId 
                 });
             }
             else

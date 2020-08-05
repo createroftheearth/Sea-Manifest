@@ -32,13 +32,14 @@ namespace SeaManifest.Controllers
 
         public PartialViewResult AddUpdateItemDetailsMasterConsignment(int? iItemDetailsId)
         {
-            if (iItemDetailsId == null)
+            if ((iItemDetailsId??0) == 0)
             {
                 int iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
                 return PartialView("pvAddUpdateItemDetailsMasterConsignment", new ItemDetailsMasterConsignmentModel
                 {
                     iMasterConsignmentId = iMasterConsignmentId,
-                    sReportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId)
+                    sReportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId,out int iMessageImplementationId),
+                    iMessageImplementationId = iMessageImplementationId 
                 });
             }
             else

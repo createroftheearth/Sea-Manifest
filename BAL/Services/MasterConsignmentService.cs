@@ -433,11 +433,13 @@ namespace BAL.Services
             }
         }
 
-        public string GetMessageTypeByMasterConsignmentId(int? iMasterConsignmentId)
+        public string GetMessageTypeByMasterConsignmentId(int iMasterConsignmentId, out int iMessageImplementationId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMasterConsignmentId == iMasterConsignmentId).Select(z =>z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
+                var query = db.tblMasterConsignmentMessageImplementationMaps.Where(z => z.iMasterConsignmentId == iMasterConsignmentId);
+                iMessageImplementationId = query.Select(z => z.iMessageImplementationId??0).SingleOrDefault();
+                return query.Select(z =>z.tblMessageImplementation.sDecRefReportingEvent).SingleOrDefault();
             }
         }
     }
