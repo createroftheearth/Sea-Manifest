@@ -345,7 +345,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocMsrTypesOfPackages)
-                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrTypesOfPackages, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocMsrTypesOfPackages, typesOfPackges, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrTypesOfPackages)
                     </div>
                     <div class="form-group col-md-4">
@@ -365,7 +365,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocMsrUnitOfWeight)
-                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrUnitOfWeight, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocMsrUnitOfWeight, unitOfWeight, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrUnitOfWeight)
                     </div>
                     <div class="form-group col-md-4">
@@ -375,7 +375,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocMsrUnitOfVolume)
-                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrUnitOfVolume, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocMsrUnitOfVolume, unitOfVolume, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrUnitOfVolume)
                     </div>
                     <div class="form-group col-md-4">
@@ -385,7 +385,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocMsrCurrencyCd)
-                        @Html.TextBoxFor(z => z.sTrnsprtrDocMsrCurrencyCd, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocMsrCurrencyCd, currencyCode, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocMsrCurrencyCd)
                     </div>
                 </div>

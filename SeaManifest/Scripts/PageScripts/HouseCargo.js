@@ -29,9 +29,12 @@ function initHouseCargos() {
                 "data": "sHCRefBillDate",
             },
             {
-                "data": "iHouseCargoDescId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
+                "data": "iHouseCargoDescId", "mRender": function (data, abc, full) {
+                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> ";
+                    if ((full.sReportingEvent != "SEI" && full.sReportingEvent != "SDN"))
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItemDetailsMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
+                    return html;
                 }
             },
         ]
@@ -58,7 +61,7 @@ function resetForm() {
 function AddUpdateHouseCargo(iHouseCargoDescId) {
     $('#addUpdateModallgContainer').load('/HouseCargo/AddUpdateHouseCargo?iHouseCargoDescId=' + iHouseCargoDescId, function () {
         initAddUpdateHouseCargo();
-       
+
 
     });
 }

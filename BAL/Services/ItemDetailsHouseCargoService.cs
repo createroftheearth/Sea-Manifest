@@ -27,8 +27,18 @@ namespace BAL.Services
             }
         }
 
-        //save ItemDeatilsHouseCargo 
-        public object SaveItemDetailsHouseCargo(ItemDetailsHouseCargoModel model, int iUserId)
+        public void Validate(int? iHouseCargoDescId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                if (!db.tblItemDetailsHouseCargoMaps.Any(z => z.iHouseCargoDescId == iHouseCargoDescId))
+                    throw new Exception("Invalid Master Consignment Id");
+                if (db.tblItemDetailsHouseCargoMaps.Any(z => z.iHouseCargoDescId == iHouseCargoDescId && (z.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent == "SEI" || z.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent == "SDN")))
+                    throw new Exception("Item Details cannot be filled with SEI or SDN reporting type");
+            }
+        }
+        //save ItemDeatilsHouseCargo
+        public object SaveItemDetailssHouseCargo(ItemDetailsHouseCargoModel model, int iUserId)
         {
             try
             {
@@ -37,8 +47,8 @@ namespace BAL.Services
                     var data = db.tblItemDetailsHouseCargoMaps.Where(z => z.iItemsDetailsId == model.iItemsDetailsId).SingleOrDefault();
                     if (data != null)
                     {
-                        data.iMasterConsignmentId = model.iMasterConsignmentId ?? 0;
-                        data.iHouseCargoDescId = model.iHouseCargoDescId;
+                        data.iHouseCargoDescId = model.iHouseCargoDescId ?? 0;
+                        data.iMasterConsignmentId = model.iMasterConsignmentId;
                         data.dCargoItemSequenceNo = model.dCargoItemSequenceNo;
                         data.sHsCd = model.sHsCd;
                         data.sCargoItemDesc = model.sCargoItemDesc;
@@ -55,8 +65,8 @@ namespace BAL.Services
                     {
                         data = new tblItemDetailsHouseCargoMap
                         {
-                            iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
-                            iHouseCargoDescId = model.iHouseCargoDescId,
+                            iHouseCargoDescId = model.iHouseCargoDescId ?? 0,
+                            iMasterConsignmentId = model.iMasterConsignmentId,
                             dCargoItemSequenceNo = model.dCargoItemSequenceNo,
                             sHsCd = model.sHsCd,
                             sCargoItemDesc = model.sCargoItemDesc,
@@ -70,7 +80,7 @@ namespace BAL.Services
                         db.tblItemDetailsHouseCargoMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Item Details House Cargo saved successfully!" };
+                    return new { Status = true, Message = "Item Details saved successfully!" };
                 }
 
             }
@@ -80,22 +90,38 @@ namespace BAL.Services
             }
         }
 
-        public object GetItemDetailsHouseCargos(int iHouseCargoDescId, string search, int start, int length, out int recordsTotal)
+        public bool Validate(ItemDetailsHouseCargoModel model, out string Messages)
+        {
+            Messages = string.Empty;
+            bool valid = true;
+            using (var db = new SeaManifestEntities())
+            {
+                if (db.tblItemDetailsHouseCargoMaps.Any(z => z.iHouseCargoDescId == model.iHouseCargoDescId && z.dCargoItemSequenceNo == model.dCargoItemSequenceNo && z.iItemsDetailsId != model.iItemsDetailsId))
+                {
+                    valid = false; Messages = "Cargo Item Sequence no already exists.";
+                }
+            }
+            return valid;
+        }
+
+        public object GetItemDetailsHouseCargo(int iMasterConsignmentId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblItemDetailsHouseCargoMaps
-                            where t.sCargoItemDesc.Contains(search) && t.iHouseCargoDescId == iHouseCargoDescId
+                            where t.sCargoItemDesc.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sHsCd).Take(length).Skip(start).ToList().Select(t => new
                 {
-                    t.iHouseCargoDescId,
                     t.iMasterConsignmentId,
+                    t.iHouseCargoDescId,
                     t.sCargoItemDesc,
                     t.sHsCd,
-                    t.iItemsDetailsId
-                    //masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    t.iItemsDetailsId,
+                    t.dCargoItemSequenceNo,
+                    t.dNoOfPakages,
+                    t.sTypesOfPackages
                 }).ToList();
             }
         }
@@ -106,14 +132,14 @@ namespace BAL.Services
             {
                 return db.tblItemDetailsHouseCargoMaps.Where(z => z.iItemsDetailsId == iItemDetailsId).ToList().Select(model => new ItemDetailsHouseCargoModel
                 {
-                    iHouseCargoDescId = model.iHouseCargoDescId,
                     iMasterConsignmentId = model.iMasterConsignmentId,
-                    dCargoItemSequenceNo = model.dCargoItemSequenceNo??0,
+                    iHouseCargoDescId = model.iHouseCargoDescId,
+                    dCargoItemSequenceNo = model.dCargoItemSequenceNo ?? 0,
                     sHsCd = model.sHsCd,
                     sCargoItemDesc = model.sCargoItemDesc,
                     sUnoCd = model.sUnoCd,
                     sIMDGCd = model.sIMDGCd,
-                    dNoOfPakages = model.dNoOfPakages??0,
+                    dNoOfPakages = model.dNoOfPakages ?? 0,
                     sTypesOfPackages = model.sTypesOfPackages,
 
                 }).SingleOrDefault();

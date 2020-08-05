@@ -44,9 +44,9 @@ function initMessages() {
             },
             {
                 "data": "iMessageImplementationId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> " +
-                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i></button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Master Consignment</button> " +
+                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
                 }
             },
         ]

@@ -12,23 +12,21 @@ namespace SeaManifest.Controllers
     public class ItemDetailsHouseCargoController : BaseController
     {
         // GET: HouseCargo
-        public ActionResult Index(int? iHouseCargoDescId)
+        public ActionResult Index(int? iHouseCargoId)
         {
-            Session["iHouseCargoDescId"] = iHouseCargoDescId;
-            HouseCargoService.Instance.Validate(iHouseCargoDescId);
-
+            Session["iHouseCargoId"] = iHouseCargoId;
+            ItemDetailsHouseCargoService.Instance.Validate(iHouseCargoId);
             return View();
         }
 
         [HttpPost]
         public JsonResult GetItemDetailsHouseCargo()
         {
-            var iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
-            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var iHouseCargoId = Convert.ToInt32(Session["iHouseCargoId"]);
             var search = Request.Form.GetValues("search[value]").FirstOrDefault();
             var start = Convert.ToInt32(Request.Form.GetValues("start").FirstOrDefault());
             var length = Convert.ToInt32(Request.Form.GetValues("length").FirstOrDefault());
-            var data = ItemDetailsHouseCargoService.Instance.GetItemDetailsHouseCargos(iMasterConsignmentId, search, start, length, out int recordsTotal);
+            var data = ItemDetailsHouseCargoService.Instance.GetItemDetailsHouseCargo(iHouseCargoId, search, start, length, out int recordsTotal);
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
@@ -36,11 +34,11 @@ namespace SeaManifest.Controllers
         {
             if (iItemDetailsId == null)
             {
-                int iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+                int iHouseCargoId = Convert.ToInt32(Session["iHouseCargoId"]);
                 return PartialView("pvAddUpdateItemDetailsHouseCargo", new ItemDetailsHouseCargoModel
                 {
-                    iHouseCargoDescId = iHouseCargoDescId,
-                    sReportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId)
+                    iHouseCargoDescId = iHouseCargoId,
+                    sReportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoId)
                 });
             }
             else
@@ -50,13 +48,14 @@ namespace SeaManifest.Controllers
         [HttpPost]
         public JsonResult AddUpdateItemDetailsHouseCargo(ItemDetailsHouseCargoModel model)
         {
-            if (ModelState.IsValid)
+            string Messages = string.Empty;
+            if (ModelState.IsValid && ItemDetailsHouseCargoService.Instance.Validate(model, out Messages))
             {
-                return Json(ItemDetailsHouseCargoService.Instance.SaveItemDetailsHouseCargo(model, 1));
+                return Json(ItemDetailsHouseCargoService.Instance.SaveItemDetailssHouseCargo(model, 1));
             }
             else
             {
-                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) + ", " + Messages });
             }
         }
     }

@@ -15,8 +15,7 @@ namespace SeaManifest.Controllers
         public ActionResult Index(int? iMasterConsignmentId)
         {
             Session["iMasterConsignmentId"] = iMasterConsignmentId;
-            MasterConsignmentService.Instance.Validate(iMasterConsignmentId);
-
+            ItemDetailsMasterConsignmentService.Instance.Validate(iMasterConsignmentId);
             return View();
         }
 
@@ -24,7 +23,6 @@ namespace SeaManifest.Controllers
         public JsonResult GetItemDetailsMasterConsignment()
         {
             var iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
-            var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var search = Request.Form.GetValues("search[value]").FirstOrDefault();
             var start = Convert.ToInt32(Request.Form.GetValues("start").FirstOrDefault());
             var length = Convert.ToInt32(Request.Form.GetValues("length").FirstOrDefault());
@@ -50,13 +48,14 @@ namespace SeaManifest.Controllers
         [HttpPost]
         public JsonResult AddUpdateItemDetailsMasterConsignment(ItemDetailsMasterConsignmentModel model)
         {
-            if (ModelState.IsValid)
+            string Messages = string.Empty;
+            if (ModelState.IsValid && ItemDetailsMasterConsignmentService.Instance.Validate(model, out Messages))
             {
                 return Json(ItemDetailsMasterConsignmentService.Instance.SaveItemDetailssMasterConsignment(model, 1));
             }
             else
             {
-                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) + ", " + Messages });
             }
         }
     }

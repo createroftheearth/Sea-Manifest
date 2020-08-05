@@ -306,6 +306,7 @@ namespace BAL.Services
                     t.iMasterConsignmentId,
                     t.iMCRefLineNo,
                     t.sMCRefMasterBillNo,
+                    sReportingEvent = t.tblMessageImplementation.sDecRefReportingEvent,
                     masterBillDate = t.dtMCRefMasterBillDate.ToDateString(),
                 }).ToList();
             }

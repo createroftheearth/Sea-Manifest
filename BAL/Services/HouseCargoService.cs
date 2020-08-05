@@ -49,7 +49,7 @@ namespace BAL.Services
                         data.iMasterConsignmentId = model.iMasterConsignmentId ?? 0;
                         data.dHCRefSubLineNo = model.dHCRefSubLineNo;
                         data.sHCRefBillNo = model.sHCRefBillNo;
-                        data.dtHCRefBillDate = DateTime.ParseExact(model.sHCRefBillDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture);
+                        data.dtHCRefBillDate = model.sHCRefBillDate.ToDate();
                         data.sHCRefConsolidatedIndicator = model.sHCRefConsolidatedIndicator;
                         data.sHCRefConsolidatorPan = model.sHCRefConsolidatorPan;
                         data.sHCRefPreviousDescription = model.sHCRefPreviousDescription;
@@ -122,7 +122,7 @@ namespace BAL.Services
                             iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                             dHCRefSubLineNo = model.dHCRefSubLineNo,
                             sHCRefBillNo = model.sHCRefBillNo,
-                            dtHCRefBillDate = DateTime.ParseExact(model.sHCRefBillDate, "dd/MM/yyyy hh:mm tt", CultureInfo.InvariantCulture),
+                            dtHCRefBillDate = model.sHCRefBillDate.ToDate(),
                             sHCRefConsolidatedIndicator = model.sHCRefConsolidatedIndicator,
                             sHCRefConsolidatorPan = model.sHCRefConsolidatorPan,
                             sHCRefPreviousDescription = model.sHCRefPreviousDescription,
@@ -213,8 +213,8 @@ namespace BAL.Services
                     t.iMasterConsignmentId,
                     t.dHCRefSubLineNo,
                     t.sHCRefBillNo,
+                    sReportingEvent = t.tblMessageImplementation.sDecRefReportingEvent,
                     sHCRefBillDate = t.dtHCRefBillDate.ToDateString(),
-                    masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
                 }).ToList();
             }
         }

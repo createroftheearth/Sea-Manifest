@@ -1,6 +1,7 @@
 ﻿using BAL.Models;
 using DAL;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -27,6 +28,16 @@ namespace BAL.Services
             }
         }
 
+        public void Validate(int? iMasterConsignmentId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                if (!db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId))
+                    throw new Exception("Invalid Master Consignment Id");
+                if (db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId && (z.tblMessageImplementation.sDecRefReportingEvent == "SEI" || z.tblMessageImplementation.sDecRefReportingEvent == "SDN")))
+                    throw new Exception("Item Details cannot be filled with SEI or SDN reporting type");
+            }
+        }
         //save ItemDeatilsMasterConsignment
         public object SaveItemDetailssMasterConsignment(ItemDetailsMasterConsignmentModel model, int iUserId)
         {
@@ -70,7 +81,7 @@ namespace BAL.Services
                         db.tblItemDetailsMasterConsignmentMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Item Details Master Consignment saved successfully!" };
+                    return new { Status = true, Message = "Item Details saved successfully!" };
                 }
 
             }
@@ -78,6 +89,20 @@ namespace BAL.Services
             {
                 return new { Status = false, Message = "Something went wrong" };
             }
+        }
+
+        public bool Validate(ItemDetailsMasterConsignmentModel model, out string Messages)
+        {
+            Messages = string.Empty;
+            bool valid = true;
+            using (var db = new SeaManifestEntities())
+            {
+                if (db.tblItemDetailsMasterConsignmentMaps.Any(z => z.iMasterConsignmentId == model.iMasterConsignmentId && z.dCargoItemSequenceNo == model.dCargoItemSequenceNo && z.iItemsDetailsId != model.iItemsDetailsId))
+                {
+                    valid = false; Messages = "Cargo Item Sequence no already exists.";
+                }
+            }
+            return valid;
         }
 
         public object GetItemDetailsMasterConsignment(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
@@ -94,8 +119,10 @@ namespace BAL.Services
                     t.iMasterConsignmentId,
                     t.sCargoItemDesc,
                     t.sHsCd,
-                    t.iItemsDetailsId
-                    //masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    t.iItemsDetailsId,
+                    t.dCargoItemSequenceNo,
+                    t.dNoOfPakages,
+                    t.sTypesOfPackages
                 }).ToList();
             }
         }
@@ -108,12 +135,12 @@ namespace BAL.Services
                 {
                     iMessageImplementationId = model.iMessageImplementationId,
                     iMasterConsignmentId = model.iMasterConsignmentId,
-                    dCargoItemSequenceNo = model.dCargoItemSequenceNo??0,
+                    dCargoItemSequenceNo = model.dCargoItemSequenceNo ?? 0,
                     sHsCd = model.sHsCd,
                     sCargoItemDesc = model.sCargoItemDesc,
                     sUnoCd = model.sUnoCd,
                     sIMDGCd = model.sIMDGCd,
-                    dNoOfPakages = model.dNoOfPakages??0,
+                    dNoOfPakages = model.dNoOfPakages ?? 0,
                     sTypesOfPackages = model.sTypesOfPackages,
 
                 }).SingleOrDefault();
