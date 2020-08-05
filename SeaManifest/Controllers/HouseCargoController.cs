@@ -51,6 +51,21 @@ namespace SeaManifest.Controllers
         public JsonResult AddUpdateHouseCargo(HouseCargoModel model)
         {
             string Messages = string.Empty;
+            if(model.sReportingEvent=="SEI"||model.sReportingEvent=="SDN")
+            {
+                ModelState.Remove("dHCRefSubLineNo");
+                ModelState.Remove("sHCRefBillNo");
+                ModelState.Remove("sHCRefBillDate");
+                ModelState.Remove("sHCRefConsolidatedIndicator");
+                ModelState.Remove("sHCRefConsolidatorPan");
+                ModelState.Remove("sHCRefPreviousDescription");
+                ModelState.Remove("sLocCstmTypeOfCargo");
+                ModelState.Remove("sLocCstmItemType");
+                ModelState.Remove("sLocCstmCargoMovement");
+                ModelState.Remove("sLocCstmNatureOfCargo");
+                ModelState.Remove("sTrnshprTranshipperCd");
+                ModelState.Remove("sTrnshprTranshipperBond");
+            }
             if (ModelState.IsValid && HouseCargoService.Instance.ValidateHouseCargo(model, out Messages))
             {
                 return Json(HouseCargoService.Instance.SaveHouseCargo(model, 1));

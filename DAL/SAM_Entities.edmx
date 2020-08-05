@@ -183,12 +183,12 @@
           <Property Name="iItemsDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="iMasterConsignmentId" Type="int" />
           <Property Name="iHouseCargoDescId" Type="int" />
-          <Property Name="dCargoItemSequenceNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dCargoItemSequenceNo" Type="decimal" Precision="5" Scale="0" />
           <Property Name="sHsCd" Type="varchar" MaxLength="8" />
           <Property Name="sCargoItemDesc" Type="varchar" MaxLength="256" />
           <Property Name="sUnoCd" Type="varchar" MaxLength="5" />
           <Property Name="sIMDGCd" Type="varchar" MaxLength="3" />
-          <Property Name="dNoOfPakages" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dNoOfPakages" Type="decimal" Precision="8" Scale="0" />
           <Property Name="sTypesOfPackages" Type="varchar" MaxLength="3" />
           <Property Name="dtActionDate" Type="datetime" />
           <Property Name="iActionBy" Type="int" />
@@ -200,12 +200,12 @@
           <Property Name="iItemsDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="iMasterConsignmentId" Type="int" />
           <Property Name="iMessageImplementationId" Type="int" />
-          <Property Name="dCargoItemSequenceNo" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dCargoItemSequenceNo" Type="decimal" Precision="5" Scale="0" />
           <Property Name="sHsCd" Type="varchar" MaxLength="8" />
           <Property Name="sCargoItemDesc" Type="varchar" MaxLength="256" />
           <Property Name="sUnoCd" Type="varchar" MaxLength="5" />
           <Property Name="sIMDGCd" Type="varchar" MaxLength="3" />
-          <Property Name="dNoOfPakages" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="dNoOfPakages" Type="decimal" Precision="8" Scale="0" />
           <Property Name="sTypesOfPackages" Type="varchar" MaxLength="3" />
           <Property Name="dtActionDate" Type="datetime" />
           <Property Name="iActionBy" Type="int" />
@@ -1089,6 +1089,7 @@
     <edmx:ConceptualModels>
       <Schema Namespace="SeaManifestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SeaManifestEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="SeaManifestModel.sysdiagram" />
           <EntitySet Name="tblAdditionalDetailsHouseCargoMaps" EntityType="SeaManifestModel.tblAdditionalDetailsHouseCargoMap" />
           <EntitySet Name="tblAdditionalDetailsMasterConsignmentMaps" EntityType="SeaManifestModel.tblAdditionalDetailsMasterConsignmentMap" />
           <EntitySet Name="tblAmendmentDetailsMessageImlementationMaps" EntityType="SeaManifestModel.tblAmendmentDetailsMessageImlementationMap" />
@@ -1097,6 +1098,7 @@
           <EntitySet Name="tblCountryMs" EntityType="SeaManifestModel.tblCountryM" />
           <EntitySet Name="tblCurrencyCodesMs" EntityType="SeaManifestModel.tblCurrencyCodesM" />
           <EntitySet Name="tblErrorCodes" EntityType="SeaManifestModel.tblErrorCode" />
+          <EntitySet Name="tblHouseCargoDescriptionMasterConsignmentMaps" EntityType="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" />
           <EntitySet Name="tblItemDetailsHouseCargoMaps" EntityType="SeaManifestModel.tblItemDetailsHouseCargoMap" />
           <EntitySet Name="tblItemDetailsMasterConsignmentMaps" EntityType="SeaManifestModel.tblItemDetailsMasterConsignmentMap" />
           <EntitySet Name="tblItineraryHouseCargoMaps" EntityType="SeaManifestModel.tblItineraryHouseCargoMap" />
@@ -1113,6 +1115,10 @@
           <EntitySet Name="tblTransportEquipmentHouseCargoMaps" EntityType="SeaManifestModel.tblTransportEquipmentHouseCargoMap" />
           <EntitySet Name="tblTransportEquipmentMasterConsignmentMaps" EntityType="SeaManifestModel.tblTransportEquipmentMasterConsignmentMap" />
           <EntitySet Name="tblVoyageTransporterEquipmentMessageImlementationMaps" EntityType="SeaManifestModel.tblVoyageTransporterEquipmentMessageImlementationMap" />
+          <AssociationSet Name="FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+            <End Role="tblAdditionalDetailsHouseCargoMap" EntitySet="tblAdditionalDetailsHouseCargoMaps" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap">
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
             <End Role="tblAdditionalDetailsHouseCargoMap" EntitySet="tblAdditionalDetailsHouseCargoMaps" />
@@ -1132,6 +1138,30 @@
           <AssociationSet Name="FK_tblCodeM_tblCodeTypeM" Association="SeaManifestModel.FK_tblCodeM_tblCodeTypeM">
             <End Role="tblCodeTypeM" EntitySet="tblCodeTypeMs" />
             <End Role="tblCodeM" EntitySet="tblCodeMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap">
+            <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+            <End Role="tblItemDetailsHouseCargoMap" EntitySet="tblItemDetailsHouseCargoMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+            <End Role="tblItineraryHouseCargoMap" EntitySet="tblItineraryHouseCargoMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+            <End Role="tblSupportDocHouseCargoMap" EntitySet="tblSupportDocHouseCargoMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap">
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+            <End Role="tblTransportEquipmentHouseCargoMap" EntitySet="tblTransportEquipmentHouseCargoMaps" />
           </AssociationSet>
           <AssociationSet Name="FK_tblItemDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap">
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
@@ -1201,37 +1231,17 @@
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
             <End Role="tblVoyageTransporterEquipmentMessageImlementationMap" EntitySet="tblVoyageTransporterEquipmentMessageImlementationMaps" />
           </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="SeaManifestModel.sysdiagram" />
-          <EntitySet Name="tblHouseCargoDescriptionMasterConsignmentMaps" EntityType="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" />
-          <AssociationSet Name="FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-            <End Role="tblAdditionalDetailsHouseCargoMap" EntitySet="tblAdditionalDetailsHouseCargoMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap">
-            <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-            <End Role="tblItemDetailsHouseCargoMap" EntitySet="tblItemDetailsHouseCargoMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-            <End Role="tblItineraryHouseCargoMap" EntitySet="tblItineraryHouseCargoMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-            <End Role="tblSupportDocHouseCargoMap" EntitySet="tblSupportDocHouseCargoMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap">
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-            <End Role="tblTransportEquipmentHouseCargoMap" EntitySet="tblTransportEquipmentHouseCargoMaps" />
-          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="tblAdditionalDetailsHouseCargoMap">
           <Key>
             <PropertyRef Name="iAdditionalDetailsId" />
@@ -1249,8 +1259,8 @@
           <Property Name="dtInfoDate" Type="DateTime" Precision="0" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
-          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblAdditionalDetailsHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
           <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMap" Relationship="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblAdditionalDetailsHouseCargoMap" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
+          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblAdditionalDetailsHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
         </EntityType>
         <EntityType Name="tblAdditionalDetailsMasterConsignmentMap">
           <Key>
@@ -1328,6 +1338,85 @@
           <Property Name="sErrorCode" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="sErrorCodeDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tblHouseCargoDescriptionMasterConsignmentMap">
+          <Key>
+            <PropertyRef Name="iHouseCargoDescId" />
+          </Key>
+          <Property Name="iHouseCargoDescId" Type="Int32" Nullable="false" />
+          <Property Name="iMasterConsignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iMessageImplementationId" Type="Int32" />
+          <Property Name="dHCRefSubLineNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sHCRefBillNo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="dtHCRefBillDate" Type="DateTime" Precision="3" />
+          <Property Name="sHCRefConsolidatedIndicator" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="sHCRefConsolidatorPan" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="sHCRefPreviousDescription" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmFirstPortOfEntry" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmDestinationPort" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmNextPortOfUnlading" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmTypeOfCargo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmItemType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmCargoMovement" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmNatureOfCargo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="sLocCstmSplitIndicator" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="dLocCstmNoOfPackages" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sLocCstmTypeOfPakages" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnshprTranshipperCd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnshprTranshipperBond" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyPortOfAcceptedCCd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyPortOfAcceptedName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyPortOfReceiptCcd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyPortOfReceiptName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorCd" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorCdType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorStreetAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorCity" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorCountrySubDivName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorCountrySubDivCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorCountryCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsignorPostCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneeName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneeCd" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyTypeOfCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneeStreetAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneeCity" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneeCountrySubDivName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneeCountrySubDiv" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneeCountryCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyConsigneePostCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyNameOfAnyOtherNotFdParty" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyPANOfNotFdParty" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyTypeOfNotFdPartyCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyNotFdPartyStreetAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyNotFdPartyCity" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyNotFdPartyCountrySubDivName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyNotFdPartyCountrySubDiv" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyNotFdPartyCountryCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyNotFdPartyPostCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyGoodsDescAsPerBill" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyUCRType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocPartyUCRCd" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="dTrnsprtrDocMsrNoOfPackages" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sTrnsprtrDocMsrTypesOfPackages" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sTrnsprtrDocMsrMarksNoOnPackages" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="dTrnsprtrDocMsrGrossWeight" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dTrnsprtrDocMsrNetWeight" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sTrnsprtrDocMsrUnitOfWeight" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="dTrnsprtrDocMsrGrossVolume" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sTrnsprtrDocMsrUnitOfVolume" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="dTrnsprtrDocMsrInvoiceValueOfConsigment" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="sTrnsprtrDocMsrCurrencyCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+          <Property Name="iActionBy" Type="Int32" />
+          <NavigationProperty Name="tblAdditionalDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblAdditionalDetailsHouseCargoMap" />
+          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
+          <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblMessageImplementation" />
+          <NavigationProperty Name="tblItemDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblItemDetailsHouseCargoMap" />
+          <NavigationProperty Name="tblItineraryHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblItineraryHouseCargoMap" />
+          <NavigationProperty Name="tblSupportDocHouseCargoMaps" Relationship="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblSupportDocHouseCargoMap" />
+          <NavigationProperty Name="tblTransportEquipmentHouseCargoMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblTransportEquipmentHouseCargoMap" />
+        </EntityType>
         <EntityType Name="tblItemDetailsHouseCargoMap">
           <Key>
             <PropertyRef Name="iItemsDetailsId" />
@@ -1335,17 +1424,17 @@
           <Property Name="iItemsDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="iMasterConsignmentId" Type="Int32" />
           <Property Name="iHouseCargoDescId" Type="Int32" />
-          <Property Name="dCargoItemSequenceNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dCargoItemSequenceNo" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="sHsCd" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="sCargoItemDesc" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="sUnoCd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="sIMDGCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="dNoOfPakages" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dNoOfPakages" Type="Decimal" Precision="8" Scale="0" />
           <Property Name="sTypesOfPackages" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
-          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblItemDetailsHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
           <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMap" Relationship="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblItemDetailsHouseCargoMap" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
+          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblItemDetailsHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
         </EntityType>
         <EntityType Name="tblItemDetailsMasterConsignmentMap">
           <Key>
@@ -1354,12 +1443,12 @@
           <Property Name="iItemsDetailsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="iMasterConsignmentId" Type="Int32" />
           <Property Name="iMessageImplementationId" Type="Int32" />
-          <Property Name="dCargoItemSequenceNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dCargoItemSequenceNo" Type="Decimal" Precision="5" Scale="0" />
           <Property Name="sHsCd" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
           <Property Name="sCargoItemDesc" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="sUnoCd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="sIMDGCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="dNoOfPakages" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dNoOfPakages" Type="Decimal" Precision="8" Scale="0" />
           <Property Name="sTypesOfPackages" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
@@ -1381,8 +1470,8 @@
           <Property Name="sModeOfTransport" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
-          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblItineraryHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
           <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMap" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblItineraryHouseCargoMap" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
+          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblItineraryHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
         </EntityType>
         <EntityType Name="tblItineraryMasterConsignmentMap">
           <Key>
@@ -1496,6 +1585,7 @@
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
           <NavigationProperty Name="tblAdditionalDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblAdditionalDetailsHouseCargoMap" />
+          <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
           <NavigationProperty Name="tblItemDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblItemDetailsHouseCargoMap" />
           <NavigationProperty Name="tblItemDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblItemDetailsMasterConsignmentMap" />
           <NavigationProperty Name="tblItineraryHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblItineraryHouseCargoMap" />
@@ -1505,7 +1595,6 @@
           <NavigationProperty Name="tblSupportDocMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblSupportDocMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblSupportDocMasterConsignmentMap" />
           <NavigationProperty Name="tblTransportEquipmentHouseCargoMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblTransportEquipmentHouseCargoMap" />
           <NavigationProperty Name="tblTransportEquipmentMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblTransportEquipmentMasterConsignmentMap" />
-          <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
         </EntityType>
         <EntityType Name="tblMessageImplementation">
           <Key>
@@ -1576,6 +1665,7 @@
           <NavigationProperty Name="tblAdditionalDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMasterConsignmentMap" />
           <NavigationProperty Name="tblAdditionalDetailsMasterConsignmentMaps1" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMasterConsignmentMap" />
           <NavigationProperty Name="tblAmendmentDetailsMessageImlementationMaps" Relationship="SeaManifestModel.FK_tblAmendmentDetailsM_tblMessageImplementationM" FromRole="tblMessageImplementation" ToRole="tblAmendmentDetailsMessageImlementationMap" />
+          <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
           <NavigationProperty Name="tblItemDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblItemDetailsMasterConsignmentMap" />
           <NavigationProperty Name="tblItineraryMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblItineraryMasterConsignmentMap" />
           <NavigationProperty Name="tblMasterConsignmentMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblMasterConsignmentMessageImplementationMap" />
@@ -1585,7 +1675,6 @@
           <NavigationProperty Name="tblTmSupportDocMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblTmSupportDocMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblTmSupportDocMessageImplementationMap" />
           <NavigationProperty Name="tblTransportEquipmentMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblTransportEquipmentMasterConsignmentMap" />
           <NavigationProperty Name="tblVoyageTransporterEquipmentMessageImlementationMaps" Relationship="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblVoyageTransporterEquipmentMessageImlementationMap" />
-          <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
         </EntityType>
         <EntityType Name="tblMessageTypeM">
           <Key>
@@ -1654,8 +1743,8 @@
           <Property Name="sBeneficiaryCd" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
-          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblSupportDocHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
           <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMap" Relationship="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblSupportDocHouseCargoMap" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
+          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblSupportDocHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
         </EntityType>
         <EntityType Name="tblSupportDocMasterConsignmentMap">
           <Key>
@@ -1736,8 +1825,8 @@
           <Property Name="dTotalNoOfPackages" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="dtActionDate" Type="DateTime" Precision="3" />
           <Property Name="iActionBy" Type="Int32" />
-          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblTransportEquipmentHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
           <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMap" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblTransportEquipmentHouseCargoMap" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
+          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblTransportEquipmentHouseCargoMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
         </EntityType>
         <EntityType Name="tblTransportEquipmentMasterConsignmentMap">
           <Key>
@@ -1788,6 +1877,18 @@
           <Property Name="iActionBy" Type="Int32" />
           <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblVoyageTransporterEquipmentMessageImlementationMap" ToRole="tblMessageImplementation" />
         </EntityType>
+        <Association Name="FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblAdditionalDetailsHouseCargoMap" Role="tblAdditionalDetailsHouseCargoMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Principal>
+            <Dependent Role="tblAdditionalDetailsHouseCargoMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblAdditionalDetailsHouseCargoMap_tblMasterConsignmentMessageImplementationMap">
           <End Type="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Role="tblMasterConsignmentMessageImplementationMap" Multiplicity="0..1" />
           <End Type="SeaManifestModel.tblAdditionalDetailsHouseCargoMap" Role="tblAdditionalDetailsHouseCargoMap" Multiplicity="*" />
@@ -1845,6 +1946,78 @@
             </Principal>
             <Dependent Role="tblCodeM">
               <PropertyRef Name="iCodeTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap">
+          <End Type="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Role="tblMasterConsignmentMessageImplementationMap" Multiplicity="1" />
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMasterConsignmentMessageImplementationMap">
+              <PropertyRef Name="iMasterConsignmentId" />
+            </Principal>
+            <Dependent Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iMasterConsignmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblItemDetailsHouseCargoMap" Role="tblItemDetailsHouseCargoMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Principal>
+            <Dependent Role="tblItemDetailsHouseCargoMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblItineraryHouseCargoMap" Role="tblItineraryHouseCargoMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Principal>
+            <Dependent Role="tblItineraryHouseCargoMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblSupportDocHouseCargoMap" Role="tblSupportDocHouseCargoMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Principal>
+            <Dependent Role="tblSupportDocHouseCargoMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap">
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblTransportEquipmentHouseCargoMap" Role="tblTransportEquipmentHouseCargoMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iHouseCargoDescId" />
+            </Principal>
+            <Dependent Role="tblTransportEquipmentHouseCargoMap">
+              <PropertyRef Name="iHouseCargoDescId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2052,185 +2225,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="tblHouseCargoDescriptionMasterConsignmentMap">
-          <Key>
-            <PropertyRef Name="iHouseCargoDescId" />
-          </Key>
-          <Property Name="iHouseCargoDescId" Type="Int32" Nullable="false" />
-          <Property Name="iMasterConsignmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="iMessageImplementationId" Type="Int32" />
-          <Property Name="dHCRefSubLineNo" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="sHCRefBillNo" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="dtHCRefBillDate" Type="DateTime" Precision="3" />
-          <Property Name="sHCRefConsolidatedIndicator" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="sHCRefConsolidatorPan" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="sHCRefPreviousDescription" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmFirstPortOfEntry" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmDestinationPort" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmNextPortOfUnlading" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmTypeOfCargo" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmItemType" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmCargoMovement" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmNatureOfCargo" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="sLocCstmSplitIndicator" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="dLocCstmNoOfPackages" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="sLocCstmTypeOfPakages" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnshprTranshipperCd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnshprTranshipperBond" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyPortOfAcceptedCCd" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyPortOfAcceptedName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyPortOfReceiptCcd" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyPortOfReceiptName" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorCd" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorCdType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorStreetAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorCity" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorCountrySubDivName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorCountrySubDivCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorCountryCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsignorPostCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneeName" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneeCd" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyTypeOfCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneeStreetAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneeCity" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneeCountrySubDivName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneeCountrySubDiv" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneeCountryCd" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyConsigneePostCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyNameOfAnyOtherNotFdParty" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyPANOfNotFdParty" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyTypeOfNotFdPartyCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyNotFdPartyStreetAddress" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyNotFdPartyCity" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyNotFdPartyCountrySubDivName" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyNotFdPartyCountrySubDiv" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyNotFdPartyCountryCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyNotFdPartyPostCd" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyGoodsDescAsPerBill" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyUCRType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocPartyUCRCd" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="dTrnsprtrDocMsrNoOfPackages" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="sTrnsprtrDocMsrTypesOfPackages" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sTrnsprtrDocMsrMarksNoOnPackages" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
-          <Property Name="dTrnsprtrDocMsrGrossWeight" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="dTrnsprtrDocMsrNetWeight" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="sTrnsprtrDocMsrUnitOfWeight" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="dTrnsprtrDocMsrGrossVolume" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="sTrnsprtrDocMsrUnitOfVolume" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="dTrnsprtrDocMsrInvoiceValueOfConsigment" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="sTrnsprtrDocMsrCurrencyCd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="dtActionDate" Type="DateTime" Precision="3" />
-          <Property Name="iActionBy" Type="Int32" />
-          <NavigationProperty Name="tblAdditionalDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblAdditionalDetailsHouseCargoMap" />
-          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
-          <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblMessageImplementation" />
-          <NavigationProperty Name="tblItemDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblItemDetailsHouseCargoMap" />
-          <NavigationProperty Name="tblItineraryHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblItineraryHouseCargoMap" />
-          <NavigationProperty Name="tblSupportDocHouseCargoMaps" Relationship="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblSupportDocHouseCargoMap" />
-          <NavigationProperty Name="tblTransportEquipmentHouseCargoMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblTransportEquipmentHouseCargoMap" />
-        </EntityType>
-        <Association Name="FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblAdditionalDetailsHouseCargoMap" Role="tblAdditionalDetailsHouseCargoMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Principal>
-            <Dependent Role="tblAdditionalDetailsHouseCargoMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap">
-          <End Type="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Role="tblMasterConsignmentMessageImplementationMap" Multiplicity="1" />
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMasterConsignmentMessageImplementationMap">
-              <PropertyRef Name="iMasterConsignmentId" />
-            </Principal>
-            <Dependent Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iMasterConsignmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblItemDetailsHouseCargoMap" Role="tblItemDetailsHouseCargoMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Principal>
-            <Dependent Role="tblItemDetailsHouseCargoMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblItineraryHouseCargoMap" Role="tblItineraryHouseCargoMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Principal>
-            <Dependent Role="tblItineraryHouseCargoMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblSupportDocHouseCargoMap" Role="tblSupportDocHouseCargoMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Principal>
-            <Dependent Role="tblSupportDocHouseCargoMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap">
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblTransportEquipmentHouseCargoMap" Role="tblTransportEquipmentHouseCargoMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Principal>
-            <Dependent Role="tblTransportEquipmentHouseCargoMap">
-              <PropertyRef Name="iHouseCargoDescId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SeaManifestModelStoreContainer" CdmEntityContainer="SeaManifestEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SeaManifestModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="tblAdditionalDetailsHouseCargoMaps">
             <EntityTypeMapping TypeName="SeaManifestModel.tblAdditionalDetailsHouseCargoMap">
               <MappingFragment StoreEntitySet="tblAdditionalDetailsHouseCargoMap">
@@ -2325,6 +2336,79 @@
                 <ScalarProperty Name="sErrorCodeDescription" ColumnName="sErrorCodeDescription" />
                 <ScalarProperty Name="sErrorCode" ColumnName="sErrorCode" />
                 <ScalarProperty Name="iErrorId" ColumnName="iErrorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHouseCargoDescriptionMasterConsignmentMaps">
+            <EntityTypeMapping TypeName="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap">
+              <MappingFragment StoreEntitySet="tblHouseCargoDescriptionMasterConsignmentMap">
+                <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+                <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+                <ScalarProperty Name="sTrnsprtrDocMsrCurrencyCd" ColumnName="sTrnsprtrDocMsrCurrencyCd" />
+                <ScalarProperty Name="dTrnsprtrDocMsrInvoiceValueOfConsigment" ColumnName="dTrnsprtrDocMsrInvoiceValueOfConsigment" />
+                <ScalarProperty Name="sTrnsprtrDocMsrUnitOfVolume" ColumnName="sTrnsprtrDocMsrUnitOfVolume" />
+                <ScalarProperty Name="dTrnsprtrDocMsrGrossVolume" ColumnName="dTrnsprtrDocMsrGrossVolume" />
+                <ScalarProperty Name="sTrnsprtrDocMsrUnitOfWeight" ColumnName="sTrnsprtrDocMsrUnitOfWeight" />
+                <ScalarProperty Name="dTrnsprtrDocMsrNetWeight" ColumnName="dTrnsprtrDocMsrNetWeight" />
+                <ScalarProperty Name="dTrnsprtrDocMsrGrossWeight" ColumnName="dTrnsprtrDocMsrGrossWeight" />
+                <ScalarProperty Name="sTrnsprtrDocMsrMarksNoOnPackages" ColumnName="sTrnsprtrDocMsrMarksNoOnPackages" />
+                <ScalarProperty Name="sTrnsprtrDocMsrTypesOfPackages" ColumnName="sTrnsprtrDocMsrTypesOfPackages" />
+                <ScalarProperty Name="dTrnsprtrDocMsrNoOfPackages" ColumnName="dTrnsprtrDocMsrNoOfPackages" />
+                <ScalarProperty Name="sTrnsprtrDocPartyUCRCd" ColumnName="sTrnsprtrDocPartyUCRCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyUCRType" ColumnName="sTrnsprtrDocPartyUCRType" />
+                <ScalarProperty Name="sTrnsprtrDocPartyGoodsDescAsPerBill" ColumnName="sTrnsprtrDocPartyGoodsDescAsPerBill" />
+                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyPostCd" ColumnName="sTrnsprtrDocPartyNotFdPartyPostCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCountryCd" ColumnName="sTrnsprtrDocPartyNotFdPartyCountryCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCountrySubDiv" ColumnName="sTrnsprtrDocPartyNotFdPartyCountrySubDiv" />
+                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCountrySubDivName" ColumnName="sTrnsprtrDocPartyNotFdPartyCountrySubDivName" />
+                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCity" ColumnName="sTrnsprtrDocPartyNotFdPartyCity" />
+                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyStreetAddress" ColumnName="sTrnsprtrDocPartyNotFdPartyStreetAddress" />
+                <ScalarProperty Name="sTrnsprtrDocPartyTypeOfNotFdPartyCd" ColumnName="sTrnsprtrDocPartyTypeOfNotFdPartyCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyPANOfNotFdParty" ColumnName="sTrnsprtrDocPartyPANOfNotFdParty" />
+                <ScalarProperty Name="sTrnsprtrDocPartyNameOfAnyOtherNotFdParty" ColumnName="sTrnsprtrDocPartyNameOfAnyOtherNotFdParty" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneePostCd" ColumnName="sTrnsprtrDocPartyConsigneePostCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCountryCd" ColumnName="sTrnsprtrDocPartyConsigneeCountryCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCountrySubDiv" ColumnName="sTrnsprtrDocPartyConsigneeCountrySubDiv" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCountrySubDivName" ColumnName="sTrnsprtrDocPartyConsigneeCountrySubDivName" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCity" ColumnName="sTrnsprtrDocPartyConsigneeCity" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeStreetAddress" ColumnName="sTrnsprtrDocPartyConsigneeStreetAddress" />
+                <ScalarProperty Name="sTrnsprtrDocPartyTypeOfCd" ColumnName="sTrnsprtrDocPartyTypeOfCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCd" ColumnName="sTrnsprtrDocPartyConsigneeCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeName" ColumnName="sTrnsprtrDocPartyConsigneeName" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorPostCd" ColumnName="sTrnsprtrDocPartyConsignorPostCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCountryCd" ColumnName="sTrnsprtrDocPartyConsignorCountryCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCountrySubDivCd" ColumnName="sTrnsprtrDocPartyConsignorCountrySubDivCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCountrySubDivName" ColumnName="sTrnsprtrDocPartyConsignorCountrySubDivName" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCity" ColumnName="sTrnsprtrDocPartyConsignorCity" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorStreetAddress" ColumnName="sTrnsprtrDocPartyConsignorStreetAddress" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCdType" ColumnName="sTrnsprtrDocPartyConsignorCdType" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCd" ColumnName="sTrnsprtrDocPartyConsignorCd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyConsignorName" ColumnName="sTrnsprtrDocPartyConsignorName" />
+                <ScalarProperty Name="sTrnsprtrDocPartyPortOfReceiptName" ColumnName="sTrnsprtrDocPartyPortOfReceiptName" />
+                <ScalarProperty Name="sTrnsprtrDocPartyPortOfReceiptCcd" ColumnName="sTrnsprtrDocPartyPortOfReceiptCcd" />
+                <ScalarProperty Name="sTrnsprtrDocPartyPortOfAcceptedName" ColumnName="sTrnsprtrDocPartyPortOfAcceptedName" />
+                <ScalarProperty Name="sTrnsprtrDocPartyPortOfAcceptedCCd" ColumnName="sTrnsprtrDocPartyPortOfAcceptedCCd" />
+                <ScalarProperty Name="sTrnshprTranshipperBond" ColumnName="sTrnshprTranshipperBond" />
+                <ScalarProperty Name="sTrnshprTranshipperCd" ColumnName="sTrnshprTranshipperCd" />
+                <ScalarProperty Name="sLocCstmTypeOfPakages" ColumnName="sLocCstmTypeOfPakages" />
+                <ScalarProperty Name="dLocCstmNoOfPackages" ColumnName="dLocCstmNoOfPackages" />
+                <ScalarProperty Name="sLocCstmSplitIndicator" ColumnName="sLocCstmSplitIndicator" />
+                <ScalarProperty Name="sLocCstmNatureOfCargo" ColumnName="sLocCstmNatureOfCargo" />
+                <ScalarProperty Name="sLocCstmCargoMovement" ColumnName="sLocCstmCargoMovement" />
+                <ScalarProperty Name="sLocCstmItemType" ColumnName="sLocCstmItemType" />
+                <ScalarProperty Name="sLocCstmTypeOfCargo" ColumnName="sLocCstmTypeOfCargo" />
+                <ScalarProperty Name="sLocCstmNextPortOfUnlading" ColumnName="sLocCstmNextPortOfUnlading" />
+                <ScalarProperty Name="sLocCstmDestinationPort" ColumnName="sLocCstmDestinationPort" />
+                <ScalarProperty Name="sLocCstmFirstPortOfEntry" ColumnName="sLocCstmFirstPortOfEntry" />
+                <ScalarProperty Name="sHCRefPreviousDescription" ColumnName="sHCRefPreviousDescription" />
+                <ScalarProperty Name="sHCRefConsolidatorPan" ColumnName="sHCRefConsolidatorPan" />
+                <ScalarProperty Name="sHCRefConsolidatedIndicator" ColumnName="sHCRefConsolidatedIndicator" />
+                <ScalarProperty Name="dtHCRefBillDate" ColumnName="dtHCRefBillDate" />
+                <ScalarProperty Name="sHCRefBillNo" ColumnName="sHCRefBillNo" />
+                <ScalarProperty Name="dHCRefSubLineNo" ColumnName="dHCRefSubLineNo" />
+                <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
+                <ScalarProperty Name="iMasterConsignmentId" ColumnName="iMasterConsignmentId" />
+                <ScalarProperty Name="iHouseCargoDescId" ColumnName="iHouseCargoDescId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2757,90 +2841,6 @@
                 <ScalarProperty Name="iEquipmentSequenceNo" ColumnName="iEquipmentSequenceNo" />
                 <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
                 <ScalarProperty Name="iVoyageTransportId" ColumnName="iVoyageTransportId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SeaManifestModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblHouseCargoDescriptionMasterConsignmentMaps">
-            <EntityTypeMapping TypeName="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap">
-              <MappingFragment StoreEntitySet="tblHouseCargoDescriptionMasterConsignmentMap">
-                <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
-                <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
-                <ScalarProperty Name="sTrnsprtrDocMsrCurrencyCd" ColumnName="sTrnsprtrDocMsrCurrencyCd" />
-                <ScalarProperty Name="dTrnsprtrDocMsrInvoiceValueOfConsigment" ColumnName="dTrnsprtrDocMsrInvoiceValueOfConsigment" />
-                <ScalarProperty Name="sTrnsprtrDocMsrUnitOfVolume" ColumnName="sTrnsprtrDocMsrUnitOfVolume" />
-                <ScalarProperty Name="dTrnsprtrDocMsrGrossVolume" ColumnName="dTrnsprtrDocMsrGrossVolume" />
-                <ScalarProperty Name="sTrnsprtrDocMsrUnitOfWeight" ColumnName="sTrnsprtrDocMsrUnitOfWeight" />
-                <ScalarProperty Name="dTrnsprtrDocMsrNetWeight" ColumnName="dTrnsprtrDocMsrNetWeight" />
-                <ScalarProperty Name="dTrnsprtrDocMsrGrossWeight" ColumnName="dTrnsprtrDocMsrGrossWeight" />
-                <ScalarProperty Name="sTrnsprtrDocMsrMarksNoOnPackages" ColumnName="sTrnsprtrDocMsrMarksNoOnPackages" />
-                <ScalarProperty Name="sTrnsprtrDocMsrTypesOfPackages" ColumnName="sTrnsprtrDocMsrTypesOfPackages" />
-                <ScalarProperty Name="dTrnsprtrDocMsrNoOfPackages" ColumnName="dTrnsprtrDocMsrNoOfPackages" />
-                <ScalarProperty Name="sTrnsprtrDocPartyUCRCd" ColumnName="sTrnsprtrDocPartyUCRCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyUCRType" ColumnName="sTrnsprtrDocPartyUCRType" />
-                <ScalarProperty Name="sTrnsprtrDocPartyGoodsDescAsPerBill" ColumnName="sTrnsprtrDocPartyGoodsDescAsPerBill" />
-                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyPostCd" ColumnName="sTrnsprtrDocPartyNotFdPartyPostCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCountryCd" ColumnName="sTrnsprtrDocPartyNotFdPartyCountryCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCountrySubDiv" ColumnName="sTrnsprtrDocPartyNotFdPartyCountrySubDiv" />
-                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCountrySubDivName" ColumnName="sTrnsprtrDocPartyNotFdPartyCountrySubDivName" />
-                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyCity" ColumnName="sTrnsprtrDocPartyNotFdPartyCity" />
-                <ScalarProperty Name="sTrnsprtrDocPartyNotFdPartyStreetAddress" ColumnName="sTrnsprtrDocPartyNotFdPartyStreetAddress" />
-                <ScalarProperty Name="sTrnsprtrDocPartyTypeOfNotFdPartyCd" ColumnName="sTrnsprtrDocPartyTypeOfNotFdPartyCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyPANOfNotFdParty" ColumnName="sTrnsprtrDocPartyPANOfNotFdParty" />
-                <ScalarProperty Name="sTrnsprtrDocPartyNameOfAnyOtherNotFdParty" ColumnName="sTrnsprtrDocPartyNameOfAnyOtherNotFdParty" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneePostCd" ColumnName="sTrnsprtrDocPartyConsigneePostCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCountryCd" ColumnName="sTrnsprtrDocPartyConsigneeCountryCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCountrySubDiv" ColumnName="sTrnsprtrDocPartyConsigneeCountrySubDiv" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCountrySubDivName" ColumnName="sTrnsprtrDocPartyConsigneeCountrySubDivName" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCity" ColumnName="sTrnsprtrDocPartyConsigneeCity" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeStreetAddress" ColumnName="sTrnsprtrDocPartyConsigneeStreetAddress" />
-                <ScalarProperty Name="sTrnsprtrDocPartyTypeOfCd" ColumnName="sTrnsprtrDocPartyTypeOfCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeCd" ColumnName="sTrnsprtrDocPartyConsigneeCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsigneeName" ColumnName="sTrnsprtrDocPartyConsigneeName" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorPostCd" ColumnName="sTrnsprtrDocPartyConsignorPostCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCountryCd" ColumnName="sTrnsprtrDocPartyConsignorCountryCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCountrySubDivCd" ColumnName="sTrnsprtrDocPartyConsignorCountrySubDivCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCountrySubDivName" ColumnName="sTrnsprtrDocPartyConsignorCountrySubDivName" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCity" ColumnName="sTrnsprtrDocPartyConsignorCity" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorStreetAddress" ColumnName="sTrnsprtrDocPartyConsignorStreetAddress" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCdType" ColumnName="sTrnsprtrDocPartyConsignorCdType" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorCd" ColumnName="sTrnsprtrDocPartyConsignorCd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyConsignorName" ColumnName="sTrnsprtrDocPartyConsignorName" />
-                <ScalarProperty Name="sTrnsprtrDocPartyPortOfReceiptName" ColumnName="sTrnsprtrDocPartyPortOfReceiptName" />
-                <ScalarProperty Name="sTrnsprtrDocPartyPortOfReceiptCcd" ColumnName="sTrnsprtrDocPartyPortOfReceiptCcd" />
-                <ScalarProperty Name="sTrnsprtrDocPartyPortOfAcceptedName" ColumnName="sTrnsprtrDocPartyPortOfAcceptedName" />
-                <ScalarProperty Name="sTrnsprtrDocPartyPortOfAcceptedCCd" ColumnName="sTrnsprtrDocPartyPortOfAcceptedCCd" />
-                <ScalarProperty Name="sTrnshprTranshipperBond" ColumnName="sTrnshprTranshipperBond" />
-                <ScalarProperty Name="sTrnshprTranshipperCd" ColumnName="sTrnshprTranshipperCd" />
-                <ScalarProperty Name="sLocCstmTypeOfPakages" ColumnName="sLocCstmTypeOfPakages" />
-                <ScalarProperty Name="dLocCstmNoOfPackages" ColumnName="dLocCstmNoOfPackages" />
-                <ScalarProperty Name="sLocCstmSplitIndicator" ColumnName="sLocCstmSplitIndicator" />
-                <ScalarProperty Name="sLocCstmNatureOfCargo" ColumnName="sLocCstmNatureOfCargo" />
-                <ScalarProperty Name="sLocCstmCargoMovement" ColumnName="sLocCstmCargoMovement" />
-                <ScalarProperty Name="sLocCstmItemType" ColumnName="sLocCstmItemType" />
-                <ScalarProperty Name="sLocCstmTypeOfCargo" ColumnName="sLocCstmTypeOfCargo" />
-                <ScalarProperty Name="sLocCstmNextPortOfUnlading" ColumnName="sLocCstmNextPortOfUnlading" />
-                <ScalarProperty Name="sLocCstmDestinationPort" ColumnName="sLocCstmDestinationPort" />
-                <ScalarProperty Name="sLocCstmFirstPortOfEntry" ColumnName="sLocCstmFirstPortOfEntry" />
-                <ScalarProperty Name="sHCRefPreviousDescription" ColumnName="sHCRefPreviousDescription" />
-                <ScalarProperty Name="sHCRefConsolidatorPan" ColumnName="sHCRefConsolidatorPan" />
-                <ScalarProperty Name="sHCRefConsolidatedIndicator" ColumnName="sHCRefConsolidatedIndicator" />
-                <ScalarProperty Name="dtHCRefBillDate" ColumnName="dtHCRefBillDate" />
-                <ScalarProperty Name="sHCRefBillNo" ColumnName="sHCRefBillNo" />
-                <ScalarProperty Name="dHCRefSubLineNo" ColumnName="dHCRefSubLineNo" />
-                <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
-                <ScalarProperty Name="iMasterConsignmentId" ColumnName="iMasterConsignmentId" />
-                <ScalarProperty Name="iHouseCargoDescId" ColumnName="iHouseCargoDescId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
