@@ -62,7 +62,7 @@ function initAddUpdateItemDetailsHouseCargo() {
 
 $(document).on('submit', '#frmItemDetailsHouseCargo', function (e) {
     e.preventDefault();
-    if ($(this).valid() && checkFormItemDetailsHouseCargos())
+    if ($(this).valid())
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),

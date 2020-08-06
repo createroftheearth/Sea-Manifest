@@ -62,7 +62,7 @@ function initAddUpdateItemDetailsMasterConsignment() {
 
 $(document).on('submit', '#frmItemDetailsMasterConsignment', function (e) {
     e.preventDefault();
-    if ($(this).valid() && checkFormItemDetailsMasterConsignments())
+    if ($(this).valid())
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
