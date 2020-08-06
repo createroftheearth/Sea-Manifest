@@ -47,6 +47,7 @@ function initMessages() {
                     var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Master Consignment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/TransportEquipmentMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/SupportDocMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
                         "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
                     if (full.sDecRefReportingEvent !== "SEI")
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AdditionalDetailsMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";

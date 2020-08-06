@@ -15,27 +15,21 @@ namespace BAL.Models
         public int? iMasterConsignmentId { get; set; }
         public int? iMessageImplementationId { get; set; }
         [Display(Name = "Port Of Call Sequence No.")]
-        [Required(ErrorMessage = "Port Of Call Sequence No. is a required field.")]
         public decimal dPortOfCallSequenceNo { get; set; }
         [Display(Name = "Port Of Call CD")]
         [MaxLength(10, ErrorMessage = "Port Of Call CD cannot exceed 10 character.")]
-        [Required(ErrorMessage = "Port Of Call CD is a required field.")]
         public string sPortOfCallCd { get; set; }
         [Display(Name = "Port Of Call Name")]
         [MaxLength(256, ErrorMessage = "Port Of Call Name cannot exceed 256 character.")]
-        [Required(ErrorMessage = "Port Of Call Name is a required field.")]
         public string sPortOfCallName { get; set; }
         [Display(Name = "Next Port Of Call CDD")]
         [MaxLength(10, ErrorMessage = "Next Port Of Call CDD cannot exceed 10 character.")]
-        [Required(ErrorMessage = "Next Port Of Call CDD is a required field.")]
         public string sNextPortOfCallCdd { get; set; }
         [Display(Name = "Next Port Of Call Name")]
         [MaxLength(256, ErrorMessage = "Next Port Of Call Name cannot exceed 256 character.")]
-        [Required(ErrorMessage = "Next Port Of Call Name is a required field.")]
         public string sNextPortOfCallName { get; set; }
         [Display(Name = "Mode Of Transport")]
         [MaxLength(1, ErrorMessage = "Mode Of Transport cannot exceed 1 character.")]
-        [Required(ErrorMessage = "Mode Of Transport is a required field.")]
         public string sModeOfTransport { get; set; }
     }
 }

@@ -27,6 +27,17 @@ namespace BAL.Services
             }
         }
 
+        public void Validate(int? iMasterConsignmentId)
+        {
+            using (var db = new SeaManifestEntities())
+            {
+                if (!db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId))
+                    throw new Exception("Invalid Master Consignment Id");
+                if (!db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId && (z.tblMessageImplementation.sDecRefReportingEvent=="SEI" || z.tblMessageImplementation.sDecRefReportingEvent == "SDN")))
+                    throw new Exception("Itinerary cannot be filled with SEI or SDN reporting type");
+            }
+        }
+
         //save ItemDeatilsMasterConsignment 
         public object SaveItineraryMasterConsignment(ItineraryMasterConsignmentModel model, int iUserId)
         {
