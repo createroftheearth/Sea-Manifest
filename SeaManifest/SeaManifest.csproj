@@ -1612,8 +1612,6 @@
     <Content Include="Views\SupportDocHouseCargo\pvAddUpdateSupportDocHouseCargo.cshtml" />
     <Content Include="Views\ItemDetailsMasterConsignment\Index.cshtml" />
     <Content Include="Views\ItemDetailsMasterConsignment\pvAddUpdateItemDetailsMasterConsignment.cshtml" />
-    <Content Include="Views\ItineraryMasterConsignment\Index.cshtml" />
-    <Content Include="Views\ItineraryMasterConsignment\pvAddUpdateItineraryMasterConsignment.cshtml" />
     <Content Include="Views\AdditionalDetailsMessageImplementation\Index.cshtml" />
     <Content Include="Views\AdditionalDetailsMasterConsignment\Index.cshtml" />
     <Content Include="Views\AdditionalDetailsMasterConsignment\pvAddUpdateAdditionalDetailsMasterConsignment.cshtml" />

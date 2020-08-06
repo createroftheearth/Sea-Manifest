@@ -15,6 +15,7 @@ namespace SeaManifest.Controllers
         public ActionResult Index(int? iHouseCargoDescId)
         {
             Session["iHouseCargoDescId"] = iHouseCargoDescId;
+            HouseCargoService.Instance.Validate(iHouseCargoDescId);
             return View();
         }
 
@@ -30,11 +31,18 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateItineraryHouseCargo(int? iHouseCargoDescId = null,int? iItenaryHouseCargoId = null )
+        public PartialViewResult AddUpdateItineraryHouseCargo(int? iItenaryHouseCargoId = null )
         {
-            if (iItenaryHouseCargoId == null && iHouseCargoDescId == null)
+            var iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+            var reportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId, out int iMasterConsignmentId);
+            if ((iItenaryHouseCargoId ?? 0) == 0)
             {
-                return PartialView("pvAddUpdateItineraryHouseCargo");
+                return PartialView("pvAddUpdateItineraryHouseCargo", new ItineraryHouseCargoModel
+                {
+                    iHouseCargoDescId = iHouseCargoDescId,
+                    iMasterConsignmentId = iMasterConsignmentId,
+                    sReportingEvent = reportingEvent
+                });
             }
             else
                 return PartialView("pvAddUpdateItineraryHouseCargo", ItineraryHouseCargoService.Instance.GetItineraryHouseHouseCargoByItenaryId(iHouseCargoDescId, iItenaryHouseCargoId));

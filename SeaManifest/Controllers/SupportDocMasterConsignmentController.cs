@@ -11,7 +11,7 @@ namespace SeaManifest.Controllers
 {
     public class SupportDocMasterConsignmentController : BaseController
     {
-        // GET: HouseCargo
+        // GET: MasterConsignment
         public ActionResult Index(int? iMasterConsignmentId)
         {
             Session["iMasterConsignmentId"] = iMasterConsignmentId;
@@ -34,13 +34,12 @@ namespace SeaManifest.Controllers
         public PartialViewResult AddUpdateSupportDocMasterConsignment(int? iSupportDocsId = null)
         {
             var iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
-            var reportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iMasterConsignmentId, out int iMessageImplementationId);
+            var reportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId, out int iMasterConsignmentId);
             if ((iSupportDocsId ?? 0) == 0)
             {
                 return PartialView("pvAddUpdateSupportDocMasterConsignment", new SupportDocMasterConsignmentModel
                 {
                     iMasterConsignmentId = iMasterConsignmentId,
-                    iMessageImplementationId = iMessageImplementationId,
                     sReportingEvent = reportingEvent
                 });
             }
