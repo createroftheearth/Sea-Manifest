@@ -1,10 +1,10 @@
 ﻿$(function () {
-    initItenaryHouseCargo();
+    initItenaryMasterConsignment();
 });
 
-var ItenaryHouseCargo;
-function initItenaryHouseCargo() {
-    ItenaryHouseCargo = $('#tblItenaryHouseCargo').DataTable({
+var ItenaryMasterConsignment;
+function initItenaryMasterConsignment() {
+    ItenaryMasterConsignment = $('#tblItenaryMasterConsignment').DataTable({
         "searching": true,
         "ordering": false,
         "processing": true,
@@ -13,7 +13,7 @@ function initItenaryHouseCargo() {
         "bLengthChange": false,
         "filter": true,
         "ajax": {
-            "url": "/ItineraryHouseCargo/GetItineraryHouseCargo",
+            "url": "/ItineraryMasterConsignment/GetItineraryMasterConsignment",
             "type": "POST",
         },
         "columns": [
@@ -37,7 +37,7 @@ function initItenaryHouseCargo() {
             },
             {
                 "data": "iItineraryId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItenaryHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i></button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItenaryMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i></button> ";
                         
                 }
             },
@@ -55,7 +55,7 @@ function resetForm() {
     var $errors = $form.find(".field-validation-error span");
 
     // trick unobtrusive to think the elements were succesfully validated
-    // this removes the validation HouseCargo
+    // this removes the validation MasterConsignment
     //$errors.each(function () { $validator.settings.success($(this)); })
 
     // clear errors from validation
@@ -63,19 +63,19 @@ function resetForm() {
 }
 
 
-function AddUpdateItenaryHouseCargo(iItenaryHouseCargoId) {
-    $('#addUpdateModallgContainer').load('/ItineraryHouseCargo/AddUpdateItenaryHouseCargo?iItenaryHouseCargoId=' + iItenaryHouseCargoId, function () {
-        initAddUpdateItenaryHouseCargo();
+function AddUpdateItenaryMasterConsignment(iItenaryMasterConsignmentId) {
+    $('#addUpdateModallgContainer').load('/ItineraryMasterConsignment/AddUpdateItenaryMasterConsignment?iItenaryMasterConsignmentId=' + iItenaryMasterConsignmentId, function () {
+        initAddUpdateItenaryMasterConsignment();
     });
 }
 
-function initAddUpdateItenaryHouseCargo() {
-    $.validator.unobtrusive.parse('#frmItineraryHouseCargo');
-    $('#frmItineraryHouseCargo select').selectpicker();
+function initAddUpdateItenaryMasterConsignment() {
+    $.validator.unobtrusive.parse('#frmItineraryMasterConsignment');
+    $('#frmItineraryMasterConsignment select').selectpicker();
     $('#addUpdatelgModal').modal('show');
 }
 
-$(document).on('submit', '#frmItineraryHouseCargo', function (e) {
+$(document).on('submit', '#frmItineraryMasterConsignment', function (e) {
     e.preventDefault();
     if ($(this).valid())
         $.ajax({
@@ -85,7 +85,7 @@ $(document).on('submit', '#frmItineraryHouseCargo', function (e) {
             success: function (response) {
                 if (response.Status) {
                     alertify.success(response.Message);
-                    HouseCargoTable.ajax.reload();
+                    MasterConsignmentTable.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
                     alertify.error(response.Message);
@@ -99,5 +99,28 @@ $(document).on('submit', '#frmItineraryHouseCargo', function (e) {
             }
         });
 });
+
+function checkItenaryMasterConsginment() {
+    var returnValue = true;
+    var validator = $("#frmTransportEquipmentMessageImplementation").validate();
+    var data = $('#sReportingEvent').val();
+    if (data !== "SAA") {
+        if ($('#dPortOfCallSequenceNo').val() == "") {
+            validator.showErrors({
+                "dPortOfCallSequenceNo": "Port of Call Seq No. is a required field."
+            });
+            $('#dPortOfCallSequenceNo').focus();
+            returnValue = false;
+        }
+        if ($('#sModeOfTransport').val() == "") {
+            validator.showErrors({
+                "sModeOfTransport": "Mode of Transport is a required field."
+            });
+            $('#sModeOfTransport').focus();
+            returnValue = false;
+        }
+    }
+    return returnValue;
+}
 
 
