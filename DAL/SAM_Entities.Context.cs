@@ -28,6 +28,7 @@ namespace DAL
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tblAdditionalDetailsHouseCargoMap> tblAdditionalDetailsHouseCargoMaps { get; set; }
         public virtual DbSet<tblAdditionalDetailsMasterConsignmentMap> tblAdditionalDetailsMasterConsignmentMaps { get; set; }
+        public virtual DbSet<tblAdditionalDetailsMessageImplementationMap> tblAdditionalDetailsMessageImplementationMaps { get; set; }
         public virtual DbSet<tblAmendmentDetailsMessageImlementationMap> tblAmendmentDetailsMessageImlementationMaps { get; set; }
         public virtual DbSet<tblCodeM> tblCodeMs { get; set; }
         public virtual DbSet<tblCodeTypeM> tblCodeTypeMs { get; set; }
@@ -46,8 +47,7 @@ namespace DAL
         public virtual DbSet<tblPortM> tblPortMs { get; set; }
         public virtual DbSet<tblSupportDocHouseCargoMap> tblSupportDocHouseCargoMaps { get; set; }
         public virtual DbSet<tblSupportDocMasterConsignmentMap> tblSupportDocMasterConsignmentMaps { get; set; }
-        public virtual DbSet<tblTmAdditionalDetailsMessageImplementationMap> tblTmAdditionalDetailsMessageImplementationMaps { get; set; }
-        public virtual DbSet<tblTmSupportDocMessageImplementationMap> tblTmSupportDocMessageImplementationMaps { get; set; }
+        public virtual DbSet<tblSupportDocMessageImplementationMap> tblSupportDocMessageImplementationMaps { get; set; }
         public virtual DbSet<tblTransportEquipmentHouseCargoMap> tblTransportEquipmentHouseCargoMaps { get; set; }
         public virtual DbSet<tblTransportEquipmentMasterConsignmentMap> tblTransportEquipmentMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblVoyageTransporterEquipmentMessageImplementationMap> tblVoyageTransporterEquipmentMessageImplementationMaps { get; set; }

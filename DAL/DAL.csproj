@@ -78,6 +78,9 @@
     <Compile Include="tblAdditionalDetailsMasterConsignmentMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblAdditionalDetailsMessageImplementationMap.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblAmendmentDetailsMessageImlementationMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
@@ -132,10 +135,7 @@
     <Compile Include="tblSupportDocMasterConsignmentMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblTmAdditionalDetailsMessageImplementationMap.cs">
-      <DependentUpon>SAM_Entities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="tblTmSupportDocMessageImplementationMap.cs">
+    <Compile Include="tblSupportDocMessageImplementationMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTransportEquipmentHouseCargoMap.cs">

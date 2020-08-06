@@ -131,6 +131,7 @@
     <Compile Include="Controllers\AdditionalDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItemDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItineraryMasterConsignmentController.cs" />
+    <Compile Include="Controllers\SupportDocMesageImplementationController.cs" />
     <Compile Include="Controllers\SupportDocMasterConsignmentController.cs" />
     <Compile Include="Controllers\TransportEquipmentHouseCargoController.cs" />
     <Compile Include="Controllers\TransportEquipmentMasterConsignmentController.cs" />
@@ -1556,6 +1557,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\PageScripts\AdditionalDetailsHouseCargo.js" />
     <Content Include="Scripts\PageScripts\AdditionalDetailsMasterConsignment.js" />
+    <Content Include="Scripts\PageScripts\SupportDocMasterConsignment.js" />
+    <Content Include="Scripts\PageScripts\SupportDocMesageImplementation.js" />
     <Content Include="Scripts\PageScripts\SupportDocHouseCargo.js" />
     <Content Include="Scripts\PageScripts\TransportEquipmentHouseCargo.js" />
     <Content Include="Scripts\PageScripts\TransportEquipmentMasterConsignment.js" />
@@ -1621,6 +1624,10 @@
     <Content Include="Views\TransportEquipmentMasterConsignment\pvAddUpdateTransportEquipmentMasterConsignment.cshtml" />
     <Content Include="Views\TransportEquipmentHouseCargo\Index.cshtml" />
     <Content Include="Views\TransportEquipmentHouseCargo\pvAddUpdateTransportEquipmentHouseCargo.cshtml" />
+    <Content Include="Views\SupportDocMasterConsignment\Index.cshtml" />
+    <Content Include="Views\SupportDocMasterConsignment\pvAddUpdateSupportDocMasterConsignment.cshtml" />
+    <Content Include="Views\SupportDocMesageImplementation\Index.cshtml" />
+    <Content Include="Views\SupportDocMesageImplementation\pvAddUpdateSupportDocMesageImplementation.cshtml" />
     <Content Include="Views\ItineraryMasterConsignment\Index.cshtml" />
     <Content Include="Views\ItineraryMasterConsignment\pvAddUpdateItineraryMasterConsignment.cshtml" />
   </ItemGroup>

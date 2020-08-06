@@ -28,7 +28,7 @@ namespace BAL.Services
             }
         }
 
-        //save SupportDocHouseCargo 
+        //save SupportDocMasterConsignment 
         public object SaveSupportDocMasterConsignment(SupportDocMasterConsignmentModel model, int iUserId)
         {
             try
@@ -73,7 +73,7 @@ namespace BAL.Services
                         db.tblSupportDocMasterConsignmentMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Support Doc Master Consignment saved successfully!" };
+                    return new { Status = true, Message = "Support Doc saved successfully!" };
                 }
 
             }
@@ -83,12 +83,20 @@ namespace BAL.Services
             }
         }
 
-        public object GetSupportDocMasterConsignment(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
+        public object GetSupportDocMasterConsignment(int iMasterConsignmentId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblSupportDocMasterConsignmentMaps
-                            where t.sTagRef.Contains(search) && t.iMessageImplementationId == iMessageImplementationId
+                            where (t.sTagRef.Contains(search) || t.sRefSerialNo.Contains(search)
+                            || t.sSubSerialNoRef.Contains(search)
+                            || t.sIcegateUserId.Contains(search)
+                            || t.sIRNNo.Contains(search)
+                            || t.sDocRefNo.Contains(search)
+                            || t.sDocTypeCd.Contains(search)
+                            || t.sBeneficiaryCd.Contains(search)
+                            )
+                            && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sIRNNo).Take(length).Skip(start).ToList().Select(t => new
@@ -96,9 +104,14 @@ namespace BAL.Services
                     t.iMessageImplementationId,
                     t.iMasterConsignmentId,
                     t.sTagRef,
+                    t.sRefSerialNo,
+                    t.sSubSerialNoRef,
+                    t.sIcegateUserId,
                     t.sIRNNo,
-                    // t.iItemsDetailsId
-                    //masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    t.sDocRefNo,
+                    t.sDocTypeCd,
+                    t.sBeneficiaryCd,
+                    t.iSupportDocsId
                 }).ToList();
             }
         }

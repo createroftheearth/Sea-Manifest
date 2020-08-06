@@ -1,0 +1,59 @@
+﻿@model BAL.Models.SupportDocMasterConsignmentModel
+@using (Html.BeginForm("AddUpdateSupportDocMasterConsignment", "SupportDocMasterConsignment", FormMethod.Post, new { @id = "frmSupportDocMasterConsignment" }))
+{
+    <div class="modal-header">
+        <h4 class="modal-title">Add/Update Support Doc</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+        @Html.HiddenFor(z => z.iMessageImplementationId)
+        @Html.HiddenFor(z => z.iMasterConsignmentId)
+        @Html.HiddenFor(z => z.iSupportDocsId)
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sTagRef)
+                @Html.TextBoxFor(z => z.sTagRef, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sTagRef)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sRefSerialNo)
+                @Html.TextBoxFor(z => z.sRefSerialNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sRefSerialNo)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sSubSerialNoRef)
+                @Html.TextBoxFor(z => z.sSubSerialNoRef, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sSubSerialNoRef)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sIcegateUserId)
+                @Html.TextBoxFor(z => z.sIcegateUserId, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sIcegateUserId)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sIRNNo)
+                @Html.TextBoxFor(z => z.sIRNNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sIRNNo)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sDocRefNo)
+                @Html.TextBoxFor(z => z.sDocRefNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sDocRefNo)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sDocTypeCd)
+                @Html.TextBoxFor(z => z.sDocTypeCd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sDocTypeCd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sBeneficiaryCd)
+                @Html.TextBoxFor(z => z.sBeneficiaryCd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sBeneficiaryCd)
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+}

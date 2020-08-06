@@ -62,6 +62,7 @@
     <Compile Include="Models\AdditionalDetailsMasterConsignmentModel.cs" />
     <Compile Include="Models\ItemDetailsMasterConsignmentModel.cs" />
     <Compile Include="Models\ItineraryMasterConsignmentModel.cs" />
+    <Compile Include="Models\SupportDocMesageImplementationModel.cs" />
     <Compile Include="Models\SupportDocMasterConsignmentModel.cs" />
     <Compile Include="Models\TransportEquipmentMesssageImplementationModel.cs" />
     <Compile Include="Models\TransportEquipmentMasterConsignmentModel.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Services\AdditionalDetailsMasterConsignmentService.cs" />
     <Compile Include="Services\ItemDetailsMasterConsignmentService.cs" />
     <Compile Include="Services\ItineraryMasterConsignmentService.cs" />
+    <Compile Include="Services\SupportDocMesageImplementationService.cs" />
     <Compile Include="Services\SupportDocMasterConsignmentService.cs" />
     <Compile Include="Services\TransportEquipmentMessageImplementationService.cs" />
     <Compile Include="Services\TransportEquipmentMasterConsignmentService.cs" />
