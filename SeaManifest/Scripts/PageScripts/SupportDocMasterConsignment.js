@@ -1,11 +1,11 @@
 ﻿$(function () {
-    initSupportDocHouseCargos();
+    initSupportDocMasterConsignment();
 });
 
-var SupportDocHouseCargoTable;
+var SupportDocMasterConsignmentTable;
 
-function initSupportDocHouseCargos() {
-    SupportDocHouseCargoTable = $('#tblSupportDocHouseCargo').DataTable({
+function initSupportDocMasterConsignment() {
+    SupportDocMasterConsignmentTable = $('#tblSupportDocMasterConsignment').DataTable({
         "searching": true,
         "ordering": false,
         "processing": true,
@@ -14,7 +14,7 @@ function initSupportDocHouseCargos() {
         "bLengthChange": false,
         "filter": true,
         "ajax": {
-            "url": "/SupportDocHouseCargo/GetSupportDocHouseCargo",
+            "url": "/SupportDocMasterConsignment/GetSupportDocMasterConsignment",
             "type": "POST",
         },
         "columns": [
@@ -44,22 +44,22 @@ function initSupportDocHouseCargos() {
             },
             {
                 "data": "iSupportDocsId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateSupportDocHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateSupportDocMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },
         ]
     });
 }
 
-function AddUpdateSupportDocHouseCargo(iSupportDocHouseCargoId) {
-    $('#addUpdateModallgContainer').load('/SupportDocHouseCargo/AddUpdateSupportDocHouseCargo?iSupportDocsId=' + iSupportDocHouseCargoId, function () {
-        initAddUpdateSupportDocHouseCargo();
+function AddUpdateSupportDocMasterConsignment(iSupportDocMasterConsignmentId) {
+    $('#addUpdateModallgContainer').load('/SupportDocMasterConsignment/AddUpdateSupportDocMasterConsignment?iSupportDocsId=' + iSupportDocMasterConsignmentId, function () {
+        initAddUpdateSupportDocMasterConsignment();
     });
 }
 
-function initAddUpdateSupportDocHouseCargo() {
-    $.validator.unobtrusive.parse('#frmSupportDocHouseCargo');
-    $('#frmSupportDocHouseCargo select').selectpicker();
+function initAddUpdateSupportDocMasterConsignment() {
+    $.validator.unobtrusive.parse('#frmSupportDocMasterConsignment');
+    $('#frmSupportDocMasterConsignment select').selectpicker();
     $('#addUpdatelgModal').modal('show');
 }
 
@@ -81,7 +81,7 @@ function resetForm() {
 }
 
 
-$(document).on('submit', '#frmSupportDocHouseCargo', function (e) {
+$(document).on('submit', '#frmSupportDocMasterConsignment', function (e) {
     e.preventDefault();
     if ($(this).valid() && checkSupportDocs())
         $.ajax({
@@ -91,7 +91,7 @@ $(document).on('submit', '#frmSupportDocHouseCargo', function (e) {
             success: function (response) {
                 if (response.Status) {
                     alertify.success(response.Message);
-                    SupportDocHouseCargoTable.ajax.reload();
+                    SupportDocMasterConsignmentTable.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
                     alertify.error(response.Message);
@@ -108,7 +108,7 @@ $(document).on('submit', '#frmSupportDocHouseCargo', function (e) {
 
 function checkSupportDocs() {
     var returnValue = true;
-    var validator = $("#frmSupportDocHouseCargo").validate();
+    var validator = $("#frmSupportDocMasterConsignment").validate();
     var data = $('#sReportingEvent').val();
     if (data !== "SAA") {
         if ($('#sTagRef').val() == "") {

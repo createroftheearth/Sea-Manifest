@@ -10,36 +10,35 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class SupportDocHouseCargoService
+    public class SupportDocMesageImplementationService
     {
-        private SupportDocHouseCargoService()
+        private SupportDocMesageImplementationService()
         {
         }
 
-        private static SupportDocHouseCargoService _instance;
+        private static SupportDocMesageImplementationService _instance;
 
-        public static SupportDocHouseCargoService Instance
+        public static SupportDocMesageImplementationService Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new SupportDocHouseCargoService();
+                    _instance = new SupportDocMesageImplementationService();
                 return _instance;
             }
         }
 
-        //save SupportDocHouseCargo 
-        public object SaveSupportDocHouseCargo(SupportDocHouseCargoModel model, int iUserId)
+        //save SupportDocMesageImplementation 
+        public object SaveSupportDocMesageImplementation(SupportDocMesageImplementationModel model, int iUserId)
         {
             try
             {
                 using (var db = new SeaManifestEntities())
                 {
-                    var data = db.tblSupportDocHouseCargoMaps.Where(z => z.iSupportDocsId == model.iSupportDocsId).SingleOrDefault();
+                    var data = db.tblSupportDocMessageImplementationMaps.Where(z => z.iSupportDocsId == model.iSupportDocsId).SingleOrDefault();
                     if (data != null)
                     {
-                        data.iMasterConsignmentId = model.iMasterConsignmentId ?? 0;
-                        data.iHouseCargoDescId = model.iHouseCargoDescId;
+                        data.iMessageImplementationId = model.iMessageImplementationId;
                         data.sTagRef = model.sTagRef;
                         data.sRefSerialNo = model.sRefSerialNo;
                         data.sSubSerialNoRef = model.sSubSerialNoRef;
@@ -55,10 +54,9 @@ namespace BAL.Services
                     }
                     else
                     {
-                        data = new tblSupportDocHouseCargoMap
+                        data = new tblSupportDocMessageImplementationMap
                         {
-                            iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
-                            iHouseCargoDescId = model.iHouseCargoDescId,
+                            iMessageImplementationId = model.iMessageImplementationId,
                             sTagRef = model.sTagRef,
                             sRefSerialNo = model.sRefSerialNo,
                             sSubSerialNoRef = model.sSubSerialNoRef,
@@ -70,7 +68,7 @@ namespace BAL.Services
                             iActionBy = iUserId,
                             dtActionDate = DateTime.Now,
                         };
-                        db.tblSupportDocHouseCargoMaps.Add(data);
+                        db.tblSupportDocMessageImplementationMaps.Add(data);
                         db.SaveChanges();
                     }
                     return new { Status = true, Message = "Support Doc saved successfully!" };
@@ -83,12 +81,13 @@ namespace BAL.Services
             }
         }
 
-        public object GetSupportDocHouseCargo(int iHouseCargoDescId, string search, int start, int length, out int recordsTotal)
+        public object GetSupportDocMesageImplementation(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
-                var query = from t in db.tblSupportDocHouseCargoMaps
-                            where (t.sTagRef.Contains(search) || t.sRefSerialNo.Contains(search)
+                var query = from t in db.tblSupportDocMessageImplementationMaps
+                            where (t.sTagRef.Contains(search)
+                            || t.sRefSerialNo.Contains(search)
                             || t.sSubSerialNoRef.Contains(search)
                             || t.sIcegateUserId.Contains(search)
                             || t.sIRNNo.Contains(search)
@@ -96,13 +95,12 @@ namespace BAL.Services
                             || t.sDocTypeCd.Contains(search)
                             || t.sBeneficiaryCd.Contains(search)
                             )
-                            && t.iHouseCargoDescId == iHouseCargoDescId
+                            && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sIRNNo).Take(length).Skip(start).ToList().Select(t => new
                 {
-                    t.iHouseCargoDescId,
-                    t.iMasterConsignmentId,
+                    t.iMessageImplementationId,
                     t.sTagRef,
                     t.sRefSerialNo,
                     t.sSubSerialNoRef,
@@ -116,14 +114,14 @@ namespace BAL.Services
             }
         }
 
-        public SupportDocHouseCargoModel GetSupportDocHouseCargoBySupportDocsId(int? iSupportDocsId)
+        public SupportDocMesageImplementationModel GetSupportDocMesageImplementationBySupportDocsId(int? iSupportDocsId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblSupportDocHouseCargoMaps.Where(z => z.iSupportDocsId == iSupportDocsId).ToList().Select(model => new SupportDocHouseCargoModel
+                return db.tblSupportDocMessageImplementationMaps.Where(z => z.iSupportDocsId == iSupportDocsId).ToList().Select(model => new SupportDocMesageImplementationModel
                 {
-                    iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
-                    iHouseCargoDescId = model.iHouseCargoDescId,
+
+                    iMessageImplementationId = model.iMessageImplementationId,
                     sTagRef = model.sTagRef,
                     sRefSerialNo = model.sRefSerialNo,
                     sSubSerialNoRef = model.sSubSerialNoRef,

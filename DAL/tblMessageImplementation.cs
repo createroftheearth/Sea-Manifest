@@ -19,6 +19,7 @@ namespace DAL
         {
             this.tblAdditionalDetailsMasterConsignmentMaps = new HashSet<tblAdditionalDetailsMasterConsignmentMap>();
             this.tblAdditionalDetailsMasterConsignmentMaps1 = new HashSet<tblAdditionalDetailsMasterConsignmentMap>();
+            this.tblAdditionalDetailsMessageImplementationMaps = new HashSet<tblAdditionalDetailsMessageImplementationMap>();
             this.tblAmendmentDetailsMessageImlementationMaps = new HashSet<tblAmendmentDetailsMessageImlementationMap>();
             this.tblHouseCargoDescriptionMasterConsignmentMaps = new HashSet<tblHouseCargoDescriptionMasterConsignmentMap>();
             this.tblItemDetailsMasterConsignmentMaps = new HashSet<tblItemDetailsMasterConsignmentMap>();
@@ -26,8 +27,7 @@ namespace DAL
             this.tblMasterConsignmentMessageImplementationMaps = new HashSet<tblMasterConsignmentMessageImplementationMap>();
             this.tblPersonOnBoardMessageImplementationMaps = new HashSet<tblPersonOnBoardMessageImplementationMap>();
             this.tblSupportDocMasterConsignmentMaps = new HashSet<tblSupportDocMasterConsignmentMap>();
-            this.tblTmAdditionalDetailsMessageImplementationMaps = new HashSet<tblTmAdditionalDetailsMessageImplementationMap>();
-            this.tblTmSupportDocMessageImplementationMaps = new HashSet<tblTmSupportDocMessageImplementationMap>();
+            this.tblSupportDocMessageImplementationMaps = new HashSet<tblSupportDocMessageImplementationMap>();
             this.tblTransportEquipmentMasterConsignmentMaps = new HashSet<tblTransportEquipmentMasterConsignmentMap>();
             this.tblVoyageTransporterEquipmentMessageImplementationMaps = new HashSet<tblVoyageTransporterEquipmentMessageImplementationMap>();
         }
@@ -100,6 +100,8 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAdditionalDetailsMasterConsignmentMap> tblAdditionalDetailsMasterConsignmentMaps1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblAdditionalDetailsMessageImplementationMap> tblAdditionalDetailsMessageImplementationMaps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblAmendmentDetailsMessageImlementationMap> tblAmendmentDetailsMessageImlementationMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblHouseCargoDescriptionMasterConsignmentMap> tblHouseCargoDescriptionMasterConsignmentMaps { get; set; }
@@ -114,9 +116,7 @@ namespace DAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSupportDocMasterConsignmentMap> tblSupportDocMasterConsignmentMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTmAdditionalDetailsMessageImplementationMap> tblTmAdditionalDetailsMessageImplementationMaps { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblTmSupportDocMessageImplementationMap> tblTmSupportDocMessageImplementationMaps { get; set; }
+        public virtual ICollection<tblSupportDocMessageImplementationMap> tblSupportDocMessageImplementationMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblTransportEquipmentMasterConsignmentMap> tblTransportEquipmentMasterConsignmentMaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

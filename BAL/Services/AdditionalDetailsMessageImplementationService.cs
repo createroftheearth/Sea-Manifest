@@ -36,7 +36,7 @@ namespace BAL.Services
             {
                 using (var db = new SeaManifestEntities())
                 {
-                    var data = db.tblTmAdditionalDetailsMessageImplementationMaps.Where(z => z.iTmAdditionalDetailsId == model.iAdditionalDetailsId).SingleOrDefault();
+                    var data = db.tblAdditionalDetailsMessageImplementationMaps.Where(z => z.iAdditionalDetailsId == model.iAdditionalDetailsId).SingleOrDefault();
                     if (data != null)
                     {
                         data.iMessageImplementationId = model.iMessageImplementationId;
@@ -55,7 +55,7 @@ namespace BAL.Services
                     }
                     else
                     {
-                        data = new tblTmAdditionalDetailsMessageImplementationMap
+                        data = new tblAdditionalDetailsMessageImplementationMap
                         {
                             iMessageImplementationId = model.iMessageImplementationId,
                             sTagRef = model.sTagRef,
@@ -69,7 +69,7 @@ namespace BAL.Services
                             iActionBy = iUserId,
                             dtActionDate = DateTime.Now,
                         };
-                        db.tblTmAdditionalDetailsMessageImplementationMaps.Add(data);
+                        db.tblAdditionalDetailsMessageImplementationMaps.Add(data);
                         db.SaveChanges();
                     }
                     return new { Status = true, Message = "Additional Details saved successfully!" };
@@ -86,7 +86,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
-                var query = from t in db.tblTmAdditionalDetailsMessageImplementationMaps
+                var query = from t in db.tblAdditionalDetailsMessageImplementationMaps
                             where (
                                 t.sInfoMsr.Contains(search) || SqlFunctions.StringConvert(t.dRefSerialNo).Contains(search)
                                 || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search) 
@@ -97,7 +97,7 @@ namespace BAL.Services
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sInfoCd).Take(length).Skip(start).ToList().Select(z => new
                 {
-                    z.iTmAdditionalDetailsId,
+                    z.iAdditionalDetailsId,
                     z.iMessageImplementationId,
                     z.sInfoCd,
                     z.sInfoMsr,
@@ -115,7 +115,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblTmAdditionalDetailsMessageImplementationMaps.Where(z => z.iTmAdditionalDetailsId == iAdditionalDetailsId).ToList().Select(model => new AdditionalDetailsMessageImplementationModel
+                return db.tblAdditionalDetailsMessageImplementationMaps.Where(z => z.iAdditionalDetailsId == iAdditionalDetailsId).ToList().Select(model => new AdditionalDetailsMessageImplementationModel
                 {
                     iMessageImplementationId = model.iMessageImplementationId,
                     sTagRef = model.sTagRef,

@@ -12,9 +12,9 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblTmSupportDocMessageImplementationMap
+    public partial class tblSupportDocMessageImplementationMap
     {
-        public int iTmSupportDocsId { get; set; }
+        public int iSupportDocsId { get; set; }
         public Nullable<int> iMessageImplementationId { get; set; }
         public string sTagRef { get; set; }
         public string sRefSerialNo { get; set; }
