@@ -102,6 +102,20 @@ namespace BAL.Services
             }
         }
 
+        public bool ValidateItinerary(ItineraryMasterConsignmentModel model, out string Messages)
+        {
+            Messages = string.Empty;
+            bool valid = true;
+            using (var db = new SeaManifestEntities())
+            {
+                if (db.tblItineraryMasterConsignmentMaps.Any(z => z.iItineraryId != model.iItineraryId && z.dPortOfCallSequenceNo== model.dPortOfCallSequenceNo && z.iMasterConsignmentId == model.iMasterConsignmentId))
+                {
+                    valid = false; Messages = "Port of call seq no already exists";
+                }
+            }
+            return valid;
+        }
+
         public ItineraryMasterConsignmentModel GetItineraryHouseMasterConsignmentByItenaryId(int? iIternaryId)
         {
             using (var db = new SeaManifestEntities())
@@ -110,7 +124,7 @@ namespace BAL.Services
                 {
                     iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                     iMessageImplementationId = model.iMessageImplementationId,
-                    dPortOfCallSequenceNo = model.dPortOfCallSequenceNo??0,
+                    dPortOfCallSequenceNo = model.dPortOfCallSequenceNo ?? 0,
                     sPortOfCallCd = model.sPortOfCallCd,
                     sPortOfCallName = model.sPortOfCallName,
                     sNextPortOfCallCdd = model.sNextPortOfCallCdd,

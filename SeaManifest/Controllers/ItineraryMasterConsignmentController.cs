@@ -31,7 +31,7 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateItineraryMasterConsignment(int? iItenaryMasterConsignmentId = null )
+        public PartialViewResult AddUpdateItineraryMasterConsignment(int? iItenaryMasterConsignmentId = null)
         {
             var iMasterConsignmentId = Convert.ToInt32(Session["iMasterConsignmentId"]);
             var reportingEvent = MasterConsignmentService.Instance.GetMessageTypeByMasterConsignmentId(iMasterConsignmentId, out int iMessageImplementationId);
@@ -51,13 +51,15 @@ namespace SeaManifest.Controllers
         [HttpPost]
         public JsonResult AddUpdateItineraryMasterConsignment(ItineraryMasterConsignmentModel model)
         {
-            if (ModelState.IsValid)
+            string Messages = string.Empty;
+
+            if (ModelState.IsValid && ItineraryMasterConsignmentService.Instance.ValidateItinerary(model, out Messages))
             {
                 return Json(ItineraryMasterConsignmentService.Instance.SaveItineraryHouseMasterConsignment(model, 1));
             }
             else
             {
-                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) + Messages });
             }
         }
     }
