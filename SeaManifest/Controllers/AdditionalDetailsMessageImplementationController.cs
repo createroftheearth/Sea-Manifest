@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class AdditionalDetailsMessageImplementationController : Controller
+    public class AdditionalDetailsMessageImplementationController : BaseController
     {
         // GET: MessageImplementation
         public ActionResult Index(int? iMessageImplementationId)

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class AdditionalDetailsMasterConsignmentController : Controller
+    public class AdditionalDetailsMasterConsignmentController : BaseController
     {
         // GET: MasterConsignment
         public ActionResult Index(int? iMasterConsignmentId)

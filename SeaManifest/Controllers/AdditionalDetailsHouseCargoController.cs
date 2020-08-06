@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class AdditionalDetailsHouseCargoController : Controller
+    public class AdditionalDetailsHouseCargoController : BaseController
     {
         // GET: HouseCargo
         public ActionResult Index(int? iHouseCargoDescId)

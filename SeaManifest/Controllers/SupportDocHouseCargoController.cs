@@ -9,12 +9,13 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class SupportDocHouseCargoController : Controller
+    public class SupportDocHouseCargoController : BaseController
     {
         // GET: HouseCargo
         public ActionResult Index(int? iHouseCargoDescId)
         {
             Session["iHouseCargoDescId"] = iHouseCargoDescId;
+            HouseCargoService.Instance.Validate(iHouseCargoDescId);
             return View();
         }
 
@@ -30,14 +31,21 @@ namespace SeaManifest.Controllers
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateSupportDocHouseCargo(int? iHouseCargoDescId = null,int? iSupportDocsId = null )
+        public PartialViewResult AddUpdateSupportDocHouseCargo(int? iSupportDocsId = null)
         {
-            if (iSupportDocsId == null && iHouseCargoDescId == null)
+            var iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+            var reportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId, out int iMasterConsignmentId);
+            if ((iSupportDocsId ?? 0) == 0)
             {
-                return PartialView("pvAddUpdateSupportDocHouseCargo");
+                return PartialView("pvAddUpdateSupportDocHouseCargo", new SupportDocHouseCargoModel
+                {
+                    iHouseCargoDescId = iHouseCargoDescId,
+                    iMasterConsignmentId = iMasterConsignmentId,
+                    sReportingEvent = reportingEvent
+                });
             }
             else
-                return PartialView("pvAddUpdateSupportDocHouseCargo", SupportDocHouseCargoService.Instance.GetSupportDocHouseCargoBySupportDocsId(iHouseCargoDescId, iSupportDocsId));
+                return PartialView("pvAddUpdateSupportDocHouseCargo", SupportDocHouseCargoService.Instance.GetSupportDocHouseCargoBySupportDocsId(iSupportDocsId));
         }
 
         [HttpPost]
