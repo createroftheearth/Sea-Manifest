@@ -36,7 +36,7 @@ namespace BAL.Services
             {
                 using (var db = new SeaManifestEntities())
                 {
-                    var data = db.tblVoyageTransporterEquipmentMessageImlementationMaps.Where(z => z.iVoyageTransportId == model.iTransporterEquipmentId).SingleOrDefault();
+                    var data = db.tblVoyageTransporterEquipmentMessageImplementationMaps.Where(z => z.iVoyageTransportId == model.iTransporterEquipmentId).SingleOrDefault();
                     if (data != null)
                     {
                         data.iMessageImplementationId = model.iMessageImplementationId;
@@ -64,7 +64,7 @@ namespace BAL.Services
                     }
                     else
                     {
-                        data = new tblVoyageTransporterEquipmentMessageImlementationMap
+                        data = new tblVoyageTransporterEquipmentMessageImplementationMap
                         {
                             iMessageImplementationId = model.iMessageImplementationId,
                             iEquipmentSequenceNo = model.iEquipmentSequenceNo,
@@ -87,7 +87,7 @@ namespace BAL.Services
                             iActionBy = iUserId,
                             dtActionDate = DateTime.Now,
                         };
-                        db.tblVoyageTransporterEquipmentMessageImlementationMaps.Add(data);
+                        db.tblVoyageTransporterEquipmentMessageImplementationMaps.Add(data);
                         db.SaveChanges();
                     }
                     return new { Status = true, Message = "Transport Equipment House Cargo saved successfully!" };
@@ -104,7 +104,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
-                var query = from t in db.tblVoyageTransporterEquipmentMessageImlementationMaps
+                var query = from t in db.tblVoyageTransporterEquipmentMessageImplementationMaps
                             where
                             ( t.sEquipmentId.Contains(search)
                             || t.sEquipmentType.Contains(search)
@@ -151,7 +151,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblVoyageTransporterEquipmentMessageImlementationMaps.Where(z => z.iVoyageTransportId == iTransporterEquipmentId).ToList().Select(model => new TransportEquipmentMessageImplementationModel
+                return db.tblVoyageTransporterEquipmentMessageImplementationMaps.Where(z => z.iVoyageTransportId == iTransporterEquipmentId).ToList().Select(model => new TransportEquipmentMessageImplementationModel
                 {
                     iMessageImplementationId = model.iMessageImplementationId,
                     iEquipmentSequenceNo = model.iEquipmentSequenceNo ?? 0,

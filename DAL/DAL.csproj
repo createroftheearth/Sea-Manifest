@@ -120,7 +120,7 @@
     <Compile Include="tblMessageTypeM.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblPersonOnBoardMessageImlementationMap.cs">
+    <Compile Include="tblPersonOnBoardMessageImplementationMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPortM.cs">
@@ -144,7 +144,7 @@
     <Compile Include="tblTransportEquipmentMasterConsignmentMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
-    <Compile Include="tblVoyageTransporterEquipmentMessageImlementationMap.cs">
+    <Compile Include="tblVoyageTransporterEquipmentMessageImplementationMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
   </ItemGroup>

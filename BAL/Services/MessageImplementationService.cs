@@ -495,7 +495,7 @@ namespace BAL.Services
                                     totalNmbrOfPkgs = Convert.ToInt32(t.dTotalNoOfPackages),
                                 }).ToList(),
                             }).ToList(),
-                            prsnOnBoard = z.tblPersonOnBoardMessageImlementationMaps.Select(p => new Prsnonboard
+                            prsnOnBoard = z.tblPersonOnBoardMessageImplementationMaps.Select(p => new Prsnonboard
                             {
                                 prsnDtls = new Prsndtls
                                 {
@@ -521,7 +521,7 @@ namespace BAL.Services
                                 },
                                 prsnOnBoardSeqNmbr = Convert.ToInt32(p.dPersonOnBaordSeqNo),
                             }).ToList(),
-                            voyageTransportEquipment = z.tblVoyageTransporterEquipmentMessageImlementationMaps.Select(v => new Voyagetransportequipment
+                            voyageTransportEquipment = z.tblVoyageTransporterEquipmentMessageImplementationMaps.Select(v => new Voyagetransportequipment
                             {
                                 additionalEquipmentHold = v.sAdditionalEquipmentHold,
                                 containerAgentCode = v.sContainerAgentCode,

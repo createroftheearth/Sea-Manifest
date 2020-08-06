@@ -12,7 +12,7 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblVoyageTransporterEquipmentMessageImlementationMap
+    public partial class tblVoyageTransporterEquipmentMessageImplementationMap
     {
         public int iVoyageTransportId { get; set; }
         public Nullable<int> iMessageImplementationId { get; set; }

@@ -12,7 +12,7 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblPersonOnBoardMessageImlementationMap
+    public partial class tblPersonOnBoardMessageImplementationMap
     {
         public int iPersonOnBoardId { get; set; }
         public Nullable<int> iMessageImplementationId { get; set; }
