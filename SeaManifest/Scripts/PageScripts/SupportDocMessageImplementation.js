@@ -1,11 +1,11 @@
 ﻿$(function () {
-    initSupportDocMesageImplementation();
+    initSupportDocMessageImplementation();
 });
 
-var SupportDocMesageImplementationTable;
+var SupportDocMessageImplementationTable;
 
-function initSupportDocMesageImplementation() {
-    SupportDocMesageImplementationTable = $('#tblSupportDocMesageImplementation').DataTable({
+function initSupportDocMessageImplementation() {
+    SupportDocMessageImplementationTable = $('#tblSupportDocMessageImplementation').DataTable({
         "searching": true,
         "ordering": false,
         "processing": true,
@@ -14,7 +14,7 @@ function initSupportDocMesageImplementation() {
         "bLengthChange": false,
         "filter": true,
         "ajax": {
-            "url": "/SupportDocMesageImplementation/GetSupportDocMesageImplementation",
+            "url": "/SupportDocMessageImplementation/GetSupportDocMessageImplementation",
             "type": "POST",
         },
         "columns": [
@@ -44,22 +44,22 @@ function initSupportDocMesageImplementation() {
             },
             {
                 "data": "iSupportDocsId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateSupportDocMesageImplementation(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateSupportDocMessageImplementation(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },
         ]
     });
 }
 
-function AddUpdateSupportDocMesageImplementation(iSupportDocMesageImplementationId) {
-    $('#addUpdateModallgContainer').load('/SupportDocMesageImplementation/AddUpdateSupportDocMesageImplementation?iSupportDocsId=' + iSupportDocMesageImplementationId, function () {
-        initAddUpdateSupportDocMesageImplementation();
+function AddUpdateSupportDocMessageImplementation(iSupportDocMessageImplementationId) {
+    $('#addUpdateModallgContainer').load('/SupportDocMessageImplementation/AddUpdateSupportDocMessageImplementation?iSupportDocsId=' + iSupportDocMessageImplementationId, function () {
+        initAddUpdateSupportDocMessageImplementation();
     });
 }
 
-function initAddUpdateSupportDocMesageImplementation() {
-    $.validator.unobtrusive.parse('#frmSupportDocMesageImplementation');
-    $('#frmSupportDocMesageImplementation select').selectpicker();
+function initAddUpdateSupportDocMessageImplementation() {
+    $.validator.unobtrusive.parse('#frmSupportDocMessageImplementation');
+    $('#frmSupportDocMessageImplementation select').selectpicker();
     $('#addUpdatelgModal').modal('show');
 }
 
@@ -81,7 +81,7 @@ function resetForm() {
 }
 
 
-$(document).on('submit', '#frmSupportDocMesageImplementation', function (e) {
+$(document).on('submit', '#frmSupportDocMessageImplementation', function (e) {
     e.preventDefault();
     if ($(this).valid() && checkSupportDocs())
         $.ajax({
@@ -91,7 +91,7 @@ $(document).on('submit', '#frmSupportDocMesageImplementation', function (e) {
             success: function (response) {
                 if (response.Status) {
                     alertify.success(response.Message);
-                    SupportDocMesageImplementationTable.ajax.reload();
+                    SupportDocMessageImplementationTable.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
                     alertify.error(response.Message);
@@ -108,7 +108,7 @@ $(document).on('submit', '#frmSupportDocMesageImplementation', function (e) {
 
 function checkSupportDocs() {
     var returnValue = true;
-    var validator = $("#frmSupportDocMesageImplementation").validate();
+    var validator = $("#frmSupportDocMessageImplementation").validate();
     var data = $('#sReportingEvent').val();
     if (data !== "SAA") {
         if ($('#sTagRef').val() == "") {

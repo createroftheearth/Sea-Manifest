@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Models
 {
-    public class SupportDocMesageImplementationModel
+    public class SupportDocMessageImplementationModel
     {
         public string sReportingEvent { get; set; }
 

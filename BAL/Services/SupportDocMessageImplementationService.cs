@@ -10,26 +10,26 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class SupportDocMesageImplementationService
+    public class SupportDocMessageImplementationService
     {
-        private SupportDocMesageImplementationService()
+        private SupportDocMessageImplementationService()
         {
         }
 
-        private static SupportDocMesageImplementationService _instance;
+        private static SupportDocMessageImplementationService _instance;
 
-        public static SupportDocMesageImplementationService Instance
+        public static SupportDocMessageImplementationService Instance
         {
             get
             {
                 if (_instance == null)
-                    _instance = new SupportDocMesageImplementationService();
+                    _instance = new SupportDocMessageImplementationService();
                 return _instance;
             }
         }
 
-        //save SupportDocMesageImplementation 
-        public object SaveSupportDocMesageImplementation(SupportDocMesageImplementationModel model, int iUserId)
+        //save SupportDocMessageImplementation 
+        public object SaveSupportDocMessageImplementation(SupportDocMessageImplementationModel model, int iUserId)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace BAL.Services
             }
         }
 
-        public object GetSupportDocMesageImplementation(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
+        public object GetSupportDocMessageImplementation(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
@@ -114,11 +114,11 @@ namespace BAL.Services
             }
         }
 
-        public SupportDocMesageImplementationModel GetSupportDocMesageImplementationBySupportDocsId(int? iSupportDocsId)
+        public SupportDocMessageImplementationModel GetSupportDocMessageImplementationBySupportDocsId(int? iSupportDocsId)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblSupportDocMessageImplementationMaps.Where(z => z.iSupportDocsId == iSupportDocsId).ToList().Select(model => new SupportDocMesageImplementationModel
+                return db.tblSupportDocMessageImplementationMaps.Where(z => z.iSupportDocsId == iSupportDocsId).ToList().Select(model => new SupportDocMessageImplementationModel
                 {
 
                     iMessageImplementationId = model.iMessageImplementationId,

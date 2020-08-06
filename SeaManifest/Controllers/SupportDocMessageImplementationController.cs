@@ -9,50 +9,49 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class SupportDocMesageImplementationController : BaseController
+    public class SupportDocMessageImplementationController : BaseController
     {
         // GET: HouseCargo
         public ActionResult Index(int? iMessageImplementationId)
         {
             Session["iMessageImplementationId"] = iMessageImplementationId;
-            HouseCargoService.Instance.Validate(iMessageImplementationId);
+            MessageImplementationService.Instance.Validate(iMessageImplementationId);
             return View();
         }
 
         [HttpPost]
-        public JsonResult GetSupportDocMesageImplementation()
+        public JsonResult GetSupportDocMessageImplementation()
         {
             var iMessageImplementationId = Convert.ToInt32(Session["iMessageImplementationId"]);
             var draw = Request.Form.GetValues("draw").FirstOrDefault();
             var search = Request.Form.GetValues("search[value]").FirstOrDefault();
             var start = Convert.ToInt32(Request.Form.GetValues("start").FirstOrDefault());
             var length = Convert.ToInt32(Request.Form.GetValues("length").FirstOrDefault());
-            var data = SupportDocMesageImplementationService.Instance.GetSupportDocMesageImplementation(iMessageImplementationId, search, start, length, out int recordsTotal);
+            var data = SupportDocMessageImplementationService.Instance.GetSupportDocMessageImplementation(iMessageImplementationId, search, start, length, out int recordsTotal);
             return Json(new { recordsTotal, recordsFiltered = recordsTotal, data });
         }
 
-        public PartialViewResult AddUpdateSupportDocMesageImplementation(int? iSupportDocsId = null)
+        public PartialViewResult AddUpdateSupportDocMessageImplementation(int? iSupportDocsId = null)
         {
             var iMessageImplementationId = Convert.ToInt32(Session["iMessageImplementationId"]);
-            var reportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iMessageImplementationId, out int iMasterConsignmentId);
             if ((iSupportDocsId ?? 0) == 0)
             {
-                return PartialView("pvAddUpdateSupportDocMesageImplementation", new SupportDocMesageImplementationModel
+                return PartialView("pvAddUpdateSupportDocMessageImplementation", new SupportDocMessageImplementationModel
                 {
                     iMessageImplementationId = iMessageImplementationId,
-                    sReportingEvent = reportingEvent
+                    sReportingEvent = MessageImplementationService.Instance.GetMessageTypeByImplementationId(iMessageImplementationId)
                 });
             }
             else
-                return PartialView("pvAddUpdateSupportDocMesageImplementation", SupportDocMesageImplementationService.Instance.GetSupportDocMesageImplementationBySupportDocsId(iSupportDocsId));
+                return PartialView("pvAddUpdateSupportDocMessageImplementation", SupportDocMessageImplementationService.Instance.GetSupportDocMessageImplementationBySupportDocsId(iSupportDocsId));
         }
 
         [HttpPost]
-        public JsonResult AddUpdateSupportDocMesageImplementation(SupportDocMesageImplementationModel model)
+        public JsonResult AddUpdateSupportDocMessageImplementation(SupportDocMessageImplementationModel model)
         {
             if (ModelState.IsValid)
             {
-                return Json(SupportDocMesageImplementationService.Instance.SaveSupportDocMesageImplementation(model, 1));
+                return Json(SupportDocMessageImplementationService.Instance.SaveSupportDocMessageImplementation(model, 1));
             }
             else
             {

@@ -1,0 +1,128 @@
+﻿@model BAL.Models.PersonOnBoardMessageImplementationModel
+@using (Html.BeginForm("AddUpdatePersonOnBoardMessageImplementation", "PersonOnBoardMessageImplementation", FormMethod.Post, new { @id = "frmPersonOnBoardMessageImplementation" }))
+{
+    <div class="modal-header">
+        <h4 class="modal-title">Add/Update Person On Board</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+        @Html.HiddenFor(z => z.iMessageImplementationId)
+        @Html.HiddenFor(z => z.iPersonOnBoardId)
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.dPersonOnBaordSeqNo)
+                @Html.TextBoxFor(z => z.dPersonOnBaordSeqNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.dPersonOnBaordSeqNo)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPersonTypeCdd)
+                @Html.TextBoxFor(z => z.sPersonDetailsPersonTypeCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPersonTypeCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPersonFamilyName)
+                @Html.TextBoxFor(z => z.sPersonDetailsPersonFamilyName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPersonFamilyName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPersonGivenName)
+                @Html.TextBoxFor(z => z.sPersonDetailsPersonGivenName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPersonGivenName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPersonNationalityCdd)
+                @Html.TextBoxFor(z => z.sPersonDetailsPersonNationalityCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPersonNationalityCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.dPersonDetailsPassengersInTransitIndicator)
+                @Html.TextBoxFor(z => z.dPersonDetailsPassengersInTransitIndicator, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.dPersonDetailsPassengersInTransitIndicator)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsCrewMemberRankOrRatingName)
+                @Html.TextBoxFor(z => z.sPersonDetailsCrewMemberRankOrRatingName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsCrewMemberRankOrRatingName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsCrewMemberRankOrRatingCdd)
+                @Html.TextBoxFor(z => z.sPersonDetailsCrewMemberRankOrRatingCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsCrewMemberRankOrRatingCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPassangerPartOfEmbarkTnCdd)
+                @Html.TextBoxFor(z => z.sPersonDetailsPassangerPartOfEmbarkTnCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPassangerPartOfEmbarkTnCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPassangerPartOfEmbarkTnName)
+                @Html.TextBoxFor(z => z.sPersonDetailsPassangerPartOfEmbarkTnName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPassangerPartOfEmbarkTnName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPassangerPartOfDsmbarkTnCdd)
+                @Html.TextBoxFor(z => z.sPersonDetailsPassangerPartOfDsmbarkTnCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPassangerPartOfDsmbarkTnCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPassangerPartOfDsmbarkTnName)
+                @Html.TextBoxFor(z => z.sPersonDetailsPassangerPartOfDsmbarkTnName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPassangerPartOfDsmbarkTnName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPersonGenderCdd)
+                @Html.TextBoxFor(z => z.sPersonDetailsPersonGenderCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPersonGenderCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.dtPersonDetailsPersonDateOfBirth)
+                @Html.TextBoxFor(z => z.dtPersonDetailsPersonDateOfBirth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.dtPersonDetailsPersonDateOfBirth)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPersonPlaceOfBirthName)
+                @Html.TextBoxFor(z => z.sPersonDetailsPersonPlaceOfBirthName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPersonPlaceOfBirthName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonDetailsPersonCountryOfBirthCdd)
+                @Html.TextBoxFor(z => z.sPersonDetailsPersonCountryOfBirthCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonDetailsPersonCountryOfBirthCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.dtPersonIdDocExpiryDate)
+                @Html.TextBoxFor(z => z.dtPersonIdDocExpiryDate, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.dtPersonIdDocExpiryDate)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonIdOrTravelDocIssuingNationCdd)
+                @Html.TextBoxFor(z => z.sPersonIdOrTravelDocIssuingNationCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocIssuingNationCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonIdOrTravelDocNo)
+                @Html.TextBoxFor(z => z.sPersonIdOrTravelDocNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocNo)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPersonIdOrTravelDocTypeCdd)
+                @Html.TextBoxFor(z => z.sPersonIdOrTravelDocTypeCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocTypeCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sVisaDetailsPersonVisa)
+                @Html.TextBoxFor(z => z.sVisaDetailsPersonVisa, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sVisaDetailsPersonVisa)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sVisaDetailsPNRNo)
+                @Html.TextBoxFor(z => z.sVisaDetailsPNRNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sVisaDetailsPNRNo)
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+    </div>
+}
