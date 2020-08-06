@@ -16,14 +16,14 @@ namespace BAL.Models
         public int? iMessageImplementationId { get; set; }
         [Display(Name = "Port Of Call Sequence No.")]
         public decimal dPortOfCallSequenceNo { get; set; }
-        [Display(Name = "Port Of Call CD")]
-        [MaxLength(10, ErrorMessage = "Port Of Call CD cannot exceed 10 character.")]
+        [Display(Name = "Port Of Call Code")]
+        [MaxLength(10, ErrorMessage = "Port Of Call Code cannot exceed 10 character.")]
         public string sPortOfCallCd { get; set; }
         [Display(Name = "Port Of Call Name")]
-        [MaxLength(256, ErrorMessage = "Port Of Call Name cannot exceed 256 character.")]
+        [MaxLength(10, ErrorMessage = "Port Of Call Name cannot exceed 10 character.")]
         public string sPortOfCallName { get; set; }
-        [Display(Name = "Next Port Of Call CDD")]
-        [MaxLength(10, ErrorMessage = "Next Port Of Call CDD cannot exceed 10 character.")]
+        [Display(Name = "Next Port Of Call Code")]
+        [MaxLength(10, ErrorMessage = "Next Port Of Call Code cannot exceed 10 character.")]
         public string sNextPortOfCallCdd { get; set; }
         [Display(Name = "Next Port Of Call Name")]
         [MaxLength(256, ErrorMessage = "Next Port Of Call Name cannot exceed 256 character.")]

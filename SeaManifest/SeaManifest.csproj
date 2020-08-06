@@ -130,6 +130,7 @@
     <Compile Include="Controllers\AdditionalDetailsMessageImplementationController.cs" />
     <Compile Include="Controllers\AdditionalDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItemDetailsMasterConsignmentController.cs" />
+    <Compile Include="Controllers\ItineraryMasterConsignmentController.cs" />
     <Compile Include="Controllers\SupportDocMasterConsignmentController.cs" />
     <Compile Include="Controllers\TransportEquipmentHouseCargoController.cs" />
     <Compile Include="Controllers\TransportEquipmentMasterConsignmentController.cs" />
@@ -1620,6 +1621,8 @@
     <Content Include="Views\TransportEquipmentMasterConsignment\pvAddUpdateTransportEquipmentMasterConsignment.cshtml" />
     <Content Include="Views\TransportEquipmentHouseCargo\Index.cshtml" />
     <Content Include="Views\TransportEquipmentHouseCargo\pvAddUpdateTransportEquipmentHouseCargo.cshtml" />
+    <Content Include="Views\ItineraryMasterConsignment\Index.cshtml" />
+    <Content Include="Views\ItineraryMasterConsignment\pvAddUpdateItineraryMasterConsignment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

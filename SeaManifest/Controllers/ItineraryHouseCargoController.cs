@@ -45,7 +45,7 @@ namespace SeaManifest.Controllers
                 });
             }
             else
-                return PartialView("pvAddUpdateItineraryHouseCargo", ItineraryHouseCargoService.Instance.GetItineraryHouseHouseCargoByItenaryId(iHouseCargoDescId, iItenaryHouseCargoId));
+                return PartialView("pvAddUpdateItineraryHouseCargo", ItineraryHouseCargoService.Instance.GetItineraryHouseHouseCargoByItenaryId(iItenaryHouseCargoId));
         }
 
         [HttpPost]

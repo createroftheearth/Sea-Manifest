@@ -27,19 +27,8 @@ namespace BAL.Services
             }
         }
 
-        public void Validate(int? iMasterConsignmentId)
-        {
-            using (var db = new SeaManifestEntities())
-            {
-                if (!db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId))
-                    throw new Exception("Invalid Master Consignment Id");
-                if (!db.tblMasterConsignmentMessageImplementationMaps.Any(z => z.iMasterConsignmentId == iMasterConsignmentId && (z.tblMessageImplementation.sDecRefReportingEvent=="SEI" || z.tblMessageImplementation.sDecRefReportingEvent == "SDN")))
-                    throw new Exception("Itinerary cannot be filled with SEI or SDN reporting type");
-            }
-        }
-
         //save ItemDeatilsMasterConsignment 
-        public object SaveItineraryMasterConsignment(ItineraryMasterConsignmentModel model, int iUserId)
+        public object SaveItineraryHouseMasterConsignment(ItineraryMasterConsignmentModel model, int iUserId)
         {
             try
             {
@@ -80,7 +69,7 @@ namespace BAL.Services
                         db.tblItineraryMasterConsignmentMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Itinerary Master Consignment saved successfully!" };
+                    return new { Status = true, Message = "Itinerary House Cargo saved successfully!" };
                 }
 
             }
@@ -90,27 +79,30 @@ namespace BAL.Services
             }
         }
 
-        public object GetItineraryMasterConsignment(int iMessageImplementationId, string search, int start, int length, out int recordsTotal)
+        public object GetItineraryHouseMasterConsignments(int iMasterConsignmentId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblItineraryMasterConsignmentMaps
-                            where t.sPortOfCallName.Contains(search) && t.iMessageImplementationId == iMessageImplementationId
+                            where t.sPortOfCallName.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sPortOfCallCd).Take(length).Skip(start).ToList().Select(t => new
                 {
+                    t.dPortOfCallSequenceNo,
                     t.iMessageImplementationId,
+                    t.iItineraryId,
                     t.iMasterConsignmentId,
-                    t.sPortOfCallName,
+                    t.sModeOfTransport,
+                    t.sNextPortOfCallCdd,
+                    t.sNextPortOfCallName,
                     t.sPortOfCallCd,
-                    t.iItineraryId
-                    //masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    t.sPortOfCallName,
                 }).ToList();
             }
         }
 
-        public ItineraryMasterConsignmentModel GetItineraryMasterConsignmentByItenaryId(int? iIternaryId)
+        public ItineraryMasterConsignmentModel GetItineraryHouseMasterConsignmentByItenaryId(int? iIternaryId)
         {
             using (var db = new SeaManifestEntities())
             {
@@ -124,7 +116,7 @@ namespace BAL.Services
                     sNextPortOfCallCdd = model.sNextPortOfCallCdd,
                     sNextPortOfCallName = model.sNextPortOfCallName,
                     sModeOfTransport = model.sModeOfTransport,
-
+                    sReportingEvent = model.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent
                 }).SingleOrDefault();
             }
         }

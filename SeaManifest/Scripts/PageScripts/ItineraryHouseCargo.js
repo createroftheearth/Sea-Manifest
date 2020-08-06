@@ -18,13 +18,22 @@ function initItenaryHouseCargo() {
         },
         "columns": [
             {
-                "data": "iMCRefLineNo",
+                "data": "dPortOfCallSequenceNo",
             },
             {
-                "data": "sMCRefMasterBillNo"
+                "data": "sPortOfCallCd"
             },
             {
-                "data": "masterBillDate",
+                "data": "sPortOfCallName",
+            },
+            {
+                "data": "sNextPortOfCallCdd",
+            },
+            {
+                "data": "sNextPortOfCallName",
+            },
+            {
+                "data": "sModeOfTransport",
             },
             {
                 "data": "iItenaryHouseCargoId", "mRender": function (data) {

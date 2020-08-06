@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <button onClick="AddUpdateItineraryMasterConsignment(0)" type="button" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Add Itinerary House Cargo
+        </button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table style="width:100%!important;" id="tblItenaryMasterConsignment" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Port Of Call Sequence No</th>
+                <th>Port Of Call Cd</th>
+                <th>Port Of Call Name</th>
+                <th>Next Port Of Call Cdd</th>
+                <th>Next Port Of Call Name</th>
+                <th>Mode Of Transport</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/ItineraryMasterConsignment.js"></script>
+}

@@ -89,17 +89,20 @@ namespace BAL.Services
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sPortOfCallCd).Take(length).Skip(start).ToList().Select(t => new
                 {
+                    t.dPortOfCallSequenceNo,
                     t.iHouseCargoDescId,
+                    t.iItineraryId,
                     t.iMasterConsignmentId,
-                    t.sPortOfCallName,
+                    t.sModeOfTransport,
+                    t.sNextPortOfCallCdd,
+                    t.sNextPortOfCallName,
                     t.sPortOfCallCd,
-                    t.iItineraryId
-                    //masterBillDate = t.dtHCRefBillDate?.ToString("dd/MM/yyyy", CultureInfo.InvariantCulture),
+                    t.sPortOfCallName,
                 }).ToList();
             }
         }
 
-        public ItineraryHouseCargoModel GetItineraryHouseHouseCargoByItenaryId(int? iHouseCargoDescId, int? iIternaryId)
+        public ItineraryHouseCargoModel GetItineraryHouseHouseCargoByItenaryId(int? iIternaryId)
         {
             using (var db = new SeaManifestEntities())
             {
@@ -113,7 +116,7 @@ namespace BAL.Services
                     sNextPortOfCallCdd = model.sNextPortOfCallCdd,
                     sNextPortOfCallName = model.sNextPortOfCallName,
                     sModeOfTransport = model.sModeOfTransport,
-
+                    sReportingEvent = model.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent
                 }).SingleOrDefault();
             }
         }
