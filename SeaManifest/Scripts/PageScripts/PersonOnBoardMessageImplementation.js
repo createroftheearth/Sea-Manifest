@@ -37,24 +37,6 @@ function initPersonOnBoardMessageImplementation() {
                 "data": "dPersonDetailsPassengersInTransitIndicator",
             },
             {
-                "data": "sPersonDetailsCrewMemberRankOrRatingName",
-            },
-            {
-                "data": "sPersonDetailsCrewMemberRankOrRatingCdd",
-            },
-            {
-                "data": "sPersonDetailsPassangerPartOfEmbarkTnCdd",
-            },
-            {
-                "data": "sPersonDetailsPassangerPartOfEmbarkTnName",
-            },
-            {
-                "data": "sPersonDetailsPassangerPartOfDsmbarkTnCdd",
-            },
-            {
-                "data": "sPersonDetailsPassangerPartOfDsmbarkTnName",
-            },
-            {
                 "data": "sPersonDetailsPersonGenderCdd",
             },
             {
@@ -103,6 +85,12 @@ function initAddUpdatePersonOnBoardMessageImplementation() {
     $.validator.unobtrusive.parse('#frmPersonOnBoardMessageImplementation');
     $('#frmPersonOnBoardMessageImplementation select').selectpicker();
     $('#addUpdatelgModal').modal('show');
+    $('#psdtPersonDetailsPersonDateOfBirth').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
+    $('#psdtPersonIdDocExpiryDate').datetimepicker({
+        format: 'DD/MM/YYYY'
+    });
 }
 
 function resetForm() {

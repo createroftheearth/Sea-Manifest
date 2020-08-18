@@ -50,13 +50,14 @@ namespace SeaManifest.Controllers
         [HttpPost]
         public JsonResult AddUpdateTransportEquipmentMasterConsignment(TransportEquipmentMasterConsignmentModel model)
         {
-            if (ModelState.IsValid)
+            string Messages = string.Empty;
+            if (ModelState.IsValid && TransportEquipmentMasterConsignmentService.Instance.Validate(model, out Messages))
             {
                 return Json(TransportEquipmentMasterConsignmentService.Instance.SaveTransportEquipmentMasterConsignment(model, 1));
             }
             else
             {
-                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
+                return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) + ", " + Messages });
             }
         }
     }

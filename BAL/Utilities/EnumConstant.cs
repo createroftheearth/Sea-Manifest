@@ -122,6 +122,11 @@ namespace BAL.Utilities
             N
         }
 
+        public enum SOCFlag
+        {
+            Y,
+            N
+        }
         public enum CodeType
         {
             [Description("Importer exporter code")]

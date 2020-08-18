@@ -208,7 +208,7 @@ namespace BAL.Services
                         db.Entry(data).State = System.Data.Entity.EntityState.Modified;
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Master saved successfully!" };
+                    return new { Status = true, Message = "Message saved successfully!" };
                 }
 
             }

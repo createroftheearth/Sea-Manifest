@@ -76,7 +76,14 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.dtPersonDetailsPersonDateOfBirth)
-                @Html.TextBoxFor(z => z.dtPersonDetailsPersonDateOfBirth, new { @class = "form-control" })
+                <div class="input-group" id="psdtPersonDetailsPersonDateOfBirth" data-target-input="nearest">
+                    @Html.TextBoxFor(z => z.dtPersonDetailsPersonDateOfBirth, new { @class = "form-control datetimepicker-input", @data_target = "#psdtPersonDetailsPersonDateOfBirth" })
+                    <div class="input-group-append" data-target="#psdtPersonDetailsPersonDateOfBirth" data-toggle="datetimepicker">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                </div>
                 @Html.ValidationMessageFor(z => z.dtPersonDetailsPersonDateOfBirth)
             </div>
             <div class="form-group col-md-4">
@@ -91,7 +98,14 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.dtPersonIdDocExpiryDate)
-                @Html.TextBoxFor(z => z.dtPersonIdDocExpiryDate, new { @class = "form-control" })
+                <div class="input-group" id="psdtPersonIdDocExpiryDate" data-target-input="nearest">
+                    @Html.TextBoxFor(z => z.dtPersonIdDocExpiryDate, new { @class = "form-control datetimepicker-input", @data_target = "#psdtPersonIdDocExpiryDate" })
+                    <div class="input-group-append" data-target="#psdtPersonIdDocExpiryDate" data-toggle="datetimepicker">
+                        <span class="input-group-addon">
+                            <i class="fa fa-calendar"></i>
+                        </span>
+                    </div>
+                </div>
                 @Html.ValidationMessageFor(z => z.dtPersonIdDocExpiryDate)
             </div>
             <div class="form-group col-md-4">

@@ -3,6 +3,7 @@ using DAL;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Data.Entity.SqlServer;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -110,7 +111,7 @@ namespace BAL.Services
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblItemDetailsMasterConsignmentMaps
-                            where t.sCargoItemDesc.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
+                            where SqlFunctions.StringConvert(t.dCargoItemSequenceNo).Contains(search)&& SqlFunctions.StringConvert(t.dNoOfPakages).Contains(search) && t.sCargoItemDesc.Contains(search) && t.sTypesOfPackages.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sHsCd).Take(length).Skip(start).ToList().Select(t => new

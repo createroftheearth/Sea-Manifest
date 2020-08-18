@@ -19,13 +19,13 @@ function initMasterConsignments() {
         },
         "columns": [
             {
-                "data": "iMCRefLineNo",
+                "data": "iMCRefLineNo", "width":"10%"
             },
             {
-                "data": "sMCRefMasterBillNo"
+                "data": "sMCRefMasterBillNo", "width": "10%"
             },
             {
-                "data": "masterBillDate",
+                "data": "masterBillDate", "width": "10%"
             },
             {
                 "data": "iMasterConsignmentId", "mRender": function (data,abc,full) {

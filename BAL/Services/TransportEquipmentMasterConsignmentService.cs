@@ -86,7 +86,7 @@ namespace BAL.Services
                         db.tblTransportEquipmentMasterConsignmentMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Transport Equipment House Cargo saved successfully!" };
+                    return new { Status = true, Message = "Transport Equipment saved successfully!" };
                 }
 
             }
@@ -94,6 +94,20 @@ namespace BAL.Services
             {
                 return new { Status = false, Message = "Something went wrong" };
             }
+        }
+
+        public bool Validate(TransportEquipmentMasterConsignmentModel model, out string Messages)
+        {
+            Messages = string.Empty;
+            bool valid = true;
+            using (var db = new SeaManifestEntities())
+            {
+                if (db.tblTransportEquipmentMasterConsignmentMaps.Any(z => (model.sReportingEvent != "SEI" && model.sReportingEvent != "SDN") && z.iTransporterEquipmentId != model.iTransporterEquipmentId && z.iEquipmentSequenceNo == model.iEquipmentSequenceNo && z.iMasterConsignmentId == model.iMasterConsignmentId))
+                {
+                    valid = false; Messages = "Sequence No already exists";
+                }
+            }
+            return valid;
         }
 
         public object GetTransportEquipmentMasterConsignment(int iMasterConsignmentId, string search, int start, int length, out int recordsTotal)

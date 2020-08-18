@@ -125,6 +125,8 @@ namespace BAL.Services
                     sInfoCd = model.sInfoCd,
                     sInfoText = model.sInfoText,
                     sInfoMsr = model.sInfoMsr,
+                    iAdditionalDetailsId= model.iAdditionalDetailsId,
+                    sReportingEvent = model.tblMessageImplementation.sDecRefReportingEvent,
                     sInfoDate = model.dtInfoDate.ToDateString(),
                 }).SingleOrDefault();
             }

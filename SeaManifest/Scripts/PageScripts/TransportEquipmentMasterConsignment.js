@@ -37,9 +37,6 @@ function initTransportEquipmentMasterConsignments() {
                 "data": "sAdditionalEquipmentHold",
             },
             {
-                "data": "sEventDate",
-            },
-            {
                 "data": "sEquipmentSealType",
             },
             {
@@ -52,7 +49,7 @@ function initTransportEquipmentMasterConsignments() {
                 "data": "sSOCFlag",
             },
             {
-                "data": "sContainerAgentCode",
+                "data": "sContainerAgentCd",
             },
             {
                 "data": "dContainerWeight",

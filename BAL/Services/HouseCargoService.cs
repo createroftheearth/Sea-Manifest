@@ -310,7 +310,7 @@ namespace BAL.Services
             bool valid = true;
             using (var db = new SeaManifestEntities())
             {
-                if (db.tblHouseCargoDescriptionMasterConsignmentMaps.Any(z => (model.sReportingEvent != "SEI" && model.sReportingEvent != "SDN") && z.iMessageImplementationId == model.iMessageImplementationId && z.dHCRefSubLineNo == model.dHCRefSubLineNo && z.iMasterConsignmentId == model.iMasterConsignmentId))
+                if (db.tblHouseCargoDescriptionMasterConsignmentMaps.Any(z => (model.sReportingEvent != "SEI" && model.sReportingEvent != "SDN") && z.iHouseCargoDescId != model.iHouseCargoDescId && z.dHCRefSubLineNo == model.dHCRefSubLineNo && z.iMasterConsignmentId == model.iMasterConsignmentId))
                 {
                     valid = false; Messages = "Sub Line No already exists";
                 }

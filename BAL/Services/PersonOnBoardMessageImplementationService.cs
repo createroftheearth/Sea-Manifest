@@ -140,6 +140,8 @@ namespace BAL.Services
                 return query.OrderBy(z => z.sPersonDetailsPersonFamilyName).Take(length).Skip(start).ToList().Select(t => new
                 {
                     t.iMessageImplementationId,
+                    t.dPersonOnBaordSeqNo,
+                    t.iPersonOnBoardId,
                     t.sPersonDetailsPersonTypeCdd,
                     t.sPersonDetailsPersonFamilyName,
                     t.sPersonDetailsPersonGivenName,
@@ -152,10 +154,10 @@ namespace BAL.Services
                     t.sPersonDetailsPassangerPartOfDsmbarkTnCdd,
                     t.sPersonDetailsPassangerPartOfDsmbarkTnName,
                     t.sPersonDetailsPersonGenderCdd,
-                    t.dtPersonDetailsPersonDateOfBirth,
+                    dtPersonDetailsPersonDateOfBirth= t.dtPersonDetailsPersonDateOfBirth.ToDateString(),
                     t.sPersonDetailsPersonPlaceOfBirthName,
                     t.sPersonDetailsPersonCountryOfBirthCdd,
-                    t.dtPersonIdDocExpiryDate,
+                    dtPersonIdDocExpiryDate=t.dtPersonIdDocExpiryDate.ToDateString(),
                     t.sPersonIdOrTravelDocIssuingNationCdd,
                     t.sPersonIdOrTravelDocNo,
                     t.sPersonIdOrTravelDocTypeCdd,
@@ -173,6 +175,7 @@ namespace BAL.Services
                 {
 
                     iMessageImplementationId = model.iMessageImplementationId,
+                    iPersonOnBoardId=model.iPersonOnBoardId,
                     dPersonOnBaordSeqNo = model.dPersonOnBaordSeqNo,
                     sPersonDetailsPersonTypeCdd = model.sPersonDetailsPersonTypeCdd,
                     sPersonDetailsPersonFamilyName = model.sPersonDetailsPersonFamilyName,
