@@ -118,7 +118,7 @@ namespace BAL.Services
                             && t.iHouseCargoDescId == iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.sEquipmentType).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.sEquipmentType).Skip(start).Take(length).ToList().Select(t => new
                 {
                     t.iTransporterEquipmentId,
                     t.iHouseCargoDescId,

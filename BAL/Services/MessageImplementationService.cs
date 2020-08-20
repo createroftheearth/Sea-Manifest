@@ -50,7 +50,7 @@ namespace BAL.Services
                             || t.sHeaderFieldVersionNo.Contains(search) || SqlFunctions.StringConvert(t.dHeaderFieldSequenceOrControlNumber).Contains(search)
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.dHeaderFieldSequenceOrControlNumber).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.dHeaderFieldSequenceOrControlNumber).Skip(start).Take(length).ToList().Select(t => new
                 {
                     t.sHeaderFieldSenderId,
                     t.sHeaderFieldIndicator,

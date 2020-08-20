@@ -137,7 +137,7 @@ namespace BAL.Services
                             && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.sPersonDetailsPersonFamilyName).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.sPersonDetailsPersonFamilyName).Skip(start).Take(length).ToList().Select(t => new
                 {
                     t.iMessageImplementationId,
                     t.dPersonOnBaordSeqNo,

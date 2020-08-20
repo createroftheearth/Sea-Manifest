@@ -206,7 +206,7 @@ namespace BAL.Services
                             where t.sHCRefBillNo.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.dHCRefSubLineNo).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.dHCRefSubLineNo).Skip(start).Take(length).ToList().Select(t => new
                 {
                     t.iHouseCargoDescId,
                     t.iMessageImplementationId,

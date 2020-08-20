@@ -132,7 +132,7 @@ namespace BAL.Services
                             && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.sEquipmentType).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.sEquipmentType).Skip(start).Take(length).ToList().Select(t => new
                 {
                     t.iTransporterEquipmentId,
                     t.iMasterConsignmentId,

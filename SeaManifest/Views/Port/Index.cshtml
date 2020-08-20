@@ -1,0 +1,25 @@
+﻿<div class="row">
+    <div class="col-md-12">
+        <button onClick="AddUpdatePort(0)" type="button" class="btn btn-success">
+            <i class="fa fa-plus"></i>
+            Add Port
+        </button>
+    </div>
+</div>
+<div class="table-responsive">
+    <table style="width:100%!important;" id="tblPort" class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>State</th>
+                <th>Port Code</th>
+                <th>PortDescription</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/Port.js"></script>
+}

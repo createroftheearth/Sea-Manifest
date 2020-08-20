@@ -95,7 +95,7 @@ namespace BAL.Services
                             && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.sInfoCd).Take(length).Skip(start).ToList().Select(z => new
+                return query.OrderBy(z => z.sInfoCd).Skip(start).Take(length).ToList().Select(z => new
                 {
                     z.iAdditionalDetailsId,
                     z.iMasterConsignmentId,

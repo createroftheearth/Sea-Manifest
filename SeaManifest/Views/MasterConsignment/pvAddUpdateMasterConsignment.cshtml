@@ -8,11 +8,11 @@
     var natureOfcargo = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("Nat_cargo");
     var ports = BAL.Services.MasterConsignmentService.Instance.GetPorts();
     var CodeType = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.CodeType>();
-    var states = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("State_Code");
     var typesOfPackges = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("PKG_CODE");
     var unitOfWeight = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.UnitOfWeight>();
     var unitOfVolume = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.UnitOfVolume>();
     var currencyCode = BAL.Services.MasterConsignmentService.Instance.GetCurrencyCodes();
+    var states = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("State_Code");
     var CountryCode = BAL.Services.MasterConsignmentService.Instance.GetCountryCodes();
 }
 

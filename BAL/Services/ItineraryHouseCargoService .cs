@@ -87,7 +87,7 @@ namespace BAL.Services
                             where t.sPortOfCallName.Contains(search) && t.iHouseCargoDescId == iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.sPortOfCallCd).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.sPortOfCallCd).Skip(start).Take(length).ToList().Select(t => new
                 {
                     t.dPortOfCallSequenceNo,
                     t.iHouseCargoDescId,

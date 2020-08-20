@@ -133,6 +133,7 @@
     <Compile Include="Controllers\ItineraryMasterConsignmentController.cs" />
     <Compile Include="Controllers\AmendmentDetailsMessageImplementationController.cs" />
     <Compile Include="Controllers\PersonOnBoardMessageImplementationController.cs" />
+    <Compile Include="Controllers\PortController.cs" />
     <Compile Include="Controllers\SupportDocMessageImplementationController.cs" />
     <Compile Include="Controllers\SupportDocMasterConsignmentController.cs" />
     <Compile Include="Controllers\TransportEquipmentHouseCargoController.cs" />
@@ -1561,6 +1562,7 @@
     <Content Include="Scripts\PageScripts\AdditionalDetailsHouseCargo.js" />
     <Content Include="Scripts\PageScripts\AdditionalDetailsMasterConsignment.js" />
     <Content Include="Scripts\PageScripts\ItineraryMasterConsignment.js" />
+    <Content Include="Scripts\PageScripts\Port.js" />
     <Content Include="Scripts\PageScripts\SupportDocMasterConsignment.js" />
     <Content Include="Scripts\PageScripts\PersonOnBoardMessageImplementation.js" />
     <Content Include="Scripts\PageScripts\AmendmentDetailsMessageImplementation.js" />
@@ -1640,6 +1642,8 @@
     <Content Include="Views\AmendmentDetailsMessageImplementation\pvAddUpdateAmendmentDetailsMessageImplementation.cshtml" />
     <Content Include="Views\PersonOnBoardMessageImplementation\Index.cshtml" />
     <Content Include="Views\PersonOnBoardMessageImplementation\pvAddUpdatePersonOnBoardMessageImplementation.cshtml" />
+    <Content Include="Views\Port\pvAddUpdatePort.cshtml" />
+    <Content Include="Views\Port\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

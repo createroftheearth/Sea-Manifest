@@ -114,7 +114,7 @@ namespace BAL.Services
                             where SqlFunctions.StringConvert(t.dCargoItemSequenceNo).Contains(search)&& SqlFunctions.StringConvert(t.dNoOfPakages).Contains(search) && t.sCargoItemDesc.Contains(search) && t.sTypesOfPackages.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
-                return query.OrderBy(z => z.sHsCd).Take(length).Skip(start).ToList().Select(t => new
+                return query.OrderBy(z => z.sHsCd).Skip(start).Take(length).ToList().Select(t => new
                 {
                     t.iMessageImplementationId,
                     t.iMasterConsignmentId,
