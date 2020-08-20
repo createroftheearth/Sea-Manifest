@@ -79,9 +79,9 @@ namespace BAL.Models
         [MaxLength(4, ErrorMessage = "Submit Type cannot exceed 4 character.")]
         [Required(ErrorMessage = "Submit Type is a required field.")]
         public string sAuthPrsnSubmitType { get; set; }
-        [Display(Name = "AuthPrsnSubmitCode")]
-        [MaxLength(15, ErrorMessage = "AuthPrsnSubmitCode cannot exceed 15 character.")]
-        [Required(ErrorMessage = "AuthPrsnSubmitCode is a required field.")]
+        [Display(Name = "Submit Code")]
+        [MaxLength(15, ErrorMessage = "Submit Code cannot exceed 15 character.")]
+        [Required(ErrorMessage = "Submit Code is a required field.")]
         public string sAuthPrsnSubmitCode { get; set; }
         [Display(Name = "Auth Representative PAN")]
         [MaxLength(10, ErrorMessage = "Auth Representative PAN cannot exceed 10 character.")]
@@ -156,7 +156,6 @@ namespace BAL.Models
         public string sVoyageDtlsCargoDesCdd { get; set; }
         [Display(Name = "Brief Cargo Description")]
         [MaxLength(30, ErrorMessage = "Brief Cargo Description cannot exceed 30 character.")]
-        [Required(ErrorMessage = "Brief Cargo Description is a required field.")]
         public string sVoyageDtlsBriefCargoDesc { get; set; }
         [Display(Name = "Total number of Transport Contracts Manifested")]
         [Range(0,99999,ErrorMessage ="Total number of Transport Contaracts Manifisted should be in between 0 to 99999")]

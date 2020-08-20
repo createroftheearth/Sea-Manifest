@@ -21,10 +21,12 @@ namespace BAL.Models
         [Display(Name = "Ref Serial No.")]
         [MaxLength(2, ErrorMessage = "Ref Serial No. cannot exceed 2 character.")]
         [Required(ErrorMessage = "Ref Serial No. is a required field.")]
+        [RegularExpression("^[0-9]*$",ErrorMessage ="Ref Serial No. should be numeric.")]
         public string sRefSerialNo { get; set; }
-        [Display(Name = "Sub Ref Serial No. Ref")]
-        [MaxLength(2, ErrorMessage = "Sub Ref Serial No. Ref cannot exceed 2 character.")]
-        [Required(ErrorMessage = "Sub Ref Serial No. Ref is a required field.")]
+        [Display(Name = "Sub Serial No. Ref")]
+        [MaxLength(2, ErrorMessage = "Sub Serial No. Ref cannot exceed 2 character.")]
+        [RegularExpression("^[0-9]*$",ErrorMessage = "Sub Serial No. Ref should be numeric.")]
+        [Required(ErrorMessage = "Sub Serial No. Ref is a required field.")]
         public string sSubSerialNoRef { get; set; }
         [Display(Name = "Ice gate User Id")]
         [MaxLength(15, ErrorMessage = "Ice gate User Id cannot exceed 15 character.")]
