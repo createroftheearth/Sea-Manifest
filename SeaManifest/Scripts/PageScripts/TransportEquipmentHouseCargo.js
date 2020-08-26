@@ -37,9 +37,6 @@ function initTransportEquipmentHouseCargos() {
                 "data": "sAdditionalEquipmentHold",
             },
             {
-                "data": "sEventDate",
-            },
-            {
                 "data": "sEquipmentSealType",
             },
             {
@@ -52,7 +49,7 @@ function initTransportEquipmentHouseCargos() {
                 "data": "sSOCFlag",
             },
             {
-                "data": "sContainerAgentCode",
+                "data": "sContainerAgentCd",
             },
             {
                 "data": "dContainerWeight",
@@ -132,7 +129,7 @@ function checkTransportEquipments() {
     var returnValue = true;
     var validator = $("#frmTransportEquipmentHouseCargo").validate();
     var data = $('#sReportingEvent').val();
-    if (data !== "SAA") {
+    if (data === "SAA") {
         if ($('#iEquipmentSequenceNo').val() == "") {
             validator.showErrors({
                 "iEquipmentSequenceNo": "Equipment Sequence No. is a required field."

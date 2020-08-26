@@ -12,43 +12,36 @@
         @Html.HiddenFor(z => z.iHouseCargoDescId)
         @Html.HiddenFor(z => z.iMasterConsignmentId)
         @Html.HiddenFor(z => z.iItineraryId)
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                Itinerary House Cargo
+        <div class="row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.dPortOfCallSequenceNo)
+                @Html.TextBoxFor(z => z.dPortOfCallSequenceNo, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.dPortOfCallSequenceNo)
             </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.dPortOfCallSequenceNo)
-                        @Html.TextBoxFor(z => z.dPortOfCallSequenceNo, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.dPortOfCallSequenceNo)
-                    </div>
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sPortOfCallCd)
-                        @Html.TextBoxFor(z => z.sPortOfCallCd, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sPortOfCallCd)
-                    </div>
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sPortOfCallName)
-                        @Html.TextBoxFor(z => z.sPortOfCallName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sPortOfCallName)
-                    </div>
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sNextPortOfCallCdd)
-                        @Html.TextBoxFor(z => z.sNextPortOfCallCdd, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sNextPortOfCallCdd)
-                    </div>
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sNextPortOfCallName)
-                        @Html.TextBoxFor(z => z.sNextPortOfCallName, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sNextPortOfCallName)
-                    </div>
-                    <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sModeOfTransport)
-                        @Html.DropDownListFor(z => z.sModeOfTransport, modeOfTransport, "Select", new { @class = "form-control", @data_live_search = "true" })
-                        @Html.ValidationMessageFor(z => z.sModeOfTransport)
-                    </div>
-                </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPortOfCallCd)
+                @Html.TextBoxFor(z => z.sPortOfCallCd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPortOfCallCd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sPortOfCallName)
+                @Html.TextBoxFor(z => z.sPortOfCallName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sPortOfCallName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sNextPortOfCallCdd)
+                @Html.TextBoxFor(z => z.sNextPortOfCallCdd, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sNextPortOfCallCdd)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sNextPortOfCallName)
+                @Html.TextBoxFor(z => z.sNextPortOfCallName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(z => z.sNextPortOfCallName)
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(z => z.sModeOfTransport)
+                @Html.DropDownListFor(z => z.sModeOfTransport, modeOfTransport, "Select", new { @class = "form-control", @data_live_search = "true" })
+                @Html.ValidationMessageFor(z => z.sModeOfTransport)
             </div>
         </div>
     </div>

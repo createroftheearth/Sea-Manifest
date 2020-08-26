@@ -110,13 +110,14 @@ namespace BAL.Services
                 {
                     iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
                     iHouseCargoDescId = model.iHouseCargoDescId,
-                    dPortOfCallSequenceNo = model.dPortOfCallSequenceNo??0,
+                    dPortOfCallSequenceNo = model.dPortOfCallSequenceNo ?? 0,
                     sPortOfCallCd = model.sPortOfCallCd,
                     sPortOfCallName = model.sPortOfCallName,
                     sNextPortOfCallCdd = model.sNextPortOfCallCdd,
                     sNextPortOfCallName = model.sNextPortOfCallName,
                     sModeOfTransport = model.sModeOfTransport,
-                    sReportingEvent = model.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent
+                    sReportingEvent = model.tblMasterConsignmentMessageImplementationMap.tblMessageImplementation.sDecRefReportingEvent,
+                    iItineraryId = model.iItineraryId
                 }).SingleOrDefault();
             }
         }

@@ -31,7 +31,7 @@ function initItemDetailsMasterConsignments() {
                 "data": "sTypesOfPackages",
             },
             {
-                "data": "iItemDetailsMasterConsignmentId", "mRender": function (data) {
+                "data": "iItemsDetailsId", "mRender": function (data) {
                     return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItemDetailsMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },
@@ -40,7 +40,7 @@ function initItemDetailsMasterConsignments() {
 }
 
 function AddUpdateItemDetailsMasterConsignment(iItemDetailsMasterConsignmentId) {
-    $('#addUpdateModallgContainer').load('/ItemDetailsMasterConsignment/AddUpdateItemDetailsMasterConsignment?iItemDetailsMasterConsignmentId=' + iItemDetailsMasterConsignmentId, function () {
+    $('#addUpdateModallgContainer').load('/ItemDetailsMasterConsignment/AddUpdateItemDetailsMasterConsignment?iItemDetailsId=' + iItemDetailsMasterConsignmentId, function () {
         initAddUpdateItemDetailsMasterConsignment();
     });
 }

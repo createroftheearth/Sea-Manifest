@@ -36,12 +36,10 @@ namespace BAL.Models
         [Required(ErrorMessage = "Consolidator PAN is a required field.")]
         public string sMCRefConsolidatorPan { get; set; }
         [Display(Name = "No. Of Packages")]
-        [Required(ErrorMessage = "No. Of Packages is a required field.")]
         [Range(0,9999999999999999,ErrorMessage ="No of Packages should be in range between 0 to 9999999999999999")]
         public decimal? dPrevRefNoOfPackages { get; set; }
         [Display(Name = "Type Of Packages")]
         [MaxLength(4, ErrorMessage = "Type Of Packages cannot exceed 4 character.")]
-        [Required(ErrorMessage = "Type Of Packages is a required field.")]
         public string sPrevRefTypeOfPackage { get; set; }
         [Display(Name = "CIN Type")]
         [MaxLength(4, ErrorMessage = "CIN Type cannot exceed 4 character.")]

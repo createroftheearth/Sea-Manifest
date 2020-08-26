@@ -34,13 +34,14 @@ namespace SeaManifest.Controllers
 
         public PartialViewResult AddUpdateAdditionalDetailsHouseCargo(int? iAdditionalDetailsId = null)
         {
+
+            var iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
+            var reportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId, out int iMasterConsignmentId);
             if ((iAdditionalDetailsId ?? 0) == 0)
             {
-                var iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
-                var reportingEvent = HouseCargoService.Instance.GetMessageTypeByHouseCargoDescId(iHouseCargoDescId, out int iMasterConsignmentId);
                 return PartialView("pvAddUpdateAdditionalDetailsHouseCargo", new AdditionalDetailsHouseCargoModel
                 {
-                    iHouseCargoDescId=iHouseCargoDescId,
+                    iHouseCargoDescId = iHouseCargoDescId,
                     iMasterConsignmentId = iMasterConsignmentId
                 });
             }

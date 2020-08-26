@@ -152,11 +152,9 @@ namespace BAL.Models
         public string sVoyageDtlsTotalNumberofTrnsptEqtMnfstd { get; set; }
         [Display(Name = "Cargo Description,Coded")]
         [MaxLength(3, ErrorMessage = "Cargo Description,Coded cannot exceed 3 character.")]
-        [Required(ErrorMessage = "Cargo Description,Coded is a required field.")]
         public string sVoyageDtlsCargoDesCdd { get; set; }
         [Display(Name = "Brief Cargo Description")]
         [MaxLength(30, ErrorMessage = "Brief Cargo Description cannot exceed 30 character.")]
-        [Required(ErrorMessage = "Brief Cargo Description is a required field.")]
         public string sVoyageDtlsBriefCargoDesc { get; set; }
         [Display(Name = "Total number of Transport Contracts Manifested")]
         [Range(0,99999,ErrorMessage ="Total number of Transport Contaracts Manifisted should be in between 0 to 99999")]

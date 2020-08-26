@@ -31,7 +31,7 @@ function initItemDetailsHouseCargos() {
                 "data": "sTypesOfPackages",
             },
             {
-                "data": "iItemDetailsHouseCargoId", "mRender": function (data) {
+                "data": "iItemsDetailsId", "mRender": function (data) {
                     return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItemDetailsHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },
@@ -40,7 +40,7 @@ function initItemDetailsHouseCargos() {
 }
 
 function AddUpdateItemDetailsHouseCargo(iItemDetailsHouseCargoId) {
-    $('#addUpdateModallgContainer').load('/ItemDetailsHouseCargo/AddUpdateItemDetailsHouseCargo?iItemDetailsHouseCargoId=' + iItemDetailsHouseCargoId, function () {
+    $('#addUpdateModallgContainer').load('/ItemDetailsHouseCargo/AddUpdateItemDetailsHouseCargo?iItemDetailsId=' + iItemDetailsHouseCargoId, function () {
         initAddUpdateItemDetailsHouseCargo();
     });
 }

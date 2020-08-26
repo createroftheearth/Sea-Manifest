@@ -33,8 +33,7 @@ function initHouseCargos() {
                     var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/TransportEquipmentHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItineraryHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Itinerary</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/SupportDocHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i></button> ";
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/SupportDocHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button>";
                     if ((full.sReportingEvent != "SEI" && full.sReportingEvent != "SDN"))
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItemDetailsHouseCargo/Index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
                     if (full.sReportingEvent !== "SEI")
@@ -140,13 +139,13 @@ function checkFormHouseCargos() {
     var data = $('#sReportingEvent').val();
     var returnValue = true;
     if ((data == "SAM" || data == "SDM")) {
-        if ($('#sLocCstmFirstPortOfEntry').val() == "") {
-            validator.showErrors({
-                "sLocCstmFirstPortOfEntry": "First port of entry is a required field."
-            });
-            $('#sLocCstmFirstPortOfEntry').focus();
-            returnValue = false;
-        }
+        //if ($('#sLocCstmFirstPortOfEntry').val() == "") {
+        //    validator.showErrors({
+        //        "sLocCstmFirstPortOfEntry": "First port of entry is a required field."
+        //    });
+        //    $('#sLocCstmFirstPortOfEntry').focus();
+        //    returnValue = false;
+        //}
         if ($('#sLocCstmDestPort').val() == "") {
             validator.showErrors({
                 "sLocCstmDestPort": "Destination port is a required field."

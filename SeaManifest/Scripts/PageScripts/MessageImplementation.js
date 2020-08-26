@@ -48,9 +48,11 @@ function initMessages() {
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Master Consignment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/TransportEquipmentMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/SupportDocMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AmendmentDetailsMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Amendment Details</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/PersonOnBoardMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Persons on Board</button> " +
-                        "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AmendmentDetailsMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Amendment Details</button> ";
+                    if (full.sDecRefReportingEvent !== "SDN") {
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/PersonOnBoardMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Persons on Board</button> ";
+                    }
+                    html += "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
                     if (full.sDecRefReportingEvent !== "SEI")
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AdditionalDetailsMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
                     return html;
@@ -195,11 +197,11 @@ function changeReportingEvent() {
         $('#sDateTime').val('');
         $('#sDateTime').parent('div').parent('div').hide();
         $('#dSequenceOrControlNumber').val('');
-        $('#dSequenceOrControlNumber').parent('div').parent('div').hide();
+        $('#dSequenceOrControlNumber').parent('div').hide();
         $('#dDecRefjobNo').val('');
         $('#dDecRefjobNo').parent('div').hide();
         $('#sDecRefJobDt').val('');
-        $('#sDecRefJobDt').parent('div').hide();
+        $('#sDecRefJobDt').parent('div').parent('div').hide();
         $('#sAuthPrsnMasterName').val('');
         $('#sAuthPrsnMasterName').parent('div').hide();
         $('#iArvlDtlsLightHouseDues').val('');
@@ -209,7 +211,7 @@ function changeReportingEvent() {
         $('#dSequenceOrControlNumber').parent('div').show();
         $('#sDateTime').parent('div').parent('div').show();
         $('#dDecRefjobNo').parent('div').show();
-        $('#sDecRefJobDt').parent('div').show();
+        $('#sDecRefJobDt').parent('div').parent('div').show();
         $('#sAuthPrsnMasterName').parent('div').show();
         $('#iArvlDtlsLightHouseDues').parent('div').show();
     }
@@ -240,23 +242,23 @@ function changeReportingEvent() {
 
     if (data == "SEI" || data == "SDN") {
         $('#sVesselDtlsPurposeOfCall').val('');
-        $('#sVesselDtlsPurposeOfCall').parent('div').hide();
+        $('#sVesselDtlsPurposeOfCall').parent('div').parent('div').hide();
         $('#sVoyageDtlsVoyageNo').val('');
         $('#sVoyageDtlsVoyageNo').parent('div').hide();
         $('#sVoyageDtlsCargoDesCdd').val('');
         $('#sVoyageDtlsCargoDesCdd').parent('div').hide();
         $('#sVoyageDtlsBriefCargoDesc').val('');
-        $('#sVoyageDtlsBriefCargoDesc').parent('div').hide();
+        $('#sVoyageDtlsBriefCargoDesc').parent('div').parent('div').hide();
         $('#iVoyageDtlsNumberOfPsngrManifested').val('');
         $('#iVoyageDtlsNumberOfPsngrManifested').parent('div').hide();
         $('#iVoyageDtlsNumberOfCrewManifested').val('');
         $('#iVoyageDtlsNumberOfCrewManifested').parent('div').hide();
     }
     else {
-        $('#sVesselDtlsPurposeOfCall').parent('div').show();
+        $('#sVesselDtlsPurposeOfCall').parent('div').parent('div').show();
         $('#sVoyageDtlsVoyageNo').parent('div').show();
         $('#sVoyageDtlsCargoDesCdd').parent('div').show();
-        $('#sVoyageDtlsBriefCargoDesc').parent('div').show();
+        $('#sVoyageDtlsBriefCargoDesc').parent('div').parent('div').show();
         $('#iVoyageDtlsNumberOfPsngrManifested').parent('div').show();
         $('#iVoyageDtlsNumberOfCrewManifested').parent('div').show();
     }

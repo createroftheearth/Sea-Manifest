@@ -215,7 +215,6 @@ namespace BAL.Models
         [Range(0, 999999999999.999, ErrorMessage = "Net weight should be in range between 0 to 999999999999.999")]
         public decimal? dTrnsprtrDocMsrNetWeight { get; set; }
         [Display(Name = "Unit Of Weight")]
-        [Required(ErrorMessage = "Unit Of Weight is a required field.")]
         public string sTrnsprtrDocMsrUnitOfWeight { get; set; }
         [Display(Name = "Gross Volume")]
         [Range(0, 999999999999.999, ErrorMessage = "Gross Volume should be in range between 0 to 999999999999.999")]

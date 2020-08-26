@@ -43,7 +43,7 @@ function initAdditionalDetailsHouseCargos() {
                 "data": "sInfoDate",
             },
             {
-                "data": "iTmAdditionalDetailsId", "mRender": function (data) {
+                "data": "iAdditionalDetailsId", "mRender": function (data) {
                     return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateAdditionalDetailsHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },

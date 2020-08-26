@@ -104,12 +104,12 @@ namespace BAL.Services
             return valid;
         }
 
-        public object GetItemDetailsHouseCargo(int iMasterConsignmentId, string search, int start, int length, out int recordsTotal)
+        public object GetItemDetailsHouseCargo(int iHouseCargoDescId, string search, int start, int length, out int recordsTotal)
         {
             using (var db = new SeaManifestEntities())
             {
                 var query = from t in db.tblItemDetailsHouseCargoMaps
-                            where t.sCargoItemDesc.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
+                            where t.sCargoItemDesc.Contains(search) && t.iHouseCargoDescId== iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sHsCd).Skip(start).Take(length).ToList().Select(t => new
