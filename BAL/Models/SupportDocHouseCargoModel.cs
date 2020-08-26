@@ -19,9 +19,11 @@ namespace BAL.Models
         public string sTagRef { get; set; }
         [Display(Name = "Ref Serial No.")]
         [MaxLength(2, ErrorMessage = "Ref Serial No. cannot exceed 2 character.")]
+        [RegularExpression("^[0-9]*$",ErrorMessage ="Ref Serial No. should be numeric.")]
         public string sRefSerialNo { get; set; }
-        [Display(Name = "Sub Ref Serial No. Ref")]
-        [MaxLength(2, ErrorMessage = "Sub Ref Serial No. Ref cannot exceed 2 character.")]
+        [Display(Name = "Sub Serial No. Ref")]
+        [RegularExpression("^[0-9]*$",ErrorMessage = "Sub Serial No. Ref should be numeric.")]
+        [MaxLength(2, ErrorMessage = "Sub Serial No. Ref cannot exceed 2 character.")]
         public string sSubSerialNoRef { get; set; }
         [Display(Name = "Ice gate User Id")]
         [MaxLength(15, ErrorMessage = "Ice gate User Id cannot exceed 15 character.")]

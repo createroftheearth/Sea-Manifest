@@ -79,9 +79,9 @@ namespace BAL.Models
         [MaxLength(4, ErrorMessage = "Submit Type cannot exceed 4 character.")]
         [Required(ErrorMessage = "Submit Type is a required field.")]
         public string sAuthPrsnSubmitType { get; set; }
-        [Display(Name = "AuthPrsnSubmitCode")]
-        [MaxLength(15, ErrorMessage = "AuthPrsnSubmitCode cannot exceed 15 character.")]
-        [Required(ErrorMessage = "AuthPrsnSubmitCode is a required field.")]
+        [Display(Name = "Submit Code")]
+        [MaxLength(15, ErrorMessage = "Submit Code cannot exceed 15 character.")]
+        [Required(ErrorMessage = "Submit Code is a required field.")]
         public string sAuthPrsnSubmitCode { get; set; }
         [Display(Name = "Auth Representative PAN")]
         [MaxLength(10, ErrorMessage = "Auth Representative PAN cannot exceed 10 character.")]
