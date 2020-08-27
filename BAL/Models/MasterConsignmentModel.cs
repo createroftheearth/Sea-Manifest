@@ -83,7 +83,7 @@ namespace BAL.Models
         public string sLocCustomTypeOfCargo { get; set; }
         [Display(Name = "Item Type")]
         [MaxLength(2, ErrorMessage = "Item Type cannot exceed 2 character.")]
-        [Required(ErrorMessage = "Type is a required field.")]
+        [Required(ErrorMessage = "Item Type is a required field.")]
         public string sLocCustomItemType { get; set; }
         [Display(Name = "Cargo Movement")]
         [MaxLength(4, ErrorMessage = "Cargo Movement cannot exceed 4 character.")]

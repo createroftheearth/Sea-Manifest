@@ -42,7 +42,6 @@ namespace BAL.Services
                         data.iHouseCargoDescId = model.iHouseCargoDescId;
                         data.sTagRef = model.sTagRef;
                         data.sRefSerialNo = model.sRefSerialNo;
-                        data.sSubSerialNoRef = model.sSubSerialNoRef;
                         data.sIcegateUserId = model.sIcegateUserId;
                         data.sIRNNo = model.sIRNNo;
                         data.sDocRefNo = model.sDocRefNo;
@@ -61,7 +60,6 @@ namespace BAL.Services
                             iHouseCargoDescId = model.iHouseCargoDescId,
                             sTagRef = model.sTagRef,
                             sRefSerialNo = model.sRefSerialNo,
-                            sSubSerialNoRef = model.sSubSerialNoRef,
                             sIcegateUserId = model.sIcegateUserId,
                             sIRNNo = model.sIRNNo,
                             sDocRefNo = model.sDocRefNo,
@@ -89,7 +87,6 @@ namespace BAL.Services
             {
                 var query = from t in db.tblSupportDocHouseCargoMaps
                             where (t.sTagRef.Contains(search) || t.sRefSerialNo.Contains(search)
-                            || t.sSubSerialNoRef.Contains(search)
                             || t.sIcegateUserId.Contains(search)
                             || t.sIRNNo.Contains(search)
                             || t.sDocRefNo.Contains(search)
@@ -105,7 +102,6 @@ namespace BAL.Services
                     t.iMasterConsignmentId,
                     t.sTagRef,
                     t.sRefSerialNo,
-                    t.sSubSerialNoRef,
                     t.sIcegateUserId,
                     t.sIRNNo,
                     t.sDocRefNo,
@@ -126,7 +122,6 @@ namespace BAL.Services
                     iHouseCargoDescId = model.iHouseCargoDescId,
                     sTagRef = model.sTagRef,
                     sRefSerialNo = model.sRefSerialNo,
-                    sSubSerialNoRef = model.sSubSerialNoRef,
                     sIcegateUserId = model.sIcegateUserId,
                     sIRNNo = model.sIRNNo,
                     sDocRefNo = model.sDocRefNo,
