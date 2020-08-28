@@ -25,6 +25,7 @@ namespace DAL
         public string sPermissionName { get; set; }
         public string sPath { get; set; }
         public Nullable<byte> iOrder { get; set; }
+        public Nullable<bool> bIsVisible { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblRolePermissionsM> tblRolePermissionsMs { get; set; }

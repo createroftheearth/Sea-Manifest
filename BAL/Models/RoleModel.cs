@@ -23,6 +23,7 @@ namespace BAL.Models
         public string sPermissionName { get; set; }
         public string sPath { get; set; }
         public bool isChecked { get; set; }
+        public bool bIsVisible { get; set; }
         public List<PermissionModel> childs { get; set; }
 
     }

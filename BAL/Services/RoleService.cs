@@ -142,11 +142,13 @@ namespace BAL.Services
                         iPermissionId = z.tblPermissionM.iPermissionId,
                         sPermissionName = z.tblPermissionM.sPermissionName,
                         sPath = z.tblPermissionM.sPath,
+                        bIsVisible = z.tblPermissionM.bIsVisible ?? false,
                         childs = db.tblRolePermissionsMs.Where(zx => zx.tblPermissionM.iParentId == z.iPermissionId && zx.iRoleId == iRoleId).OrderBy(xz => xz.tblPermissionM.iOrder).ToList().Select(c => new PermissionModel
                         {
                             iPermissionId = c.tblPermissionM.iPermissionId,
                             sPermissionName = c.tblPermissionM.sPermissionName,
                             sPath = c.tblPermissionM.sPath,
+                            bIsVisible = z.tblPermissionM.bIsVisible ?? false
                         }).ToList(),
                     }).ToList(),
                     iRoleId = iRoleId

@@ -51,9 +51,9 @@ namespace DAL
         public virtual DbSet<tblTransportEquipmentHouseCargoMap> tblTransportEquipmentHouseCargoMaps { get; set; }
         public virtual DbSet<tblTransportEquipmentMasterConsignmentMap> tblTransportEquipmentMasterConsignmentMaps { get; set; }
         public virtual DbSet<tblVoyageTransporterEquipmentMessageImplementationMap> tblVoyageTransporterEquipmentMessageImplementationMaps { get; set; }
-        public virtual DbSet<tblPermissionM> tblPermissionMs { get; set; }
         public virtual DbSet<tblRoleM> tblRoleMs { get; set; }
         public virtual DbSet<tblRolePermissionsM> tblRolePermissionsMs { get; set; }
         public virtual DbSet<tblUserM> tblUserMs { get; set; }
+        public virtual DbSet<tblPermissionM> tblPermissionMs { get; set; }
     }
 }

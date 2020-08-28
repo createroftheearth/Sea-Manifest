@@ -18,7 +18,7 @@ namespace DAL
         public int iPermissionId { get; set; }
         public byte iRoleId { get; set; }
     
-        public virtual tblPermissionM tblPermissionM { get; set; }
         public virtual tblRoleM tblRoleM { get; set; }
+        public virtual tblPermissionM tblPermissionM { get; set; }
     }
 }

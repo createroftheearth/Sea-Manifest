@@ -38,7 +38,8 @@ namespace SeaManifest.Controllers
             var userRights = context.HttpContext.Session["UserRights"] as RolePermissionModel;
             var url = context.HttpContext.Request.Path.Split('/')[1].ToLower();
             var paths = userRights.lstPermissionModel.Where(z => z.sPath != "#").Select(z => z.sPath).ToList();
-            paths.AddRange(userRights.lstPermissionModel.SelectMany(z => z.childs).Where(z => z.sPath != "#").Select(z => z.sPath.Split('/')[1].ToLower()).ToList());
+            paths.AddRange(userRights.lstPermissionModel.SelectMany(z => z.childs).Where(z => z.sPath != "#").Select(z=>z.sPath).ToList());
+            paths = paths.Select(z => z.Split('/')[1].ToLower()).ToList();
             if (!paths.Any(z => z == url))
             {
                 context.Result = new RedirectToRouteResult(

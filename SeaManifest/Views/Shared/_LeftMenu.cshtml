@@ -26,7 +26,11 @@
             </li>
             @for (int i = 0; i < userRights.lstPermissionModel.Count; i++)
             {
-                <li>
+            <li>
+                @if (userRights.lstPermissionModel[i].bIsVisible)
+                {
+                    if (userRights.lstPermissionModel[i].childs.Count > 0)
+                    {
                     <a href="@userRights.lstPermissionModel[i].sPath"><i class="fa fa-laptop"></i><span class="nav-label">@userRights.lstPermissionModel[i].sPermissionName</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         @for (int ii = 0; ii < userRights.lstPermissionModel[i].childs.Count; ii++)
@@ -34,7 +38,13 @@
                             <li><a href="@userRights.lstPermissionModel[i].childs[ii].sPath"><i class="fa fa-circle-o text-red"></i>@userRights.lstPermissionModel[i].childs[ii].sPermissionName</a></li>
                         }
                     </ul>
-                </li>
+                    }
+                    else
+                    {
+                    <a href="@userRights.lstPermissionModel[i].sPath"><i class="fa fa-laptop"></i><span class="nav-label">@userRights.lstPermissionModel[i].sPermissionName</span></a>
+                    }
+                }
+            </li>
             }
         </ul>
     </div>

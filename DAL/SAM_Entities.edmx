@@ -437,6 +437,7 @@
           <Property Name="sPermissionName" Type="nvarchar" MaxLength="50" />
           <Property Name="sPath" Type="nvarchar" MaxLength="200" />
           <Property Name="iOrder" Type="tinyint" />
+          <Property Name="bIsVisible" Type="bit" />
         </EntityType>
         <EntityType Name="tblPersonOnBoardMessageImplementationMap">
           <Key>
@@ -1329,14 +1330,9 @@
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
             <End Role="tblVoyageTransporterEquipmentMessageImplementationMap" EntitySet="tblVoyageTransporterEquipmentMessageImplementationMaps" />
           </AssociationSet>
-          <EntitySet Name="tblPermissionMs" EntityType="SeaManifestModel.tblPermissionM" />
           <EntitySet Name="tblRoleMs" EntityType="SeaManifestModel.tblRoleM" />
           <EntitySet Name="tblRolePermissionsMs" EntityType="SeaManifestModel.tblRolePermissionsM" />
           <EntitySet Name="tblUserMs" EntityType="SeaManifestModel.tblUserM" />
-          <AssociationSet Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
-            <End Role="tblPermissionM" EntitySet="tblPermissionMs" />
-            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblRolePermissionsM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId">
             <End Role="tblRoleM" EntitySet="tblRoleMs" />
             <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
@@ -1344,6 +1340,11 @@
           <AssociationSet Name="FK_tblUserM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId">
             <End Role="tblRoleM" EntitySet="tblRoleMs" />
             <End Role="tblUserM" EntitySet="tblUserMs" />
+          </AssociationSet>
+          <EntitySet Name="tblPermissionMs" EntityType="SeaManifestModel.tblPermissionM" />
+          <AssociationSet Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
+            <End Role="tblPermissionM" EntitySet="tblPermissionMs" />
+            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -2341,17 +2342,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tblPermissionM">
-          <Key>
-            <PropertyRef Name="iPermissionId" />
-          </Key>
-          <Property Name="iPermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="iParentId" Type="Int32" Nullable="false" />
-          <Property Name="sPermissionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="iOrder" Type="Byte" />
-          <NavigationProperty Name="tblRolePermissionsMs" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId" FromRole="tblPermissionM" ToRole="tblRolePermissionsM" />
-        </EntityType>
         <EntityType Name="tblRoleM">
           <Key>
             <PropertyRef Name="iRoleId" />
@@ -2368,8 +2358,8 @@
           <Property Name="iRolePermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="iPermissionId" Type="Int32" Nullable="false" />
           <Property Name="iRoleId" Type="Byte" Nullable="false" />
-          <NavigationProperty Name="tblPermissionM" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId" FromRole="tblRolePermissionsM" ToRole="tblPermissionM" />
           <NavigationProperty Name="tblRoleM" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId" FromRole="tblRolePermissionsM" ToRole="tblRoleM" />
+          <NavigationProperty Name="tblPermissionM" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId" FromRole="tblRolePermissionsM" ToRole="tblPermissionM" />
         </EntityType>
         <EntityType Name="tblUserM">
           <Key>
@@ -2385,20 +2375,6 @@
           <Property Name="sPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblRoleM" Relationship="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId" FromRole="tblUserM" ToRole="tblRoleM" />
         </EntityType>
-        <Association Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
-          <End Type="SeaManifestModel.tblPermissionM" Role="tblPermissionM" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="SeaManifestModel.tblRolePermissionsM" Role="tblRolePermissionsM" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblPermissionM">
-              <PropertyRef Name="iPermissionId" />
-            </Principal>
-            <Dependent Role="tblRolePermissionsM">
-              <PropertyRef Name="iPermissionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblRolePermissionsM_tblRoleM_iRoleId">
           <End Type="SeaManifestModel.tblRoleM" Role="tblRoleM" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -2424,6 +2400,32 @@
             </Principal>
             <Dependent Role="tblUserM">
               <PropertyRef Name="iRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblPermissionM">
+          <Key>
+            <PropertyRef Name="iPermissionId" />
+          </Key>
+          <Property Name="iPermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iParentId" Type="Int32" Nullable="false" />
+          <Property Name="sPermissionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="iOrder" Type="Byte" />
+          <Property Name="bIsVisible" Type="Boolean" />
+          <NavigationProperty Name="tblRolePermissionsMs" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId" FromRole="tblPermissionM" ToRole="tblRolePermissionsM" />
+        </EntityType>
+        <Association Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
+          <End Type="SeaManifestModel.tblPermissionM" Role="tblPermissionM" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SeaManifestModel.tblRolePermissionsM" Role="tblRolePermissionsM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPermissionM">
+              <PropertyRef Name="iPermissionId" />
+            </Principal>
+            <Dependent Role="tblRolePermissionsM">
+              <PropertyRef Name="iPermissionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3048,17 +3050,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblPermissionMs">
-            <EntityTypeMapping TypeName="SeaManifestModel.tblPermissionM">
-              <MappingFragment StoreEntitySet="tblPermissionM">
-                <ScalarProperty Name="iOrder" ColumnName="iOrder" />
-                <ScalarProperty Name="sPath" ColumnName="sPath" />
-                <ScalarProperty Name="sPermissionName" ColumnName="sPermissionName" />
-                <ScalarProperty Name="iParentId" ColumnName="iParentId" />
-                <ScalarProperty Name="iPermissionId" ColumnName="iPermissionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblRoleMs">
             <EntityTypeMapping TypeName="SeaManifestModel.tblRoleM">
               <MappingFragment StoreEntitySet="tblRoleM">
@@ -3087,6 +3078,18 @@
                 <ScalarProperty Name="sFirstName" ColumnName="sFirstName" />
                 <ScalarProperty Name="sUserName" ColumnName="sUserName" />
                 <ScalarProperty Name="iUserId" ColumnName="iUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPermissionMs">
+            <EntityTypeMapping TypeName="SeaManifestModel.tblPermissionM">
+              <MappingFragment StoreEntitySet="tblPermissionM">
+                <ScalarProperty Name="bIsVisible" ColumnName="bIsVisible" />
+                <ScalarProperty Name="iOrder" ColumnName="iOrder" />
+                <ScalarProperty Name="sPath" ColumnName="sPath" />
+                <ScalarProperty Name="sPermissionName" ColumnName="sPermissionName" />
+                <ScalarProperty Name="iParentId" ColumnName="iParentId" />
+                <ScalarProperty Name="iPermissionId" ColumnName="iPermissionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
