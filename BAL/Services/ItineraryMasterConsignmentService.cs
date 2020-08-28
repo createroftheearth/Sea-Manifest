@@ -123,6 +123,7 @@ namespace BAL.Services
                 return db.tblItineraryMasterConsignmentMaps.Where(z => z.iItineraryId == iIternaryId).ToList().Select(model => new ItineraryMasterConsignmentModel
                 {
                     iMasterConsignmentId = model.iMasterConsignmentId ?? 0,
+                    iItineraryId = model.iItineraryId,
                     iMessageImplementationId = model.iMessageImplementationId,
                     dPortOfCallSequenceNo = model.dPortOfCallSequenceNo ?? 0,
                     sPortOfCallCd = model.sPortOfCallCd,

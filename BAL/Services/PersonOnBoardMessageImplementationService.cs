@@ -154,10 +154,10 @@ namespace BAL.Services
                     t.sPersonDetailsPassangerPartOfDsmbarkTnCdd,
                     t.sPersonDetailsPassangerPartOfDsmbarkTnName,
                     t.sPersonDetailsPersonGenderCdd,
-                    dtPersonDetailsPersonDateOfBirth= t.dtPersonDetailsPersonDateOfBirth.ToDateString(),
+                    dtPersonDetailsPersonDateOfBirth = t.dtPersonDetailsPersonDateOfBirth.ToDateString(),
                     t.sPersonDetailsPersonPlaceOfBirthName,
                     t.sPersonDetailsPersonCountryOfBirthCdd,
-                    dtPersonIdDocExpiryDate=t.dtPersonIdDocExpiryDate.ToDateString(),
+                    dtPersonIdDocExpiryDate = t.dtPersonIdDocExpiryDate.ToDateString(),
                     t.sPersonIdOrTravelDocIssuingNationCdd,
                     t.sPersonIdOrTravelDocNo,
                     t.sPersonIdOrTravelDocTypeCdd,
@@ -167,15 +167,15 @@ namespace BAL.Services
             }
         }
 
-        public PersonOnBoardMessageImplementationModel GetPersonOnBoardMessageImplementationByPersonOnBoardId(int? iPersonOnBoardId)
+        public PersonOnBoardMessageImplementationModel GetPersonOnBoardMessageImplementationByPersonOnBoardId(int? iPersonOnBoardId, int iMessageImplementationId)
         {
             using (var db = new SeaManifestEntities())
             {
                 return db.tblPersonOnBoardMessageImplementationMaps.Where(z => z.iPersonOnBoardId == iPersonOnBoardId).ToList().Select(model => new PersonOnBoardMessageImplementationModel
                 {
-
+                    sReportingEvent = MessageImplementationService.Instance.GetMessageTypeByImplementationId(iMessageImplementationId),
                     iMessageImplementationId = model.iMessageImplementationId,
-                    iPersonOnBoardId=model.iPersonOnBoardId,
+                    iPersonOnBoardId = model.iPersonOnBoardId,
                     dPersonOnBaordSeqNo = model.dPersonOnBaordSeqNo,
                     sPersonDetailsPersonTypeCdd = model.sPersonDetailsPersonTypeCdd,
                     sPersonDetailsPersonFamilyName = model.sPersonDetailsPersonFamilyName,

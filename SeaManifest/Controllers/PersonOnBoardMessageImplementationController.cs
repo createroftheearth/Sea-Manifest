@@ -43,7 +43,7 @@ namespace SeaManifest.Controllers
                 });
             }
             else
-                return PartialView("pvAddUpdatePersonOnBoardMessageImplementation", PersonOnBoardMessageImplementationService.Instance.GetPersonOnBoardMessageImplementationByPersonOnBoardId(iPersonOnBoardId));
+                return PartialView("pvAddUpdatePersonOnBoardMessageImplementation", PersonOnBoardMessageImplementationService.Instance.GetPersonOnBoardMessageImplementationByPersonOnBoardId(iPersonOnBoardId,iMessageImplementationId));
         }
 
         [HttpPost]

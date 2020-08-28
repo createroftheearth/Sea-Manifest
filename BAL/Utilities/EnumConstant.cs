@@ -140,5 +140,27 @@ namespace BAL.Utilities
             [Description("GSTIN given for Govt. Entities")]
             GSG,
         }
+        public enum ItemType
+        {
+            [Description("Govt. Cargo")]
+            GC,
+            [Description("Unaccompanied Baggage")]
+            UB,
+            [Description("other Cargo")]
+            OT
+        }
+        public enum CargoMovement
+        {
+            [Description("Loacl Clearance")]
+            LC,
+            [Description("Domestic Transshipment")]
+            TI,
+            [Description("Foreign Transshipment")]
+            TC,
+            [Description("Domestic Transit")]
+            DT,
+            [Description("Foreign Transit")]
+            FT
+        }
     }
 }

@@ -37,7 +37,7 @@ function initItenaryMasterConsignment() {
             },
             {
                 "data": "iItineraryId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItenaryMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i></button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItineraryMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i></button> ";
                         
                 }
             },
@@ -63,8 +63,8 @@ function resetForm() {
 }
 
 
-function AddUpdateItenaryMasterConsignment(iItenaryMasterConsignmentId) {
-    $('#addUpdateModallgContainer').load('/ItineraryMasterConsignment/AddUpdateItenaryMasterConsignment?iItenaryMasterConsignmentId=' + iItenaryMasterConsignmentId, function () {
+function AddUpdateItineraryMasterConsignment(iItenaryMasterConsignmentId) {
+    $('#addUpdateModallgContainer').load('/ItineraryMasterConsignment/AddUpdateItineraryMasterConsignment?iItenaryMasterConsignmentId=' + iItenaryMasterConsignmentId, function () {
         initAddUpdateItenaryMasterConsignment();
     });
 }
@@ -85,7 +85,7 @@ $(document).on('submit', '#frmItineraryMasterConsignment', function (e) {
             success: function (response) {
                 if (response.Status) {
                     alertify.success(response.Message);
-                    MasterConsignmentTable.ajax.reload();
+                    ItenaryMasterConsignment.ajax.reload();
                     $('.modal').modal('hide');
                 } else {
                     alertify.error(response.Message);

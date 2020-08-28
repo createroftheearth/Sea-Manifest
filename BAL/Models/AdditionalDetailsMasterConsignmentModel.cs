@@ -32,18 +32,14 @@ namespace BAL.Models
         public string sInfoQualifier { get; set; }
         [Display(Name = "Info Code")]
         [MaxLength(35, ErrorMessage = "Info Code cannot exceed 35 character.")]
-        [Required(ErrorMessage = "Info Code is a required field.")]
         public string sInfoCd { get; set; }
         [Display(Name = "Info Text ")]
         [MaxLength(100, ErrorMessage = "Info Text cannot exceed 100 character.")]
-        [Required(ErrorMessage = "Info Text is a required field.")]
         public string sInfoText { get; set; }
         [Display(Name = "Info MSR")]
         [MaxLength(5, ErrorMessage = "Info MSR cannot exceed 5 character.")]
-        [Required(ErrorMessage = "Info MSR is a required field.")]
         public string sInfoMsr { get; set; }
         [Display(Name = "Info Date")]
-        [Required(ErrorMessage = "Info Date is a required field.")]
         public string sInfoDate { get; set; }
     }
 }

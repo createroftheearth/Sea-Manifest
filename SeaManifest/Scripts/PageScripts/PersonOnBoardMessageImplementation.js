@@ -113,7 +113,7 @@ function resetForm() {
 
 $(document).on('submit', '#frmPersonOnBoardMessageImplementation', function (e) {
     e.preventDefault();
-    if ($(this).valid())
+    if ($(this).valid() && checkFormPersonOnBoard())
         $.ajax({
             type: $(this).attr('method'),
             url: $(this).attr('action'),
@@ -135,6 +135,47 @@ $(document).on('submit', '#frmPersonOnBoardMessageImplementation', function (e) 
             }
         });
 });
+
+
+
+
+function checkFormPersonOnBoard() {
+    var validator = $("#frmPersonOnBoardMessageImplementation").validate();
+    var data = $('#sReportingEvent').val();
+    var returnValue = true;
+    if ((data == "SAM")) {
+        if ($('#dtPersonIdDocExpiryDate').val() == "") {
+            validator.showErrors({
+                "dtPersonIdDocExpiryDate": "PersonId Doc Expiry Date is a required field."
+            });
+            $('#dtPersonIdDocExpiryDate').focus();
+            returnValue = false;
+        }
+        if ($('#sPersonIdOrTravelDocIssuingNationCdd').val() == "") {
+            validator.showErrors({
+                "sPersonIdOrTravelDocIssuingNationCdd": "PersonId Or Travel Doc Issuing NationCdd is a required field."
+            });
+            $('#sPersonIdOrTravelDocIssuingNationCdd').focus();
+            returnValue = false;
+        }
+        if ($('#sPersonIdOrTravelDocNo').val() == "") {
+            validator.showErrors({
+                "sPersonIdOrTravelDocNo": "PersonId Or Travel DocNo is a required field."
+            });
+            $('#sPersonIdOrTravelDocNo').focus();
+            returnValue = false;
+        }
+        if ($('#sPersonIdOrTravelDocTypeCdd').val() == "") {
+            validator.showErrors({
+                "sPersonIdOrTravelDocTypeCdd": "PersonId Or Travel Doc Type Cdd is a required field."
+            });
+            $('#sPersonIdOrTravelDocTypeCdd').focus();
+            returnValue = false;
+        }
+    }
+    return returnValue;
+}
+
 
 //function checkSupportDocs() {
 //    var returnValue = true;

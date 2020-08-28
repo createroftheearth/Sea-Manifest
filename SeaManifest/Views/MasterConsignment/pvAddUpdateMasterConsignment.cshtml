@@ -14,6 +14,10 @@
     var currencyCode = BAL.Services.MasterConsignmentService.Instance.GetCurrencyCodes();
     var states = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("State_Code");
     var CountryCode = BAL.Services.MasterConsignmentService.Instance.GetCountryCodes();
+    var itemType = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.ItemType>();
+    var cargoMovement = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.CargoMovement>();
+
+
 }
 
 @using (Html.BeginForm("AddUpdateMasterConsignment", "MasterConsignment", FormMethod.Post, new { @id = "frmMasterConsignment" }))
@@ -171,12 +175,12 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCustomItemType)
-                        @Html.TextBoxFor(z => z.sLocCustomItemType, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCustomItemType, itemType, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCustomItemType)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCustomCargoMovement)
-                        @Html.TextBoxFor(z => z.sLocCustomCargoMovement, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCustomCargoMovement, cargoMovement, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCustomCargoMovement)
                     </div>
                     <div class="form-group col-md-4">
