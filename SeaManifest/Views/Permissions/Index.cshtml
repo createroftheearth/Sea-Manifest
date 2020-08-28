@@ -1,0 +1,35 @@
+﻿@{
+    //ViewBag.Title = "Permissions";
+    ViewData["Title"] = "Index";
+}
+
+@model BAL.Models.PermissionModel
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            Permissions
+            <div class="pull-right">
+                <button type="button" class="btn btn-success" onclick="AddPermission(0)"><i class="fa fa-plus"></i> Add New Permission</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblPermission" style="width:100% !important;">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Parent Id</th>
+                        <th>Permission Name</th>
+                        <th>Path</th>
+                        <th>Order</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/Permission.js"></script>
+}
+

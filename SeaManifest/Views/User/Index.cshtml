@@ -1,0 +1,30 @@
+﻿<div class="card">
+    <div class="card-header">
+        <div class="card-title">
+            Users
+            <div class="pull-right">
+                <button type="button" class="btn btn-success" onclick="AddUser(0)"><i class="fa fa-plus"></i> Add New User</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="table table-responsive">
+            <table class="table table-bordered" id="tblUser">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/Scripts/PageScripts/User.js"></script>
+}
+

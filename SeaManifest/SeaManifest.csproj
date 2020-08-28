@@ -132,8 +132,11 @@
     <Compile Include="Controllers\ItemDetailsMasterConsignmentController.cs" />
     <Compile Include="Controllers\ItineraryMasterConsignmentController.cs" />
     <Compile Include="Controllers\AmendmentDetailsMessageImplementationController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\PersonOnBoardMessageImplementationController.cs" />
     <Compile Include="Controllers\PortController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SupportDocMessageImplementationController.cs" />
     <Compile Include="Controllers\SupportDocMasterConsignmentController.cs" />
     <Compile Include="Controllers\TransportEquipmentHouseCargoController.cs" />
@@ -147,6 +150,7 @@
     <Compile Include="Controllers\HouseCargoController.cs" />
     <Compile Include="Controllers\MasterConsignmentController.cs" />
     <Compile Include="Controllers\MessageImplementationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1562,7 +1566,9 @@
     <Content Include="Scripts\PageScripts\AdditionalDetailsHouseCargo.js" />
     <Content Include="Scripts\PageScripts\AdditionalDetailsMasterConsignment.js" />
     <Content Include="Scripts\PageScripts\ItineraryMasterConsignment.js" />
+    <Content Include="Scripts\PageScripts\Permission.js" />
     <Content Include="Scripts\PageScripts\Port.js" />
+    <Content Include="Scripts\PageScripts\Role.js" />
     <Content Include="Scripts\PageScripts\SupportDocMasterConsignment.js" />
     <Content Include="Scripts\PageScripts\PersonOnBoardMessageImplementation.js" />
     <Content Include="Scripts\PageScripts\AmendmentDetailsMessageImplementation.js" />
@@ -1578,6 +1584,7 @@
     <Content Include="Scripts\PageScripts\ItemDetailsMasterConsignment.js" />
     <Content Include="Scripts\PageScripts\MasterConsignment.js" />
     <Content Include="Scripts\PageScripts\MessageImplementation.js" />
+    <Content Include="Scripts\PageScripts\User.js" />
     <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
@@ -1644,6 +1651,14 @@
     <Content Include="Views\PersonOnBoardMessageImplementation\pvAddUpdatePersonOnBoardMessageImplementation.cshtml" />
     <Content Include="Views\Port\pvAddUpdatePort.cshtml" />
     <Content Include="Views\Port\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Permissions\Index.cshtml" />
+    <Content Include="Views\Permissions\pvAddUpdatePermission.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\pvAddUpdateRole.cshtml" />
+    <Content Include="Views\Role\pvAddUpdateRolePermissions.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\pvAddUpdateUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

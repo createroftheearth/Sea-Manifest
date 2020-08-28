@@ -2,13 +2,7 @@
 using BAL.Utilities;
 using DAL;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity.Core.Metadata.Edm;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 
 namespace BAL.Services
 {
@@ -30,11 +24,11 @@ namespace BAL.Services
             }
         }
 
-        public List<SelectListItem> GetPorts()
+        public object GetPorts()
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblPortMs.ToList().Select(z => new SelectListItem
+                return db.tblPortMs.ToList().Select(z => new 
                 {
                     Value = z.sPortCode.ToString(),
                     Text = z.sPortDescription
@@ -50,11 +44,11 @@ namespace BAL.Services
             }
         }
 
-        public List<SelectListItem> GetCodesByType(string Type)
+        public object GetCodesByType(string Type)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblCodeMs.Where(z => z.tblCodeTypeM.sCodeType == Type).ToList().Select(z => new SelectListItem
+                return db.tblCodeMs.Where(z => z.tblCodeTypeM.sCodeType == Type).ToList().Select(z => new 
                 {
                     Value = z.sCode.ToString(),
                     Text = z.sCodeName
@@ -410,11 +404,11 @@ namespace BAL.Services
             }
         }
 
-        public List<SelectListItem> GetCountryCodes()
+        public object GetCountryCodes()
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblCountryMs.Select(z => new SelectListItem
+                return db.tblCountryMs.Select(z => new 
                 {
                     Text= z.sCountryName,
                     Value=z.sCountryCode
@@ -422,11 +416,11 @@ namespace BAL.Services
             }
         }
 
-        public List<SelectListItem> GetCurrencyCodes()
+        public object GetCurrencyCodes()
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblCurrencyCodesMs.Select(z => new SelectListItem
+                return db.tblCurrencyCodesMs.Select(z => new 
                 {
                     Text = z.sCurrencyName,
                     Value = z.sCurrencyCode

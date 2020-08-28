@@ -1,0 +1,81 @@
+﻿@model BAL.Models.RolePermissionModel
+<style>
+    .unol {
+        list-style: none;
+    }
+
+    .liol {
+        padding-top: 1px;
+        list-style: none;
+    }
+
+    .ulol, .liol, .divol {
+        float: none;
+    }
+
+    .ulol, .liol {
+        width: 100%;
+    }
+
+    .expandol {
+        display: block;
+        padding: 2px;
+        margin-right: 5px;
+        float: left;
+    }
+
+    .collapseol {
+        display: none;
+        padding: 2px;
+        margin-right: 5px;
+        float: left;
+    }
+</style>
+<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Add Update Role Permissions</h4>
+    <i class="fa fa-times-circle" data-dismiss="modal"></i>
+</div>
+@using (Html.BeginForm("AddUpdateRolePermissions", "Role", FormMethod.Post, new { @id = "frmSaveRolePermissions", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(z=>z.iRoleId)
+    <div class="modal-body">
+        <div class="tree">
+            @for (int i = 0; i < Model.lstPermissionModel.Count; i++)
+            {
+                <ul style="padding:0; margin:0;" class="ulol">
+                    <li style="list-style-type:none;" class="liol">
+                        <div class="divol">
+                            <button type="button" class="expandol btn btn-sm btn-default">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="collapseol  btn btn-sm btn-default">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <a href="javascript:void(0)" style="text-decoration:none;">
+                            @Html.CheckBoxFor(z => z.lstPermissionModel[i].isChecked, new { @class = "tree-checkbox parent" })
+                            @Model.lstPermissionModel[i].sPermissionName
+                            @Html.HiddenFor(z => z.lstPermissionModel[i].iPermissionId)
+                        </a>
+                        <ul class="ulol">
+                            @for (int ii = 0; ii < Model.lstPermissionModel[i].childs.Count; ii++)
+                            {
+                                <li class="liol">
+                                    <a href="javascript:void(0)" style="text-decoration:none;">
+                                        @Html.CheckBoxFor(z => z.lstPermissionModel[i].childs[ii].isChecked, new { @class = "tree-checkbox parent" })
+                                        @Model.lstPermissionModel[i].childs[ii].sPermissionName
+                                        @Html.HiddenFor(z => z.lstPermissionModel[i].childs[ii].iPermissionId)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+}

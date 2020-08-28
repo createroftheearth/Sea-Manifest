@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+
+}
+@model BAL.Models.LoginModel
+<html>
+<!-- Mirrored from webapplayers.com/inspinia_admin-v2.9.3/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 04 Jan 2020 09:21:50 GMT -->
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Manifest | Login</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet">
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/animate.css" rel="stylesheet">
+    <link href="~/dist/css/AdminLTE.min.css" rel="stylesheet" />
+</head>
+
+<body class="gray-bg">
+
+    <div class="middle-box text-center loginscreen animated fadeInDown">
+        <div>
+            <div>
+                <h1 class="logo-name">Sea Manifest</h1>
+            </div>
+            <h3>Welcome to Sea Manifest</h3>
+            @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @id = "loginForm", @class = "m-t" }))
+            {
+                <div class="form-group">
+                    <label style="display:flex">Username</label>
+                    @Html.TextBoxFor(z=>z.Username,new { @class = "form-control" })
+                    @Html.ValidationMessageFor(z=>z.Username)
+                </div>
+                <div class="form-group">
+                    <label style="display:flex">Password</label>
+                    @Html.PasswordFor(z => z.Password, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(z => z.Password)
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+            }
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+
+</body>
+</html>

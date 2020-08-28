@@ -60,6 +60,13 @@
         <AssociationConnector Association="SeaManifestModel.FK_tblTmSupportDocMessageImplementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation" />
         <AssociationConnector Association="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblPermissionM" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblRoleM" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblRolePermissionsM" Width="1.5" PointX="3" PointY="8.875" />
+        <EntityTypeShape EntityType="SeaManifestModel.tblUserM" Width="1.5" PointX="3" PointY="12.25" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId" />
+        <AssociationConnector Association="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace SeaManifest.Controllers
 {
-    public class PortController : Controller
+    public class PortController : BaseController
     {
         // GET: Port
         public ActionResult Index()

@@ -428,6 +428,16 @@
           <Property Name="sMessageCode" Type="varchar" MaxLength="3" />
           <Property Name="sMessageDesc" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tblPermissionM">
+          <Key>
+            <PropertyRef Name="iPermissionId" />
+          </Key>
+          <Property Name="iPermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iParentId" Type="int" Nullable="false" />
+          <Property Name="sPermissionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="sPath" Type="nvarchar" MaxLength="200" />
+          <Property Name="iOrder" Type="tinyint" />
+        </EntityType>
         <EntityType Name="tblPersonOnBoardMessageImplementationMap">
           <Key>
             <PropertyRef Name="iPersonOnBoardId" />
@@ -468,6 +478,21 @@
           <Property Name="sPortDescription" Type="varchar" MaxLength="100" />
           <Property Name="sCountryCode" Type="varchar" MaxLength="5" />
           <Property Name="SstateCode" Type="varchar" MaxLength="2" />
+        </EntityType>
+        <EntityType Name="tblRoleM">
+          <Key>
+            <PropertyRef Name="iRoleId" />
+          </Key>
+          <Property Name="iRoleId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sRoleName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblRolePermissionsM">
+          <Key>
+            <PropertyRef Name="iRolePermissionId" />
+          </Key>
+          <Property Name="iRolePermissionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="iPermissionId" Type="int" Nullable="false" />
+          <Property Name="iRoleId" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSupportDocHouseCargoMap">
           <Key>
@@ -567,6 +592,19 @@
           <Property Name="dTotalNoOfPackages" Type="decimal" Precision="18" Scale="0" />
           <Property Name="dtActionDate" Type="datetime" />
           <Property Name="iActionBy" Type="int" />
+        </EntityType>
+        <EntityType Name="tblUserM">
+          <Key>
+            <PropertyRef Name="iUserId" />
+          </Key>
+          <Property Name="iUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sUserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sFirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sLastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="sEmailId" Type="nvarchar" MaxLength="255" />
+          <Property Name="sPhoneNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="iRoleId" Type="tinyint" Nullable="false" />
+          <Property Name="sPassword" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="tblVoyageTransporterEquipmentMessageImplementationMap">
           <Key>
@@ -810,6 +848,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
+          <End Role="tblPermissionM" Type="Self.tblPermissionM" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRolePermissionsM" Type="Self.tblRolePermissionsM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPermissionM">
+              <PropertyRef Name="iPermissionId" />
+            </Principal>
+            <Dependent Role="tblRolePermissionsM">
+              <PropertyRef Name="iPermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRolePermissionsM_tblRoleM_iRoleId">
+          <End Role="tblRoleM" Type="Self.tblRoleM" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblRolePermissionsM" Type="Self.tblRolePermissionsM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoleM">
+              <PropertyRef Name="iRoleId" />
+            </Principal>
+            <Dependent Role="tblRolePermissionsM">
+              <PropertyRef Name="iRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
           <End Role="tblHouseCargoDescriptionMasterConsignmentMap" Type="Self.tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="0..1" />
           <End Role="tblSupportDocHouseCargoMap" Type="Self.tblSupportDocHouseCargoMap" Multiplicity="*" />
@@ -930,6 +996,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblUserM_tblRoleM_iRoleId">
+          <End Role="tblRoleM" Type="Self.tblRoleM" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblUserM" Type="Self.tblUserM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoleM">
+              <PropertyRef Name="iRoleId" />
+            </Principal>
+            <Dependent Role="tblUserM">
+              <PropertyRef Name="iRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation">
           <End Role="tblMessageImplementation" Type="Self.tblMessageImplementation" Multiplicity="0..1" />
           <End Role="tblVoyageTransporterEquipmentMessageImplementationMap" Type="Self.tblVoyageTransporterEquipmentMessageImplementationMap" Multiplicity="*" />
@@ -961,13 +1041,17 @@
           <EntitySet Name="tblMasterConsignmentMessageImplementationMap" EntityType="Self.tblMasterConsignmentMessageImplementationMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMessageImplementation" EntityType="Self.tblMessageImplementation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblMessageTypeM" EntityType="Self.tblMessageTypeM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblPermissionM" EntityType="Self.tblPermissionM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPersonOnBoardMessageImplementationMap" EntityType="Self.tblPersonOnBoardMessageImplementationMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblPortM" EntityType="Self.tblPortM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRoleM" EntityType="Self.tblRoleM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRolePermissionsM" EntityType="Self.tblRolePermissionsM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSupportDocHouseCargoMap" EntityType="Self.tblSupportDocHouseCargoMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSupportDocMasterConsignmentMap" EntityType="Self.tblSupportDocMasterConsignmentMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSupportDocMessageImplementationMap" EntityType="Self.tblSupportDocMessageImplementationMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTransportEquipmentHouseCargoMap" EntityType="Self.tblTransportEquipmentHouseCargoMap" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblTransportEquipmentMasterConsignmentMap" EntityType="Self.tblTransportEquipmentMasterConsignmentMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserM" EntityType="Self.tblUserM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblVoyageTransporterEquipmentMessageImplementationMap" EntityType="Self.tblVoyageTransporterEquipmentMessageImplementationMap" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="Self.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
             <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMap" />
@@ -1041,6 +1125,14 @@
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementation" />
             <End Role="tblPersonOnBoardMessageImplementationMap" EntitySet="tblPersonOnBoardMessageImplementationMap" />
           </AssociationSet>
+          <AssociationSet Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId" Association="Self.FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
+            <End Role="tblPermissionM" EntitySet="tblPermissionM" />
+            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRolePermissionsM_tblRoleM_iRoleId" Association="Self.FK_tblRolePermissionsM_tblRoleM_iRoleId">
+            <End Role="tblRoleM" EntitySet="tblRoleM" />
+            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsM" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="Self.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
             <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMap" />
             <End Role="tblSupportDocHouseCargoMap" EntitySet="tblSupportDocHouseCargoMap" />
@@ -1080,6 +1172,10 @@
           <AssociationSet Name="FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation" Association="Self.FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation">
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementation" />
             <End Role="tblTransportEquipmentMasterConsignmentMap" EntitySet="tblTransportEquipmentMasterConsignmentMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserM_tblRoleM_iRoleId" Association="Self.FK_tblUserM_tblRoleM_iRoleId">
+            <End Role="tblRoleM" EntitySet="tblRoleM" />
+            <End Role="tblUserM" EntitySet="tblUserM" />
           </AssociationSet>
           <AssociationSet Name="FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" Association="Self.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation">
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementation" />
@@ -1232,6 +1328,22 @@
           <AssociationSet Name="FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation">
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
             <End Role="tblVoyageTransporterEquipmentMessageImplementationMap" EntitySet="tblVoyageTransporterEquipmentMessageImplementationMaps" />
+          </AssociationSet>
+          <EntitySet Name="tblPermissionMs" EntityType="SeaManifestModel.tblPermissionM" />
+          <EntitySet Name="tblRoleMs" EntityType="SeaManifestModel.tblRoleM" />
+          <EntitySet Name="tblRolePermissionsMs" EntityType="SeaManifestModel.tblRolePermissionsM" />
+          <EntitySet Name="tblUserMs" EntityType="SeaManifestModel.tblUserM" />
+          <AssociationSet Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
+            <End Role="tblPermissionM" EntitySet="tblPermissionMs" />
+            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRolePermissionsM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId">
+            <End Role="tblRoleM" EntitySet="tblRoleMs" />
+            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId">
+            <End Role="tblRoleM" EntitySet="tblRoleMs" />
+            <End Role="tblUserM" EntitySet="tblUserMs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -2229,6 +2341,92 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblPermissionM">
+          <Key>
+            <PropertyRef Name="iPermissionId" />
+          </Key>
+          <Property Name="iPermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iParentId" Type="Int32" Nullable="false" />
+          <Property Name="sPermissionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="iOrder" Type="Byte" />
+          <NavigationProperty Name="tblRolePermissionsMs" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId" FromRole="tblPermissionM" ToRole="tblRolePermissionsM" />
+        </EntityType>
+        <EntityType Name="tblRoleM">
+          <Key>
+            <PropertyRef Name="iRoleId" />
+          </Key>
+          <Property Name="iRoleId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sRoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblRolePermissionsMs" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId" FromRole="tblRoleM" ToRole="tblRolePermissionsM" />
+          <NavigationProperty Name="tblUserMs" Relationship="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId" FromRole="tblRoleM" ToRole="tblUserM" />
+        </EntityType>
+        <EntityType Name="tblRolePermissionsM">
+          <Key>
+            <PropertyRef Name="iRolePermissionId" />
+          </Key>
+          <Property Name="iRolePermissionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="iPermissionId" Type="Int32" Nullable="false" />
+          <Property Name="iRoleId" Type="Byte" Nullable="false" />
+          <NavigationProperty Name="tblPermissionM" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId" FromRole="tblRolePermissionsM" ToRole="tblPermissionM" />
+          <NavigationProperty Name="tblRoleM" Relationship="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId" FromRole="tblRolePermissionsM" ToRole="tblRoleM" />
+        </EntityType>
+        <EntityType Name="tblUserM">
+          <Key>
+            <PropertyRef Name="iUserId" />
+          </Key>
+          <Property Name="iUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sUserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sFirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sEmailId" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="sPhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="iRoleId" Type="Byte" Nullable="false" />
+          <Property Name="sPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblRoleM" Relationship="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId" FromRole="tblUserM" ToRole="tblRoleM" />
+        </EntityType>
+        <Association Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
+          <End Type="SeaManifestModel.tblPermissionM" Role="tblPermissionM" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SeaManifestModel.tblRolePermissionsM" Role="tblRolePermissionsM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblPermissionM">
+              <PropertyRef Name="iPermissionId" />
+            </Principal>
+            <Dependent Role="tblRolePermissionsM">
+              <PropertyRef Name="iPermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRolePermissionsM_tblRoleM_iRoleId">
+          <End Type="SeaManifestModel.tblRoleM" Role="tblRoleM" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SeaManifestModel.tblRolePermissionsM" Role="tblRolePermissionsM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoleM">
+              <PropertyRef Name="iRoleId" />
+            </Principal>
+            <Dependent Role="tblRolePermissionsM">
+              <PropertyRef Name="iRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserM_tblRoleM_iRoleId">
+          <End Type="SeaManifestModel.tblRoleM" Role="tblRoleM" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="SeaManifestModel.tblUserM" Role="tblUserM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblRoleM">
+              <PropertyRef Name="iRoleId" />
+            </Principal>
+            <Dependent Role="tblUserM">
+              <PropertyRef Name="iRoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2847,6 +3045,48 @@
                 <ScalarProperty Name="iEquipmentSequenceNo" ColumnName="iEquipmentSequenceNo" />
                 <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
                 <ScalarProperty Name="iVoyageTransportId" ColumnName="iVoyageTransportId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPermissionMs">
+            <EntityTypeMapping TypeName="SeaManifestModel.tblPermissionM">
+              <MappingFragment StoreEntitySet="tblPermissionM">
+                <ScalarProperty Name="iOrder" ColumnName="iOrder" />
+                <ScalarProperty Name="sPath" ColumnName="sPath" />
+                <ScalarProperty Name="sPermissionName" ColumnName="sPermissionName" />
+                <ScalarProperty Name="iParentId" ColumnName="iParentId" />
+                <ScalarProperty Name="iPermissionId" ColumnName="iPermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRoleMs">
+            <EntityTypeMapping TypeName="SeaManifestModel.tblRoleM">
+              <MappingFragment StoreEntitySet="tblRoleM">
+                <ScalarProperty Name="sRoleName" ColumnName="sRoleName" />
+                <ScalarProperty Name="iRoleId" ColumnName="iRoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRolePermissionsMs">
+            <EntityTypeMapping TypeName="SeaManifestModel.tblRolePermissionsM">
+              <MappingFragment StoreEntitySet="tblRolePermissionsM">
+                <ScalarProperty Name="iRoleId" ColumnName="iRoleId" />
+                <ScalarProperty Name="iPermissionId" ColumnName="iPermissionId" />
+                <ScalarProperty Name="iRolePermissionId" ColumnName="iRolePermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserMs">
+            <EntityTypeMapping TypeName="SeaManifestModel.tblUserM">
+              <MappingFragment StoreEntitySet="tblUserM">
+                <ScalarProperty Name="sPassword" ColumnName="sPassword" />
+                <ScalarProperty Name="iRoleId" ColumnName="iRoleId" />
+                <ScalarProperty Name="sPhoneNumber" ColumnName="sPhoneNumber" />
+                <ScalarProperty Name="sEmailId" ColumnName="sEmailId" />
+                <ScalarProperty Name="sLastName" ColumnName="sLastName" />
+                <ScalarProperty Name="sFirstName" ColumnName="sFirstName" />
+                <ScalarProperty Name="sUserName" ColumnName="sUserName" />
+                <ScalarProperty Name="iUserId" ColumnName="iUserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

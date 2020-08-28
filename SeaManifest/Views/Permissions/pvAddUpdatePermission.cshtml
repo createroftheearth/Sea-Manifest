@@ -1,0 +1,41 @@
+﻿@model BAL.Models.PermissionInputModel
+@{
+    ViewBag.Parents = BAL.Services.PermissionsService.Instance.GetParents();
+}
+<div class="modal-header">
+    <h4 class="modal-title"><i class="fa fa-edit"></i> Create/Update Permission</h4>
+    <i class="fa fa-times-circle" style="float: right; font-size: 21px; font-weight: 700; line-height: 1; text-shadow: 0 1px 0 #fff; cursor: pointer; margin-top: 2px;" data-dismiss="modal"></i>
+</div>
+@using (Html.BeginForm("AddUpdatePermission", "Permissions", FormMethod.Post, new { @id = "frmSavePermission", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(x => x.iPermissionId)
+    <div class="modal-body">
+        <div class="row mt-2">
+            <div class="col-md-6 form-group">
+                @Html.Label("Parent Id")
+                @Html.DropDownListFor(x => x.iParentId, new SelectList(ViewBag.Parents, "Value", "Text"), "Select", new { @class = "form-control", @data_live_search = "true" })
+                @Html.ValidationMessageFor(x => x.iParentId)
+            </div>
+            <div class="col-md-6 form-group">
+                @Html.Label("Permission Name")
+                @Html.TextBoxFor(x => x.sPermissionName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sPermissionName)
+            </div>
+            <div class="col-md-6 form-group">
+                @Html.Label("Path")
+                @Html.TextBoxFor(x => x.sPath, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.sPath)
+            </div>
+            <div class="col-md-6 form-group">
+                @Html.Label("Order")
+                @Html.TextBoxFor(x => x.iOrder, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.iOrder)
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Save</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-remove"></i> Cancel</button>
+    </div>
+
+}

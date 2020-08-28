@@ -123,10 +123,19 @@
     <Compile Include="tblMessageTypeM.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblPermissionM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblPersonOnBoardMessageImplementationMap.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPortM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRoleM.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRolePermissionsM.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblSupportDocHouseCargoMap.cs">
@@ -142,6 +151,9 @@
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblTransportEquipmentMasterConsignmentMap.cs">
+      <DependentUpon>SAM_Entities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserM.cs">
       <DependentUpon>SAM_Entities.tt</DependentUpon>
     </Compile>
     <Compile Include="tblVoyageTransporterEquipmentMessageImplementationMap.cs">
