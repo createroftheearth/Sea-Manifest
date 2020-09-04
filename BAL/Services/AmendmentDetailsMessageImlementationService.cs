@@ -90,6 +90,7 @@ namespace BAL.Services
                     t.sAmendRefNo,
                     t.sAmendFlag,
                     t.sAmendType,
+                    t.iAmendmentId
                 }).ToList();
             }
         }
