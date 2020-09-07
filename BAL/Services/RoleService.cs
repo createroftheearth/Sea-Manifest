@@ -75,7 +75,7 @@ namespace BAL.Services
                 using (var db = new SeaManifestEntities())
                 {
                     var roles = model.lstPermissionModel.Where(z => z.isChecked).Select(z => z.iPermissionId).ToList();
-                    roles.AddRange(model.lstPermissionModel.SelectMany(z => z.childs).Where(z => z.isChecked).Select(z => z.iPermissionId).ToList());
+                    roles.AddRange(model.lstPermissionModel.SelectMany(z => (z.childs??new List<PermissionModel>())).Where(z => z.isChecked).Select(z => z.iPermissionId).ToList());
                     db.tblRolePermissionsMs.RemoveRange(
                               from t in db.tblRolePermissionsMs.Where(z => z.iRoleId == model.iRoleId).ToList()
                               join s in roles on t.iPermissionId equals s

@@ -232,11 +232,11 @@ function changeReportingEvent() {
         $('#sAuthPrsnShippingLineBondNo').val('');
         $('#sAuthPrsnShippingLineBondNo').parent('div').hide();
         $('#sVoyageDtlsExpectedDtandTimeOfDeparture').val('');
-        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').hide();
+        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').parent('div').hide();
     }
     else {
         $('#sAuthPrsnShippingLineBondNo').parent('div').show();
-        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').show();
+        $('#sVoyageDtlsExpectedDtandTimeOfDeparture').parent('div').parent('div').show();
     }
 
 

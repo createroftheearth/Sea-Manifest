@@ -129,7 +129,7 @@ function checkTransportEquipments() {
     var returnValue = true;
     var validator = $("#frmTransportEquipmentMasterConsignment").validate();
     var data = $('#sReportingEvent').val();
-    if (data !== "SAA") {
+    if (data === "SAA") {
         if ($('#iEquipmentSequenceNo').val() == "") {
             validator.showErrors({
                 "iEquipmentSequenceNo": "Equipment Sequence No. is a required field."

@@ -8,9 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
-    @*<link href="~/Content/Libs/bootstrap-datetimepicker/bootstrap-datepicker.min.css" rel="stylesheet" />*@
     <link href="~/Content/Libs/jquery-ui/jquery-ui.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    <link href="~/plugins/datetimepicker/datetimepicker.min.css" rel="stylesheet" />
     @Styles.Render("~/Content/csss")
     @Styles.Render("~/dist/csss")
     @Scripts.Render("~/bundles/modernizr")
@@ -51,8 +50,8 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Content/Libs/bootstrap-selectpicker/js/bootstrap-select.min.js"></script>
     <script src="~/Content/Libs/jquery-ui/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+    <script src="~/plugins/momentjs/moment.min.js"></script>
+    <script src="~/plugins/datetimepicker/datetimepicker.min.js"></script>
     <script>
         $(document).ready(function () {
             $.fn.selectpicker.Constructor.BootstrapVersion = '4';
@@ -138,7 +137,7 @@
             var strTime = hours + ':' + minutes + ' ' + ampm;
             return strTime;
         }
-                                                                                        //End
+                                                                                                //End
     </script>
     @RenderSection("scripts", required: false)
 </body>

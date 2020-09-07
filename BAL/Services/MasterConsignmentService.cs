@@ -2,7 +2,9 @@
 using BAL.Utilities;
 using DAL;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace BAL.Services
 {
@@ -24,11 +26,11 @@ namespace BAL.Services
             }
         }
 
-        public object GetPorts()
+        public List<SelectListItem> GetPorts()
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblPortMs.ToList().Select(z => new 
+                return db.tblPortMs.ToList().Select(z => new SelectListItem
                 {
                     Value = z.sPortCode.ToString(),
                     Text = z.sPortDescription
@@ -44,11 +46,11 @@ namespace BAL.Services
             }
         }
 
-        public object GetCodesByType(string Type)
+        public List<SelectListItem> GetCodesByType(string Type)
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblCodeMs.Where(z => z.tblCodeTypeM.sCodeType == Type).ToList().Select(z => new 
+                return db.tblCodeMs.Where(z => z.tblCodeTypeM.sCodeType == Type).ToList().Select(z => new SelectListItem
                 {
                     Value = z.sCode.ToString(),
                     Text = z.sCodeName
@@ -404,11 +406,11 @@ namespace BAL.Services
             }
         }
 
-        public object GetCountryCodes()
+        public List<SelectListItem> GetCountryCodes()
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblCountryMs.Select(z => new 
+                return db.tblCountryMs.Select(z => new SelectListItem
                 {
                     Text= z.sCountryName,
                     Value=z.sCountryCode
@@ -416,11 +418,11 @@ namespace BAL.Services
             }
         }
 
-        public object GetCurrencyCodes()
+        public List<SelectListItem> GetCurrencyCodes()
         {
             using (var db = new SeaManifestEntities())
             {
-                return db.tblCurrencyCodesMs.Select(z => new 
+                return db.tblCurrencyCodesMs.Select(z => new SelectListItem
                 {
                     Text = z.sCurrencyName,
                     Value = z.sCurrencyCode

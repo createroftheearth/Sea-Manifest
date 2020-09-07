@@ -250,14 +250,14 @@ function checkFormMasterConsignments() {
     }
     if (($('#sTrnsprtrDocTypeOfCd').val() == "GSN" || $('#sTrnsprtrDocTypeOfCd').val() == "GSD" || $('#sTrnsprtrDocTypeOfCd').val() == "GSG") && !$('#sTrnsprtrDocConsigneeCd').isValidGSTIN()) {
         validator.showErrors({
-            "sTrnsprtrDocConsignorCd": "Please Enter valid GSTIN No"
+            "sTrnsprtrDocConsigneeCd": "Please Enter valid GSTIN No"
         });
         $('#sTrnsprtrDocConsigneeCd').focus();
         returnValue = false;
     }
     else if (($('#sTrnsprtrDocTypeOfCd').val() == "PAN") && !$('#sTrnsprtrDocConsigneeCd').isValidPAN()) {
         validator.showErrors({
-            "sTrnsprtrDocConsignorCd": "Please Enter valid PAN"
+            "sTrnsprtrDocConsigneeCd": "Please Enter valid PAN"
         });
         $('#sTrnsprtrDocConsigneeCd').focus();
         returnValue = false;

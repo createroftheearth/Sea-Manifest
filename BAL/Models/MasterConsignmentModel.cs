@@ -160,8 +160,8 @@ namespace BAL.Models
         [Display(Name = "Consignee Code")]
         [MaxLength(17, ErrorMessage = "Consignee Code cannot exceed 17 character.")]
         public string sTrnsprtrDocConsigneeCd { get; set; }
-        [Display(Name = "Type Of Code")]
-        [MaxLength(3, ErrorMessage = "Type Of Code cannot exceed 3 character.")]
+        [Display(Name = "Consignee Code Type")]
+        [MaxLength(3, ErrorMessage = "Consignee Code Type cannot exceed 3 character.")]
         public string sTrnsprtrDocTypeOfCd { get; set; }
         [Display(Name = "Consignee Street Address")]
         [MaxLength(70, ErrorMessage = "Consignee Street Address cannot exceed 70 character.")]

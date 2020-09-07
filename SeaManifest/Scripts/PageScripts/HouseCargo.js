@@ -246,14 +246,14 @@ function checkFormHouseCargos() {
     }
     if (($('#sTrnsprtrDocPartyTypeOfCd').val() == "GSN" || $('#sTrnsprtrDocPartyTypeOfCd').val() == "GSD" || $('#sTrnsprtrDocPartyTypeOfCd').val() == "GSG") && !$('#sTrnsprtrDocPartyConsigneeCd').isValidGSTIN()) {
         validator.showErrors({
-            "sTrnsprtrDocPartyConsignorCd": "Please Enter valid GSTIN No"
+            "sTrnsprtrDocPartyConsigneeCd": "Please Enter valid GSTIN No"
         });
         $('#sTrnsprtrDocPartyConsigneeCd').focus();
         returnValue = false;
     }
     else if (($('#sTrnsprtrDocPartyTypeOfCd').val() == "PAN") && !$('#sTrnsprtrDocPartyConsigneeCd').isValidPAN()) {
         validator.showErrors({
-            "sTrnsprtrDocPartyConsignorCd": "Please Enter valid PAN"
+            "sTrnsprtrDocPartyConsigneeCd": "Please Enter valid PAN"
         });
         $('#sTrnsprtrDocPartyConsigneeCd').focus();
         returnValue = false;

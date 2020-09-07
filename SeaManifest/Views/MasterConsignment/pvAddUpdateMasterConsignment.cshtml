@@ -298,14 +298,14 @@
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsignorPostCd)
                     </div>
                     <div class="form-group col-md-4">
-                        @Html.LabelFor(z => z.sTrnsprtrDocTypeOfCd)
-                        @Html.DropDownListFor(z => z.sTrnsprtrDocTypeOfCd, CodeType, "Select", new { @class = "form-control", @data_live_search = "true" })
-                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocTypeOfCd)
-                    </div>
-                    <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocConsigneeName)
                         @Html.TextBoxFor(z => z.sTrnsprtrDocConsigneeName, new { @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sTrnsprtrDocConsigneeName)
+                    </div>
+                    <div class="form-group col-md-4">
+                        @Html.LabelFor(z => z.sTrnsprtrDocTypeOfCd)
+                        @Html.DropDownListFor(z => z.sTrnsprtrDocTypeOfCd, CodeType, "Select", new { @class = "form-control", @data_live_search = "true" })
+                        @Html.ValidationMessageFor(z => z.sTrnsprtrDocTypeOfCd)
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sTrnsprtrDocConsigneeCd)

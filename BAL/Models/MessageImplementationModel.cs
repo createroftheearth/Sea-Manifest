@@ -42,9 +42,9 @@ namespace BAL.Models
         [Required(ErrorMessage = "Reporting Event is a required field.")]
         public string sReportingEvent { get; set; }
 
-        [Display(Name = "Msg Type")]
-        [MaxLength(1, ErrorMessage = "Msg Type cannot exceed 1 character.")]
-        [Required(ErrorMessage = "Msg Type is a required field.")]
+        [Display(Name = "Message Type")]
+        [MaxLength(1, ErrorMessage = "Message Type cannot exceed 1 character.")]
+        [Required(ErrorMessage = "Message Type is a required field.")]
         public string sDecRefMsgType { get; set; }
         [Display(Name = "Port Of Reporting")]
         [MaxLength(6, ErrorMessage = "Port Of Reporting cannot exceed 6 character.")]

@@ -38,6 +38,7 @@ namespace BAL.Models
         public string sInfoText { get; set; }
         [Display(Name = "Info MSR")]
         [MaxLength(5, ErrorMessage = "Info MSR cannot exceed 5 character.")]
+        [RegularExpression("^[0-9]*$",ErrorMessage ="Info MSR should be numeric")]
         public string sInfoMsr { get; set; }
         [Display(Name = "Info Date")]
         public string sInfoDate { get; set; }

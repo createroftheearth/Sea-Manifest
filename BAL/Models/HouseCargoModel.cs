@@ -131,9 +131,9 @@ namespace BAL.Models
         [MaxLength(17, ErrorMessage = "Consignee Code cannot exceed 17 character.")]
         [Required(ErrorMessage = "Consignee Code is a required field.")]
         public string sTrnsprtrDocPartyConsigneeCd { get; set; }
-        [Display(Name = "Type of code")]
-        [MaxLength(3, ErrorMessage = "Type of code cannot exceed 3 character.")]
-        [Required(ErrorMessage = "Type of code is a required field.")]
+        [Display(Name = "Consignee Code Type")]
+        [MaxLength(3, ErrorMessage = "Consignee Code Type cannot exceed 3 character.")]
+        [Required(ErrorMessage = "Consignee Code Type is a required field.")]
         public string sTrnsprtrDocPartyTypeOfCd { get; set; }
         [Display(Name = "Consignee Street Address")]
         [MaxLength(70, ErrorMessage = "Consignee Street Address cannot exceed 70 character.")]

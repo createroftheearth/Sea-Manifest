@@ -25,9 +25,6 @@ function initSupportDocHouseCargos() {
                 "data": "sRefSerialNo"
             },
             {
-                "data": "sSubSerialNoRef",
-            },
-            {
                 "data": "sIcegateUserId",
             },
             {
