@@ -19,7 +19,7 @@ function initMasterConsignments() {
         },
         "columns": [
             {
-                "data": "iMCRefLineNo", "width":"10%"
+                "data": "iMCRefLineNo", "width": "10%"
             },
             {
                 "data": "sMCRefMasterBillNo", "width": "10%"
@@ -28,7 +28,7 @@ function initMasterConsignments() {
                 "data": "masterBillDate", "width": "10%"
             },
             {
-                "data": "iMasterConsignmentId", "mRender": function (data,abc,full) {
+                "data": "iMasterConsignmentId", "mRender": function (data, abc, full) {
                     var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/TransportEquipmentMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/SupportDocMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
@@ -212,7 +212,7 @@ function checkFormMasterConsignments() {
         $('#sTrnsprtrDocConsignorCd').focus();
         returnValue = false;
     }
-   
+
     if ($('#sTrnsprtrDocConsignorCountryCd').val() == "IN") {
         if ($('#ddlConsignorSubDivCode').val() == "") {
             validator.showErrors({
@@ -228,7 +228,7 @@ function checkFormMasterConsignments() {
             returnValue = false;
         }
     }
-    if ($('#sTrnsprtrDocConsignorCountryCd').val() != "IN") {
+    if ($('#sTrnsprtrDocConsignorCountryCd').val() != "IN" && data != "SDN" && data != "SEI") {
         if ($('#sTrnsprtrDocConsigneeCountrySubDivName').val() == "") {
             validator.showErrors({
                 "sTrnsprtrDocConsigneeCountrySubDivName": "Consignor Sub Division Name is a required field."
@@ -278,7 +278,7 @@ function checkFormMasterConsignments() {
             returnValue = false;
         }
     }
-    if ($('#sTrnsprtrDocConsigneeCountryCd').val() != "IN") {
+    if ($('#sTrnsprtrDocConsigneeCountryCd').val() != "IN" && data != "SDN" && data != "SEI") {
         if ($('#sTrnsprtrDocConsigneeCountrySubDivName').val() == "") {
             validator.showErrors({
                 "sTrnsprtrDocConsigneeCountrySubDivName": "Consignee Sub Division Name is a required field."
@@ -305,7 +305,7 @@ function checkFormMasterConsignments() {
             returnValue = false;
         }
     }
-    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() != "IN") {
+    if ($('#sTrnsprtrDocNotFdPartyCountryCd').val() != "IN" && data != "SDN" && data != "SEI") {
         if ($('#sTrnsprtrDocNotFdPartyCountrySubDivName').val() == "") {
             validator.showErrors({
                 "sTrnsprtrDocNotFdPartyCountrySubDivName": "Notified Sub Division Name is a required field."
@@ -369,7 +369,7 @@ function changeTypeOfCargo() {
         $('#sTrnsprtrDocTypeOfCd').selectpicker('refresh');
     }
 
-   
+
 }
 
 

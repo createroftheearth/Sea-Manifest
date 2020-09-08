@@ -75,6 +75,11 @@ namespace SeaManifest.Controllers
                 ModelState.Remove("sLocCustomCargoMovement");
                 ModelState.Remove("sLocCustomItemType");
                 ModelState.Remove("sLocCustomTypeOfCargo");
+                ModelState.Remove("sLocCustomTypeOfCargo");
+                ModelState.Remove("dTrnsprtrDocMsrNoOfPackages");
+                ModelState.Remove("dSuplmntryDecNoOfPackages");
+                ModelState.Remove("sSuplmntryDecCinType");
+                ModelState.Remove("dSuplmntryDecCSNNo");
             }
             if (ModelState.IsValid && MasterConsignmentService.Instance.ValidateLineMasterConsignment(model, out Messages))
             {
