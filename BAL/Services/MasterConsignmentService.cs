@@ -255,7 +255,7 @@ namespace BAL.Services
                         db.tblMasterConsignmentMessageImplementationMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Master Consigment saved successfully!" };
+                    return new { Status = true, Message = "Master Consignment saved successfully!" };
                 }
 
             }

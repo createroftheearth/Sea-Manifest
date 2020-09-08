@@ -69,7 +69,7 @@ namespace BAL.Services
                         db.tblItineraryHouseCargoMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Itinerary House Cargo saved successfully!" };
+                    return new { Status = true, Message = "Itinerary saved successfully!" };
                 }
 
             }

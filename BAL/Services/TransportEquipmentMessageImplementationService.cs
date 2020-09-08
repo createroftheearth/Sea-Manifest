@@ -90,7 +90,7 @@ namespace BAL.Services
                         db.tblVoyageTransporterEquipmentMessageImplementationMaps.Add(data);
                         db.SaveChanges();
                     }
-                    return new { Status = true, Message = "Transport Equipment House Cargo saved successfully!" };
+                    return new { Status = true, Message = "Transport Equipment saved successfully!" };
                 }
 
             }

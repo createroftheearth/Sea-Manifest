@@ -143,7 +143,7 @@ namespace BAL.Services
                     sIMDGCd = model.sIMDGCd,
                     dNoOfPakages = model.dNoOfPakages ?? 0,
                     sTypesOfPackages = model.sTypesOfPackages,
-
+                    iItemsDetailsId = model.iItemsDetailsId
                 }).SingleOrDefault();
             }
         }
