@@ -365,7 +365,6 @@
           <Property Name="sHeaderFieldMessageId" Type="varchar" MaxLength="7" />
           <Property Name="dHeaderFieldSequenceOrControlNumber" Type="decimal" Precision="18" Scale="0" />
           <Property Name="dtHeaderFieldDateTime" Type="datetime" />
-          <Property Name="sHeaderFieldReportingEvent" Type="varchar" MaxLength="4" />
           <Property Name="sDecRefMsgType" Type="varchar" MaxLength="1" />
           <Property Name="sDecRefPortOfReporting" Type="varchar" MaxLength="6" />
           <Property Name="dDecRefjobNo" Type="decimal" Precision="18" Scale="0" />
@@ -1204,7 +1203,6 @@
           <EntitySet Name="tblItineraryHouseCargoMaps" EntityType="SeaManifestModel.tblItineraryHouseCargoMap" />
           <EntitySet Name="tblItineraryMasterConsignmentMaps" EntityType="SeaManifestModel.tblItineraryMasterConsignmentMap" />
           <EntitySet Name="tblMasterConsignmentMessageImplementationMaps" EntityType="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" />
-          <EntitySet Name="tblMessageImplementations" EntityType="SeaManifestModel.tblMessageImplementation" />
           <EntitySet Name="tblMessageTypeMs" EntityType="SeaManifestModel.tblMessageTypeM" />
           <EntitySet Name="tblPersonOnBoardMessageImplementationMaps" EntityType="SeaManifestModel.tblPersonOnBoardMessageImplementationMap" />
           <EntitySet Name="tblPortMs" EntityType="SeaManifestModel.tblPortM" />
@@ -1222,32 +1220,12 @@
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
             <End Role="tblAdditionalDetailsHouseCargoMap" EntitySet="tblAdditionalDetailsHouseCargoMaps" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblAdditionalDetailsMasterConsignmentMap" EntitySet="tblAdditionalDetailsMasterConsignmentMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblAdditionalDetailsMasterConsignmentMap" EntitySet="tblAdditionalDetailsMasterConsignmentMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblAdditionalDetailsMessageImplementationMap" EntitySet="tblAdditionalDetailsMessageImplementationMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblAmendmentDetailsM_tblMessageImplementationM" Association="SeaManifestModel.FK_tblAmendmentDetailsM_tblMessageImplementationM">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblAmendmentDetailsMessageImlementationMap" EntitySet="tblAmendmentDetailsMessageImlementationMaps" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblCodeM_tblCodeTypeM" Association="SeaManifestModel.FK_tblCodeM_tblCodeTypeM">
             <End Role="tblCodeTypeM" EntitySet="tblCodeTypeMs" />
             <End Role="tblCodeM" EntitySet="tblCodeMs" />
           </AssociationSet>
           <AssociationSet Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap">
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
-            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
             <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
           </AssociationSet>
           <AssociationSet Name="FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" Association="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap">
@@ -1274,10 +1252,6 @@
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
             <End Role="tblItemDetailsMasterConsignmentMap" EntitySet="tblItemDetailsMasterConsignmentMaps" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblItemDetailsMasterConsignmentMap" EntitySet="tblItemDetailsMasterConsignmentMaps" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap">
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
             <End Role="tblItineraryHouseCargoMap" EntitySet="tblItineraryHouseCargoMaps" />
@@ -1285,14 +1259,6 @@
           <AssociationSet Name="FK_tblItineraryMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMasterConsignmentMessageImplementationMap">
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
             <End Role="tblItineraryMasterConsignmentMap" EntitySet="tblItineraryMasterConsignmentMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblItineraryMessageImlementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMessageImplementation">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblItineraryMasterConsignmentMap" EntitySet="tblItineraryMasterConsignmentMaps" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation">
-            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
-            <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
           </AssociationSet>
           <AssociationSet Name="FK_tblSupportDocHouseCargoMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblMasterConsignmentMessageImplementationMap">
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
@@ -1309,6 +1275,55 @@
           <AssociationSet Name="FK_tblTransportEquipmentMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" Association="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMasterConsignmentMessageImplementationMap">
             <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
             <End Role="tblTransportEquipmentMasterConsignmentMap" EntitySet="tblTransportEquipmentMasterConsignmentMaps" />
+          </AssociationSet>
+          <EntitySet Name="tblRoleMs" EntityType="SeaManifestModel.tblRoleM" />
+          <EntitySet Name="tblRolePermissionsMs" EntityType="SeaManifestModel.tblRolePermissionsM" />
+          <EntitySet Name="tblUserMs" EntityType="SeaManifestModel.tblUserM" />
+          <AssociationSet Name="FK_tblRolePermissionsM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId">
+            <End Role="tblRoleM" EntitySet="tblRoleMs" />
+            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId">
+            <End Role="tblRoleM" EntitySet="tblRoleMs" />
+            <End Role="tblUserM" EntitySet="tblUserMs" />
+          </AssociationSet>
+          <EntitySet Name="tblPermissionMs" EntityType="SeaManifestModel.tblPermissionM" />
+          <AssociationSet Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
+            <End Role="tblPermissionM" EntitySet="tblPermissionMs" />
+            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
+          </AssociationSet>
+          <EntitySet Name="tblMessageImplementations" EntityType="SeaManifestModel.tblMessageImplementation" />
+          <AssociationSet Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblAdditionalDetailsMasterConsignmentMap" EntitySet="tblAdditionalDetailsMasterConsignmentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" Association="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblAdditionalDetailsMasterConsignmentMap" EntitySet="tblAdditionalDetailsMasterConsignmentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblAdditionalDetailsMessageImplementationMap" EntitySet="tblAdditionalDetailsMessageImplementationMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAmendmentDetailsM_tblMessageImplementationM" Association="SeaManifestModel.FK_tblAmendmentDetailsM_tblMessageImplementationM">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblAmendmentDetailsMessageImlementationMap" EntitySet="tblAmendmentDetailsMessageImlementationMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblHouseCargoDescriptionMasterConsignmentMap" EntitySet="tblHouseCargoDescriptionMasterConsignmentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblItemDetailsMasterConsignmentMap" EntitySet="tblItemDetailsMasterConsignmentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblItineraryMessageImlementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMessageImplementation">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblItineraryMasterConsignmentMap" EntitySet="tblItineraryMasterConsignmentMaps" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation">
+            <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
+            <End Role="tblMasterConsignmentMessageImplementationMap" EntitySet="tblMasterConsignmentMessageImplementationMaps" />
           </AssociationSet>
           <AssociationSet Name="FK_tblPersonOnBoardMessageImlementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblPersonOnBoardMessageImlementationMap_tblMessageImplementation">
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
@@ -1329,22 +1344,6 @@
           <AssociationSet Name="FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" Association="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation">
             <End Role="tblMessageImplementation" EntitySet="tblMessageImplementations" />
             <End Role="tblVoyageTransporterEquipmentMessageImplementationMap" EntitySet="tblVoyageTransporterEquipmentMessageImplementationMaps" />
-          </AssociationSet>
-          <EntitySet Name="tblRoleMs" EntityType="SeaManifestModel.tblRoleM" />
-          <EntitySet Name="tblRolePermissionsMs" EntityType="SeaManifestModel.tblRolePermissionsM" />
-          <EntitySet Name="tblUserMs" EntityType="SeaManifestModel.tblUserM" />
-          <AssociationSet Name="FK_tblRolePermissionsM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblRoleM_iRoleId">
-            <End Role="tblRoleM" EntitySet="tblRoleMs" />
-            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblUserM_tblRoleM_iRoleId" Association="SeaManifestModel.FK_tblUserM_tblRoleM_iRoleId">
-            <End Role="tblRoleM" EntitySet="tblRoleMs" />
-            <End Role="tblUserM" EntitySet="tblUserMs" />
-          </AssociationSet>
-          <EntitySet Name="tblPermissionMs" EntityType="SeaManifestModel.tblPermissionM" />
-          <AssociationSet Name="FK_tblRolePermissionsM_tblPermissionM_iPermissionId" Association="SeaManifestModel.FK_tblRolePermissionsM_tblPermissionM_iPermissionId">
-            <End Role="tblPermissionM" EntitySet="tblPermissionMs" />
-            <End Role="tblRolePermissionsM" EntitySet="tblRolePermissionsMs" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -1396,7 +1395,7 @@
           <Property Name="iActionBy" Type="Int32" />
           <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" FromRole="tblAdditionalDetailsMasterConsignmentMap" ToRole="tblMessageImplementation" />
           <NavigationProperty Name="tblMessageImplementation1" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" FromRole="tblAdditionalDetailsMasterConsignmentMap" ToRole="tblMessageImplementation" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="tblAdditionalDetailsMessageImplementationMap">
           <Key>
             <PropertyRef Name="iAdditionalDetailsId" />
@@ -1544,11 +1543,11 @@
           <Property Name="iActionBy" Type="Int32" />
           <NavigationProperty Name="tblAdditionalDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblAdditionalDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblAdditionalDetailsHouseCargoMap" />
           <NavigationProperty Name="tblMasterConsignmentMessageImplementationMap" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblMasterConsignmentMessageImplementationMap" />
-          <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblMessageImplementation" />
           <NavigationProperty Name="tblItemDetailsHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItemDetailsHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblItemDetailsHouseCargoMap" />
           <NavigationProperty Name="tblItineraryHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblItineraryHouseCargoMap" />
           <NavigationProperty Name="tblSupportDocHouseCargoMaps" Relationship="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblSupportDocHouseCargoMap" />
           <NavigationProperty Name="tblTransportEquipmentHouseCargoMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblHouseCargoDescriptionMasterConsignmentMap" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblTransportEquipmentHouseCargoMap" />
+          <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblHouseCargoDescriptionMasterConsignmentMap" ToRole="tblMessageImplementation" />
         </EntityType>
         <EntityType Name="tblItemDetailsHouseCargoMap">
           <Key>
@@ -1723,91 +1722,11 @@
           <NavigationProperty Name="tblItemDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblItemDetailsMasterConsignmentMap" />
           <NavigationProperty Name="tblItineraryHouseCargoMaps" Relationship="SeaManifestModel.FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblItineraryHouseCargoMap" />
           <NavigationProperty Name="tblItineraryMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblItineraryMasterConsignmentMap" />
-          <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblMessageImplementation" />
           <NavigationProperty Name="tblSupportDocHouseCargoMaps" Relationship="SeaManifestModel.FK_tblSupportDocHouseCargoMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblSupportDocHouseCargoMap" />
           <NavigationProperty Name="tblSupportDocMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblSupportDocMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblSupportDocMasterConsignmentMap" />
           <NavigationProperty Name="tblTransportEquipmentHouseCargoMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMasterConsignmentMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblTransportEquipmentHouseCargoMap" />
           <NavigationProperty Name="tblTransportEquipmentMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMasterConsignmentMessageImplementationMap" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblTransportEquipmentMasterConsignmentMap" />
-        </EntityType>
-        <EntityType Name="tblMessageImplementation">
-          <Key>
-            <PropertyRef Name="iMessageImplementationId" />
-          </Key>
-          <Property Name="iMessageImplementationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sHeaderFieldSenderId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="sHeaderFieldReceiverId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="sHeaderFieldVersionNo" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="sHeaderFieldIndicator" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="sHeaderFieldMessageId" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Name="dHeaderFieldSequenceOrControlNumber" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="dtHeaderFieldDateTime" Type="DateTime" Precision="3" />
-          <Property Name="sHeaderFieldReportingEvent" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="sDecRefMsgType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="sDecRefPortOfReporting" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="dDecRefjobNo" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="dtDecRefJobDt" Type="DateTime" Precision="0" />
-          <Property Name="sDecRefReportingEvent" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="dDecRefManifestNoRotnNo" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="dtDecRefManifestDateRotnDt" Type="DateTime" Precision="0" />
-          <Property Name="sDecRefVesselTypeMovement" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="dDecRefDptrPreviousManifestNo" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="dtDecRefPreviousManifestDptrDate" Type="DateTime" Precision="0" />
-          <Property Name="sAuthPrsnSubmitType" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="sAuthPrsnSubmitCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
-          <Property Name="sAuthPrsnAuthRepresentativePAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sAuthPrsnShipLineCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sAuthPrsnAuthSeaCarrierCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sAuthPrsnMasterName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="sAuthPrsnShippingLineBondNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sAuthPrsnTerminalCustodianCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsModeOfTransport" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsTypeOfTransportMeans" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsTransportMeansId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsVesselCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsPortOfRegistry" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsRegistryNo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="dVesselDtlsNetTonnage" Type="Decimal" Precision="14" Scale="0" />
-          <Property Name="dVesselDtlsGrossTonnage" Type="Decimal" Precision="12" Scale="3" />
-          <Property Name="dtVesselDtlsRegistryDate" Type="DateTime" Precision="0" />
-          <Property Name="sVesselDtlsNationalityOfShip" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsShipType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sVesselDtlsPurposeOfCall" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sVoyageDtlsVoyageNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="sVoyageDtlsConveinceRefNo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="sVoyageDtlsTotalNumberofTrnsptEqtMnfstd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="sVoyageDtlsCargoDesCdd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
-          <Property Name="sVoyageDtlsBriefCargoDesc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="dVoyageDtlsTotalNumberOfLines" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="dtVoyageDtlsExpectedDtandTimeOfArrival" Type="DateTime" Precision="3" />
-          <Property Name="dtVoyageDtlsExpectedDtandTimeOfDeparture" Type="DateTime" Precision="3" />
-          <Property Name="iVoyageDtlsNumberOfPsngrManifested" Type="Int32" />
-          <Property Name="iVoyageDtlsNumberOfCrewManifested" Type="Int32" />
-          <Property Name="iArvlDtlsNumberOfPassengers" Type="Int32" />
-          <Property Name="iArvlDtlsNumberOfCrew" Type="Int32" />
-          <Property Name="iArvlDtlsTotalNoOfCntrsLanded" Type="Int32" />
-          <Property Name="iArvlDtlsTotalOfCntrsLoaded" Type="Int32" />
-          <Property Name="iArvlDtlsTotalNoOfPersonOnBoard" Type="Int32" />
-          <Property Name="iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr" Type="Int32" />
-          <Property Name="iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr1" Type="Int32" />
-          <Property Name="iArvlDtlsLightHouseDues" Type="Decimal" Precision="9" Scale="0" />
-          <Property Name="sDigiSignStartSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="sDigiSignStartCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="sDigiSignSignerVersion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="dtActionDate" Type="DateTime" Precision="3" />
-          <Property Name="iActionBy" Type="Int32" />
-          <NavigationProperty Name="tblAdditionalDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMasterConsignmentMap" />
-          <NavigationProperty Name="tblAdditionalDetailsMasterConsignmentMaps1" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMasterConsignmentMap" />
-          <NavigationProperty Name="tblAdditionalDetailsMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMessageImplementationMap" />
-          <NavigationProperty Name="tblAmendmentDetailsMessageImlementationMaps" Relationship="SeaManifestModel.FK_tblAmendmentDetailsM_tblMessageImplementationM" FromRole="tblMessageImplementation" ToRole="tblAmendmentDetailsMessageImlementationMap" />
-          <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
-          <NavigationProperty Name="tblItemDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblItemDetailsMasterConsignmentMap" />
-          <NavigationProperty Name="tblItineraryMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblItineraryMasterConsignmentMap" />
-          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblMasterConsignmentMessageImplementationMap" />
-          <NavigationProperty Name="tblPersonOnBoardMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblPersonOnBoardMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblPersonOnBoardMessageImplementationMap" />
-          <NavigationProperty Name="tblSupportDocMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblSupportDocMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblSupportDocMasterConsignmentMap" />
-          <NavigationProperty Name="tblSupportDocMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblTmSupportDocMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblSupportDocMessageImplementationMap" />
-          <NavigationProperty Name="tblTransportEquipmentMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblTransportEquipmentMasterConsignmentMap" />
-          <NavigationProperty Name="tblVoyageTransporterEquipmentMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblVoyageTransporterEquipmentMessageImplementationMap" />
+          <NavigationProperty Name="tblMessageImplementation" Relationship="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" FromRole="tblMasterConsignmentMessageImplementationMap" ToRole="tblMessageImplementation" />
         </EntityType>
         <EntityType Name="tblMessageTypeM">
           <Key>
@@ -2018,54 +1937,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblAdditionalDetailsMasterConsignmentMap" Role="tblAdditionalDetailsMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblAdditionalDetailsMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblAdditionalDetailsMasterConsignmentMap" Role="tblAdditionalDetailsMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblAdditionalDetailsMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblAdditionalDetailsMessageImplementationMap" Role="tblAdditionalDetailsMessageImplementationMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblAdditionalDetailsMessageImplementationMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblAmendmentDetailsM_tblMessageImplementationM">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblAmendmentDetailsMessageImlementationMap" Role="tblAmendmentDetailsMessageImlementationMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblAmendmentDetailsMessageImlementationMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblCodeM_tblCodeTypeM">
           <End Type="SeaManifestModel.tblCodeTypeM" Role="tblCodeTypeM" Multiplicity="0..1" />
           <End Type="SeaManifestModel.tblCodeM" Role="tblCodeM" Multiplicity="*" />
@@ -2087,18 +1958,6 @@
             </Principal>
             <Dependent Role="tblHouseCargoDescriptionMasterConsignmentMap">
               <PropertyRef Name="iMasterConsignmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblHouseCargoDescriptionMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2174,18 +2033,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblItemDetailsMasterConsignmentMap" Role="tblItemDetailsMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblItemDetailsMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblItineraryHouseCargoMap_tblMasterConsignmentMessageImplementationMap">
           <End Type="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Role="tblMasterConsignmentMessageImplementationMap" Multiplicity="0..1" />
           <End Type="SeaManifestModel.tblItineraryHouseCargoMap" Role="tblItineraryHouseCargoMap" Multiplicity="*" />
@@ -2207,30 +2054,6 @@
             </Principal>
             <Dependent Role="tblItineraryMasterConsignmentMap">
               <PropertyRef Name="iMasterConsignmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblItineraryMessageImlementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblItineraryMasterConsignmentMap" Role="tblItineraryMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblItineraryMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Role="tblMasterConsignmentMessageImplementationMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblMasterConsignmentMessageImplementationMap">
-              <PropertyRef Name="iMessageImplementationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2279,66 +2102,6 @@
             </Principal>
             <Dependent Role="tblTransportEquipmentMasterConsignmentMap">
               <PropertyRef Name="iMasterConsignmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblPersonOnBoardMessageImlementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblPersonOnBoardMessageImplementationMap" Role="tblPersonOnBoardMessageImplementationMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblPersonOnBoardMessageImplementationMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblSupportDocMasterConsignmentMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblSupportDocMasterConsignmentMap" Role="tblSupportDocMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblSupportDocMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTmSupportDocMessageImplementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblSupportDocMessageImplementationMap" Role="tblSupportDocMessageImplementationMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblSupportDocMessageImplementationMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblTransportEquipmentMasterConsignmentMap" Role="tblTransportEquipmentMasterConsignmentMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblTransportEquipmentMasterConsignmentMap">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation">
-          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
-          <End Type="SeaManifestModel.tblVoyageTransporterEquipmentMessageImplementationMap" Role="tblVoyageTransporterEquipmentMessageImplementationMap" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblMessageImplementation">
-              <PropertyRef Name="iMessageImplementationId" />
-            </Principal>
-            <Dependent Role="tblVoyageTransporterEquipmentMessageImplementationMap">
-              <PropertyRef Name="iMessageImplementationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2426,6 +2189,241 @@
             </Principal>
             <Dependent Role="tblRolePermissionsM">
               <PropertyRef Name="iPermissionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblMessageImplementation">
+          <Key>
+            <PropertyRef Name="iMessageImplementationId" />
+          </Key>
+          <Property Name="iMessageImplementationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sHeaderFieldSenderId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sHeaderFieldReceiverId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sHeaderFieldVersionNo" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="sHeaderFieldIndicator" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sHeaderFieldMessageId" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="dHeaderFieldSequenceOrControlNumber" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dtHeaderFieldDateTime" Type="DateTime" Precision="3" />
+          <Property Name="sDecRefMsgType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="sDecRefPortOfReporting" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="dDecRefjobNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dtDecRefJobDt" Type="DateTime" Precision="0" />
+          <Property Name="sDecRefReportingEvent" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="dDecRefManifestNoRotnNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dtDecRefManifestDateRotnDt" Type="DateTime" Precision="0" />
+          <Property Name="sDecRefVesselTypeMovement" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="dDecRefDptrPreviousManifestNo" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dtDecRefPreviousManifestDptrDate" Type="DateTime" Precision="0" />
+          <Property Name="sAuthPrsnSubmitType" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="sAuthPrsnSubmitCode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="sAuthPrsnAuthRepresentativePAN" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sAuthPrsnShipLineCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sAuthPrsnAuthSeaCarrierCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sAuthPrsnMasterName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="sAuthPrsnShippingLineBondNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sAuthPrsnTerminalCustodianCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsModeOfTransport" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsTypeOfTransportMeans" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsTransportMeansId" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsVesselCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsPortOfRegistry" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsRegistryNo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="dVesselDtlsNetTonnage" Type="Decimal" Precision="14" Scale="0" />
+          <Property Name="dVesselDtlsGrossTonnage" Type="Decimal" Precision="12" Scale="3" />
+          <Property Name="dtVesselDtlsRegistryDate" Type="DateTime" Precision="0" />
+          <Property Name="sVesselDtlsNationalityOfShip" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsShipType" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sVesselDtlsPurposeOfCall" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sVoyageDtlsVoyageNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="sVoyageDtlsConveinceRefNo" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="sVoyageDtlsTotalNumberofTrnsptEqtMnfstd" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="sVoyageDtlsCargoDesCdd" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sVoyageDtlsBriefCargoDesc" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="dVoyageDtlsTotalNumberOfLines" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="dtVoyageDtlsExpectedDtandTimeOfArrival" Type="DateTime" Precision="3" />
+          <Property Name="dtVoyageDtlsExpectedDtandTimeOfDeparture" Type="DateTime" Precision="3" />
+          <Property Name="iVoyageDtlsNumberOfPsngrManifested" Type="Int32" />
+          <Property Name="iVoyageDtlsNumberOfCrewManifested" Type="Int32" />
+          <Property Name="iArvlDtlsNumberOfPassengers" Type="Int32" />
+          <Property Name="iArvlDtlsNumberOfCrew" Type="Int32" />
+          <Property Name="iArvlDtlsTotalNoOfCntrsLanded" Type="Int32" />
+          <Property Name="iArvlDtlsTotalOfCntrsLoaded" Type="Int32" />
+          <Property Name="iArvlDtlsTotalNoOfPersonOnBoard" Type="Int32" />
+          <Property Name="iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr" Type="Int32" />
+          <Property Name="iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr1" Type="Int32" />
+          <Property Name="iArvlDtlsLightHouseDues" Type="Decimal" Precision="9" Scale="0" />
+          <Property Name="sDigiSignStartSignature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sDigiSignStartCertificate" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="sDigiSignSignerVersion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="dtActionDate" Type="DateTime" Precision="3" />
+          <Property Name="iActionBy" Type="Int32" />
+          <NavigationProperty Name="tblAdditionalDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMasterConsignmentMap" />
+          <NavigationProperty Name="tblAdditionalDetailsMasterConsignmentMaps1" Relationship="SeaManifestModel.FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMasterConsignmentMap" />
+          <NavigationProperty Name="tblAdditionalDetailsMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblAdditionalDetailsMessageImplementationMap" />
+          <NavigationProperty Name="tblAmendmentDetailsMessageImlementationMaps" Relationship="SeaManifestModel.FK_tblAmendmentDetailsM_tblMessageImplementationM" FromRole="tblMessageImplementation" ToRole="tblAmendmentDetailsMessageImlementationMap" />
+          <NavigationProperty Name="tblHouseCargoDescriptionMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblHouseCargoDescriptionMasterConsignmentMap" />
+          <NavigationProperty Name="tblItemDetailsMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblItemDetailsMasterConsignmentMap" />
+          <NavigationProperty Name="tblItineraryMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblItineraryMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblItineraryMasterConsignmentMap" />
+          <NavigationProperty Name="tblMasterConsignmentMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblMasterConsignmentMessageImplementationMap" />
+          <NavigationProperty Name="tblPersonOnBoardMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblPersonOnBoardMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblPersonOnBoardMessageImplementationMap" />
+          <NavigationProperty Name="tblSupportDocMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblSupportDocMasterConsignmentMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblSupportDocMasterConsignmentMap" />
+          <NavigationProperty Name="tblSupportDocMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblTmSupportDocMessageImplementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblSupportDocMessageImplementationMap" />
+          <NavigationProperty Name="tblTransportEquipmentMasterConsignmentMaps" Relationship="SeaManifestModel.FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblTransportEquipmentMasterConsignmentMap" />
+          <NavigationProperty Name="tblVoyageTransporterEquipmentMessageImplementationMaps" Relationship="SeaManifestModel.FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation" FromRole="tblMessageImplementation" ToRole="tblVoyageTransporterEquipmentMessageImplementationMap" />
+        </EntityType>
+        <Association Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblAdditionalDetailsMasterConsignmentMap" Role="tblAdditionalDetailsMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblAdditionalDetailsMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAdditionalDetailsMasterConsignmentMap_tblMessageImplementation1">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblAdditionalDetailsMasterConsignmentMap" Role="tblAdditionalDetailsMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblAdditionalDetailsMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTmAdditionalDetailsMessageImplementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblAdditionalDetailsMessageImplementationMap" Role="tblAdditionalDetailsMessageImplementationMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblAdditionalDetailsMessageImplementationMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAmendmentDetailsM_tblMessageImplementationM">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblAmendmentDetailsMessageImlementationMap" Role="tblAmendmentDetailsMessageImlementationMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblAmendmentDetailsMessageImlementationMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblHouseCargoDescriptionMasterConsignmentMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblHouseCargoDescriptionMasterConsignmentMap" Role="tblHouseCargoDescriptionMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblHouseCargoDescriptionMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItemDetailsMessageImlementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblItemDetailsMasterConsignmentMap" Role="tblItemDetailsMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblItemDetailsMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblItineraryMessageImlementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblItineraryMasterConsignmentMap" Role="tblItineraryMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblItineraryMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMasterConsignmentMessageImplementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblMasterConsignmentMessageImplementationMap" Role="tblMasterConsignmentMessageImplementationMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblMasterConsignmentMessageImplementationMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPersonOnBoardMessageImlementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblPersonOnBoardMessageImplementationMap" Role="tblPersonOnBoardMessageImplementationMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblPersonOnBoardMessageImplementationMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSupportDocMasterConsignmentMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblSupportDocMasterConsignmentMap" Role="tblSupportDocMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblSupportDocMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTmSupportDocMessageImplementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblSupportDocMessageImplementationMap" Role="tblSupportDocMessageImplementationMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblSupportDocMessageImplementationMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTransportEquipmentMessageImlementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblTransportEquipmentMasterConsignmentMap" Role="tblTransportEquipmentMasterConsignmentMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblTransportEquipmentMasterConsignmentMap">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVoyageTransporterEquipmentMessageImlementationMap_tblMessageImplementation">
+          <End Type="SeaManifestModel.tblMessageImplementation" Role="tblMessageImplementation" Multiplicity="0..1" />
+          <End Type="SeaManifestModel.tblVoyageTransporterEquipmentMessageImplementationMap" Role="tblVoyageTransporterEquipmentMessageImplementationMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMessageImplementation">
+              <PropertyRef Name="iMessageImplementationId" />
+            </Principal>
+            <Dependent Role="tblVoyageTransporterEquipmentMessageImplementationMap">
+              <PropertyRef Name="iMessageImplementationId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2799,74 +2797,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblMessageImplementations">
-            <EntityTypeMapping TypeName="SeaManifestModel.tblMessageImplementation">
-              <MappingFragment StoreEntitySet="tblMessageImplementation">
-                <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
-                <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
-                <ScalarProperty Name="sDigiSignSignerVersion" ColumnName="sDigiSignSignerVersion" />
-                <ScalarProperty Name="sDigiSignStartCertificate" ColumnName="sDigiSignStartCertificate" />
-                <ScalarProperty Name="sDigiSignStartSignature" ColumnName="sDigiSignStartSignature" />
-                <ScalarProperty Name="iArvlDtlsLightHouseDues" ColumnName="iArvlDtlsLightHouseDues" />
-                <ScalarProperty Name="iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr1" ColumnName="iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr1" />
-                <ScalarProperty Name="iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr" ColumnName="iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr" />
-                <ScalarProperty Name="iArvlDtlsTotalNoOfPersonOnBoard" ColumnName="iArvlDtlsTotalNoOfPersonOnBoard" />
-                <ScalarProperty Name="iArvlDtlsTotalOfCntrsLoaded" ColumnName="iArvlDtlsTotalOfCntrsLoaded" />
-                <ScalarProperty Name="iArvlDtlsTotalNoOfCntrsLanded" ColumnName="iArvlDtlsTotalNoOfCntrsLanded" />
-                <ScalarProperty Name="iArvlDtlsNumberOfCrew" ColumnName="iArvlDtlsNumberOfCrew" />
-                <ScalarProperty Name="iArvlDtlsNumberOfPassengers" ColumnName="iArvlDtlsNumberOfPassengers" />
-                <ScalarProperty Name="iVoyageDtlsNumberOfCrewManifested" ColumnName="iVoyageDtlsNumberOfCrewManifested" />
-                <ScalarProperty Name="iVoyageDtlsNumberOfPsngrManifested" ColumnName="iVoyageDtlsNumberOfPsngrManifested" />
-                <ScalarProperty Name="dtVoyageDtlsExpectedDtandTimeOfDeparture" ColumnName="dtVoyageDtlsExpectedDtandTimeOfDeparture" />
-                <ScalarProperty Name="dtVoyageDtlsExpectedDtandTimeOfArrival" ColumnName="dtVoyageDtlsExpectedDtandTimeOfArrival" />
-                <ScalarProperty Name="dVoyageDtlsTotalNumberOfLines" ColumnName="dVoyageDtlsTotalNumberOfLines" />
-                <ScalarProperty Name="sVoyageDtlsBriefCargoDesc" ColumnName="sVoyageDtlsBriefCargoDesc" />
-                <ScalarProperty Name="sVoyageDtlsCargoDesCdd" ColumnName="sVoyageDtlsCargoDesCdd" />
-                <ScalarProperty Name="sVoyageDtlsTotalNumberofTrnsptEqtMnfstd" ColumnName="sVoyageDtlsTotalNumberofTrnsptEqtMnfstd" />
-                <ScalarProperty Name="sVoyageDtlsConveinceRefNo" ColumnName="sVoyageDtlsConveinceRefNo" />
-                <ScalarProperty Name="sVoyageDtlsVoyageNo" ColumnName="sVoyageDtlsVoyageNo" />
-                <ScalarProperty Name="sVesselDtlsPurposeOfCall" ColumnName="sVesselDtlsPurposeOfCall" />
-                <ScalarProperty Name="sVesselDtlsShipType" ColumnName="sVesselDtlsShipType" />
-                <ScalarProperty Name="sVesselDtlsNationalityOfShip" ColumnName="sVesselDtlsNationalityOfShip" />
-                <ScalarProperty Name="dtVesselDtlsRegistryDate" ColumnName="dtVesselDtlsRegistryDate" />
-                <ScalarProperty Name="dVesselDtlsGrossTonnage" ColumnName="dVesselDtlsGrossTonnage" />
-                <ScalarProperty Name="dVesselDtlsNetTonnage" ColumnName="dVesselDtlsNetTonnage" />
-                <ScalarProperty Name="sVesselDtlsRegistryNo" ColumnName="sVesselDtlsRegistryNo" />
-                <ScalarProperty Name="sVesselDtlsPortOfRegistry" ColumnName="sVesselDtlsPortOfRegistry" />
-                <ScalarProperty Name="sVesselDtlsVesselCode" ColumnName="sVesselDtlsVesselCode" />
-                <ScalarProperty Name="sVesselDtlsTransportMeansId" ColumnName="sVesselDtlsTransportMeansId" />
-                <ScalarProperty Name="sVesselDtlsTypeOfTransportMeans" ColumnName="sVesselDtlsTypeOfTransportMeans" />
-                <ScalarProperty Name="sVesselDtlsModeOfTransport" ColumnName="sVesselDtlsModeOfTransport" />
-                <ScalarProperty Name="sAuthPrsnTerminalCustodianCode" ColumnName="sAuthPrsnTerminalCustodianCode" />
-                <ScalarProperty Name="sAuthPrsnShippingLineBondNo" ColumnName="sAuthPrsnShippingLineBondNo" />
-                <ScalarProperty Name="sAuthPrsnMasterName" ColumnName="sAuthPrsnMasterName" />
-                <ScalarProperty Name="sAuthPrsnAuthSeaCarrierCode" ColumnName="sAuthPrsnAuthSeaCarrierCode" />
-                <ScalarProperty Name="sAuthPrsnShipLineCode" ColumnName="sAuthPrsnShipLineCode" />
-                <ScalarProperty Name="sAuthPrsnAuthRepresentativePAN" ColumnName="sAuthPrsnAuthRepresentativePAN" />
-                <ScalarProperty Name="sAuthPrsnSubmitCode" ColumnName="sAuthPrsnSubmitCode" />
-                <ScalarProperty Name="sAuthPrsnSubmitType" ColumnName="sAuthPrsnSubmitType" />
-                <ScalarProperty Name="dtDecRefPreviousManifestDptrDate" ColumnName="dtDecRefPreviousManifestDptrDate" />
-                <ScalarProperty Name="dDecRefDptrPreviousManifestNo" ColumnName="dDecRefDptrPreviousManifestNo" />
-                <ScalarProperty Name="sDecRefVesselTypeMovement" ColumnName="sDecRefVesselTypeMovement" />
-                <ScalarProperty Name="dtDecRefManifestDateRotnDt" ColumnName="dtDecRefManifestDateRotnDt" />
-                <ScalarProperty Name="dDecRefManifestNoRotnNo" ColumnName="dDecRefManifestNoRotnNo" />
-                <ScalarProperty Name="sDecRefReportingEvent" ColumnName="sDecRefReportingEvent" />
-                <ScalarProperty Name="dtDecRefJobDt" ColumnName="dtDecRefJobDt" />
-                <ScalarProperty Name="dDecRefjobNo" ColumnName="dDecRefjobNo" />
-                <ScalarProperty Name="sDecRefPortOfReporting" ColumnName="sDecRefPortOfReporting" />
-                <ScalarProperty Name="sDecRefMsgType" ColumnName="sDecRefMsgType" />
-                <ScalarProperty Name="sHeaderFieldReportingEvent" ColumnName="sHeaderFieldReportingEvent" />
-                <ScalarProperty Name="dtHeaderFieldDateTime" ColumnName="dtHeaderFieldDateTime" />
-                <ScalarProperty Name="dHeaderFieldSequenceOrControlNumber" ColumnName="dHeaderFieldSequenceOrControlNumber" />
-                <ScalarProperty Name="sHeaderFieldMessageId" ColumnName="sHeaderFieldMessageId" />
-                <ScalarProperty Name="sHeaderFieldIndicator" ColumnName="sHeaderFieldIndicator" />
-                <ScalarProperty Name="sHeaderFieldVersionNo" ColumnName="sHeaderFieldVersionNo" />
-                <ScalarProperty Name="sHeaderFieldReceiverId" ColumnName="sHeaderFieldReceiverId" />
-                <ScalarProperty Name="sHeaderFieldSenderId" ColumnName="sHeaderFieldSenderId" />
-                <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblMessageTypeMs">
             <EntityTypeMapping TypeName="SeaManifestModel.tblMessageTypeM">
               <MappingFragment StoreEntitySet="tblMessageTypeM">
@@ -3090,6 +3020,73 @@
                 <ScalarProperty Name="sPermissionName" ColumnName="sPermissionName" />
                 <ScalarProperty Name="iParentId" ColumnName="iParentId" />
                 <ScalarProperty Name="iPermissionId" ColumnName="iPermissionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMessageImplementations">
+            <EntityTypeMapping TypeName="SeaManifestModel.tblMessageImplementation">
+              <MappingFragment StoreEntitySet="tblMessageImplementation">
+                <ScalarProperty Name="iActionBy" ColumnName="iActionBy" />
+                <ScalarProperty Name="dtActionDate" ColumnName="dtActionDate" />
+                <ScalarProperty Name="sDigiSignSignerVersion" ColumnName="sDigiSignSignerVersion" />
+                <ScalarProperty Name="sDigiSignStartCertificate" ColumnName="sDigiSignStartCertificate" />
+                <ScalarProperty Name="sDigiSignStartSignature" ColumnName="sDigiSignStartSignature" />
+                <ScalarProperty Name="iArvlDtlsLightHouseDues" ColumnName="iArvlDtlsLightHouseDues" />
+                <ScalarProperty Name="iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr1" ColumnName="iArvlDtlsTotalNoOfTrnsprtCntrctReprtdOnArrDptr1" />
+                <ScalarProperty Name="iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr" ColumnName="iArvlDtlsTotalNoOfTrnsprtEqReprtdOnArrDptr" />
+                <ScalarProperty Name="iArvlDtlsTotalNoOfPersonOnBoard" ColumnName="iArvlDtlsTotalNoOfPersonOnBoard" />
+                <ScalarProperty Name="iArvlDtlsTotalOfCntrsLoaded" ColumnName="iArvlDtlsTotalOfCntrsLoaded" />
+                <ScalarProperty Name="iArvlDtlsTotalNoOfCntrsLanded" ColumnName="iArvlDtlsTotalNoOfCntrsLanded" />
+                <ScalarProperty Name="iArvlDtlsNumberOfCrew" ColumnName="iArvlDtlsNumberOfCrew" />
+                <ScalarProperty Name="iArvlDtlsNumberOfPassengers" ColumnName="iArvlDtlsNumberOfPassengers" />
+                <ScalarProperty Name="iVoyageDtlsNumberOfCrewManifested" ColumnName="iVoyageDtlsNumberOfCrewManifested" />
+                <ScalarProperty Name="iVoyageDtlsNumberOfPsngrManifested" ColumnName="iVoyageDtlsNumberOfPsngrManifested" />
+                <ScalarProperty Name="dtVoyageDtlsExpectedDtandTimeOfDeparture" ColumnName="dtVoyageDtlsExpectedDtandTimeOfDeparture" />
+                <ScalarProperty Name="dtVoyageDtlsExpectedDtandTimeOfArrival" ColumnName="dtVoyageDtlsExpectedDtandTimeOfArrival" />
+                <ScalarProperty Name="dVoyageDtlsTotalNumberOfLines" ColumnName="dVoyageDtlsTotalNumberOfLines" />
+                <ScalarProperty Name="sVoyageDtlsBriefCargoDesc" ColumnName="sVoyageDtlsBriefCargoDesc" />
+                <ScalarProperty Name="sVoyageDtlsCargoDesCdd" ColumnName="sVoyageDtlsCargoDesCdd" />
+                <ScalarProperty Name="sVoyageDtlsTotalNumberofTrnsptEqtMnfstd" ColumnName="sVoyageDtlsTotalNumberofTrnsptEqtMnfstd" />
+                <ScalarProperty Name="sVoyageDtlsConveinceRefNo" ColumnName="sVoyageDtlsConveinceRefNo" />
+                <ScalarProperty Name="sVoyageDtlsVoyageNo" ColumnName="sVoyageDtlsVoyageNo" />
+                <ScalarProperty Name="sVesselDtlsPurposeOfCall" ColumnName="sVesselDtlsPurposeOfCall" />
+                <ScalarProperty Name="sVesselDtlsShipType" ColumnName="sVesselDtlsShipType" />
+                <ScalarProperty Name="sVesselDtlsNationalityOfShip" ColumnName="sVesselDtlsNationalityOfShip" />
+                <ScalarProperty Name="dtVesselDtlsRegistryDate" ColumnName="dtVesselDtlsRegistryDate" />
+                <ScalarProperty Name="dVesselDtlsGrossTonnage" ColumnName="dVesselDtlsGrossTonnage" />
+                <ScalarProperty Name="dVesselDtlsNetTonnage" ColumnName="dVesselDtlsNetTonnage" />
+                <ScalarProperty Name="sVesselDtlsRegistryNo" ColumnName="sVesselDtlsRegistryNo" />
+                <ScalarProperty Name="sVesselDtlsPortOfRegistry" ColumnName="sVesselDtlsPortOfRegistry" />
+                <ScalarProperty Name="sVesselDtlsVesselCode" ColumnName="sVesselDtlsVesselCode" />
+                <ScalarProperty Name="sVesselDtlsTransportMeansId" ColumnName="sVesselDtlsTransportMeansId" />
+                <ScalarProperty Name="sVesselDtlsTypeOfTransportMeans" ColumnName="sVesselDtlsTypeOfTransportMeans" />
+                <ScalarProperty Name="sVesselDtlsModeOfTransport" ColumnName="sVesselDtlsModeOfTransport" />
+                <ScalarProperty Name="sAuthPrsnTerminalCustodianCode" ColumnName="sAuthPrsnTerminalCustodianCode" />
+                <ScalarProperty Name="sAuthPrsnShippingLineBondNo" ColumnName="sAuthPrsnShippingLineBondNo" />
+                <ScalarProperty Name="sAuthPrsnMasterName" ColumnName="sAuthPrsnMasterName" />
+                <ScalarProperty Name="sAuthPrsnAuthSeaCarrierCode" ColumnName="sAuthPrsnAuthSeaCarrierCode" />
+                <ScalarProperty Name="sAuthPrsnShipLineCode" ColumnName="sAuthPrsnShipLineCode" />
+                <ScalarProperty Name="sAuthPrsnAuthRepresentativePAN" ColumnName="sAuthPrsnAuthRepresentativePAN" />
+                <ScalarProperty Name="sAuthPrsnSubmitCode" ColumnName="sAuthPrsnSubmitCode" />
+                <ScalarProperty Name="sAuthPrsnSubmitType" ColumnName="sAuthPrsnSubmitType" />
+                <ScalarProperty Name="dtDecRefPreviousManifestDptrDate" ColumnName="dtDecRefPreviousManifestDptrDate" />
+                <ScalarProperty Name="dDecRefDptrPreviousManifestNo" ColumnName="dDecRefDptrPreviousManifestNo" />
+                <ScalarProperty Name="sDecRefVesselTypeMovement" ColumnName="sDecRefVesselTypeMovement" />
+                <ScalarProperty Name="dtDecRefManifestDateRotnDt" ColumnName="dtDecRefManifestDateRotnDt" />
+                <ScalarProperty Name="dDecRefManifestNoRotnNo" ColumnName="dDecRefManifestNoRotnNo" />
+                <ScalarProperty Name="sDecRefReportingEvent" ColumnName="sDecRefReportingEvent" />
+                <ScalarProperty Name="dtDecRefJobDt" ColumnName="dtDecRefJobDt" />
+                <ScalarProperty Name="dDecRefjobNo" ColumnName="dDecRefjobNo" />
+                <ScalarProperty Name="sDecRefPortOfReporting" ColumnName="sDecRefPortOfReporting" />
+                <ScalarProperty Name="sDecRefMsgType" ColumnName="sDecRefMsgType" />
+                <ScalarProperty Name="dtHeaderFieldDateTime" ColumnName="dtHeaderFieldDateTime" />
+                <ScalarProperty Name="dHeaderFieldSequenceOrControlNumber" ColumnName="dHeaderFieldSequenceOrControlNumber" />
+                <ScalarProperty Name="sHeaderFieldMessageId" ColumnName="sHeaderFieldMessageId" />
+                <ScalarProperty Name="sHeaderFieldIndicator" ColumnName="sHeaderFieldIndicator" />
+                <ScalarProperty Name="sHeaderFieldVersionNo" ColumnName="sHeaderFieldVersionNo" />
+                <ScalarProperty Name="sHeaderFieldReceiverId" ColumnName="sHeaderFieldReceiverId" />
+                <ScalarProperty Name="sHeaderFieldSenderId" ColumnName="sHeaderFieldSenderId" />
+                <ScalarProperty Name="iMessageImplementationId" ColumnName="iMessageImplementationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

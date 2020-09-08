@@ -40,7 +40,7 @@ function initMessages() {
                 "data": "Time"
             },
             {
-                "data": "sHeaderFieldReportingEvent"
+                "data": "sDecRefReportingEvent"
             },
             {
                 "data": "iMessageImplementationId", "mRender": function (data, abc, full) {
@@ -138,13 +138,13 @@ $(document).on('submit', '#frmMessage', function (e) {
 });
 
 
-$(document).on('change', '#sReportingEvent', function () {
+$(document).on('change', '#sDecRefReportingEvent', function () {
     changeReportingEvent();
 });
 
 //Hide Show Conditions (Hide in case of 'X' and show in case of 'O') 
 function changeReportingEvent() {
-    var data = $('#sReportingEvent').val();
+    var data = $('#sDecRefReportingEvent').val();
     if (data == "SAA" || data == "SDA") {
         $('#sDecRefMsgType option').each(function (i, ele) {
             if ($(ele).val() == "F")
@@ -285,7 +285,7 @@ function checkFormMessages() {
     var returnValue = true;
     var validator = $("#frmMessage").validate();
     var vesselType = $('#sDecRefVesselTypeMovement').val();
-    var data = $('#sReportingEvent').val();
+    var data = $('#sDecRefReportingEvent').val();
     if (data == "SAM" && $('#sAuthPrsnShipLineCode').val() == "") {
         validator.showErrors({
             "sAuthPrsnShipLineCode": "Shipping Line Code is a required field."

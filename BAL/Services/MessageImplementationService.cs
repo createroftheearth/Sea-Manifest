@@ -46,7 +46,7 @@ namespace BAL.Services
             {
                 var query = from t in db.tblMessageImplementations
                             where t.sHeaderFieldIndicator.Contains(search) || t.sHeaderFieldMessageId.Contains(search)
-                            || t.sHeaderFieldSenderId.Contains(search) || t.sHeaderFieldReceiverId.Contains(search) || t.sHeaderFieldReportingEvent.Contains(search)
+                            || t.sHeaderFieldSenderId.Contains(search) || t.sHeaderFieldReceiverId.Contains(search) || t.sDecRefReportingEvent.Contains(search)
                             || t.sHeaderFieldVersionNo.Contains(search) || SqlFunctions.StringConvert(t.dHeaderFieldSequenceOrControlNumber).Contains(search)
                             select t;
                 recordsTotal = query.Count();
@@ -56,7 +56,6 @@ namespace BAL.Services
                     t.sHeaderFieldIndicator,
                     t.sHeaderFieldMessageId,
                     t.sHeaderFieldReceiverId,
-                    t.sHeaderFieldReportingEvent,
                     t.sHeaderFieldVersionNo,
                     FieldSequenceOrControlNumber = t.dHeaderFieldSequenceOrControlNumber?.ToString("#"),
                     Date = t.dtHeaderFieldDateTime.ToDateString(),
@@ -83,7 +82,6 @@ namespace BAL.Services
                             sHeaderFieldIndicator = model.sIndicator,
                             sHeaderFieldMessageId = model.sMessageID,
                             sHeaderFieldReceiverId = model.sReceiverID,
-                            sHeaderFieldReportingEvent = model.sReportingEvent,
                             sHeaderFieldSenderId = model.sSenderID,
                             sHeaderFieldVersionNo = model.sVersionNo,
                             sDecRefMsgType = model.sDecRefMsgType,
@@ -149,7 +147,6 @@ namespace BAL.Services
                         data.sHeaderFieldIndicator = model.sIndicator;
                         data.sHeaderFieldMessageId = model.sMessageID;
                         data.sHeaderFieldReceiverId = model.sReceiverID;
-                        data.sHeaderFieldReportingEvent = model.sReportingEvent;
                         data.sHeaderFieldSenderId = model.sSenderID;
                         data.sHeaderFieldVersionNo = model.sVersionNo;
                         data.sDecRefMsgType = model.sDecRefMsgType;
@@ -224,7 +221,7 @@ namespace BAL.Services
             using (var db = new SeaManifestEntities())
             {
                 var query = db.tblMessageImplementations.Where(z => z.iMessageImplementationId == iMessageImplementationId);
-                if (query.Any(z => z.sHeaderFieldReportingEvent == "SAM"))
+                if (query.Any(z => z.sDecRefReportingEvent == "SAM"))
                 {
                     Json = JsonConvert.SerializeObject(query.ToList().Select(z => new SAM_JsonModel
                     {
@@ -232,7 +229,7 @@ namespace BAL.Services
                         {
                             date = z.dtHeaderFieldDateTime?.ToString("yyyyMMdd", CultureInfo.InvariantCulture),
                             time = "T" + z.dtHeaderFieldDateTime?.ToString("hh:mm", CultureInfo.InvariantCulture),
-                            reportingEvent = z.sHeaderFieldReportingEvent,
+                            reportingEvent = z.sDecRefReportingEvent,
                             indicator = z.sHeaderFieldIndicator,
                             messageID = z.sHeaderFieldMessageId,
                             receiverID = z.sHeaderFieldReceiverId,
@@ -562,7 +559,6 @@ namespace BAL.Services
                     sIndicator = model.sHeaderFieldIndicator,
                     sMessageID = model.sHeaderFieldMessageId,
                     sReceiverID = model.sHeaderFieldReceiverId,
-                    sReportingEvent = model.sHeaderFieldReportingEvent,
                     sSenderID = model.sHeaderFieldSenderId,
                     sVersionNo = model.sHeaderFieldVersionNo,
                     sDecRefMsgType = model.sDecRefMsgType,

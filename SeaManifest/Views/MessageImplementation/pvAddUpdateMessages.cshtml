@@ -26,11 +26,6 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="form-group col-md-4">
-                        @Html.Label("Reporting Event")
-                        @Html.DropDownListFor(z => z.sReportingEvent, reportingEvents, "Select", new { @class = "form-control" })
-                        @Html.ValidationMessageFor(z => z.sReportingEvent)
-                    </div>
-                    <div class="form-group col-md-4">
                         @Html.Label("Sender Id")
                         @Html.TextBoxFor(z => z.sSenderID, new { @class = "form-control" })
                         @Html.ValidationMessageFor(z => z.sSenderID)

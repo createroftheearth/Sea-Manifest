@@ -37,11 +37,6 @@ namespace BAL.Models
         [Display(Name = "Date Time")]
         [Required(ErrorMessage = "Date Time is a required field.")]
         public string sDateTime { get; set; }
-        [Display(Name = "Reporting Event")]
-        [MaxLength(4, ErrorMessage = "Reporting Event cannot exceed 4 character.")]
-        [Required(ErrorMessage = "Reporting Event is a required field.")]
-        public string sReportingEvent { get; set; }
-
         [Display(Name = "Message Type")]
         [MaxLength(1, ErrorMessage = "Message Type cannot exceed 1 character.")]
         [Required(ErrorMessage = "Message Type is a required field.")]

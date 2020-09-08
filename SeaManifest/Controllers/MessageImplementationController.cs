@@ -43,7 +43,7 @@ namespace SeaManifest.Controllers
         {
             model.sIndicator = ConfigurationManager.AppSettings["HeaderIndicator"];
             model.sVersionNo = ConfigurationManager.AppSettings["HeaderVersion"];
-            if (model.sReportingEvent == "SDN")
+            if (model.sDecRefReportingEvent == "SDN")
             {
                 ModelState.Remove("sDateTime");
                 ModelState.Remove("dSequenceOrControlNumber");

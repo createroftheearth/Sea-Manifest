@@ -40,7 +40,6 @@ namespace DAL
         public string sHeaderFieldMessageId { get; set; }
         public Nullable<decimal> dHeaderFieldSequenceOrControlNumber { get; set; }
         public Nullable<System.DateTime> dtHeaderFieldDateTime { get; set; }
-        public string sHeaderFieldReportingEvent { get; set; }
         public string sDecRefMsgType { get; set; }
         public string sDecRefPortOfReporting { get; set; }
         public Nullable<decimal> dDecRefjobNo { get; set; }
