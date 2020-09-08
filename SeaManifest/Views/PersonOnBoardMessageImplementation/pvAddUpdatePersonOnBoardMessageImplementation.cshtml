@@ -97,7 +97,7 @@
                 @Html.TextBoxFor(z => z.sPersonDetailsPersonCountryOfBirthCdd, new { @class = "form-control" })
                 @Html.ValidationMessageFor(z => z.sPersonDetailsPersonCountryOfBirthCdd)
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 hideSEI hideSDN">
                 @Html.LabelFor(z => z.dtPersonIdDocExpiryDate)
                 <div class="input-group" id="psdtPersonIdDocExpiryDate" data-target-input="nearest">
                     @Html.TextBoxFor(z => z.dtPersonIdDocExpiryDate, new { @class = "form-control datetimepicker-input", @data_target = "#psdtPersonIdDocExpiryDate" })
@@ -109,17 +109,17 @@
                 </div>
                 @Html.ValidationMessageFor(z => z.dtPersonIdDocExpiryDate)
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 hideSEI hideSDN">
                 @Html.LabelFor(z => z.sPersonIdOrTravelDocIssuingNationCdd)
                 @Html.TextBoxFor(z => z.sPersonIdOrTravelDocIssuingNationCdd, new { @class = "form-control" })
                 @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocIssuingNationCdd)
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 hideSEI hideSDN">
                 @Html.LabelFor(z => z.sPersonIdOrTravelDocNo)
                 @Html.TextBoxFor(z => z.sPersonIdOrTravelDocNo, new { @class = "form-control" })
                 @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocNo)
             </div>
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-4 hideSEI hideSDN">
                 @Html.LabelFor(z => z.sPersonIdOrTravelDocTypeCdd)
                 @Html.TextBoxFor(z => z.sPersonIdOrTravelDocTypeCdd, new { @class = "form-control" })
                 @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocTypeCdd)

@@ -17,59 +17,59 @@ namespace BAL.Models
         [Display(Name = "Person On Baord Seq No")]
         [Required(ErrorMessage = "Person On Baord Seq No is a required field.")]
         public decimal? dPersonOnBaordSeqNo { get; set; }
-        [Display(Name = "Person Details Person Type")]
-        [MaxLength(3, ErrorMessage = "Person Details Person Type cannot exceed 3 character.")]
-        [Required(ErrorMessage = "Person Details Person Type is a required field.")]
+        [Display(Name = "Person Type")]
+        [MaxLength(3, ErrorMessage = "Person Type cannot exceed 3 character.")]
+        [Required(ErrorMessage = "Person Type is a required field.")]
 
         public string sPersonDetailsPersonTypeCdd { get; set; }
-        [Display(Name = "Person Details Person Family Name")]
-        [Required(ErrorMessage = "Person Details Person Family Name is a required field.")]
-        [MaxLength(70, ErrorMessage = "Person Details Person Family Name cannot exceed 70 character.")]
+        [Display(Name = "Person Family Name")]
+        [Required(ErrorMessage = "Person Family Name is a required field.")]
+        [MaxLength(70, ErrorMessage = "Person Family Name cannot exceed 70 character.")]
         public string sPersonDetailsPersonFamilyName { get; set; }
-        [Display(Name = "Person Details Person Given Name")]
-        [Required(ErrorMessage = "Person Details Person Given Name is a required field.")]
-        [MaxLength(70, ErrorMessage = "Person Details Person Given Name cannot exceed 70 character.")]
+        [Display(Name = "Person Given Name")]
+        [Required(ErrorMessage = "Person Given Name is a required field.")]
+        [MaxLength(70, ErrorMessage = "Person Given Name cannot exceed 70 character.")]
         public string sPersonDetailsPersonGivenName { get; set; }
-        [Display(Name = "Person Details Person Nationality")]
-        [Required(ErrorMessage = "Person Details Person Nationality is a required field.")]
-        [MaxLength(2, ErrorMessage = "Person Details Person Nationality cannot exceed 2 character.")]
+        [Display(Name = "Person Nationality")]
+        [Required(ErrorMessage = "Person Nationality is a required field.")]
+        [MaxLength(2, ErrorMessage = "Person Nationality cannot exceed 2 character.")]
         public string sPersonDetailsPersonNationalityCdd { get; set; }
-        [Display(Name = "Person Details Passengers In Transit Indicator")]
-        [Required(ErrorMessage = "Person Details Passengers In Transit Indicator is a required field.")]
+        [Display(Name = "Passengers In Transit Indicator")]
+        [Required(ErrorMessage = "Passengers In Transit Indicator is a required field.")]
         public decimal? dPersonDetailsPassengersInTransitIndicator { get; set; }
-        [Display(Name = "Person Details Crew Member Rank Or Rating Name")]
-        [MaxLength(70, ErrorMessage = "Person Details Crew Member Rank Or Rating Name cannot exceed 70 character.")]
+        [Display(Name = "Crew Member Rank Or Rating Name")]
+        [MaxLength(70, ErrorMessage = "Crew Member Rank Or Rating Name cannot exceed 70 character.")]
         public string sPersonDetailsCrewMemberRankOrRatingName { get; set; }
-        [Display(Name = "Person Details Crew Member Rank Or Rating")]
-        [MaxLength(10, ErrorMessage = "Person Details Crew Member Rank Or Rating cannot exceed 10 character.")]
+        [Display(Name = "Crew Member Rank Or Rating")]
+        [MaxLength(10, ErrorMessage = "Crew Member Rank Or Rating cannot exceed 10 character.")]
         public string sPersonDetailsCrewMemberRankOrRatingCdd { get; set; }
-        [Display(Name = "Person Details Passanger Part Of Embark Tn Cdd")]
-        [MaxLength(5, ErrorMessage = "Person Details Passanger Part Of Embark Tn Cdd cannot exceed 5 character.")]
+        [Display(Name = "Passanger Part Of Embark Tn Cdd")]
+        [MaxLength(5, ErrorMessage = "Passanger Part Of Embark Tn Cdd cannot exceed 5 character.")]
         public string sPersonDetailsPassangerPartOfEmbarkTnCdd { get; set; }
-        [Display(Name = "Person Details Passanger Part Of Embark Tn Name")]
-        [MaxLength(256, ErrorMessage = "Person Details Passanger Part Of Embark Tn Name cannot exceed 256 character.")]
+        [Display(Name = "Passanger Part Of Embark Tn Name")]
+        [MaxLength(256, ErrorMessage = "Passanger Part Of Embark Tn Name cannot exceed 256 character.")]
         public string sPersonDetailsPassangerPartOfEmbarkTnName { get; set; }
-        [Display(Name = "Person Details Passanger Part Of Dsmbark Tn Cdd")]
-        [MaxLength(5, ErrorMessage = "Person Details Passanger Part Of Dsmbark Tn Cdd cannot exceed 5 character.")]
+        [Display(Name = "Passanger Part Of Dsmbark Tn Cdd")]
+        [MaxLength(5, ErrorMessage = "Passanger Part Of Dsmbark Tn Cdd cannot exceed 5 character.")]
         public string sPersonDetailsPassangerPartOfDsmbarkTnCdd { get; set; }
-        [Display(Name = "Person Details Passanger Part Of Dsmbark Tn Name")]
-        [MaxLength(256, ErrorMessage = "Person Details Passanger Part Of Dsmbark Tn Name cannot exceed 256 character.")]
+        [Display(Name = "Passanger Part Of Dsmbark Tn Name")]
+        [MaxLength(256, ErrorMessage = "Passanger Part Of Dsmbark Tn Name cannot exceed 256 character.")]
         public string sPersonDetailsPassangerPartOfDsmbarkTnName { get; set; }
-        [Display(Name = "Person Details Person Gender Cdd")]
-        [Required(ErrorMessage = "Person Details Person Gender is a required field.")]
-        [MaxLength(3, ErrorMessage = "Person Details Person Gender Cdd cannot exceed 3 character.")]
+        [Display(Name = "Person Gender Cdd")]
+        [Required(ErrorMessage = "Person Gender is a required field.")]
+        [MaxLength(3, ErrorMessage = "Person Gender Cdd cannot exceed 3 character.")]
         public string sPersonDetailsPersonGenderCdd { get; set; }
-        [Display(Name = "Person Details Person Date Of Birth")]
-        [Required(ErrorMessage = "Person Details Person Date Of Birth is a required field.")]
+        [Display(Name = "Person Date Of Birth")]
+        [Required(ErrorMessage = "Person Date Of Birth is a required field.")]
 
         public string dtPersonDetailsPersonDateOfBirth { get; set; }
-        [Display(Name = "Person Details Person Place Of Birth Name")]
-        [Required(ErrorMessage = "Person Details Person Place Of Birth Name is a required field.")]
-        [MaxLength(35, ErrorMessage = "Person Details Person Place Of Birth Name cannot exceed 35 character.")]
+        [Display(Name = "Person Place Of Birth Name")]
+        [Required(ErrorMessage = "Person Place Of Birth Name is a required field.")]
+        [MaxLength(35, ErrorMessage = "Person Place Of Birth Name cannot exceed 35 character.")]
         public string sPersonDetailsPersonPlaceOfBirthName { get; set; }
-        [Display(Name = "Person Details Person Country Of Birth Cdd")]
-        [Required(ErrorMessage = "Person Details Person Country Of Birth Name is a required field.")]
-        [MaxLength(2, ErrorMessage = "Person Details Person Country Of Birth Cdd Name cannot exceed 2 character.")]
+        [Display(Name = "Person Country Of Birth Cdd")]
+        [Required(ErrorMessage = "Person Country Of Birth Name is a required field.")]
+        [MaxLength(2, ErrorMessage = "Person Country Of Birth Cdd Name cannot exceed 2 character.")]
         public string sPersonDetailsPersonCountryOfBirthCdd { get; set; }
         [Display(Name = "Person Id Doc Expiry Date")]
         public string dtPersonIdDocExpiryDate { get; set; }
