@@ -91,6 +91,7 @@ function initAddUpdatePersonOnBoardMessageImplementation() {
     $('#psdtPersonIdDocExpiryDate').datetimepicker({
         format: 'DD/MM/YYYY'
     });
+    showHideViaMessageType();
 }
 
 function resetForm() {
@@ -176,7 +177,21 @@ function checkFormPersonOnBoard() {
     return returnValue;
 }
 
+function showHideViaMessageType() {
+    var data = $('#sReportingEvent').val();
+    if (data == "SEI") {
+        $('.hideSEI').hide();
+        $('.hideSEI').find('input,select').val('');
+        $('.hideSEI').find('select').selectpicker('refresh');
 
+    }
+    if (data == "SDN") {
+        $('.hideSDN').hide();
+        $('.hideSDN').find('input,select').val('');
+        $('.hideSDN').find('select').selectpicker('refresh');
+    }
+
+}
 //function checkSupportDocs() {
 //    var returnValue = true;
 //    var validator = $("#frmPersonOnBoardMessageImplementation").validate();
