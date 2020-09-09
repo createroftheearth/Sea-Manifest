@@ -1,4 +1,7 @@
 ﻿@model BAL.Models.ItemDetailsHouseCargoModel
+@{
+    var typesOfPackges = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("PKG_CODE");
+}
 @using (Html.BeginForm("AddUpdateItemDetailsHouseCargo", "ItemDetailsHouseCargo", FormMethod.Post, new { @id = "frmItemDetailsHouseCargo" }))
 {
     <div class="modal-header">
@@ -42,7 +45,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sTypesOfPackages)
-                @Html.TextBoxFor(z => z.sTypesOfPackages, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sTypesOfPackages, typesOfPackges, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sTypesOfPackages)
             </div>
         </div>

@@ -1,4 +1,7 @@
 ﻿@model BAL.Models.ItemDetailsMasterConsignmentModel
+@{
+    var typesOfPackges = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("PKG_CODE");
+}
 @using (Html.BeginForm("AddUpdateItemDetailsMasterConsignment", "ItemDetailsMasterConsignment", FormMethod.Post, new { @id = "frmItemDetailsMasterConsignment" }))
 {
     <div class="modal-header">
@@ -7,8 +10,8 @@
     </div>
     <div class="modal-body">
         @Html.HiddenFor(z => z.iMasterConsignmentId)
-        @Html.HiddenFor(z=>z.iMessageImplementationId)
-        @Html.HiddenFor(z=>z.iItemsDetailsId)
+        @Html.HiddenFor(z => z.iMessageImplementationId)
+        @Html.HiddenFor(z => z.iItemsDetailsId)
         <div class="row">
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.dCargoItemSequenceNo)
@@ -42,7 +45,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sTypesOfPackages)
-                @Html.TextBoxFor(z => z.sTypesOfPackages, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sTypesOfPackages, typesOfPackges, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sTypesOfPackages)
             </div>
         </div>

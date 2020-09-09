@@ -125,7 +125,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sLocCstmTypeOfPakages)
-                        @Html.TextBoxFor(z => z.sLocCstmTypeOfPakages, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sLocCstmTypeOfPakages, typesOfPackges, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sLocCstmTypeOfPakages)
                     </div>
                 </div>
