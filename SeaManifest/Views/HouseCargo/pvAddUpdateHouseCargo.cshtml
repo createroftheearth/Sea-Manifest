@@ -1,7 +1,7 @@
 ﻿@model BAL.Models.HouseCargoModel
 @{
     var previousDeclaration = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.PreviousDeclaration>();
-    var consolidatedIndicator = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.ConsolidatedIndicator>().Where(z => z.Value == "S" || z.Value == "C");
+    var consolidatedIndicator = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.ConsolidatedIndicator>().Where(z => z.Value == "H" || z.Value == "C");
     var splitIndicator = SeaManifest.EnumHelper.SelectListForByte<BAL.Utilities.EnumConstant.SplitIndicator>();
     var typeOfCargo = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.TypeOfCargo>();
     var natureOfcargo = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("Nat_cargo");

@@ -1,4 +1,12 @@
 ﻿@model BAL.Models.PersonOnBoardMessageImplementationModel
+@{
+    var personTypes = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.PersonType>();
+    var personGender = SeaManifest.EnumHelper.SelectListForByte<BAL.Utilities.EnumConstant.PersonGender>();
+    var transitIndicator = SeaManifest.EnumHelper.SelectListForByte<BAL.Utilities.EnumConstant.PersonInTransitIndicator>();
+    var crewRanks = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("CRW_RNK");
+    var docType = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("PER_ID");
+    var CountryCode = BAL.Services.MasterConsignmentService.Instance.GetCountryCodes();
+}
 @using (Html.BeginForm("AddUpdatePersonOnBoardMessageImplementation", "PersonOnBoardMessageImplementation", FormMethod.Post, new { @id = "frmPersonOnBoardMessageImplementation" }))
 {
     <div class="modal-header">
@@ -17,7 +25,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sPersonDetailsPersonTypeCdd)
-                @Html.TextBoxFor(z => z.sPersonDetailsPersonTypeCdd, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sPersonDetailsPersonTypeCdd, personTypes, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sPersonDetailsPersonTypeCdd)
             </div>
             <div class="form-group col-md-4">
@@ -32,12 +40,12 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sPersonDetailsPersonNationalityCdd)
-                @Html.TextBoxFor(z => z.sPersonDetailsPersonNationalityCdd, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sPersonDetailsPersonNationalityCdd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sPersonDetailsPersonNationalityCdd)
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.dPersonDetailsPassengersInTransitIndicator)
-                @Html.TextBoxFor(z => z.dPersonDetailsPassengersInTransitIndicator, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.dPersonDetailsPassengersInTransitIndicator, transitIndicator, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.dPersonDetailsPassengersInTransitIndicator)
             </div>
             <div class="form-group col-md-4">
@@ -47,7 +55,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sPersonDetailsCrewMemberRankOrRatingCdd)
-                @Html.TextBoxFor(z => z.sPersonDetailsCrewMemberRankOrRatingCdd, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sPersonDetailsCrewMemberRankOrRatingCdd, crewRanks, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sPersonDetailsCrewMemberRankOrRatingCdd)
             </div>
             <div class="form-group col-md-4">
@@ -72,7 +80,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sPersonDetailsPersonGenderCdd)
-                @Html.TextBoxFor(z => z.sPersonDetailsPersonGenderCdd, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sPersonDetailsPersonGenderCdd, personGender, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sPersonDetailsPersonGenderCdd)
             </div>
             <div class="form-group col-md-4">
@@ -94,7 +102,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sPersonDetailsPersonCountryOfBirthCdd)
-                @Html.TextBoxFor(z => z.sPersonDetailsPersonCountryOfBirthCdd, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sPersonDetailsPersonCountryOfBirthCdd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sPersonDetailsPersonCountryOfBirthCdd)
             </div>
             <div class="form-group col-md-4 hideSEI hideSDN">
@@ -111,7 +119,7 @@
             </div>
             <div class="form-group col-md-4 hideSEI hideSDN">
                 @Html.LabelFor(z => z.sPersonIdOrTravelDocIssuingNationCdd)
-                @Html.TextBoxFor(z => z.sPersonIdOrTravelDocIssuingNationCdd, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sPersonIdOrTravelDocIssuingNationCdd, CountryCode, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocIssuingNationCdd)
             </div>
             <div class="form-group col-md-4 hideSEI hideSDN">
@@ -121,7 +129,7 @@
             </div>
             <div class="form-group col-md-4 hideSEI hideSDN">
                 @Html.LabelFor(z => z.sPersonIdOrTravelDocTypeCdd)
-                @Html.TextBoxFor(z => z.sPersonIdOrTravelDocTypeCdd, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sPersonIdOrTravelDocTypeCdd, docType, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sPersonIdOrTravelDocTypeCdd)
             </div>
             <div class="form-group col-md-4">

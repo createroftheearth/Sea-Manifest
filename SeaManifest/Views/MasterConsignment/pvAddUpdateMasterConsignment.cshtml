@@ -16,8 +16,6 @@
     var CountryCode = BAL.Services.MasterConsignmentService.Instance.GetCountryCodes();
     var itemType = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.ItemType>();
     var cargoMovement = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.CargoMovement>();
-
-
 }
 
 @using (Html.BeginForm("AddUpdateMasterConsignment", "MasterConsignment", FormMethod.Post, new { @id = "frmMasterConsignment" }))

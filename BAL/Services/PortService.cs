@@ -92,7 +92,8 @@ namespace BAL.Services
                     z.t.sPortCode,
                     z.t.sPortDescription,
                     z.sCountryName,
-                    sStateName = z.sCodeName
+                    sStateName = z.sCodeName,
+                    z.t.iPortId
                 }).ToList();
             }
         }
