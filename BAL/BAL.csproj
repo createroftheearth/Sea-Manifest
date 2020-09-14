@@ -84,6 +84,8 @@
     <Compile Include="Models\PersonOnBoardMessageImplementationModel.cs" />
     <Compile Include="Models\PortModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\SDM_JsonModel.cs" />
+    <Compile Include="Models\SDN_JsonModel.cs" />
     <Compile Include="Models\SupportDocMessageImplementationModel.cs" />
     <Compile Include="Models\SupportDocMasterConsignmentModel.cs" />
     <Compile Include="Models\TransportEquipmentMesssageImplementationModel.cs" />

@@ -11,7 +11,7 @@ namespace BAL.Models
     {
         public string sReportingEvent { get; set; }
 
-        public int iItemsDetailsId { get; set; }
+        public int? iItemsDetailsId { get; set; }
         public int? iMasterConsignmentId { get; set; }
         public int? iHouseCargoDescId { get; set; }
         [Display(Name = "Cargo Item Sequence No.")]

@@ -32,7 +32,7 @@ namespace SeaManifest.Controllers
 
         public PartialViewResult AddUpdateItemDetailsHouseCargo(int? iItemDetailsId)
         {
-            if (iItemDetailsId == null)
+            if ((iItemDetailsId??0) == 0)
             {
                 int iHouseCargoDescId = Convert.ToInt32(Session["iHouseCargoDescId"]);
                 return PartialView("pvAddUpdateItemDetailsHouseCargo", new ItemDetailsHouseCargoModel
