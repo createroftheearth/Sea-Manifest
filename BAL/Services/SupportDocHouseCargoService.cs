@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class SupportDocHouseCargoService
+    public class SupportDocHouseCargoService : CommonService
     {
         private SupportDocHouseCargoService()
         {
@@ -85,6 +85,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblSupportDocHouseCargoMaps
                             where (t.sTagRef.Contains(search) || t.sRefSerialNo.Contains(search)
                             || t.sIcegateUserId.Contains(search)
@@ -93,6 +94,7 @@ namespace BAL.Services
                             || t.sDocTypeCd.Contains(search)
                             || t.sBeneficiaryCd.Contains(search)
                             )
+                                                        && t.iActionBy == userId
                             && t.iHouseCargoDescId == iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();

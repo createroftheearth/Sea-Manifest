@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class AdditionalDetailsMasterConsignmentService
+    public class AdditionalDetailsMasterConsignmentService : CommonService
     {
         private AdditionalDetailsMasterConsignmentService()
         {
@@ -86,12 +86,14 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblAdditionalDetailsMasterConsignmentMaps
                             where (
                                 t.sInfoMsr.Contains(search) || SqlFunctions.StringConvert(t.dRefSerialNo).Contains(search)
                                 || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search)
                                 || t.sInfoCd.Contains(search) || t.sInfoText.Contains(search) || t.sInfoMsr.Contains(search)
                             )
+                            && t.iActionBy == userId
                             && t.iMasterConsignmentId == iMasterConsignmentId
                             select t;
                 recordsTotal = query.Count();
@@ -119,7 +121,7 @@ namespace BAL.Services
                 return db.tblAdditionalDetailsMasterConsignmentMaps.Where(z => z.iAdditionalDetailsId == iAdditionalDetailsId).ToList().Select(model => new AdditionalDetailsMasterConsignmentModel
                 {
                     iMasterConsignmentId = model.iMasterConsignmentId,
-                    iMessageImplementationId= model.iMessageImplementationId,
+                    iMessageImplementationId = model.iMessageImplementationId,
                     sTagRef = model.sTagRef,
                     dRefSerialNo = model.dRefSerialNo ?? 0,
                     sInfoType = model.sInfoType,

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class ItemDetailsMasterConsignmentService
+    public class ItemDetailsMasterConsignmentService : CommonService
     {
         private ItemDetailsMasterConsignmentService()
         {
@@ -110,8 +110,10 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblItemDetailsMasterConsignmentMaps
                             where (SqlFunctions.StringConvert(t.dCargoItemSequenceNo).Contains(search) || SqlFunctions.StringConvert(t.dNoOfPakages).Contains(search) || t.sCargoItemDesc.Contains(search) || t.sTypesOfPackages.Contains(search)) && t.iMasterConsignmentId == iMasterConsignmentId
+                            && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sHsCd).Skip(start).Take(length).ToList().Select(t => new

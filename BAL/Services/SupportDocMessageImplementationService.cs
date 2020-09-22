@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class SupportDocMessageImplementationService
+    public class SupportDocMessageImplementationService : CommonService
     {
         private SupportDocMessageImplementationService()
         {
@@ -85,6 +85,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblSupportDocMessageImplementationMaps
                             where (t.sTagRef.Contains(search)
                             || t.sRefSerialNo.Contains(search)
@@ -95,6 +96,7 @@ namespace BAL.Services
                             || t.sDocTypeCd.Contains(search)
                             || t.sBeneficiaryCd.Contains(search)
                             )
+                            && t.iActionBy == userId
                             && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();

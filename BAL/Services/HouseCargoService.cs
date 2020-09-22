@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class HouseCargoService
+    public class HouseCargoService : CommonService
     {
         private HouseCargoService()
         {
@@ -202,8 +202,10 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblHouseCargoDescriptionMasterConsignmentMaps
                             where t.sHCRefBillNo.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
+                            && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.dHCRefSubLineNo).Skip(start).Take(length).ToList().Select(t => new

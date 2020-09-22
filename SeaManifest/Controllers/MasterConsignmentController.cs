@@ -83,7 +83,7 @@ namespace SeaManifest.Controllers
             }
             if (ModelState.IsValid && MasterConsignmentService.Instance.ValidateLineMasterConsignment(model, out Messages))
             {
-                return Json(MasterConsignmentService.Instance.SaveMasterConsigment(model, 1));
+                return Json(MasterConsignmentService.Instance.SaveMasterConsigment(model, GetUserInfo().iUserId));
             }
             else
             {

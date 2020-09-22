@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class AdditionalDetailsMessageImplementationService
+    public class AdditionalDetailsMessageImplementationService : CommonService
     {
         private AdditionalDetailsMessageImplementationService()
         {
@@ -86,12 +86,14 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblAdditionalDetailsMessageImplementationMaps
                             where (
                                 t.sInfoMsr.Contains(search) || SqlFunctions.StringConvert(t.dRefSerialNo).Contains(search)
-                                || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search) 
-                                || t.sInfoCd.Contains(search) || t.sInfoText.Contains(search) || t.sInfoMsr.Contains(search) 
+                                || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search)
+                                || t.sInfoCd.Contains(search) || t.sInfoText.Contains(search) || t.sInfoMsr.Contains(search)
                             )
+                            && t.iActionBy == userId
                             && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();
@@ -119,13 +121,13 @@ namespace BAL.Services
                 {
                     iMessageImplementationId = model.iMessageImplementationId,
                     sTagRef = model.sTagRef,
-                    dRefSerialNo = model.dRefSerialNo??0,
+                    dRefSerialNo = model.dRefSerialNo ?? 0,
                     sInfoType = model.sInfoType,
                     sInfoQualifier = model.sInfoQualifier,
                     sInfoCd = model.sInfoCd,
                     sInfoText = model.sInfoText,
                     sInfoMsr = model.sInfoMsr,
-                    iAdditionalDetailsId= model.iAdditionalDetailsId,
+                    iAdditionalDetailsId = model.iAdditionalDetailsId,
                     sReportingEvent = model.tblMessageImplementation.sDecRefReportingEvent,
                     sInfoDate = model.dtInfoDate.ToDateString(),
                 }).SingleOrDefault();

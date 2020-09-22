@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace BAL.Services
 {
-    public class MasterConsignmentService
+    public class MasterConsignmentService : CommonService
     {
         private MasterConsignmentService()
         {
@@ -292,8 +292,10 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblMasterConsignmentMessageImplementationMaps
                             where t.sMCRefMasterBillNo.Contains(search) && t.iMessageImplementationId == iMessageImplementationId
+                            && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.iMCRefLineNo).Skip(start).Take(length).ToList().Select(t => new

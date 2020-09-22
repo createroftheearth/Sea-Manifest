@@ -51,7 +51,7 @@ namespace SeaManifest.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(TransportEquipmentMessageImplementationService.Instance.SaveTransportEquipmentMessageImplementation(model, 1));
+                return Json(TransportEquipmentMessageImplementationService.Instance.SaveTransportEquipmentMessageImplementation(model, GetUserInfo().iUserId));
             }
             else
             {

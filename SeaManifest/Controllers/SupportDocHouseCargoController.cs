@@ -53,7 +53,7 @@ namespace SeaManifest.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(SupportDocHouseCargoService.Instance.SaveSupportDocHouseCargo(model, 1));
+                return Json(SupportDocHouseCargoService.Instance.SaveSupportDocHouseCargo(model, GetUserInfo().iUserId));
             }
             else
             {

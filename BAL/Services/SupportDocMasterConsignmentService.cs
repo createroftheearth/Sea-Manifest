@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class SupportDocMasterConsignmentService
+    public class SupportDocMasterConsignmentService : CommonService
     {
         private SupportDocMasterConsignmentService()
         {
@@ -87,6 +87,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblSupportDocMasterConsignmentMaps
                             where (t.sTagRef.Contains(search) || t.sRefSerialNo.Contains(search)
                             || t.sSubSerialNoRef.Contains(search)
@@ -97,6 +98,7 @@ namespace BAL.Services
                             || t.sBeneficiaryCd.Contains(search)
                             )
                             && t.iMasterConsignmentId == iMasterConsignmentId
+                            && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sIRNNo).Skip(start).Take(length).ToList().Select(t => new

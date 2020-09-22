@@ -53,7 +53,7 @@ namespace SeaManifest.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(AdditionalDetailsMasterConsignmentService.Instance.SaveAdditionalDetailsMasterConsignment(model, 1));
+                return Json(AdditionalDetailsMasterConsignmentService.Instance.SaveAdditionalDetailsMasterConsignment(model, GetUserInfo().iUserId));
             }
             else
             {

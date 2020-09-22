@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class AdditionalDetailsHouseCargoService
+    public class AdditionalDetailsHouseCargoService : CommonService
     {
         private AdditionalDetailsHouseCargoService()
         {
@@ -86,12 +86,14 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblAdditionalDetailsHouseCargoMaps
                             where (
                                 t.sInfoMsr.Contains(search) || SqlFunctions.StringConvert(t.dRefSerialNo).Contains(search)
                                 || t.sTagRef.Contains(search) || t.sInfoType.Contains(search) || t.sInfoQualifier.Contains(search)
                                 || t.sInfoCd.Contains(search) || t.sInfoText.Contains(search) || t.sInfoMsr.Contains(search)
                             )
+                            && t.iActionBy == userId
                             && t.iHouseCargoDescId == iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();

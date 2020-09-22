@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {//PersonOnBoardMessageImplementation
-    public class PersonOnBoardMessageImplementationService
+    public class PersonOnBoardMessageImplementationService : CommonService
     {
         private PersonOnBoardMessageImplementationService()
         {
@@ -113,6 +113,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblPersonOnBoardMessageImplementationMaps
                             where (
                                    t.sPersonDetailsPersonTypeCdd.Contains(search)
@@ -134,6 +135,7 @@ namespace BAL.Services
                                 || t.sVisaDetailsPersonVisa.Contains(search)
                                 || t.sVisaDetailsPNRNo.Contains(search)
                             )
+                            && t.iActionBy == userId
                             && t.iMessageImplementationId == iMessageImplementationId
                             select t;
                 recordsTotal = query.Count();

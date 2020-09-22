@@ -30,19 +30,22 @@ function initMasterConsignments() {
             {
                 "data": "iMasterConsignmentId", "mRender": function (data, abc, full) {
                     var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/TransportEquipmentMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/SupportDocMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/HouseCargo/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add House Cargo</button> ";
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/transportequipmentmasterconsignment/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/supportdocmasterconsignment/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/housecargo/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add House Cargo</button> ";
                     if ((full.sReportingEvent != "SEI" && full.sReportingEvent != "SDN")) {
-                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItineraryMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Itinerary</button> " +
-                            "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/ItemDetailsMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/itinerarymasterconsignment/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Itinerary</button> " +
+                            "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/itemdetailsmasterconsignment/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Item Details</button> ";
                     }
                     if (full.sReportingEvent !== "SEI")
-                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AdditionalDetailsMasterConsignment/Index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/additionaldetailsmasterconsignment/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
                     return html;
                 }
             },
-        ]
+        ],
+        "drawCallback": function (settings) {
+            showHideButtons();
+        }
     });
 }
 
