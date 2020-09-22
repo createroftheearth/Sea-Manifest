@@ -33,7 +33,7 @@ namespace SeaManifest.Controllers
                         Session["UserInfo"] = data;
                         Session["UserRights"] = userRoles;
                         if (string.IsNullOrEmpty(returnUrl))
-                            return Redirect(userRoles.lstPermissionModel.SelectMany(z => z.childs).Where(z => z.sPath != "#").Select(z => z.sPath).FirstOrDefault());
+                            return Redirect("/MessageImplementation/Index");
                         else
                             return Redirect(returnUrl);
                     }
