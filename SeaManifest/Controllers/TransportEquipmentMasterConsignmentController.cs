@@ -53,7 +53,7 @@ namespace SeaManifest.Controllers
             string Messages = string.Empty;
             if (ModelState.IsValid && TransportEquipmentMasterConsignmentService.Instance.Validate(model, out Messages))
             {
-                return Json(TransportEquipmentMasterConsignmentService.Instance.SaveTransportEquipmentMasterConsignment(model, 1));
+                return Json(TransportEquipmentMasterConsignmentService.Instance.SaveTransportEquipmentMasterConsignment(model, GetUserInfo().iUserId));
             }
             else
             {

@@ -55,7 +55,7 @@ namespace SeaManifest.Controllers
 
             if (ModelState.IsValid && ItineraryMasterConsignmentService.Instance.ValidateItinerary(model, out Messages))
             {
-                return Json(ItineraryMasterConsignmentService.Instance.SaveItineraryHouseMasterConsignment(model, 1));
+                return Json(ItineraryMasterConsignmentService.Instance.SaveItineraryHouseMasterConsignment(model, GetUserInfo().iUserId));
             }
             else
             {

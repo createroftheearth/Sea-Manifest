@@ -51,7 +51,7 @@ namespace SeaManifest.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(AmendmentDetailsMessageImlementationService.Instance.SaveAmendmentDetailsMessageImlementation(model, 1));
+                return Json(AmendmentDetailsMessageImlementationService.Instance.SaveAmendmentDetailsMessageImlementation(model, GetUserInfo().iUserId));
             }
             else
             {

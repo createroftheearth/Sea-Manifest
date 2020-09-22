@@ -54,7 +54,7 @@ namespace SeaManifest.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(AdditionalDetailsHouseCargoService.Instance.SaveAdditionalDetailsHouseCargo(model, 1));
+                return Json(AdditionalDetailsHouseCargoService.Instance.SaveAdditionalDetailsHouseCargo(model, GetUserInfo().iUserId));
             }
             else
             {

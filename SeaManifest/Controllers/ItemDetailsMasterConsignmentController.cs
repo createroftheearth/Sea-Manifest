@@ -52,7 +52,7 @@ namespace SeaManifest.Controllers
             string Messages = string.Empty;
             if (ModelState.IsValid && ItemDetailsMasterConsignmentService.Instance.Validate(model, out Messages))
             {
-                return Json(ItemDetailsMasterConsignmentService.Instance.SaveItemDetailssMasterConsignment(model, 1));
+                return Json(ItemDetailsMasterConsignmentService.Instance.SaveItemDetailssMasterConsignment(model, GetUserInfo().iUserId));
             }
             else
             {
