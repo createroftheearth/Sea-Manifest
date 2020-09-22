@@ -105,7 +105,7 @@ namespace BAL.Services
                 {
 
                     iMessageImplementationId = model.iMessageImplementationId,
-                    iAmendmentId=model.iAmendmentId,
+                    iAmendmentId = model.iAmendmentId,
                     sAmendRefNo = model.sAmendRefNo,
                     sAmendFlag = model.sAmendFlag,
                     sAmendType = model.sAmendType,

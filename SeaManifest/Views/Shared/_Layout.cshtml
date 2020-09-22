@@ -13,6 +13,11 @@
     @Styles.Render("~/Content/csss")
     @Styles.Render("~/dist/csss")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .hide {
+            display: none !important;
+        }
+    </style>
     <link href="~/Content/Libs/bootstrap-selectpicker/css/bootstrap-select.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -53,6 +58,15 @@
     <script src="~/plugins/momentjs/moment.min.js"></script>
     <script src="~/plugins/datetimepicker/datetimepicker.min.js"></script>
     <script>
+        var data = JSON.parse('@Html.Raw(Json.Encode(Session["urlpermissions"]))');
+
+        function showHideButtons() {
+            var lastTd = $('table.dataTable tr td:last-child');
+            lastTd.find('button').addClass('hide');
+            $.each(data, function ( i,val) {
+                lastTd.find('button[onclick*="' + val + '"]').removeClass('hide');
+            });
+        }
         $(document).ready(function () {
             $.fn.selectpicker.Constructor.BootstrapVersion = '4';
             var hrefSeperated = location.href.split('/');
