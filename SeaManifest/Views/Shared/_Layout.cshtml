@@ -13,11 +13,6 @@
     @Styles.Render("~/Content/csss")
     @Styles.Render("~/dist/csss")
     @Scripts.Render("~/bundles/modernizr")
-    <style>
-        .hide {
-            display: none !important;
-        }
-    </style>
     <link href="~/Content/Libs/bootstrap-selectpicker/css/bootstrap-select.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -62,9 +57,9 @@
 
         function showHideButtons() {
             var lastTd = $('table.dataTable tr td:last-child');
-            lastTd.find('button').addClass('hide');
+            lastTd.find('button').addClass('hideTdbtn');
             $.each(data, function ( i,val) {
-                lastTd.find('button[onclick*="' + val + '"]').removeClass('hide');
+                lastTd.find('button[onclick*="' + val.toLowerCase() + '"]').removeClass('hideTdbtn');
             });
         }
         $(document).ready(function () {

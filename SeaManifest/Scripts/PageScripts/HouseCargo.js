@@ -41,7 +41,10 @@ function initHouseCargos() {
                     return html;
                 }
             },
-        ]
+        ],
+        "drawCallback": function (settings) {
+            showHideButtons();
+        }
     });
 }
 

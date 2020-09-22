@@ -45,20 +45,23 @@ function initMessages() {
             {
                 "data": "iMessageImplementationId", "mRender": function (data, abc, full) {
                     var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/MasterConsignment/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Master Consignment</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/TransportEquipmentMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/SupportDocMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
-                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AmendmentDetailsMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Amendment Details</button> ";
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/masterconsignment/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Master Consignment</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/transportequipmentmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/supportdocmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
+                        "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/amendmentdetailsmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Amendment Details</button> ";
                     if (full.sDecRefReportingEvent !== "SDN") {
-                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/PersonOnBoardMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Persons on Board</button> ";
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/persononboardmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Persons on Board</button> ";
                     }
                     html += "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
                     if (full.sDecRefReportingEvent !== "SEI")
-                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/AdditionalDetailsMessageImplementation/Index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
+                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/additionaldetailsmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
                     return html;
                 }
             },
-        ]
+        ],
+        "drawCallback": function (settings) {
+            showHideButtons();
+        }
     });
 }
 
