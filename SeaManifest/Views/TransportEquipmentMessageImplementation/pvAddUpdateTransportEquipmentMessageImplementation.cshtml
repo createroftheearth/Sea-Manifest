@@ -1,6 +1,11 @@
 ﻿@model BAL.Models.TransportEquipmentMessageImplementationModel
 @{
     var SOCFlag = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.SOCFlag>();
+    var equipmenttype = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.EquipmentType>();
+    var equipmentloadstatus = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.EquipmentLoadStatus>();
+    var equipmentsealtype = SeaManifest.EnumHelper.SelectListFor<BAL.Utilities.EnumConstant.EquipmentSealType>();
+
+
 }
 @using (Html.BeginForm("AddUpdateTransportEquipmentMessageImplementation", "TransportEquipmentMessageImplementation", FormMethod.Post, new { @id = "frmTransportEquipmentMessageImplementation" }))
 {
@@ -25,7 +30,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sEquipmentType)
-                @Html.TextBoxFor(z => z.sEquipmentType, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sEquipmentType, equipmenttype, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sEquipmentType)
             </div>
             <div class="form-group col-md-4">
@@ -35,7 +40,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sEquipmentLoadStatus)
-                @Html.TextBoxFor(z => z.sEquipmentLoadStatus, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sEquipmentLoadStatus, equipmentloadstatus, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sEquipmentLoadStatus)
             </div>
             <div class="form-group col-md-4">
@@ -62,7 +67,7 @@
             </div>
             <div class="form-group col-md-4">
                 @Html.LabelFor(z => z.sEquipmentSealType)
-                @Html.TextBoxFor(z => z.sEquipmentSealType, new { @class = "form-control" })
+                @Html.DropDownListFor(z => z.sEquipmentSealType, equipmentsealtype, "Select", new { @class = "form-control", @data_live_search = "true" })
                 @Html.ValidationMessageFor(z => z.sEquipmentSealType)
             </div>
             <div class="form-group col-md-4">

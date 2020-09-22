@@ -95,12 +95,38 @@ namespace BAL.Utilities
             [Description("House BL")]
             H
         }
-
         public enum PreviousDeclaration
         {
             N,
             C,
             Y
+        }
+        public enum EquipmentSealType
+        {
+            ESEAL, 
+            BTSL
+
+        }
+        public enum EquipmentLoadStatus
+        {
+            FCL, 
+            LCL,
+            EMP
+        }
+        public enum EquipmentType
+        {
+            [Description("Break bulk")]
+            BB,
+            [Description("Blocks")]
+            BL,
+            [Description("Chassis")]
+            CH,
+            [Description("Container")]
+            CN,
+            [Description("Onboard Container")]
+            OBE,
+            [Description("Trailer")]
+            TE
         }
         public enum PreviousMCRefCINType
         {
@@ -187,8 +213,8 @@ namespace BAL.Utilities
 
         public enum PersonInTransitIndicator
         {
-            No=0,
-            Yes=1
+            No = 0,
+            Yes = 1
         }
     }
-    }
+}
