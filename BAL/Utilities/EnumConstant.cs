@@ -72,18 +72,18 @@ namespace BAL.Utilities
 
         public enum ModeOfTransport
         {
-            Sea=1,
-            Rail=2,
-            Truck=3,
-            Air=4
+            Sea = 1,
+            Rail = 2,
+            Truck = 3,
+            Air = 4
         }
 
         public enum TypeOfTransportMeans
         {
             [Description("IMO Vessel")]
-            IMO=10,
+            IMO = 10,
             [Description("Non IMO Vessel")]
-            NonIMO=11
+            NonIMO = 11
         }
 
         public enum ConsolidatedIndicator
@@ -151,7 +151,7 @@ namespace BAL.Utilities
         }
         public enum CargoMovement
         {
-            [Description("Loacl Clearance")]
+            [Description("Local Clearance")]
             LC,
             [Description("Domestic Transshipment")]
             TI,
@@ -162,5 +162,33 @@ namespace BAL.Utilities
             [Description("Foreign Transit")]
             FT
         }
+
+        public enum PersonType
+        {
+            [Description("Passenger")]
+            FL,
+            [Description("Crew")]
+            FM,
+            [Description("Stowaway")]
+            DEE
+        }
+
+        public enum PersonGender
+        {
+            [Description("Not Known")]
+            NK = 0,
+            [Description("Male")]
+            M = 1,
+            [Description("Female")]
+            F = 2,
+            [Description("Not Applicable")]
+            NA = 9,
+        }
+
+        public enum PersonInTransitIndicator
+        {
+            No=0,
+            Yes=1
+        }
     }
-}
+    }

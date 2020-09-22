@@ -43,17 +43,17 @@ namespace BAL.Models
         [Display(Name = "Crew Member Rank Or Rating")]
         [MaxLength(10, ErrorMessage = "Crew Member Rank Or Rating cannot exceed 10 character.")]
         public string sPersonDetailsCrewMemberRankOrRatingCdd { get; set; }
-        [Display(Name = "Passanger Part Of Embark Tn Cdd")]
-        [MaxLength(5, ErrorMessage = "Passanger Part Of Embark Tn Cdd cannot exceed 5 character.")]
+        [Display(Name = "Passanger Part Of Embarkation Coded")]
+        [MaxLength(5, ErrorMessage = "Passanger Part Of Embarkation Coded cannot exceed 5 character.")]
         public string sPersonDetailsPassangerPartOfEmbarkTnCdd { get; set; }
-        [Display(Name = "Passanger Part Of Embark Tn Name")]
-        [MaxLength(256, ErrorMessage = "Passanger Part Of Embark Tn Name cannot exceed 256 character.")]
+        [Display(Name = "Passanger Part Of Embarkation Name")]
+        [MaxLength(256, ErrorMessage = "Passanger Part Of Embarkation Name cannot exceed 256 character.")]
         public string sPersonDetailsPassangerPartOfEmbarkTnName { get; set; }
-        [Display(Name = "Passanger Part Of Dsmbark Tn Cdd")]
-        [MaxLength(5, ErrorMessage = "Passanger Part Of Dsmbark Tn Cdd cannot exceed 5 character.")]
+        [Display(Name = "Passanger Part Of Disembarkation Coded")]
+        [MaxLength(5, ErrorMessage = "Passanger Part Of Disembarkation Coded cannot exceed 5 character.")]
         public string sPersonDetailsPassangerPartOfDsmbarkTnCdd { get; set; }
-        [Display(Name = "Passanger Part Of Dsmbark Tn Name")]
-        [MaxLength(256, ErrorMessage = "Passanger Part Of Dsmbark Tn Name cannot exceed 256 character.")]
+        [Display(Name = "Passanger Part Of Disembarkation Name")]
+        [MaxLength(256, ErrorMessage = "Passanger Part Of Disembarkation Name cannot exceed 256 character.")]
         public string sPersonDetailsPassangerPartOfDsmbarkTnName { get; set; }
         [Display(Name = "Person Gender Cdd")]
         [Required(ErrorMessage = "Person Gender is a required field.")]
@@ -67,20 +67,20 @@ namespace BAL.Models
         [Required(ErrorMessage = "Person Place Of Birth Name is a required field.")]
         [MaxLength(35, ErrorMessage = "Person Place Of Birth Name cannot exceed 35 character.")]
         public string sPersonDetailsPersonPlaceOfBirthName { get; set; }
-        [Display(Name = "Person Country Of Birth Cdd")]
-        [Required(ErrorMessage = "Person Country Of Birth Name is a required field.")]
-        [MaxLength(2, ErrorMessage = "Person Country Of Birth Cdd Name cannot exceed 2 character.")]
+        [Display(Name = "Person Country Of Birth Name Coded")]
+        [Required(ErrorMessage = "Person Country Of Birth Name Coded is a required field.")]
+        [MaxLength(2, ErrorMessage = "Person Country Of Birth Name Coded cannot exceed 2 character.")]
         public string sPersonDetailsPersonCountryOfBirthCdd { get; set; }
         [Display(Name = "Person Id Doc Expiry Date")]
         public string dtPersonIdDocExpiryDate { get; set; }
-        [Display(Name = "Person Id Or Travel Doc Issuing Nation Cdd")]
-        [MaxLength(2, ErrorMessage = "Person Id Or Travel Doc Issuing Nation Cdd cannot exceed 2 character.")]
+        [Display(Name = "Person Id Or Travel Doc Issuing Nation Coded")]
+        [MaxLength(2, ErrorMessage = "Person Id Or Travel Doc Issuing Nation Coded cannot exceed 2 character.")]
         public string sPersonIdOrTravelDocIssuingNationCdd { get; set; }
         [Display(Name = "Person Id Or Travel Doc No")]
         [MaxLength(70, ErrorMessage = "Person Id Or Travel Doc No cannot exceed 70 character.")]
         public string sPersonIdOrTravelDocNo { get; set; }
-        [Display(Name = "Person Id Or Travel Doc Type Cdd")]
-        [MaxLength(3, ErrorMessage = "Person Id Or Travel Doc Type Cdd cannot exceed 3 character.")]
+        [Display(Name = "Person Id Or Travel Doc Type Coded")]
+        [MaxLength(3, ErrorMessage = "Person Id Or Travel Doc Type Coded cannot exceed 3 character.")]
         public string sPersonIdOrTravelDocTypeCdd { get; set; }
         [Display(Name = "Visa Details Person Visa")]
         [Required(ErrorMessage = "Visa Details Person Visa is a required field.")]

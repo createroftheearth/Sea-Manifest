@@ -91,6 +91,22 @@ namespace BAL.Models
         public string consolidatorPan { get; set; }
     }
 
+    public class PrevRef
+    {
+        public string cinTyp { get; set; }
+        public string mcinPcin { get; set; }
+        public string csnSbmtdTyp { get; set; }
+        public string csnSbmtdBy { get; set; }
+        public string csnRptngTyp { get; set; }
+        public string csnSiteId { get; set; }
+        public string csnNmbr { get; set; }
+        public string csnDt { get; set; }
+        public string prevMcin { get; set; }
+        public string splitIndctr { get; set; }
+        public string nmbrOfPkgs { get; set; }
+        public string typOfPackage { get; set; }
+    }
+
     public class LocCstm
     {
         public string firstPrtOfEntry { get; set; }
