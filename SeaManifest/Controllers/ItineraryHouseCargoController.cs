@@ -53,7 +53,7 @@ namespace SeaManifest.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(ItineraryHouseCargoService.Instance.SaveItineraryHouseHouseCargo(model, 1));
+                return Json(ItineraryHouseCargoService.Instance.SaveItineraryHouseHouseCargo(model, GetUserInfo().iUserId));
             }
             else
             {

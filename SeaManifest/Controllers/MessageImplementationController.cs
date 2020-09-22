@@ -52,7 +52,7 @@ namespace SeaManifest.Controllers
             }
             if (ModelState.IsValid)
             {
-                return Json(MessageImplementationService.Instance.SaveMessage(model, 1));
+                return Json(MessageImplementationService.Instance.SaveMessage(model, GetUserInfo().iUserId));
             }
             else
             {

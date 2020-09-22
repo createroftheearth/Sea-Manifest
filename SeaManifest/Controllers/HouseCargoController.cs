@@ -69,7 +69,7 @@ namespace SeaManifest.Controllers
             }
             if (ModelState.IsValid && HouseCargoService.Instance.ValidateHouseCargo(model, out Messages))
             {
-                return Json(HouseCargoService.Instance.SaveHouseCargo(model, 1));
+                return Json(HouseCargoService.Instance.SaveHouseCargo(model, GetUserInfo().iUserId));
             }
             else
             {

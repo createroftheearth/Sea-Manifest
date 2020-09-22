@@ -49,7 +49,7 @@ namespace SeaManifest.Controllers
             }
             if (ModelState.IsValid)
             {
-                return Json(PortService.Instance.SavePort(model, 1));
+                return Json(PortService.Instance.SavePort(model, GetUserInfo().iUserId));
             }
             else
             {

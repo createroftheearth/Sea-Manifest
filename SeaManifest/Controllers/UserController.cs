@@ -40,7 +40,7 @@ namespace SeaManifest.Controllers
         {
             if (ModelState.IsValid)
             {
-                return Json(UserService.Instance.SaveUser(model, 1));
+                return Json(UserService.Instance.SaveUser(model, GetUserInfo().iUserId));
             }
             else
                 return Json(new { Status = false, Message = string.Join(",", ModelState.Values.SelectMany(z => z.Errors).Select(z => z.ErrorMessage)) });
