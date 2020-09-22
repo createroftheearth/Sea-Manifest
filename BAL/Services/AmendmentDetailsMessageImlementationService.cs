@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class AmendmentDetailsMessageImlementationService
+    public class AmendmentDetailsMessageImlementationService : CommonService
     {
         private AmendmentDetailsMessageImlementationService()
         {
@@ -75,6 +75,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblAmendmentDetailsMessageImlementationMaps
                             where (
                             t.sAmendRefNo.Contains(search)
@@ -82,6 +83,7 @@ namespace BAL.Services
                             || t.sAmendType.Contains(search)
                             )
                             && t.iMessageImplementationId == iMessageImplementationId
+                                                        && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sAmendRefNo).Skip(start).Take(length).ToList().Select(t => new

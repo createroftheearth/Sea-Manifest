@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class ItineraryMasterConsignmentService
+    public class ItineraryMasterConsignmentService : CommonService
     {
         private ItineraryMasterConsignmentService()
         {
@@ -83,8 +83,10 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblItineraryMasterConsignmentMaps
                             where t.sPortOfCallName.Contains(search) && t.iMasterConsignmentId == iMasterConsignmentId
+                            && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sPortOfCallCd).Skip(start).Take(length).ToList().Select(t => new

@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace BAL.Services
 {
-    public class MessageImplementationService
+    public class MessageImplementationService : CommonService
     {
         private MessageImplementationService()
         {
@@ -44,10 +44,12 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblMessageImplementations
-                            where t.sHeaderFieldIndicator.Contains(search) || t.sHeaderFieldMessageId.Contains(search)
+                            where (t.sHeaderFieldIndicator.Contains(search) || t.sHeaderFieldMessageId.Contains(search)
                             || t.sHeaderFieldSenderId.Contains(search) || t.sHeaderFieldReceiverId.Contains(search) || t.sDecRefReportingEvent.Contains(search)
-                            || t.sHeaderFieldVersionNo.Contains(search) || SqlFunctions.StringConvert(t.dHeaderFieldSequenceOrControlNumber).Contains(search)
+                            || t.sHeaderFieldVersionNo.Contains(search) || SqlFunctions.StringConvert(t.dHeaderFieldSequenceOrControlNumber).Contains(search))
+                            && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.dHeaderFieldSequenceOrControlNumber).Skip(start).Take(length).ToList().Select(t => new

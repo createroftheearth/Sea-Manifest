@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class TransportEquipmentHouseCargoService
+    public class TransportEquipmentHouseCargoService : CommonService
     {
         private TransportEquipmentHouseCargoService()
         {
@@ -100,6 +100,7 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblTransportEquipmentHouseCargoMaps
                             where
                             (t.sEquipmentId.Contains(search)
@@ -115,6 +116,7 @@ namespace BAL.Services
                             || SqlFunctions.StringConvert(t.dContainerWeight).Contains(search)
                             || SqlFunctions.StringConvert(t.dTotalNoOfPackages).Contains(search)
                             )
+                            && t.iActionBy == userId
                             && t.iHouseCargoDescId == iHouseCargoDescId
                             select t;
                 recordsTotal = query.Count();

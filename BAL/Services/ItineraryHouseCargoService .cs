@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BAL.Services
 {
-    public class ItineraryHouseCargoService
+    public class ItineraryHouseCargoService : CommonService
     {
         private ItineraryHouseCargoService()
         {
@@ -83,8 +83,9 @@ namespace BAL.Services
         {
             using (var db = new SeaManifestEntities())
             {
+                var userId = GetUserInfo().iUserId;
                 var query = from t in db.tblItineraryHouseCargoMaps
-                            where t.sPortOfCallName.Contains(search) && t.iHouseCargoDescId == iHouseCargoDescId
+                            where t.sPortOfCallName.Contains(search) && t.iHouseCargoDescId == iHouseCargoDescId && t.iActionBy == userId
                             select t;
                 recordsTotal = query.Count();
                 return query.OrderBy(z => z.sPortOfCallCd).Skip(start).Take(length).ToList().Select(t => new
