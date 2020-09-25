@@ -37,7 +37,7 @@ function initItenaryHouseCargo() {
             },
             {
                 "data": "iItineraryId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItineraryHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i></button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs not-hide\" onClick=\"AddUpdateItineraryHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i></button> ";
                         
                 }
             },

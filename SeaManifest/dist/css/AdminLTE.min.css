@@ -11953,8 +11953,9 @@ body.md-skin {
 .form-control.input-validation-error {
     border-color: red;
 }
-.field-validation-error{
-    color:red;
+
+.field-validation-error {
+    color: red;
 }
 
 table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sorting_desc, table.dataTable thead > tr > th.sorting, table.dataTable thead > tr > td.sorting_asc, table.dataTable thead > tr > td.sorting_desc, table.dataTable thead > tr > td.sorting {
@@ -11965,12 +11966,14 @@ table.dataTable thead > tr > th.sorting_asc, table.dataTable thead > tr > th.sor
     color: #1ab394 !important;
 }
 
-table.dataTable thead > tr > th{
+table.dataTable thead > tr > th {
     color: #dfdfe5;
 }
+
 .btn-success {
     background-color: green !important;
 }
+
 .btn-next-form::after {
     content: "\f061";
     display: inline-block;
@@ -11980,7 +11983,7 @@ table.dataTable thead > tr > th{
     -webkit-font-smoothing: antialiased;
 }
 
-.btn-previous-form::before{
+.btn-previous-form::before {
     content: "\f060";
     display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
@@ -11988,9 +11991,11 @@ table.dataTable thead > tr > th{
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
 }
-.validation-summary-errors{
-    color:red;
+
+.validation-summary-errors {
+    color: red;
 }
+
 @media (min-width: 1600px) {
     .modal-lg {
         max-width: 1500px !important;
@@ -12016,10 +12021,11 @@ table.dataTable thead > tr > th{
     }
 }
 
-.modal-header, .modal-footer,.ajs-header,.ajs-footer {
+.modal-header, .modal-footer, .ajs-header, .ajs-footer {
     background-color: #2f4050 !important;
     color: #fff !important;
 }
+
 .modal-body, .ajs-body {
     background-color: #f3f3f4 !important;
 }
@@ -12027,12 +12033,14 @@ table.dataTable thead > tr > th{
 .fa-times {
     color: white;
 }
+
 .modal-header .close {
     color: #fff;
 }
-.modal-header .close:hover{
-    color: #fff !important;
-}
+
+    .modal-header .close:hover {
+        color: #fff !important;
+    }
 
 /* TOOLTIPS */
 .tooltip-inner {
@@ -12054,6 +12062,11 @@ table.dataTable thead > tr > th{
 .tooltip.left .tooltip-arrow {
     border-left-color: #2f4050;
 }
+
 .hideTdbtn {
     display: none !important;
+}
+
+.not-hide {
+    display: block !important;
 }

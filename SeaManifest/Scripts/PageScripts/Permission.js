@@ -19,7 +19,7 @@ $(function () {
             {
                 "data": "iPermissionId", 'orderable': false, 'mRender': function (data, abc, full) {
 
-                    var html = '<button type="button" onClick="AddPermission(' + data + ')" class="btn btn-xs btn-warning"><i class="fa fa-edit"></i></button>';
+                    var html = '<button type="button" onClick="AddPermission(' + data + ')" class="btn btn-xs not-hide btn-warning"><i class="fa fa-edit"></i></button>';
                     return html;
                 }
             },

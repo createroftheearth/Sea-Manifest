@@ -62,7 +62,7 @@ function initTransportEquipmentMessageImplementations() {
             },
             {
                 "data": "iVoyageTransportId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateTransportEquipmentMessageImplementation(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs not-hide\" onClick=\"AddUpdateTransportEquipmentMessageImplementation(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },
         ]

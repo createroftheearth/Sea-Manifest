@@ -32,7 +32,7 @@ function initItemDetailsHouseCargos() {
             },
             {
                 "data": "iItemsDetailsId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateItemDetailsHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs not-hide\" onClick=\"AddUpdateItemDetailsHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },
         ]

@@ -30,7 +30,7 @@ function initHouseCargos() {
             },
             {
                 "data": "iHouseCargoDescId", "mRender": function (data, abc, full) {
-                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
+                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs not-hide\" onClick=\"AddUpdateHouseCargo(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/transportequipmenthousecargo/index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/itineraryhousecargo/index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Itinerary</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/supportdochousecargo/index?iHouseCargoDescId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> ";

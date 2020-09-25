@@ -29,7 +29,7 @@ function initAmendmentDetailsMessageImplementation() {
             },
             {
                 "data": "iAmendmentId", "mRender": function (data) {
-                    return "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateAmendmentDetailsMessageImplementation(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
+                    return "<button type=\"button\" class=\"btn btn-warning btn-xs not-hide\" onClick=\"AddUpdateAmendmentDetailsMessageImplementation(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> ";
                 }
             },
         ]

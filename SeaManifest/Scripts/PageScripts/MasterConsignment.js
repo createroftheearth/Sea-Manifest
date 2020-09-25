@@ -29,7 +29,7 @@ function initMasterConsignments() {
             },
             {
                 "data": "iMasterConsignmentId", "mRender": function (data, abc, full) {
-                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
+                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs not-hide\" onClick=\"AddUpdateMasterConsignment(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/transportequipmentmasterconsignment/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/supportdocmasterconsignment/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/housecargo/index?iMasterConsignmentId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add House Cargo</button> ";

@@ -44,7 +44,7 @@ function initMessages() {
             },
             {
                 "data": "iMessageImplementationId", "mRender": function (data, abc, full) {
-                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
+                    var html = "<button type=\"button\" class=\"btn btn-warning btn-xs not-hide\" onClick=\"AddUpdateMessage(" + data + ")\"><i class=\"fa fa-edit\"></i> Edit</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/masterconsignment/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Master Consignment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/transportequipmentmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Transport Equipment</button> " +
                         "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/supportdocmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Support Doc</button> " +
@@ -52,7 +52,7 @@ function initMessages() {
                     if (full.sDecRefReportingEvent !== "SDN") {
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/persononboardmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Persons on Board</button> ";
                     }
-                    html += "<button type=\"button\" class=\"btn btn-success btn-xs\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
+                    html += "<button type=\"button\" class=\"btn btn-success btn-xs not-hide\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
                     if (full.sDecRefReportingEvent !== "SEI")
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/additionaldetailsmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
                     return html;
