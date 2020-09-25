@@ -9,6 +9,7 @@
     var shipTypes = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("SHIP_TYP");
     var purpOfCalls = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("PURP_CALL");
     var cargoDescCodes = BAL.Services.MasterConsignmentService.Instance.GetCodesByType("CAR_DESC");
+    var ports = BAL.Services.MasterConsignmentService.Instance.GetPorts();
 }
 @using (Html.BeginForm("AddUpdateMessage", "MessageImplementation", FormMethod.Post, new { @id = "frmMessage" }))
 {
@@ -73,7 +74,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         @Html.LabelFor(z => z.sDecRefPortOfReporting)
-                        @Html.TextBoxFor(z => z.sDecRefPortOfReporting, new { @class = "form-control" })
+                        @Html.DropDownListFor(z => z.sDecRefPortOfReporting, ports, "Select", new { @class = "form-control", @data_live_search = "true" })
                         @Html.ValidationMessageFor(z => z.sDecRefPortOfReporting)
                     </div>
                     <div class="form-group col-md-4">
