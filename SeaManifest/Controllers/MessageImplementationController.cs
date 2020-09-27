@@ -63,7 +63,11 @@ namespace SeaManifest.Controllers
         public FileResult GetMessageJson(int iMessageImplementationId)
         {
             byte[] getJsonBytes = MessageImplementationService.Instance.GetMessageJson(iMessageImplementationId);
-            return File(getJsonBytes,"application/json");
+            var output = new FileContentResult(getJsonBytes, "application/json")
+            {
+                FileDownloadName = "download.json"
+            };
+            return output;
         }
     }
 }
