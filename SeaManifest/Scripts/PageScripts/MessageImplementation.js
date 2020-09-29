@@ -53,8 +53,7 @@ function initMessages() {
                         html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/persononboardmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Persons on Board</button> ";
                     }
                     html += "<button type=\"button\" class=\"btn btn-success btn-xs not-hide\" onClick=\"DownloadJson(" + data + ")\"><i class=\"fa fa-download\"></i> Download Json</button> ";
-                    if (full.sDecRefReportingEvent !== "SEI")
-                        html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/additionaldetailsmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
+                    html += "<button type=\"button\" class=\"btn btn-primary btn-xs\" onClick=\"location.href='/additionaldetailsmessageimplementation/index?iMessageImplementationId=" + data + "'\"><i class=\"fa fa-plus\"></i> Add Additional Details</button> ";
                     return html;
                 }
             },
